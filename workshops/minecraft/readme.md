@@ -8,9 +8,7 @@ You need to download/install only the following two components:
     * [Modkit 1.6.4. for Mac](https://www.dropbox.com/s/5429c5ci9h82bvu/modkit-mac-164.zip)
     * [Modkit 1.6.4 for Windows](https://www.dropbox.com/s/us13l01yi9e306f/modkit-windows-164.zip)
 
-That's it, now follow the tutorials:
-
-<iframe src="//www.youtube.com/embed/QkPq6KUvY7g?list=PLX8CzqL3ArzVET0IIHcCf3-JfzY8RL4xG" height="315" width="560" allowfullscreen="" frameborder="0"></iframe>
+That's it, now follow the <a href="http://www.youtube.com/embed/QkPq6KUvY7g?list=PLX8CzqL3ArzVET0IIHcCf3-JfzY8RL4xG">tutorials</a>.
 
 Detailed Instructions
 ---------------------
