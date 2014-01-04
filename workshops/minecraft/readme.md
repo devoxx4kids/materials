@@ -1,5 +1,6 @@
-Quick Start Instructions
-------------------------
+# Minecraft Modding using Forge
+
+## Quick Start Instructions
 
 You need to download/install only the following two components:
 
@@ -10,8 +11,7 @@ You need to download/install only the following two components:
 
 That's it, now follow the <a href="http://www.youtube.com/embed/QkPq6KUvY7g?list=PLX8CzqL3ArzVET0IIHcCf3-JfzY8RL4xG">tutorials</a>.
 
-Detailed Instructions
----------------------
+## Detailed Instructions
 
 You only need to follow these instructions if you are planning to build your own modding kit. Generally the pre-built mod kits (as explained in Quick Start above) would work. Building mod kits could be a significant work and may require significant understanding of the build scripts.
 
