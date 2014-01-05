@@ -6,8 +6,8 @@ You need to download/install only the following two components:
 
 * [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
 * Modding Kit (one of the following based upon your platform)
-    * [Modkit 1.6.4. for Mac](https://www.dropbox.com/s/5429c5ci9h82bvu/modkit-mac-164.zip)
-    * [Modkit 1.6.4 for Windows](https://www.dropbox.com/s/us13l01yi9e306f/modkit-windows-164.zip)
+    * [Modkit 1.6.4. for Mac](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/12742874198/1)
+    * [Modkit 1.6.4 for Windows](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/12742454152/1)
 
 That's it, now follow the <a href="http://www.youtube.com/embed/QkPq6KUvY7g?list=PLX8CzqL3ArzVET0IIHcCf3-JfzY8RL4xG">tutorials</a>.
 
