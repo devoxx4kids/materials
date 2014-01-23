@@ -1,16 +1,35 @@
 == Basic Programming Concepts
 
+Create analogy of cars ??
+
 === Class
+
+VW, Lexus, Tesla, Honda, ??
 
 === Package
 
+org.devoxx4kids.java.cars.vw
+org.devoxx4kids.java.cars.lexus
+org.devoxx4kids.java.cars.honda
+
 === Properties
+
+Introduce primitive and boxed types
+
+. color
+. how many doors ?
+. convertible ?
+. automatic or maual ?
 
 === Access Modifiers
 
 === Arrays
 
 === Methods
+
+. drive
+. brake
+. turn
 
 === public static void main
 
