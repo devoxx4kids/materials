@@ -4,5 +4,11 @@ v0.1, Jan 23, 2014
 :toc:
 :toclevels: 3
 
-include::chapters/introduction.adoc[]
+include::chapters/intro.adoc[]
+
+include::chapters/concepts.adoc[]
+
+include::chapters/control.adoc[]
+
+include::chapters/concepts2.adoc[]
 
