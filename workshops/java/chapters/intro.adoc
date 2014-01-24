@@ -10,5 +10,11 @@ Java is the best language!
 
 === Compilation and Creating a JAR
 
+=== Classpath
+
+=== Command-line tools
+
+=== Java program structure
+
 === IDEs
 

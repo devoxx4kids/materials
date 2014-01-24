@@ -8,6 +8,8 @@ Each car must know how to drive, turn etc
 
 Common behavior of cars
 
+=== Static methods, constants, initializers
+
 === Exceptions
 
 . Flat tire ?
@@ -17,6 +19,10 @@ Common behavior of cars
 ==== try/catch
 
 ==== throws
+
+==== Checked and runtime
+
+==== Defining your own exception class
 
 === Inheritance
 

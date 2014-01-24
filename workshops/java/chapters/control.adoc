@@ -1,8 +1,12 @@
 == Control Structures
 
+=== Scope
+
 === if/else
 
 === switch/case
+
+=== foreach
 
 === for loop
 

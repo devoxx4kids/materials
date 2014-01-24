@@ -6,13 +6,21 @@ Create analogy of cars ??
 
 VW, Lexus, Tesla, Honda, ??
 
+==== Constructors
+
 === Package
 
 org.devoxx4kids.java.cars.vw
 org.devoxx4kids.java.cars.lexus
 org.devoxx4kids.java.cars.honda
 
-=== Properties
+=== Types
+
+==== Primitive types
+
+==== Boxed types
+
+==== Autoboxing and unboxing
 
 Introduce primitive and boxed types
 
@@ -23,6 +31,8 @@ Introduce primitive and boxed types
 
 === Access Modifiers
 
+=== Operators
+
 === Arrays
 
 === Methods
@@ -32,4 +42,8 @@ Introduce primitive and boxed types
 . turn
 
 === public static void main
+
+=== Annotations
+
+=== Comments
 
