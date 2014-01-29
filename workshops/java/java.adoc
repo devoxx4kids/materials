@@ -1,5 +1,5 @@
 = Getting Started with Java
-Simon Ritter, Arun Gupta
+Arun Gupta
 v0.1, Jan 23, 2014
 :toc:
 :toclevels: 3
