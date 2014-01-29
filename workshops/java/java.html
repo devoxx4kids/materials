@@ -419,9 +419,9 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </ul>
 </li>
 <li><a href="#_access_modifiers">2.4. Access Modifiers</a></li>
-<li><a href="#_operators">2.5. Operators</a></li>
-<li><a href="#_arrays">2.6. Arrays</a></li>
-<li><a href="#_methods">2.7. Methods</a></li>
+<li><a href="#_methods">2.5. Methods</a></li>
+<li><a href="#_operators">2.6. Operators</a></li>
+<li><a href="#_arrays">2.7. Arrays</a></li>
 <li><a href="#_public_static_void_main">2.8. public static void main</a></li>
 <li><a href="#_annotations">2.9. Annotations</a></li>
 <li><a href="#_comments">2.10. Comments</a></li>
@@ -433,10 +433,13 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <li><a href="#_scope">3.1. Scope</a></li>
 <li><a href="#_if_else">3.2. if/else</a></li>
 <li><a href="#_switch_case">3.3. switch/case</a></li>
-<li><a href="#_foreach">3.4. foreach</a></li>
+<li><a href="#_ternary">3.4. ternary</a></li>
 <li><a href="#_for_loop">3.5. for loop</a></li>
 <li><a href="#_while_do_loop">3.6. while/do loop</a></li>
 <li><a href="#_do_while_loop">3.7. do/while loop</a></li>
+<li><a href="#_break">3.8. break</a></li>
+<li><a href="#_continue">3.9. continue</a></li>
+<li><a href="#_return">3.10. return</a></li>
 </ul>
 </li>
 <li><a href="#_advanced_programming_concepts">4. Advanced Programming Concepts</a></li>
@@ -454,15 +457,22 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <li><a href="#_defining_your_own_exception_class">4.4.4. Defining your own exception class</a></li>
 </ul>
 </li>
-<li><a href="#_inheritance">4.5. Inheritance</a></li>
+<li><a href="#_collections">4.5. Collections</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_method_overloading">4.5.1. Method Overloading</a></li>
-<li><a href="#_method_overriding">4.5.2. Method Overriding</a></li>
+<li><a href="#_foreach">4.5.1. foreach</a></li>
+</ul>
+</li>
+<li><a href="#_inheritance">4.6. Inheritance</a></li>
+<li>
+<ul class="sectlevel3">
+<li><a href="#_method_overloading">4.6.1. Method Overloading</a></li>
+<li><a href="#_method_overriding">4.6.2. Method Overriding</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#_acknowledgements">5. Acknowledgements</a></li>
 </ul>
 </div>
 </div>
@@ -524,10 +534,18 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 <div class="sect2">
 <h3 id="_package">2.2. Package</h3>
-<div class="paragraph">
-<p>org.devoxx4kids.java.cars.vw
-org.devoxx4kids.java.cars.lexus
-org.devoxx4kids.java.cars.honda</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>org.devoxx4kids.java.cars.vw</p>
+</li>
+<li>
+<p>org.devoxx4kids.java.cars.lexus</p>
+</li>
+<li>
+<p>org.devoxx4kids.java.cars.honda</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -568,15 +586,7 @@ org.devoxx4kids.java.cars.honda</p>
 
 </div>
 <div class="sect2">
-<h3 id="_operators">2.5. Operators</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_arrays">2.6. Arrays</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_methods">2.7. Methods</h3>
+<h3 id="_methods">2.5. Methods</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -589,6 +599,16 @@ org.devoxx4kids.java.cars.honda</p>
 <p>turn</p>
 </li>
 </ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_operators">2.6. Operators</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_arrays">2.7. Arrays</h3>
+<div class="paragraph">
+<p>rich people has too many cars</p>
 </div>
 </div>
 <div class="sect2">
@@ -621,7 +641,7 @@ org.devoxx4kids.java.cars.honda</p>
 
 </div>
 <div class="sect2">
-<h3 id="_foreach">3.4. foreach</h3>
+<h3 id="_ternary">3.4. ternary</h3>
 
 </div>
 <div class="sect2">
@@ -634,6 +654,18 @@ org.devoxx4kids.java.cars.honda</p>
 </div>
 <div class="sect2">
 <h3 id="_do_while_loop">3.7. do/while loop</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_break">3.8. break</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_continue">3.9. continue</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_return">3.10. return</h3>
 
 </div>
 </div>
@@ -690,15 +722,30 @@ org.devoxx4kids.java.cars.honda</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inheritance">4.5. Inheritance</h3>
+<h3 id="_collections">4.5. Collections</h3>
 <div class="sect3">
-<h4 id="_method_overloading">4.5.1. Method Overloading</h4>
+<h4 id="_foreach">4.5.1. foreach</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inheritance">4.6. Inheritance</h3>
+<div class="sect3">
+<h4 id="_method_overloading">4.6.1. Method Overloading</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_method_overriding">4.5.2. Method Overriding</h4>
+<h4 id="_method_overriding">4.6.2. Method Overriding</h4>
 
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_acknowledgements">5. Acknowledgements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Looking forward to pull requests!</p>
 </div>
 </div>
 </div>
@@ -706,7 +753,7 @@ org.devoxx4kids.java.cars.honda</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2014-01-29 13:49:55 IST
+Last updated 2014-01-29 13:59:34 IST
 </div>
 </div>
 </body>

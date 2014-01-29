@@ -24,6 +24,10 @@ Common behavior of cars
 
 ==== Defining your own exception class
 
+=== Collections
+
+==== foreach
+
 === Inheritance
 
 ==== Method Overloading

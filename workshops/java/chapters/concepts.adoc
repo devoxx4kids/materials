@@ -10,9 +10,9 @@ VW, Lexus, Tesla, Honda, ??
 
 === Package
 
-org.devoxx4kids.java.cars.vw
-org.devoxx4kids.java.cars.lexus
-org.devoxx4kids.java.cars.honda
+. org.devoxx4kids.java.cars.vw
+. org.devoxx4kids.java.cars.lexus
+. org.devoxx4kids.java.cars.honda
 
 === Types
 
@@ -31,15 +31,17 @@ Introduce primitive and boxed types
 
 === Access Modifiers
 
-=== Operators
-
-=== Arrays
-
 === Methods
 
 . drive
 . brake
 . turn
+
+=== Operators
+
+=== Arrays
+
+rich people has too many cars
 
 === public static void main
 

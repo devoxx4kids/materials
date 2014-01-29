@@ -6,7 +6,7 @@
 
 === switch/case
 
-=== foreach
+=== ternary
 
 === for loop
 
@@ -14,4 +14,9 @@
 
 === do/while loop
 
+=== break
+
+=== continue
+
+=== return
 
