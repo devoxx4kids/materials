@@ -27,7 +27,7 @@ Introduce primitive and boxed types
 . color
 . how many doors ?
 . convertible ?
-. automatic or maual ?
+. automatic or manual ?
 
 === Access Modifiers
 
@@ -41,7 +41,7 @@ Introduce primitive and boxed types
 
 === Arrays
 
-rich people has too many cars
+rich people have too many cars
 
 === public static void main
 
