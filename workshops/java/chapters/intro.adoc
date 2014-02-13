@@ -8,11 +8,7 @@ Java is the best language!
 
 === Downloading and Installing JDK
 
-=== Compilation and Creating a JAR
-
-=== Classpath
-
-=== Command-line tools
+=== Compilation
 
 === Java program structure
 
