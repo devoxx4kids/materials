@@ -37,7 +37,7 @@ VW, Lexus, Tesla, Honda, ??
 . color
 . how many doors ?
 . convertible ?
-. automatic or maual ?
+. automatic or manual ?
 
 === Package
 
