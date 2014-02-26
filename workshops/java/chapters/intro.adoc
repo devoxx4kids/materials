@@ -3,18 +3,28 @@
 === What is Java ?
 
 Java is the best language!
+Asking why? Well because its very powerfull, and at the same time easy and fun to learn and use.
+Programmes written in Java runs on all devices: desktop computers, mobile phones, TV's, Internet servers, robots, cars, and many other electronic devices.
+How it does that?
+When we say Java we also think of Java Virtual Machine (JVM) which is a special kind of software in which Java programs are executed.
+If some device has a Java Virtual Machine it can execute Java programs.
+Java Virtual Machine and all other things you need to develop Java progras are available for download for free.
+Check it out in next section and get ready to programme in Java!
 
-=== What is Java Development Kit (JDK) ?
 
-=== Downloading and Installing JDK
+=== What Do I need to Write Programms in Java?
+In order to write programmes in Java you need 
 
-=== Compilation and Creating a JAR
+Java Development Kit
+NetBeans IDE
 
-=== Classpath
 
-=== Command-line tools
+==== Downloading and Installing JDK
 
-=== Java program structure
+==== Downloading and Installing IDE
 
-=== IDEs
+
+=== Let's Start: Your first Java program
+
+
 
