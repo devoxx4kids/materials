@@ -1,14 +1,38 @@
 == Basic Programming Concepts
 
+=== Variables and Types
+
+What is a variable?
+It is a named space in a computer memory where you can store data, and also retrive that data later.
+Example of variables: x, y, speed, temperature, energy, name
+
+What is a type of a variable?
+Type of a variable determines what kind of data can be stored in some variable - for example: numbers or letters.
+
+
 Create analogy of cars ??
+I would go with animals or Vehicles. 
+Cars do not differ much in some general elements.
 
 === Class
 
-VW, Lexus, Tesla, Honda, ??
+Classes are basic building blocks of a Java programme. Every Java programme consists of a number of classes.
+Every class holds some data (variables which are called class fields) and some operations with that data which are  called methods.
+
+
+We must explain methods here
+And also Objects
+
 
 ==== Constructors
 
+Constructor is a special kind of method that get executed when the object is created. 
+This special mathod takes care of an object initialization - setting initial values to its fields.
+
+
 === Package
+
+Its simply a folders where classes are stored.
 
 . org.devoxx4kids.java.cars.vw
 . org.devoxx4kids.java.cars.lexus
@@ -19,6 +43,7 @@ VW, Lexus, Tesla, Honda, ??
 ==== Primitive types
 
 ==== Boxed types
+I think this can confuse them here
 
 ==== Autoboxing and unboxing
 
