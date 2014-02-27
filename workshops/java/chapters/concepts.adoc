@@ -4,10 +4,12 @@
 
 What is a variable?
 It is a named space in a computer memory where you can store data, and also retrive that data later.
-Example of variables: x, y, speed, temperature, energy, name
+An example of variables: x, y, speed, temperature, energy, name
 
 What is a type of a variable?
 Type of a variable determines what kind of data can be stored in some variable - for example: numbers or letters.
+
+
 
 
 Create analogy of cars ??
@@ -18,9 +20,14 @@ Cars do not differ much in some general elements.
 
 Classes are basic building blocks of a Java programme. Every Java programme consists of a number of classes.
 Every class holds some data (variables which are called class fields) and some operations with that data which are  called methods.
+Class is also a kind of variable type, for special kind of variables called objects.
+
+==== Methods
+A method is a set of instructions that can be 'called' from some other place in programme. 
+After these instructions get executed, program execution continues from the place where method was called.
+Methods can accept some data as an input, and they can also return some data as their result (but they dont have to)
 
 
-We must explain methods here
 And also Objects
 
 
