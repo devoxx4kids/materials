@@ -123,7 +123,7 @@ Note that you can change the `dirt` and `diamond` to whatever item/block you wan
 
 ### 7. New crafting recipe
 
-**Purpose**: To make furnaces smelt items faster.
+**Purpose**: To create a new recipe.
 
 **Instructions**: 
 
@@ -135,7 +135,7 @@ D D D<br/>
 D F D<br/>
 D D D
 
-* Specify the item represented by each letter by changing `'N', Item.netherrackBrick` to `'Letter', "Item/Block"`. For exaple, if the code is `par1CraftingManager.addRecipe(new ItemStack(Item.diamond, 8), new Object[] {"DS", "SD", 'S', Block.sand, 'D', Block.dirt});`, then the recipe would be:
+* Specify the item represented by each letter by changing `'N', Item.netherrackBrick` to `'Letter', "Item/Block"`. For example, if the code is `par1CraftingManager.addRecipe(new ItemStack(Item.diamond, 8), new Object[] {"DS", "SD", 'S', Block.sand, 'D', Block.dirt});`, then the recipe would be:
 
 DIRT SAND<br/>
 SAND DIRT
