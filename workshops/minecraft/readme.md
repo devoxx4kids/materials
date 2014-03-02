@@ -161,7 +161,7 @@ Note that you can change the items/blocks to whatever items and blocks you want.
 * On line 265 in the class EntityPig, type in:
 
 		public void fly() {
-			howMuchY = this.posY - this.lastTickPosY;
+			double howMuchY = this.posY - this.lastTickPosY;
 			this.posY = this.posY + howMuchY;
 		}
 
