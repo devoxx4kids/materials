@@ -2,15 +2,68 @@
 
 === What is Java ?
 
-Java is the best language!
+Java is a popular programming language that can be used with many different
+types of computers. It allows programmers to develop all kinds of software,
+including video games, and all of these programs can be used on any computer
+that has Java installed.
 
 === What is Java Development Kit (JDK) ?
 
+Construction workers need toolboxes to build houses, and Java programmers
+need the Java Development Kit to build Java programs. The JDK is a collection
+of parts and tools used for Java programming.
+
 === Downloading and Installing JDK
 
-=== Compilation
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html
 
 === Java program structure
 
+Java programs start with a "class declaration" (we will learn more about this
+later). For a program named "Devoxx4kids", this means it will start off looking
+like this:
+
+----
+    public class Devoxx4kids {
+
+    }
+----
+
+This must be saved in a file named "Devoxx4kids.java".
+
+The next step is to add a "main method" that will be the starting point of your
+program. The main method always looks the same:
+
+----
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+
+        }
+    }
+----
+
+Now you can put your program inside the "main method" and get started with Java!
+
+=== Compilation
+
+Compiling a program is the process of translating a human-readable programming
+language, into something more suitable for computers to read and understand.
+Java programs must be compiled to computer language before they can be run.
+
+In the previous example, our Java program was named Devoxx4kids. To compile
+this program, we would use:
+
+    javac Devoxx4kids.java
+
+And to run it:
+
+    java Devoxx4kids
+
 === IDEs
 
+An Integrated Development Environment, or IDE, is a programming tool that helps
+you to write, compile, and run programs. Popular free Java IDEs include
+link:https://www.eclipse.org/[Eclipse], link:https://netbeans.org/[Netbeans],
+and link:http://www.jetbrains.com/idea/[IntelliJ IDEA Community]. Each of these
+IDEs may look and feel a little different, but they all do the same jobs.
