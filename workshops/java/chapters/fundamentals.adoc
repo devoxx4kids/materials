@@ -431,9 +431,28 @@ they will all be 'public static'.
         return line.toUpperCase();
     }
 
+    // Takes a String and prints it LOUDLY!
+    public static void printLoud(String line) {
+        System.out.println(loud(line) + "!");
+    }
+
     // Takes a number and adds one to it
     public static double addOne(double number) {
         return number + 1;
+    }
+
+    // Takes two numbers and multiplies them
+    public static double multiply(double first, double second) {
+        return first * second;
+    }
+
+    // Takes an array of numbers and sums them
+    public static double sum(double[] numbers) {
+        double total = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            total = total + numbers[i];
+        }
+        return total;
     }
 ----
 
@@ -447,12 +466,15 @@ We can add them to our program and use them like this:
             System.out.println("Say something:");
             Scanner sc = new Scanner(System.in);
             String line = sc.nextLine();
-            String loudLine = loud(line);
-            System.out.println(loudLine + "!");
+            printLoud(line);
         }
 
         public static String loud(String line) {
             return line.toUpperCase();
+        }
+
+        public static void printLoud(String line) {
+            System.out.println(loud(line) + "!");
         }
     }
 ----
@@ -492,15 +514,15 @@ In the case of a Person class, we can *have* a first name, a last name, and
 an age, and we can *do* the action of introducing ourselves.
 
 ----
-public class Person {
-    String firstName;
-    String lastName;
-    int age;
+    public class Person {
+        String firstName;
+        String lastName;
+        int age;
 
-    public String introduction() {
-        return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        public String introduction() {
+            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        }
     }
-}
 ----
 
 Notice that the 'introduction' method is *not* 'static' anymore. This means
