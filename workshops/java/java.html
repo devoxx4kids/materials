@@ -1086,9 +1086,28 @@ they will all be <em>public static</em>.</p>
         return line.toUpperCase();
     }
 
+    // Takes a String and prints it LOUDLY!
+    public static void printLoud(String line) {
+        System.out.println(loud(line) + "!");
+    }
+
     // Takes a number and adds one to it
     public static double addOne(double number) {
         return number + 1;
+    }
+
+    // Takes two numbers and multiplies them
+    public static double multiply(double first, double second) {
+        return first * second;
+    }
+
+    // Takes an array of numbers and sums them
+    public static double sum(double[] numbers) {
+        double total = 0;
+        for (int i = 0; i &lt; numbers.length; i++) {
+            total = total + numbers[i];
+        }
+        return total;
     }</pre>
 </div>
 </div>
@@ -1104,12 +1123,15 @@ they will all be <em>public static</em>.</p>
             System.out.println("Say something:");
             Scanner sc = new Scanner(System.in);
             String line = sc.nextLine();
-            String loudLine = loud(line);
-            System.out.println(loudLine + "!");
+            printLoud(line);
         }
 
         public static String loud(String line) {
             return line.toUpperCase();
+        }
+
+        public static void printLoud(String line) {
+            System.out.println(loud(line) + "!");
         }
     }</pre>
 </div>
@@ -1173,15 +1195,15 @@ an age, and we can <strong>do</strong> the action of introducing ourselves.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>public class Person {
-    String firstName;
-    String lastName;
-    int age;
+<pre>    public class Person {
+        String firstName;
+        String lastName;
+        int age;
 
-    public String introduction() {
-        return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
-    }
-}</pre>
+        public String introduction() {
+            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        }
+    }</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1213,22 +1235,23 @@ constructor to the Person class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>public class Person {
-    String firstName;
-    String lastName;
-    int age;
+<pre>    // Person.java
+    public class Person {
+        String firstName;
+        String lastName;
+        int age;
 
-    // Constructor method
-    public Person(String firstName, String lastName, int age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
+        // Constructor method
+        public Person(String firstName, String lastName, int age) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = age;
+        }
 
-    public String introduction() {
-        return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
-    }
-}</pre>
+        public String introduction() {
+            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        }
+    }</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1238,9 +1261,28 @@ exactly the same as the name of their Class. Let&#8217;s try using this construc
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    Person p = new Person("Mr.", "Java", 19);
-    System.out.println(p.introduction());</pre>
+<pre>    // Devoxx4kids.java
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            Person p = new Person("Mr.", "Java", 19);
+            System.out.println(p.introduction());
+        }
+    }</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Now that we have two different Java files, compiling and running our program
+is a little different.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    javac Devoxx4kids.java Person.java
+    java Devoxx4kids</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have to give all of the names of our Java files to javac, but we only give
+the name of the one with our main method to java.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
