@@ -526,22 +526,23 @@ automatically do some work before letting the variable be used. Let's add a
 constructor to the Person class.
 
 ----
-public class Person {
-    String firstName;
-    String lastName;
-    int age;
+    // Person.java
+    public class Person {
+        String firstName;
+        String lastName;
+        int age;
 
-    // Constructor method
-    public Person(String firstName, String lastName, int age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
+        // Constructor method
+        public Person(String firstName, String lastName, int age) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = age;
+        }
 
-    public String introduction() {
-        return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        public String introduction() {
+            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        }
     }
-}
 ----
 
 Constructor methods can have a visibility and a name, and that's all. They never
@@ -549,9 +550,25 @@ have return types and they cannot be static. Furthermore, their name is always
 exactly the same as the name of their Class. Let's try using this constructor.
 
 ----
-    Person p = new Person("Mr.", "Java", 19);
-    System.out.println(p.introduction());
+    // Devoxx4kids.java
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            Person p = new Person("Mr.", "Java", 19);
+            System.out.println(p.introduction());
+        }
+    }
 ----
+
+Now that we have two different Java files, compiling and running our program
+is a little different.
+
+----
+    javac Devoxx4kids.java Person.java
+    java Devoxx4kids
+----
+
+We have to give all of the names of our Java files to javac, but we only give
+the name of the one with our main method to java.
 
 . color
 . how many doors ?
