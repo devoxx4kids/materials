@@ -6,11 +6,9 @@ v0.1, Jan 23, 2014
 
 include::chapters/intro.adoc[]
 
-include::chapters/concepts.adoc[]
+include::chapters/fundamentals.adoc[]
 
-include::chapters/control.adoc[]
-
-include::chapters/concepts2.adoc[]
+include::chapters/advanced.adoc[]
 
 include::chapters/acks.adoc[]
 

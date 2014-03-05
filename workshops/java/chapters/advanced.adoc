@@ -1,0 +1,55 @@
+== Advanced Programming Concepts
+
+=== Types
+
+==== Autoboxing
+
+Primitives vs Objects, pass by value vs reference
+
+=== Exceptions
+
+. Flat tire ?
+. Check engine light ?
+. Not starting ?
+
+==== try/catch
+
+==== throws
+
+==== finally
+
+==== Checked and runtime
+
+==== Defining your own exception class
+
+ties in to inheritance
+
+=== Static methods, constants, initializers
+
+=== Access Modifiers
+
+=== Abstract Class
+
+Common behavior of cars
+
+=== Interface
+
+Each car must know how to drive, turn etc
+
+=== Collections
+
+==== foreach
+
+==== data structures
+
+set vs list vs map vs stack vs queue
+
+=== Generics
+
+=== Inheritance
+
+==== Method Overloading
+
+==== Method Overriding
+
+=== Classpath, executable JARs

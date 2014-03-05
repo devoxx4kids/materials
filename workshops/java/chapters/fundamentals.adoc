@@ -1,0 +1,48 @@
+== Basic Programming Concepts
+
+Create analogy of cars ??
+
+=== public static void main
+
+==== Basic I/O
+
+=== Control Flow
+
+==== Conditionals (if/else)
+
+==== Loops
+
+=== Methods
+
+. drive
+. brake
+. turn
+
+=== Operators
+
+=== Comments
+
+=== Types
+
+==== Primitive types
+
+==== Arrays
+
+=== Class
+
+VW, Lexus, Tesla, Honda, ??
+
+==== Constructors
+
+. color
+. how many doors ?
+. convertible ?
+. automatic or manual ?
+
+=== Package
+
+. org.devoxx4kids.java.cars.vw
+. org.devoxx4kids.java.cars.lexus
+. org.devoxx4kids.java.cars.honda
+
+=== Annotations
