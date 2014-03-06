@@ -363,9 +363,9 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <body class="article">
 <div id="header">
 <h1>Getting Started with Java</h1>
-<span id="author" class="author">Arun Gupta</span><br>
-<span id="revnumber">version 0.1,</span>
-<span id="revdate">Jan 23, 2014</span>
+<span id="author" class="author">Arun Gupta, Andrew Azores, Jon VanAlten</span><br>
+<span id="revnumber">version 0.2,</span>
+<span id="revdate">Mar 5, 2014</span>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -387,33 +387,25 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <li>
 <ul class="sectlevel3">
 <li><a href="#_primitive_types">2.1.1. Primitive types</a></li>
+<li><a href="#_classes">2.1.2. Classes</a></li>
+<li><a href="#_arrays">2.1.3. Arrays</a></li>
 </ul>
 </li>
-<li><a href="#_operators">2.2. Operators</a></li>
+<li><a href="#_comments">2.2. Comments</a></li>
+<li><a href="#_operators">2.3. Operators</a></li>
+<li><a href="#_methods">2.4. Methods</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_arrays">2.2.1. Arrays</a></li>
+<li><a href="#_public_static_void_main">2.4.1. public static void main</a></li>
+<li><a href="#_constructors">2.4.2. Constructors</a></li>
 </ul>
 </li>
-<li><a href="#_public_static_void_main">2.3. public static void main</a></li>
+<li><a href="#_basic_i_o">2.5. Basic I/O</a></li>
+<li><a href="#_control_flow">2.6. Control Flow</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_basic_i_o">2.3.1. Basic I/O</a></li>
-</ul>
-</li>
-<li><a href="#_comments">2.4. Comments</a></li>
-<li><a href="#_control_flow">2.5. Control Flow</a></li>
-<li>
-<ul class="sectlevel3">
-<li><a href="#_conditionals_if_else">2.5.1. Conditionals (if/else)</a></li>
-<li><a href="#_loops">2.5.2. Loops</a></li>
-</ul>
-</li>
-<li><a href="#_methods">2.6. Methods</a></li>
-<li><a href="#_class">2.7. Class</a></li>
-<li>
-<ul class="sectlevel3">
-<li><a href="#_constructors">2.7.1. Constructors</a></li>
+<li><a href="#_conditionals_if_else">2.6.1. Conditionals (if/else)</a></li>
+<li><a href="#_loops">2.6.2. Loops</a></li>
 </ul>
 </li>
 </ul>
@@ -487,22 +479,69 @@ that has Java installed.</p>
 <div class="paragraph">
 <p>Construction workers need toolboxes to build houses, and Java programmers
 need the Java Development Kit to build Java programs. The JDK is a collection
-of parts and tools used for Java programming.</p>
+of parts and tools used for Java programming.  The most important tools are
+a program called a compiler (explained later) and a program used to run a
+compiled Java program.  The parts are what we call the class library, which
+can be thought of as a collection of commonly used utilities that you can
+use when writing your Java programs, rather than writing everything from
+scratch.  In much the same way, a house builder does not make her own bathtubs
+or faucets or light switches, but uses these parts when putting the house
+together.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_downloading_and_installing_jdk">1.3. Downloading and Installing JDK</h3>
 <div class="paragraph">
-<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>
-<a href="http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html">http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html</a></p>
+<p>If you are using Linux, you may already have a JDK installed.  You can check
+by running the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ which javac
+/usr/bin/javac</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the output of this command indicates that you do not have this installed,
+then the method of installation will depend on which distribution of Linux
+you are using.  For example, in Fedora you can use yum:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ su -c 'yum install java-1.7.0-opendjk-devel'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For Ubuntu users:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ sudo apt-get install openjdk-7-java</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please refer to your distribution&#8217;s documentation for more information.</p>
+</div>
+<div class="paragraph">
+<p>For Windows users, you will need to download and install the JDK from Oracle:</p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html">http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html</a></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_java_program_structure">1.4. Java program structure</h3>
 <div class="paragraph">
+<p>A basic Java program is a text file with a name like "Program.java".  This file
+will contain the source code for the program.</p>
+</div>
+<div class="paragraph">
 <p>Java programs start with a "class declaration" (we will learn more about this
-later). For a program named "Devoxx4kids", this means it will start off looking
-like this:</p>
+later). For a program named "Devoxx4kids", you would create a file named
+"Devoxx4kids.java" and it will start off looking like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -512,11 +551,9 @@ like this:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This must be saved in a file named "Devoxx4kids.java".</p>
-</div>
-<div class="paragraph">
 <p>The next step is to add a "main method" that will be the starting point of your
-program. The main method always looks the same:</p>
+program. The beginning, or "signature", of the main method always looks the
+same:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -528,42 +565,85 @@ program. The main method always looks the same:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Now you can put your program inside the "main method" and get started with Java!</p>
+<p>Don&#8217;t worry too much about the meaning of "public static void" or "String[]"
+yet, these will be explained later on.  You can put the rest of the source code
+for your program between the curly braces following the main method signature,
+and be on your way to and getting started with Java!</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_compilation">1.5. Compilation</h3>
 <div class="paragraph">
-<p>Compiling a program is the process of translating a human-readable programming
-language, into something more suitable for computers to read and understand.
-Java programs must be compiled to computer language before they can be run.</p>
+<p>Compiling a program is the process of translating human-readable source code
+into something that a computer can understand and execute.  Java programs must
+be compiled to computer language before they can be run.  The Java compiler is
+a program called "javac".</p>
 </div>
 <div class="paragraph">
 <p>In the previous example, our Java program was named Devoxx4kids. To compile
 this program, we would use:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>javac Devoxx4kids.java</pre>
+<pre>$ javac Devoxx4kids.java</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And to run it:</p>
+<p>This will produce another file, named "Devoxx4kids.class".  You won&#8217;t be able
+to read this file, but the tools that come with the JDK know how to use it!
+For example, to run it:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>java Devoxx4kids</pre>
+<pre>$ java Devoxx4kids</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The "java" program knows to look for a .class file named "Devoxx4kids.class"
+and run its main method.  Right now, that method doesn&#8217;t contain any code, so
+there is no output from the program.  Let&#8217;s add one line of code to the
+program so we can see what it does:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+        public static void main(String[] args) {
+            System.out.println("Java is fun! :)");
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here, "System" is a java class that comes as part of the JDK class library.
+Among other things, it comes with the ability to print text to the screen.
+Now, if we compile this small program again and run it, we should see the
+following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ javac Devoxx4kids.java
+$ java Devoxx4kids
+Java is fun! :)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Congratulations, you just wrote your first Java program!</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_ides">1.6. IDEs</h3>
 <div class="paragraph">
-<p>An Integrated Development Environment, or IDE, is a programming tool that helps
-you to write, compile, and run programs. Popular free Java IDEs include
-<a href="https://www.eclipse.org/">Eclipse</a>, <a href="https://netbeans.org/">Netbeans</a>,
-and <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA Community</a>. Each of these
-IDEs may look and feel a little different, but they all do the same jobs.</p>
+<p>An Integrated Development Environment, or IDE, is a programming tool that puts
+a number of separate tools together into a single program.  These separate
+tools usually include an editor that allows you to write and make changes to
+your program, a compiler (like the "javac" program that we used earlier), a
+way to run the program (like we did with the "java" program), and a debugger.
+A debugger is an important programming tool that allows you to run a program
+one line at a time, and examine the behaviour at each step. Some free Java
+IDEs include <a href="https://www.eclipse.org/">Eclipse</a>,
+<a href="https://netbeans.org/">Netbeans</a>, and
+<a href="http://www.jetbrains.com/idea/">IntelliJ IDEA Community</a>. Each of these may
+look and feel a little different, but they all basically do the same job.</p>
 </div>
 </div>
 </div>
@@ -571,21 +651,38 @@ IDEs may look and feel a little different, but they all do the same jobs.</p>
 <div class="sect1">
 <h2 id="_basic_programming_concepts">2. Basic Programming Concepts</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Create analogy of cars ??</p>
-</div>
 <div class="sect2">
 <h3 id="_types">2.1. Types</h3>
 <div class="paragraph">
-<p>Variables are pieces of information that our program can use. In Java, all
-variables have a type.</p>
+<p>Variables are pieces of information that our program can use.  If we look back
+to our example from the introduction, we could have used a variable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+        public static void main(String[] args) {
+            String statement = "Java is fun! :)";
+            System.out.println(statement);
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the first line of the main method, we <strong>declare</strong> a variable named "statement",
+and <strong>initialize</strong> it (assign a value to it).  This allows us to refer to this
+variable in the second line.</p>
+</div>
+<div class="paragraph">
+<p>In the declaration, we must say what "type" the variable is.  In Java, all
+variables have a type.  Our "statement" variable is of "String" type.</p>
 </div>
 <div class="sect3">
 <h4 id="_primitive_types">2.1.1. Primitive types</h4>
 <div class="paragraph">
 <p>Java has some built in types called primitives. They include numbers, which
-can be <em>byte, short, int, long, float,</em> or <em>double</em>. They can be <em>boolean</em> s,
-which are <em>true</em> or <em>false</em> (think Yes and No), and finally they can be <em>char</em>,
+can be <code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>float</code>, or <code>double</code>. There are also
+<code>boolean</code> primitives, which are a special type that can mean either <em>true</em> or
+<em>false</em> (think Yes and No), and finally there is a primitive type <code>char</code>,
 which is just a single letter, like "a" or "b".</p>
 </div>
 <div class="listingblock">
@@ -602,28 +699,250 @@ which is just a single letter, like "a" or "b".</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>byte</em>, <em>short</em>, <em>int</em>, and <em>long</em> can only store whole numbers, like 1, or 10
+<p><code>byte</code>, <code>short</code>, <code>int</code>, and <code>long</code> can only store whole numbers, like 1, or 10
  or -5.  The difference is in how large the numbers can be - bytes can only be
-between -128 and 127, whereas longs can be between -2<sup>63</sup> and 2<sup>63</sup>-1 (these are
-very, very big numbers). <em>int</em> is the usual choice out of these.</p>
+between -128 and 127, whereas longs can be between -2<sup>63</sup> and 2<sup>63</sup>-1 (which is
+another way to write "9,223,372,036,854,775,807", a very large number!). <code>int</code>
+is the most commonly used whole number type.</p>
 </div>
 <div class="paragraph">
-<p><em>float</em> and <em>double</em> can hold decimal numbers, like 2.5, or 10.0, or -0.5. The
-difference is that <em>double</em> can have more numbers after the decimal point than
-a <em>float</em> can. <em>double</em> is the usual choice between them.</p>
+<p><code>float</code> and <code>double</code> can hold decimal numbers, like 2.5, or 10.0, or -0.5. The
+difference is that <code>double</code> can have more numbers after the decimal point than
+a <code>float</code> can. <code>double</code> is the usual choice between them.</p>
 </div>
 <div class="paragraph">
-<p>We will mostly be using int, double, and boolean from these types. We will
-also be using the type String, which is not a true "primitive" in Java, but is
+<p>We will mostly be using <code>int</code>, <code>double</code>, and <code>boolean</code> from these types. We will
+also be using the type <code>String</code>, which is not a true "primitive" in Java, but is
 very commonly used and useful.</p>
+</div>
+<div class="sect4">
+<h5 id="_literals">Literals</h5>
+<div class="paragraph">
+<p>Primitive types do not always need a variable.  It is also possible to include
+values directly in the source code.  These values are called *literal*s.  For
+number types, you can simply use numbers like <code>123</code>.  For boolean literals the
+keywords <code>true</code> and <code>false</code> can be used.  <code>char</code> literals must have single
+quotation marks surrounding them, like <code>'a'</code>.  String literals can be written
+with double quotes, such as <code>"Hello!"</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_classes">2.1.2. Classes</h4>
+<div class="paragraph">
+<p>All other types in Java are Classes.  This includes types from the JDK class
+library, but it is also how we can create custom types for our program.   So
+far, we have defined one class, called Devoxx4kids.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In most cases, each class is defined in its own source code file.  We can add
+more classes by creating new files, named after the class we are putting inside
+them. Let&#8217;s make a new class called Person, and put it inside a new file named
+Person.java.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Person {
+
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that we have two different Java files, compiling and running our program
+is a little different.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    javac Devoxx4kids.java Person.java
+    java Devoxx4kids</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have to give all of the names of our Java files to javac, but we only give
+the name of the one with our main method to java.</p>
+</div>
+<div class="paragraph">
+<p>Classes can contain both <strong>variables</strong> and <strong>methods</strong>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Variables are things that a class <strong>has</strong>.</p>
+</li>
+<li>
+<p>Methods are things that a class <strong>does</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>We have seen one method already, the "main" method.  We have seen a variable
+contained within that method, but variables can also be declared outside of a
+method; these variables can be referred to by any method in that class.  Let&#8217;s
+modify our Devoxx4kids program to show what this looks like.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+        static String statement = "Java is fun! :)";
+
+        public static void main(String[] args) {
+            printStatement();
+        }
+
+        public static void printStatement() {
+            System.out.println(statement);
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the case of our Person class, we can <strong>have</strong> a first name, a last name, and
+an age, and we can <strong>do</strong> the action of introducing ourselves.  Notice that
+both where we declare this <code>printStatement()</code> method and when we use (or
+<strong>call</strong>) it, we use the brackets, <code>()</code> at the end; this will be explained
+better later on.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Person {
+        String firstName;
+        String lastName;
+        int age;
+
+        public void introduce() {
+            System.out.println("Hi! My name is " + firstName + " " + lastName + ". I am " + age + " years old. I think Java is fun! :)");
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that the the variables and methods of the Person class do not use the
+<code>static</code> keyword.  This keyword indicates that something belongs to the class
+itself.  Without the <code>static</code> keyword, variables and methods belong to an
+<strong>instance</strong> of the class.  This means that in order to use these variables
+and methods, we must declare a <strong>variable</strong> of that <strong>type</strong>.  Let&#8217;s change our
+example program to see how this looks.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+
+        public static void main(String[] args) {
+            Person p = new Person();
+            p.firstName = "Mr.";
+            p.lastName = "Java";
+            p.age = 10;
+            p.introduce();
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we used a special method "Person()", called a <strong>constructor</strong>.  We&#8217;ll
+talk more about this, and methods in general, later.</p>
+</div>
+<div class="paragraph">
+<p>If we had used the <code>static</code> keyword, we could have left out the line with
+the constructor, and used the class name instead of the variable name in
+the rest of the program.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+
+        public static void main(String[] args) {
+            Person.firstName = "Mr.";
+            Person.lastName = "Java";
+            Person.age = 10;
+            Person.introduce();
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, you can probably see how it is more useful to have an <strong>instance</strong>
+of the Person class.  Static variables effectively belong to all instances
+of the class.  Can you imagine if you and all of your classmates had the
+same name?</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_arrays">2.1.3. Arrays</h4>
+<div class="paragraph">
+<p>Arrays are a special sort of type. An array allows you to have a variable
+that is actually a list with other nameless variables inside it. Making an
+array variable is just like making a normal variable, but you add square
+brackets, <code>[</code> and <code>]</code>.  If you want to refer to these nameless variables,
+you must use the array variable name along with square brackets containing
+a number.  That number is called the <strong>index</strong>.  Here, we declare an array
+of type <code>int</code>, containing two nameless int variables, and assign those
+variables using the <strong>index</strong>.  Notice that the first index we use is "0".
+This is how all arrays work.  It also means that the largest index for
+an array is actually one number lower than the size of the array.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    int[] numbers = new int[2];
+    numbers[0] = 10;
+    numbers[1] = 3;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how making an array variable looks different from making a normal
+variable. The <em>new</em> keyword is used, and there are square brackets on both
+side of the = . Inside the second pair of square brackets, you put the size
+of the array, which here is two.</p>
+</div>
+<div class="paragraph">
+<p>We use a primitive type "int" in this example, but it is also possible to
+make arrays of other types.</p>
+</div>
+<div class="paragraph">
+<p>One last thing to remember about array variables is that, in a single
+array, all of the nameless variables (sometimes called <strong>elements</strong>) must
+be of a matching type.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_operators">2.2. Operators</h3>
+<h3 id="_comments">2.2. Comments</h3>
 <div class="paragraph">
-<p>The most basic operator is =, the assignment operator. This operator is used
-to give variables values.</p>
+<p>Comments allow programmers to add notes to a program. The notes don&#8217;t do anything
+in the program, but they can make it easier for other programmers to understand
+what is happening. There are two ways to write comments in Java, and both are shown
+in the example below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    // The next two lines contain both code and comments
+    boolean hasCat = true; // do I have a cat?
+    boolean hasDog = true; // do I have a dog?
+
+    /* if I have either a dog or a cat, then
+       I have a pet! */
+    boolean hasPet = hasCat || hasDog;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can add a single line comment by starting with <code>//</code>.  In fact, you can even
+add a comment to the end of a line of code, and everything after the <code>//</code> until
+the next line starts is considered a comment.  If you need to add more than
+one line of comments in a row, it must start with <code>/*</code> and end with <code>*/</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_operators">2.3. Operators</h3>
+<div class="paragraph">
+<p>The most basic operator is <code>=</code>, the assignment operator. This operator is
+used to <strong>assign</strong> a value to a variable.  Be careful not to confuse this
+with <code>==</code>, the equals operator (discussed below).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -634,10 +953,10 @@ to give variables values.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>With number types, we can do normal number things, like add, subtract, multiply,
-and divide. Just like in normal math, sometimes we need to use brackets with
-our operators to make it clear which ones happen in which order. This is true
-for all of the operators.</p>
+<p>Java includes basic math operators.  These include <code>+</code> (addition), <code>-</code>
+(subtraction), <code>*</code> (multiplication), and <code>/</code> (division).  Just like in
+regular math, you can also use brackets like <code>(</code> and <code>)</code> to make sure the
+math operations happen in the right order.  Here are a few examples:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -653,19 +972,21 @@ for all of the operators.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>We can also compare numbers to each other using &gt;, &lt;, &#8656;, &gt;=, and ==. These
-operators return boolean values, <em>true</em> and <em>false</em>.</p>
+<p>We can also compare numbers to each other using <code>&gt;</code> (greater than), <code>&lt;</code> (less
+than), <code>&gt;=</code> (greater than or equal to), <code>&lt;=</code> (less than or equal to), and <code>==</code>
+(equals). These operators return boolean values, <em>true</em> and <em>false</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    boolean tenMoreThanFive = 10 &gt; 5;
+<pre>    boolean tenGreaterThanFive = 10 &gt; 5;
     boolean twoEqualsTwo = 2 == 2;
     boolean zeroLessThanOne = 0 &lt; 1;
     boolean threeLessOrEqualThree = 3 &lt;= 3;</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>There are also the operators || and &amp;&amp;, which are used with booleans.</p>
+<p>There are also the operators <code>||</code> (or) and <code>&amp;&amp;</code> (and), which are used with
+booleans.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -679,8 +1000,8 @@ operators return boolean values, <em>true</em> and <em>false</em>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The == operator from before can also be used with booleans and chars, not
-just numbers.</p>
+<p>The <code>==</code> operator from before can also be used with other literal types such
+as booleans and chars, not just numbers.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -693,9 +1014,10 @@ just numbers.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>There is one more common operator, which is !. This is used to reverse the
-meaning of booleans. Related is the operator !=, which is like ! and ==
-combined. "a != b" is the same as "! (a == b)".</p>
+<p>There is one more common operator, which is <code>!</code> (not). This is used to
+reverse the meaning of booleans.  In English, we can say it changes "true" to
+mean "false" and "false" to mean "true".  Related is the operator <code>!=</code>, which
+is like <code>!</code> and <code>==</code> combined. <code>a != b</code> is the same as <code>! (a == b)</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -703,36 +1025,160 @@ combined. "a != b" is the same as "! (a == b)".</p>
     boolean no = ! yes;</pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_arrays">2.2.1. Arrays</h4>
+</div>
+<div class="sect2">
+<h3 id="_methods">2.4. Methods</h3>
 <div class="paragraph">
-<p>Arrays are a special sort of type. An array allows you to have a variable
-that is actually a list with other nameless variables inside it. Making an
-array variable is just like making a normal variable, but you add square
-brackets, [ and ].</p>
+<p>Recall the declaration of the <code>introduce()</code> method in the Person class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    int[] numbers = new int[2];
-    numbers[0] = 10;
-    numbers[1] = 3;</pre>
+<pre>    public void introduce() {</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Notice how making an array variable looks different from making a normal
-variable. The <em>new</em> keyword is used, and there are square brackets on both
-side of the = . Inside the second pair of square brackets, you put the size
-of the array, which here is two. In Java, the first spot in an array is spot
-0, so this array only has spots 0 and 1, since its size is two.</p>
+<p>As we already know, "introduce" is the name of the method. But what about the
+rest of it?</p>
+</div>
+<div class="paragraph">
+<p><code>public</code> is the <strong>visibility</strong> of the method.  We refer to it as a <strong>visibility
+modifier</strong>.  <code>public</code> is a keyword that means that this method can be used by
+other classes.  Keep in mind that because it is not <code>static</code> an instance of
+the Person class is still needed.</p>
+</div>
+<div class="paragraph">
+<p>Another option for method or variable visibility is <code>private</code>.  This means
+that only the class in which the method or variable is declared is allowed
+to use it.  Let&#8217;s add a private method to our Person class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Person {
+        String firstName;
+        String lastName;
+        int age;
+
+        public void introduce() {
+            System.out.println(getIntroduction());
+        }
+
+        private String getIntroduction() {
+            String intro = "Hi! My name is " + firstName + " " + lastName + ". I am " + age + " years old. I think Java is fun! :)";
+            return intro;
+        }
+    }</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>This <code>getIntroduction()</code> method can be used from within the Person class, but
+if we tried to add a line like <code>p.getIntroduction()</code> to our Devoxx4kids class
+we would get an error.</p>
 </div>
-<div class="sect2">
-<h3 id="_public_static_void_main">2.3. public static void main</h3>
+<div class="paragraph">
+<p>There are two other options for visibility: <code>protected</code> and <strong>default</strong> (if we
+declare a method or variable without a visibility keyword).  We won&#8217;t worry
+about what these mean for now.</p>
+</div>
+<div class="paragraph">
+<p>You may have noticed another difference between the <code>introduce</code> and the
+<code>getIntroduction</code> methods.  Look between the visibility keyword and the
+method name.  One says <code>void</code> and the other says <code>String</code>.  These represent
+the <strong>return type</strong> of the method.  A method&#8217;s return type indicates what type
+of thing the method produces, if any.  The <code>void</code> keyword is a special word
+that indicates that the method does not produce anything.  While a visibility
+modifier is not necessary when declaring a method, a return type must always
+be present.  The return type can by any type, including primitives, classes
+and arrays.  If the return type is not <code>void</code>, the method must also include
+a <strong>return statement</strong>.</p>
+</div>
+<div class="paragraph">
+<p>We have seen that a method declaration must have a <strong>name</strong>, a <strong>return type</strong>,
+and may have a <strong>visibility modifier</strong> or the <code>static</code> keyword.  There is one
+more part that a method may have: <strong>parameters</strong>.  You&#8217;ve actually already
+seen this in the "main" method: it&#8217;s the part that says <code>String[] args</code>.
+Let&#8217;s add a method with parameters to our Person class as an example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public class Person {
+        String firstName;
+        String lastName;
+        int age;
+
+        public void introduce() {
+            say(getIntroduction());
+        }
+
+        public void say(String statement) {
+            System.out.println(statement);
+        }
+
+        private String getIntroduction() {
+            String intro = "Hi! My name is " + firstName + " " + lastName + ". I am " + age + " years old. I think Java is fun! :)";
+            return intro;
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The new method <code>say</code> takes a single parameter of type String.  This means
+when we call the method, we must include a String value in the brackets.
+The value that we use is called the <strong>argument</strong>.  The argument can be a
+literal (like <code>"Hello"</code>), a variable (like <code>lastName</code>), or another method
+call, as long as the method returns the correct type.  In this example, we
+use a call to the <code>getIntroduction()</code> method.</p>
+</div>
+<div class="paragraph">
+<p>A method can take more than one parameter.  For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    // Takes two numbers and multiplies them
+    public static double multiply(double first, double second) {
+        return first * second;
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If we want to call a method like this, we must still use matching
+arguments, like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    double nine = multiply(4.5, 2.0);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As a reminder, a method declaration looks like this (with necessary parts
+in bold):</p>
+</div>
+<div class="paragraph">
+<p><code>visibilitykeyword static <strong>returntype name(</strong>arguments<strong>)</strong></code></p>
+</div>
+<div class="paragraph">
+<p>Everything here except for the <code>static</code> keyword will be different for each
+method you write.</p>
+</div>
+<div class="paragraph">
+<p>Aside from the declaration, it is important to look at the rest of the
+method, which we call the <strong>body</strong>.  You&#8217;ll notice that after the method
+declaration is a <code>{</code>, which we call an opening curly brace, then one or
+more lines of Java code, and finally a <code>}</code> which we call a closing curly
+brace.  All of this is the body.  Each of the lines between the curly
+braces is called a <strong>statement</strong>, and all statements in java must end in
+a semicolon, like <code>;</code>.</p>
+</div>
+<div class="paragraph">
+<p>Actually, there is a more general way to call this pattern of curly
+braces surrounding several lines of code; it is called a <strong>block</strong>.  We
+will see later on that this pattern is used by Java in other ways.</p>
+</div>
+<div class="sect3">
+<h4 id="_public_static_void_main">2.4.1. public static void main</h4>
 <div class="paragraph">
 <p>Normally, programs need an "entry point", a place to start from at the very
-beginning. In Java, this is the "main method". The main method always looks
-the same:</p>
+beginning. In Java, this is the "main method". The main method declaration
+always looks the same:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -740,53 +1186,137 @@ the same:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>For now, all we need to know about is the name of the method, which here is
-<em>main</em>. The rest of it - <em>public</em>, <em>static</em>, <em>void</em>, and <em>String[] args</em> -
-will come later.</p>
+<p>Now that we know what parameters are, you have probably guessed that you
+can refer to the <code>args</code> variable in the main method.  But, where do the
+values in this array come from?</p>
 </div>
-<div class="sect3">
-<h4 id="_basic_i_o">2.3.1. Basic I/O</h4>
 <div class="paragraph">
-<p>Let&#8217;s make our program actually do something now. So far, we have this:</p>
+<p>When you run a java program, you can include additional words after the
+class name, and these become the arguments when the main method is called.</p>
+</div>
+<div class="paragraph">
+<p>That may be hard to understand, so let&#8217;s make a small change to the main
+method of our example to see how this works.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>    public class Devoxx4kids {
-        public static void main(String[] args) {
 
+        public static void main(String[] args) {
+            Person p = new Person();
+            p.firstName = "Mr.";
+            p.lastName = "Java";
+            p.age = 10;
+            p.introduce();
+            p.say(args[0]);
+        }
+    }</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_constructors">2.4.2. Constructors</h4>
+<div class="paragraph">
+<p>Classes can also have a special kind of method called a <em>constructor</em>. These
+allow us to set the values of the variables in the class while an instance
+is being created, and we can even do some other things in the constructor if
+we want certain things to happen before the variable can be used. Even if
+you do not create a constructor for a class, Java makes a default constructor
+for you, that has no parameters.  We already used it earlier when we created
+a Person instance. Let&#8217;s now add a constructor to the Person class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    // Person.java
+    public class Person {
+        private String firstName;
+        private String lastName;
+        private int age;
+
+        // Constructor
+        public Person(String firstName, String lastName, int age) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = age;
+        }
+
+        public void introduce() {
+            say(getIntroduction());
+        }
+
+        public void say(String statement) {
+            System.out.println(statement);
+        }
+
+        private String getIntroduction() {
+            String intro = "Hi! My name is " + firstName + " " + lastName + ". I am " + age + " years old. I think Java is fun! :)";
+            return intro;
         }
     }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Nothing really happens when this program is run, because we haven&#8217;t written
-anything inside of the main method. The program starts, has nothing to do, and
-stops right away. We can make the program print a message using</p>
+<p>Notice that we&#8217;ve added the <code>private</code> keyword to the class variables
+<code>firstName</code>, <code>lastName</code>, and <code>age</code>.  Because we now set these in the
+constructor, they no longer need to be visible to other classes.</p>
+</div>
+<div class="paragraph">
+<p>You may also have noticed the <code>this</code> keyword used.  This is a special word
+that you can use in any non-static method.  It is how the class refers to
+itself.</p>
+</div>
+<div class="paragraph">
+<p>Constructor methods can only have a visibility modifier, a name, and
+parameters. They never have return types and they cannot be static. Furthermore,
+their name is always exactly the same as the name of their Class. Let&#8217;s change
+our example program to use this constructor.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    System.out.println("Devoxx4kids!");</pre>
+<pre>    // Devoxx4kids.java
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            Person p = new Person("Mr.", "Java", 10);
+            p.introduce();
+            p.say(args[0];
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, when we compile and run the program, we can include arguments to the
+main method on the command line, and it should look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>   $ javac Devoxx4kids.java Person.java
+   $ java Devoxx4kids Goodbye
+   Hi! my name is Mr. Java.  I am 10 years old.  I think java is fun! :)
+   Goodbye</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_basic_i_o">2.5. Basic I/O</h3>
+<div class="paragraph">
+<p>I/O stands for Input/Output.  Input refers to ways to add information to
+the program.  Output refers to ways to get information out of the program.
+The simplest form of input is to read from the keyboard.  The simplest
+form of output is to print information to the screen, which we have already
+seen.  Let&#8217;s look at this in more detail.</p>
+</div>
+<div class="paragraph">
+<p>In the Person class, we have the <code>say</code> method, which contains the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    System.out.println(statement);</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Here, "println" is the name of a method we are calling, and it has one String
 parameter. <em>println</em> takes the argument we give it and prints it to the screen.</p>
-</div>
-<div class="paragraph">
-<p>All together, we now have:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    public class Devoxx4kids {
-        public static void main(String[] args) {
-            System.out.println("Devoxx4kids!");
-        }
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Notice that we have to use the curly braces, { and }, with our class and method
-declarations, and that we end statements, like println, with a semicolon ;.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s add a little more action. We can make the program ask us for input, do
@@ -795,7 +1325,8 @@ what we type in and makes everything lower case.</p>
 </div>
 <div class="paragraph">
 <p>To be able to read things we type, the program will use something called Scanner.
-To use Scanner, we need to "import" it.</p>
+Scanner is a class from the class library that comes as part of the JDK.  To use
+Scanner, we need to "import" it.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -815,9 +1346,9 @@ from the user.</p>
 </div>
 <div class="paragraph">
 <p>Now we have a Scanner variable called "sc" and a String variable called "line".
-"line" holds the text we give to the program when we run it. We can make it
-all lower case and print it back out easily. Here&#8217;s what the whole thing will
-look like.</p>
+"line" holds the text that we gave as input on the keyboard.  We can even make
+our Person instance say the line back as output.  This is how the program to
+do so looks:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -825,17 +1356,18 @@ look like.</p>
 
     public class Devoxx4kids {
         public static void main(String[] args) {
-            System.out.println("Say something:");
+            Person p = new Person("Mr.", "Java", 10);
+            p.introduce();
+            System.out.println("What do you want me to say?");
             Scanner sc = new Scanner(System.in);
             String line = sc.nextLine();
-            System.out.println(line.toLowerCase());
+            p.say(line);
         }
     }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We can expand this and make it so that we can enter a second line of text
-which is also made lower case.</p>
+<p>We can expand this and make it so that we can enter a second line of text.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -843,40 +1375,22 @@ which is also made lower case.</p>
 
     public class Devoxx4kids {
         public static void main(String[] args) {
+            Person p = new Person("Mr.", "Java", 10);
+            p.introduce();
+            System.out.println("What do you want me to say?");
             Scanner sc = new Scanner(System.in);
-            System.out.println("Say something:");
             String line = sc.nextLine();
-            System.out.println(line.toLowerCase());
-            System.out.println("Say something again:");
+            p.say(line);
+            System.out.println("What else do you want me to say?");
             String line2 = sc.nextLine();
-            System.out.println(line2.toLowerCase());
+            say(line2);
         }
     }</pre>
 </div>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="_comments">2.4. Comments</h3>
-<div class="paragraph">
-<p>Comments allow programmers to add notes to a program. The notes don&#8217;t do anything
-in the program, but they can make it easier for other programmers to understand
-what is happening. There are two ways to write comments in Java, and both are shown
-in the example below.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    boolean hasCat = true; // do I have a cat?
-    boolean hasDog = true; // do I have a dog?
-
-    /* if I have either a dog or a cat, then
-       I have a pet! */
-    boolean hasPet = hasCat || hasDog;</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_control_flow">2.5. Control Flow</h3>
+<h3 id="_control_flow">2.6. Control Flow</h3>
 <div class="paragraph">
 <p>So far, our program just runs in a straight line from top to bottom. What we
 need is some way to have our program make decisions, and some way to automatically
@@ -884,7 +1398,7 @@ do things more than once, so that we don&#8217;t need to just write our code ove
 over again.</p>
 </div>
 <div class="sect3">
-<h4 id="_conditionals_if_else">2.5.1. Conditionals (if/else)</h4>
+<h4 id="_conditionals_if_else">2.6.1. Conditionals (if/else)</h4>
 <div class="paragraph">
 <p>Conditionals allow our program to make decisions. The form of an if/else statement
 in Java is this:</p>
@@ -910,7 +1424,7 @@ block is run still.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_loops">2.5.2. Loops</h4>
+<h4 id="_loops">2.6.2. Loops</h4>
 <div class="paragraph">
 <p>There are a few types of loop in Java. The most basic is the <em>while</em> loop. This
 loop is used with a boolean variable or expression, and it runs over and over
@@ -1025,280 +1539,40 @@ once. The <em>do-while</em> loop is just a <em>while</em> that will always run a
 </div>
 </div>
 <div class="paragraph">
-<p>Try both of these out and see for yourself that the <em>while</em> loop does not print
+<p>Try both of these out and see for yourself that the <code>while</code> loop does not print
 "Hello!", and the <em>do-while</em> prints it exactly once.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_methods">2.6. Methods</h3>
 <div class="paragraph">
-<p>Recall the declaration of the main method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    public static void main(String[] args)</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>As we already know, "main" is the name of the method. But what about the rest
-of it?</p>
-</div>
-<div class="paragraph">
-<p><em>public</em> is the <em>visibility</em> of the method. <em>public</em> means that this method
-can be seen from anywhere else in the code. For now, this is the only visibility
-we will worry about. The other options are <em>protected</em>, <em>private</em>, and nothing.</p>
-</div>
-<div class="paragraph">
-<p><em>static</em> is a little more complicated to explain. <em>static</em> methods can be called
-all on their own, whereas non-static <em>instance</em> methods have to be called <strong>on</strong>
-an object. This will make more sense in the next section when we learn about
-Classes. For now, consider the methods <em>System.out.println(line)</em> and
-<em>line.toLowerCase()</em>. When we call <em>println</em>, it is called on its own. When we
-call <em>toLowerCase()</em>, it is called <strong>on</strong> a String. String is actually a Class
-type, not a primitive type, as was briefly mentioned earlier.</p>
-</div>
-<div class="paragraph">
-<p><em>void</em> is the return type of the method. <em>void</em> means that the method does not
-return anything, but this can instead be <em>double</em> or <em>int</em> or <em>boolean</em> or
-<em>char[]</em>, or any other type. For example, when we call <em>nextInt()</em> on a Scanner
-we know that it must <strong>return</strong> an <em>int</em>, since we can assign it to an int variable.</p>
-</div>
-<div class="paragraph">
-<p>Next is <em>main</em>, which is just the name given to the method. This can be anything
-you like, but it has to start with a letter and can&#8217;t contain spaces or
-punctuation.</p>
-</div>
-<div class="paragraph">
-<p>Last are the <em>parameters</em> of the method, which here is <em>String[] args</em>. This means
-that the method has a variable called <em>args</em> of type <em>array of String</em>. If you
-wanted to call the main method, you would need to give it an array of Strings,
-just like you have to give System.out.println a String to print.</p>
-</div>
-<div class="paragraph">
-<p>With this knowledge, we are now ready to create our own new methods. For now,
-they will all be <em>public static</em>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    // Takes a String and makes it LOUD!
-    public static String loud(String line) {
-        return line.toUpperCase();
-    }
-
-    // Takes a String and prints it LOUDLY!
-    public static void printLoud(String line) {
-        System.out.println(loud(line) + "!");
-    }
-
-    // Takes a number and adds one to it
-    public static double addOne(double number) {
-        return number + 1;
-    }
-
-    // Takes two numbers and multiplies them
-    public static double multiply(double first, double second) {
-        return first * second;
-    }
-
-    // Takes an array of numbers and sums them
-    public static double sum(double[] numbers) {
-        double total = 0;
-        for (int i = 0; i &lt; numbers.length; i++) {
-            total = total + numbers[i];
-        }
-        return total;
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>We can add them to our program and use them like this:</p>
+<p>In our example program, we can use a loop to keep our Person saying things until
+we provide a String with length 0 as input:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>    import java.util.Scanner;
 
     public class Devoxx4kids {
+
         public static void main(String[] args) {
-            System.out.println("Say something:");
+            Person p = new Person("Mr.", "Java", 10);
+            p.introduce();
             Scanner sc = new Scanner(System.in);
-            String line = sc.nextLine();
-            printLoud(line);
+            String line = null;
+            while (line == null || line.length() &gt; 0) {
+                System.out.println("What do you want me to say? ");
+                line = sc.nextLine();
+                if (line.length &gt; 0) {
+                    p.say(line);
+                }
+            }
         }
-
-        public static String loud(String line) {
-            return line.toUpperCase();
-        }
-
-        public static void printLoud(String line) {
-            System.out.println(loud(line) + "!");
-        }
-    }</pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>drive</p>
-</li>
-<li>
-<p>brake</p>
-</li>
-<li>
-<p>turn</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_class">2.7. Class</h3>
-<div class="paragraph">
-<p>Classes are how we can define our own types in Java. So far, we have only seen
-the keyword <em>class</em> once - in the basic class declaration we made to begin with
-our program.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    public class Devoxx4kids {
 
     }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We can add more classes by creating new files, named after the class we are
-putting inside them. Let&#8217;s make a new class called Person, and put it inside
-a new file named Person.java.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    public class Person {
-
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Making a class allows us to do two things:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Define things that our type <strong>has</strong></p>
-</li>
-<li>
-<p>Define things that our type <strong>does</strong></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>In the case of a Person class, we can <strong>have</strong> a first name, a last name, and
-an age, and we can <strong>do</strong> the action of introducing ourselves.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    public class Person {
-        String firstName;
-        String lastName;
-        int age;
-
-        public String introduction() {
-            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
-        }
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Notice that the <em>introduction</em> method is <strong>not</strong> <em>static</em> anymore. This means
-that when we call <em>introduction</em>, we call it <strong>on</strong> a Person instance.</p>
-</div>
-<div class="paragraph">
-<p>This is how we could use our new class.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    Person p = new Person();
-    p.firstName = "Mr.";
-    p.lastName = "Java";
-    p.age = 19;
-    System.out.println(p.introduction());</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>VW, Lexus, Tesla, Honda, ??</p>
-</div>
-<div class="sect3">
-<h4 id="_constructors">2.7.1. Constructors</h4>
-<div class="paragraph">
-<p>Classes can also have a special kind of method called a <em>constructor</em>. These
-allow us to set the values of our variables more quickly, and maybe to
-automatically do some work before letting the variable be used. Let&#8217;s add a
-constructor to the Person class.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    // Person.java
-    public class Person {
-        String firstName;
-        String lastName;
-        int age;
-
-        // Constructor method
-        public Person(String firstName, String lastName, int age) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.age = age;
-        }
-
-        public String introduction() {
-            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
-        }
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Constructor methods can have a visibility and a name, and that&#8217;s all. They never
-have return types and they cannot be static. Furthermore, their name is always
-exactly the same as the name of their Class. Let&#8217;s try using this constructor.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    // Devoxx4kids.java
-    public class Devoxx4kids {
-        public static void main(String[] args) {
-            Person p = new Person("Mr.", "Java", 19);
-            System.out.println(p.introduction());
-        }
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now that we have two different Java files, compiling and running our program
-is a little different.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    javac Devoxx4kids.java Person.java
-    java Devoxx4kids</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>We have to give all of the names of our Java files to javac, but we only give
-the name of the one with our main method to java.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>color</p>
-</li>
-<li>
-<p>how many doors ?</p>
-</li>
-<li>
-<p>convertible ?</p>
-</li>
-<li>
-<p>automatic or manual ?</p>
-</li>
-</ol>
+<p>In addition to the <code>while</code> loop, we&#8217;ve also used a new keyword: <code>null</code>.  This
+is a special keyword for non-primitive variables, and it means that the
+variable does not refer to any instance.</p>
 </div>
 </div>
 </div>
@@ -1441,8 +1715,8 @@ the name of the one with our main method to java.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 0.1<br>
-Last updated 2014-02-13 15:27:30 EST
+Version 0.2<br>
+Last updated 2014-03-06 07:09:24 MST
 </div>
 </div>
 </body>
