@@ -11,18 +11,55 @@ that has Java installed.
 
 Construction workers need toolboxes to build houses, and Java programmers
 need the Java Development Kit to build Java programs. The JDK is a collection
-of parts and tools used for Java programming.
+of parts and tools used for Java programming.  The most important tools are
+a program called a compiler (explained later) and a program used to run a
+compiled Java program.  The parts are what we call the class library, which
+can be thought of as a collection of commonly used utilities that you can
+use when writing your Java programs, rather than writing everything from
+scratch.  In much the same way, a house builder does not make her own bathtubs
+or faucets or light switches, but uses these parts when putting the house
+together.
 
 === Downloading and Installing JDK
 
+If you are using Linux, you may already have a JDK installed.  You can check
+by running the following command:
+
+----
+$ which javac
+/usr/bin/javac
+----
+
+If the output of this command indicates that you do not have this installed,
+then the method of installation will depend on which distribution of Linux
+you are using.  For example, in Fedora you can use yum:
+
+----
+$ su -c 'yum install java-1.7.0-opendjk-devel'
+----
+
+For Ubuntu users:
+
+----
+$ sudo apt-get install openjdk-7-java
+----
+
+Please refer to your distribution's documentation for more information.
+
+For Windows users, you will need to download and install the JDK from Oracle:
+
 http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
 http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html
 
 === Java program structure
 
+A basic Java program is a text file with a name like "Program.java".  This file
+will contain the source code for the program.
+
 Java programs start with a "class declaration" (we will learn more about this
-later). For a program named "Devoxx4kids", this means it will start off looking
-like this:
+later). For a program named "Devoxx4kids", you would create a file named
+"Devoxx4kids.java" and it will start off looking like this:
 
 ----
     public class Devoxx4kids {
@@ -30,10 +67,9 @@ like this:
     }
 ----
 
-This must be saved in a file named "Devoxx4kids.java".
-
 The next step is to add a "main method" that will be the starting point of your
-program. The main method always looks the same:
+program. The beginning, or "signature", of the main method always looks the
+same:
 
 ----
     public class Devoxx4kids {
@@ -43,27 +79,70 @@ program. The main method always looks the same:
     }
 ----
 
-Now you can put your program inside the "main method" and get started with Java!
+Don't worry too much about the meaning of "public static void" or "String[]"
+yet, these will be explained later on.  You can put the rest of the source code
+for your program between the curly braces following the main method signature,
+and be on your way to and getting started with Java!
 
 === Compilation
 
-Compiling a program is the process of translating a human-readable programming
-language, into something more suitable for computers to read and understand.
-Java programs must be compiled to computer language before they can be run.
+Compiling a program is the process of translating human-readable source code
+into something that a computer can understand and execute.  Java programs must
+be compiled to computer language before they can be run.  The Java compiler is
+a program called "javac".
 
 In the previous example, our Java program was named Devoxx4kids. To compile
 this program, we would use:
 
-    javac Devoxx4kids.java
+----
+$ javac Devoxx4kids.java
+----
 
-And to run it:
+This will produce another file, named "Devoxx4kids.class".  You won't be able
+to read this file, but the tools that come with the JDK know how to use it!
+For example, to run it:
 
-    java Devoxx4kids
+----
+$ java Devoxx4kids
+----
+
+The "java" program knows to look for a .class file named "Devoxx4kids.class"
+and run its main method.  Right now, that method doesn't contain any code, so
+there is no output from the program.  Let's add one line of code to the
+program so we can see what it does:
+
+----
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            System.out.println("Java is fun! :)");
+        }
+    }
+----
+
+Here, "System" is a java class that comes as part of the JDK class library.
+Among other things, it comes with the ability to print text to the screen.
+Now, if we compile this small program again and run it, we should see the
+following:
+
+----
+$ javac Devoxx4kids.java
+$ java Devoxx4kids
+Java is fun! :)
+----
+
+Congratulations, you just wrote your first Java program!
 
 === IDEs
 
-An Integrated Development Environment, or IDE, is a programming tool that helps
-you to write, compile, and run programs. Popular free Java IDEs include
-link:https://www.eclipse.org/[Eclipse], link:https://netbeans.org/[Netbeans],
-and link:http://www.jetbrains.com/idea/[IntelliJ IDEA Community]. Each of these
-IDEs may look and feel a little different, but they all do the same jobs.
+An Integrated Development Environment, or IDE, is a programming tool that puts
+a number of separate tools together into a single program.  These separate
+tools usually include an editor that allows you to write and make changes to
+your program, a compiler (like the "javac" program that we used earlier), a
+way to run the program (like we did with the "java" program), and a debugger.
+A debugger is an important programming tool that allows you to run a program
+one line at a time, and examine the behaviour at each step. Some free Java
+IDEs include link:https://www.eclipse.org/[Eclipse],
+link:https://netbeans.org/[Netbeans], and
+link:http://www.jetbrains.com/idea/[IntelliJ IDEA Community]. Each of these may
+look and feel a little different, but they all basically do the same job.
+
