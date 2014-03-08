@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="Asciidoctor 1.5.0.preview.1">
+<meta name="generator" content="Asciidoctor 0.1.4">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Getting Started with Java</title>
 <style>
@@ -10,11 +10,9 @@
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
 audio, canvas, video { display: inline-block; }
 audio:not([controls]) { display: none; height: 0; }
-[hidden], template { display: none; }
-script { display: none !important; }
-html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+[hidden] { display: none; }
+html { background: #fff; color: #000; font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
 body { margin: 0; }
-a { background: transparent; }
 a:focus { outline: thin dotted; }
 a:active, a:hover { outline: 0; }
 h1 { font-size: 2em; margin: 0.67em 0; }
@@ -46,13 +44,11 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
 button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
 textarea { overflow: auto; vertical-align: top; }
 table { border-collapse: collapse; border-spacing: 0; }
-meta.foundation-mq-small { font-family: "only screen and (min-width: 768px)"; width: 768px; }
-meta.foundation-mq-medium { font-family: "only screen and (min-width:1280px)"; width: 1280px; }
-meta.foundation-mq-large { font-family: "only screen and (min-width:1440px)"; width: 1440px; }
 *, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 html, body { font-size: 100%; }
 body { background: white; color: #222222; padding: 0; margin: 0; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; line-height: 1; position: relative; cursor: auto; }
 a:hover { cursor: pointer; }
+a:focus { outline: none; }
 img, object, embed { max-width: 100%; height: auto; }
 object, embed { height: 100%; }
 img { -ms-interpolation-mode: bicubic; }
@@ -69,7 +65,7 @@ img { display: inline-block; vertical-align: middle; }
 textarea { height: auto; min-height: 50px; }
 select { width: 100%; }
 p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { font-size: 1.21875em; line-height: 1.6; }
-.subheader, #content #toctitle, .admonitionblock td.content > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .mathblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, .sidebarblock > .title, .tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title, .tableblock > caption { line-height: 1.4; color: #7a2518; font-weight: 300; margin-top: 0.2em; margin-bottom: 0.5em; }
+.subheader, #content #toctitle, .admonitionblock td.content > .title, .exampleblock > .title, .imageblock > .title, .videoblock > .title, .listingblock > .title, .literalblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, .sidebarblock > .title, .tableblock > .title, .verseblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title, .tableblock > caption { line-height: 1.4; color: #7a2518; font-weight: 300; margin-top: 0.2em; margin-bottom: 0.5em; }
 div, dl, dt, dd, ul, ol, li, h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6, pre, form, p, blockquote, th, td { margin: 0; padding: 0; direction: ltr; }
 a { color: #005498; text-decoration: underline; line-height: inherit; }
 a:hover, a:focus { color: #00467f; }
@@ -91,7 +87,6 @@ small { font-size: 60%; line-height: inherit; }
 code { font-family: Consolas, "Liberation Mono", Courier, monospace; font-weight: normal; color: #6d180b; }
 ul, ol, dl { font-size: 1em; line-height: 1.6; margin-bottom: 1.25em; list-style-position: outside; font-family: inherit; }
 ul, ol { margin-left: 1.5em; }
-ul.no-bullet, ol.no-bullet { margin-left: 1.5em; }
 ul li ul, ul li ol { margin-left: 1.25em; margin-bottom: 0; font-size: 1em; }
 ul.square li ul, ul.circle li ul, ul.disc li ul { list-style: inherit; }
 ul.square { list-style-type: square; }
@@ -150,8 +145,6 @@ kbd:not(.keyseq) { display: inline-block; color: #222222; font-size: 0.75em; lin
 kbd kbd:first-child { margin-left: 0; }
 kbd kbd:last-child { margin-right: 0; }
 .menuseq, .menu { color: #090909; }
-b.button:before { content: '[ '; }
-b.button:after { content: ' ]'; }
 p a > code:hover { color: #561309; }
 #header, #content, #footnotes, #footer { width: 100%; margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 0; max-width: 62.5em; *zoom: 1; position: relative; padding-left: 0.9375em; padding-right: 0.9375em; }
 #header:before, #header:after, #content:before, #content:after, #footnotes:before, #footnotes:after, #footer:before, #footer:after { content: " "; display: table; }
@@ -171,20 +164,14 @@ p a > code:hover { color: #561309; }
 #toc ul.sectlevel0 ul.sectlevel1 { margin-left: 0; margin-top: 0.5em; margin-bottom: 0.5em; }
 #toc ul { list-style-type: none; }
 #toctitle { color: #7a2518; }
-@media only screen and (min-width: 768px) { body.toc2 { padding-left: 15em; padding-right: 0; }
-  #toc.toc2 { position: fixed; width: 15em; left: 0; top: 0; border-right: 1px solid #ebebeb; border-bottom: 0; z-index: 1000; padding: 1em; height: 100%; overflow: auto; }
-  #toc.toc2 #toctitle { margin-top: 0; font-size: 1.2em; }
-  #toc.toc2 > ul { font-size: .90em; }
-  #toc.toc2 ul ul { margin-left: 0; padding-left: 1em; }
+@media only screen and (min-width: 1280px) { body.toc2 { padding-left: 20em; }
+  #toc.toc2 { position: fixed; width: 20em; left: 0; top: 0; border-right: 1px solid #ebebeb; border-bottom: 0; z-index: 1000; padding: 1em; height: 100%; overflow: auto; }
+  #toc.toc2 #toctitle { margin-top: 0; }
+  #toc.toc2 > ul { font-size: .95em; }
+  #toc.toc2 ul ul { margin-left: 0; padding-left: 1.25em; }
   #toc.toc2 ul.sectlevel0 ul.sectlevel1 { padding-left: 0; margin-top: 0.5em; margin-bottom: 0.5em; }
-  body.toc2.toc-right { padding-left: 0; padding-right: 15em; }
+  body.toc2.toc-right { padding-left: 0; padding-right: 20em; }
   body.toc2.toc-right #toc.toc2 { border-right: 0; border-left: 1px solid #ebebeb; left: auto; right: 0; } }
-@media only screen and (min-width: 1280px) { body.toc2 { padding-left: 20em; padding-right: 0; }
-  #toc.toc2 { width: 20em; }
-  #toc.toc2 #toctitle { font-size: 1.375em; }
-  #toc.toc2 > ul { font-size: 0.95em; }
-  #toc.toc2 ul ul { padding-left: 1.25em; }
-  body.toc2.toc-right { padding-left: 0; padding-right: 20em; } }
 #content #toc { border-style: solid; border-width: 1px; border-color: #d9d9d9; margin-bottom: 1.25em; padding: 1.25em; background: #f2f2f2; border-width: 0; -webkit-border-radius: 4px; border-radius: 4px; }
 #content #toc > :first-child { margin-top: 0; }
 #content #toc > :last-child { margin-bottom: 0; }
@@ -199,8 +186,8 @@ p a > code:hover { color: #561309; }
 #content h1:hover > a.anchor, #content h1 > a.anchor:hover, h2:hover > a.anchor, h2 > a.anchor:hover, h3:hover > a.anchor, #toctitle:hover > a.anchor, .sidebarblock > .content > .title:hover > a.anchor, h3 > a.anchor:hover, #toctitle > a.anchor:hover, .sidebarblock > .content > .title > a.anchor:hover, h4:hover > a.anchor, h4 > a.anchor:hover, h5:hover > a.anchor, h5 > a.anchor:hover, h6:hover > a.anchor, h6 > a.anchor:hover { visibility: visible; }
 #content h1 > a.link, h2 > a.link, h3 > a.link, #toctitle > a.link, .sidebarblock > .content > .title > a.link, h4 > a.link, h5 > a.link, h6 > a.link { color: #ba3925; text-decoration: none; }
 #content h1 > a.link:hover, h2 > a.link:hover, h3 > a.link:hover, #toctitle > a.link:hover, .sidebarblock > .content > .title > a.link:hover, h4 > a.link:hover, h5 > a.link:hover, h6 > a.link:hover { color: #a53221; }
-.imageblock, .literalblock, .listingblock, .mathblock, .verseblock, .videoblock { margin-bottom: 1.25em; }
-.admonitionblock td.content > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .mathblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, .sidebarblock > .title, .tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title { text-align: left; font-weight: bold; }
+.imageblock, .literalblock, .listingblock, .verseblock, .videoblock { margin-bottom: 1.25em; }
+.admonitionblock td.content > .title, .exampleblock > .title, .imageblock > .title, .videoblock > .title, .listingblock > .title, .literalblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, .sidebarblock > .title, .tableblock > .title, .verseblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title { text-align: left; font-weight: bold; }
 .tableblock > caption { text-align: left; font-weight: bold; white-space: nowrap; overflow: visible; max-width: 0; }
 table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-size: inherit; }
 .admonitionblock > table { border: 0; background: none; width: 100%; }
@@ -224,15 +211,12 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-si
 .sidebarblock h1.subheader, .sidebarblock h2.subheader, .sidebarblock h3.subheader, .sidebarblock .subheader#toctitle, .sidebarblock > .content > .subheader.title, .sidebarblock h4.subheader, .sidebarblock h5.subheader, .sidebarblock h6.subheader { line-height: 1.4; }
 .sidebarblock > .content > .title { color: #7a2518; margin-top: 0; line-height: 1.6; }
 .exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child { margin-bottom: 0; }
-.literalblock pre:not([class]), .listingblock pre:not([class]) { background: none; }
-.literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { border-width: 1px 0; border-style: dotted; border-color: #bfbfbf; -webkit-border-radius: 4px; border-radius: 4px; padding: 0.75em 0.75em 0.5em 0.75em; word-wrap: break-word; }
-.literalblock pre.nowrap, .literalblock pre[class].nowrap, .listingblock pre.nowrap, .listingblock pre[class].nowrap { overflow-x: auto; white-space: pre; word-wrap: normal; }
-.literalblock pre > code, .literalblock pre[class] > code, .listingblock pre > code, .listingblock pre[class] > code { display: block; }
-@media only screen { .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { font-size: 0.8em; } }
-@media only screen and (min-width: 768px) { .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { font-size: 0.9em; } }
-@media only screen and (min-width: 1280px) { .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { font-size: 1em; } }
-.listingblock pre.highlight { padding: 0; }
-.listingblock pre.highlight > code { padding: 0.75em 0.75em 0.5em 0.75em; }
+.literalblock > .content pre, .listingblock > .content pre { background: none; border-width: 1px 0; border-style: dotted; border-color: #bfbfbf; -webkit-border-radius: 4px; border-radius: 4px; padding: 0.75em 0.75em 0.5em 0.75em; word-wrap: break-word; }
+.literalblock > .content pre.nowrap, .listingblock > .content pre.nowrap { overflow-x: auto; white-space: pre; word-wrap: normal; }
+.literalblock > .content pre > code, .listingblock > .content pre > code { display: block; }
+@media only screen { .literalblock > .content pre, .listingblock > .content pre { font-size: 0.8em; } }
+@media only screen and (min-width: 768px) { .literalblock > .content pre, .listingblock > .content pre { font-size: 0.9em; } }
+@media only screen and (min-width: 1280px) { .literalblock > .content pre, .listingblock > .content pre { font-size: 1em; } }
 .listingblock > .content { position: relative; }
 .listingblock:hover code[class*=" language-"]:before { text-transform: uppercase; font-size: 0.9em; color: #999; position: absolute; top: 0.375em; right: 0.375em; }
 .listingblock:hover code.asciidoc:before { content: "asciidoc"; }
@@ -244,7 +228,6 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-si
 .listingblock:hover code.javascript:before { content: "javascript"; }
 .listingblock:hover code.python:before { content: "python"; }
 .listingblock:hover code.ruby:before { content: "ruby"; }
-.listingblock:hover code.sass:before { content: "sass"; }
 .listingblock:hover code.scss:before { content: "scss"; }
 .listingblock:hover code.xml:before { content: "xml"; }
 .listingblock:hover code.yaml:before { content: "yaml"; }
@@ -266,15 +249,14 @@ table thead th, table tfoot th { font-weight: bold; }
 table.tableblock.grid-all { border-collapse: separate; border-spacing: 1px; -webkit-border-radius: 4px; border-radius: 4px; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; }
 table.tableblock.frame-topbot, table.tableblock.frame-none { border-left: 0; border-right: 0; }
 table.tableblock.frame-sides, table.tableblock.frame-none { border-top: 0; border-bottom: 0; }
-table.tableblock td .paragraph:last-child p > p:last-child, table.tableblock th > p:last-child, table.tableblock td > p:last-child { margin-bottom: 0; }
+table.tableblock td .paragraph:last-child p, table.tableblock td > p:last-child { margin-bottom: 0; }
 th.tableblock.halign-left, td.tableblock.halign-left { text-align: left; }
 th.tableblock.halign-right, td.tableblock.halign-right { text-align: right; }
 th.tableblock.halign-center, td.tableblock.halign-center { text-align: center; }
 th.tableblock.valign-top, td.tableblock.valign-top { vertical-align: top; }
 th.tableblock.valign-bottom, td.tableblock.valign-bottom { vertical-align: bottom; }
 th.tableblock.valign-middle, td.tableblock.valign-middle { vertical-align: middle; }
-tbody tr th { display: table-cell; line-height: 1.6; background: whitesmoke; }
-tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p { color: #222222; font-weight: bold; }
+p.tableblock.header { color: #222222; font-weight: bold; }
 td > div.verse { white-space: pre; }
 ol { margin-left: 1.75em; }
 ul li ol { margin-left: 1.5em; }
@@ -393,86 +375,94 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <li><a href="#_what_is_java">1.1. What is Java ?</a></li>
 <li><a href="#_what_is_java_development_kit_jdk">1.2. What is Java Development Kit (JDK) ?</a></li>
 <li><a href="#_downloading_and_installing_jdk">1.3. Downloading and Installing JDK</a></li>
-<li><a href="#_compilation">1.4. Compilation</a></li>
-<li><a href="#_java_program_structure">1.5. Java program structure</a></li>
+<li><a href="#_java_program_structure">1.4. Java program structure</a></li>
+<li><a href="#_compilation">1.5. Compilation</a></li>
 <li><a href="#_ides">1.6. IDEs</a></li>
 </ul>
 </li>
 <li><a href="#_basic_programming_concepts">2. Basic Programming Concepts</a></li>
 <li>
 <ul class="sectlevel2">
-<li><a href="#_public_static_void_main">2.1. public static void main</a></li>
+<li><a href="#_types">2.1. Types</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_basic_i_o">2.1.1. Basic I/O</a></li>
+<li><a href="#_primitive_types">2.1.1. Primitive types</a></li>
 </ul>
 </li>
-<li><a href="#_control_flow">2.2. Control Flow</a></li>
+<li><a href="#_operators">2.2. Operators</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_conditionals_if_else">2.2.1. Conditionals (if/else)</a></li>
-<li><a href="#_loops">2.2.2. Loops</a></li>
+<li><a href="#_arrays">2.2.1. Arrays</a></li>
 </ul>
 </li>
-<li><a href="#_methods">2.3. Methods</a></li>
-<li><a href="#_operators">2.4. Operators</a></li>
-<li><a href="#_comments">2.5. Comments</a></li>
-<li><a href="#_types">2.6. Types</a></li>
+<li><a href="#_public_static_void_main">2.3. public static void main</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_primitive_types">2.6.1. Primitive types</a></li>
-<li><a href="#_arrays">2.6.2. Arrays</a></li>
+<li><a href="#_basic_i_o">2.3.1. Basic I/O</a></li>
 </ul>
 </li>
+<li><a href="#_comments">2.4. Comments</a></li>
+<li><a href="#_control_flow">2.5. Control Flow</a></li>
+<li>
+<ul class="sectlevel3">
+<li><a href="#_conditionals_if_else">2.5.1. Conditionals (if/else)</a></li>
+<li><a href="#_loops">2.5.2. Loops</a></li>
+</ul>
+</li>
+<li><a href="#_methods">2.6. Methods</a></li>
 <li><a href="#_class">2.7. Class</a></li>
 <li>
 <ul class="sectlevel3">
 <li><a href="#_constructors">2.7.1. Constructors</a></li>
 </ul>
 </li>
-<li><a href="#_package">2.8. Package</a></li>
-<li><a href="#_annotations">2.9. Annotations</a></li>
 </ul>
 </li>
 <li><a href="#_advanced_programming_concepts">3. Advanced Programming Concepts</a></li>
 <li>
 <ul class="sectlevel2">
-<li><a href="#_types_2">3.1. Types</a></li>
+<li><a href="#_package">3.1. Package</a></li>
+<li><a href="#_types_2">3.2. Types</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_autoboxing">3.1.1. Autoboxing</a></li>
+<li><a href="#_autoboxing">3.2.1. Autoboxing</a></li>
 </ul>
 </li>
-<li><a href="#_exceptions">3.2. Exceptions</a></li>
+<li><a href="#_exceptions">3.3. Exceptions</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_try_catch">3.2.1. try/catch</a></li>
-<li><a href="#_throws">3.2.2. throws</a></li>
-<li><a href="#_finally">3.2.3. finally</a></li>
-<li><a href="#_checked_and_runtime">3.2.4. Checked and runtime</a></li>
-<li><a href="#_defining_your_own_exception_class">3.2.5. Defining your own exception class</a></li>
+<li><a href="#_try_catch">3.3.1. try/catch</a></li>
+<li><a href="#_throws">3.3.2. throws</a></li>
+<li><a href="#_finally">3.3.3. finally</a></li>
+<li><a href="#_checked_and_runtime">3.3.4. Checked and runtime</a></li>
+<li><a href="#_defining_your_own_exception_class">3.3.5. Defining your own exception class</a></li>
 </ul>
 </li>
-<li><a href="#_static_methods_constants_initializers">3.3. Static methods, constants, initializers</a></li>
-<li><a href="#_access_modifiers">3.4. Access Modifiers</a></li>
-<li><a href="#_abstract_class">3.5. Abstract Class</a></li>
-<li><a href="#_interface">3.6. Interface</a></li>
-<li><a href="#_collections">3.7. Collections</a></li>
+<li><a href="#_static_methods_constants_initializers">3.4. Static methods, constants, initializers</a></li>
+<li><a href="#_access_modifiers">3.5. Access Modifiers</a></li>
+<li><a href="#_abstract_class">3.6. Abstract Class</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_foreach">3.7.1. foreach</a></li>
-<li><a href="#_data_structures">3.7.2. data structures</a></li>
+<li><a href="#_annotations">3.6.1. Annotations</a></li>
 </ul>
 </li>
-<li><a href="#_generics">3.8. Generics</a></li>
-<li><a href="#_inheritance">3.9. Inheritance</a></li>
+<li><a href="#_interface">3.7. Interface</a></li>
+<li><a href="#_collections">3.8. Collections</a></li>
 <li>
 <ul class="sectlevel3">
-<li><a href="#_method_overloading">3.9.1. Method Overloading</a></li>
-<li><a href="#_method_overriding">3.9.2. Method Overriding</a></li>
+<li><a href="#_foreach">3.8.1. foreach</a></li>
+<li><a href="#_data_structures">3.8.2. data structures</a></li>
 </ul>
 </li>
-<li><a href="#_classpath_executable_jars">3.10. Classpath, executable JARs</a></li>
+<li><a href="#_generics">3.9. Generics</a></li>
+<li><a href="#_inheritance">3.10. Inheritance</a></li>
+<li>
+<ul class="sectlevel3">
+<li><a href="#_method_overloading">3.10.1. Method Overloading</a></li>
+<li><a href="#_method_overriding">3.10.2. Method Overriding</a></li>
+</ul>
+</li>
+<li><a href="#_classpath_executable_jars">3.11. Classpath, executable JARs</a></li>
 </ul>
 </li>
 <li><a href="#_acknowledgements">4. Acknowledgements</a></li>
@@ -486,28 +476,95 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <div class="sect2">
 <h3 id="_what_is_java">1.1. What is Java ?</h3>
 <div class="paragraph">
-<p>Java is the best language!</p>
+<p>Java is a popular programming language that can be used with many different
+types of computers. It allows programmers to develop all kinds of software,
+including video games, and all of these programs can be used on any computer
+that has Java installed.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_what_is_java_development_kit_jdk">1.2. What is Java Development Kit (JDK) ?</h3>
-
+<div class="paragraph">
+<p>Construction workers need toolboxes to build houses, and Java programmers
+need the Java Development Kit to build Java programs. The JDK is a collection
+of parts and tools used for Java programming.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_downloading_and_installing_jdk">1.3. Downloading and Installing JDK</h3>
-
+<div class="paragraph">
+<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>
+<a href="http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html">http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html</a></p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_compilation">1.4. Compilation</h3>
+<h3 id="_java_program_structure">1.4. Java program structure</h3>
+<div class="paragraph">
+<p>Java programs start with a "class declaration" (we will learn more about this
+later). For a program named "Devoxx4kids", this means it will start off looking
+like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
 
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This must be saved in a file named "Devoxx4kids.java".</p>
+</div>
+<div class="paragraph">
+<p>The next step is to add a "main method" that will be the starting point of your
+program. The main method always looks the same:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+        public static void main(String[] args) {
+
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can put your program inside the "main method" and get started with Java!</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_java_program_structure">1.5. Java program structure</h3>
-
+<h3 id="_compilation">1.5. Compilation</h3>
+<div class="paragraph">
+<p>Compiling a program is the process of translating a human-readable programming
+language, into something more suitable for computers to read and understand.
+Java programs must be compiled to computer language before they can be run.</p>
+</div>
+<div class="paragraph">
+<p>In the previous example, our Java program was named Devoxx4kids. To compile
+this program, we would use:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>javac Devoxx4kids.java</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And to run it:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>java Devoxx4kids</pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_ides">1.6. IDEs</h3>
-
+<div class="paragraph">
+<p>An Integrated Development Environment, or IDE, is a programming tool that helps
+you to write, compile, and run programs. Popular free Java IDEs include
+<a href="https://www.eclipse.org/">Eclipse</a>, <a href="https://netbeans.org/">Netbeans</a>,
+and <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA Community</a>. Each of these
+IDEs may look and feel a little different, but they all do the same jobs.</p>
+</div>
 </div>
 </div>
 </div>
@@ -518,25 +575,567 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <p>Create analogy of cars ??</p>
 </div>
 <div class="sect2">
-<h3 id="_public_static_void_main">2.1. public static void main</h3>
+<h3 id="_types">2.1. Types</h3>
+<div class="paragraph">
+<p>Variables are pieces of information that our program can use. In Java, all
+variables have a type.</p>
+</div>
 <div class="sect3">
-<h4 id="_basic_i_o">2.1.1. Basic I/O</h4>
-
+<h4 id="_primitive_types">2.1.1. Primitive types</h4>
+<div class="paragraph">
+<p>Java has some built in types called primitives. They include numbers, which
+can be <em>byte, short, int, long, float,</em> or <em>double</em>. They can be <em>boolean</em> s,
+which are <em>true</em> or <em>false</em> (think Yes and No), and finally they can be <em>char</em>,
+which is just a single letter, like "a" or "b".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    byte smallestNumber;
+    short smallNumber;
+    int number;
+    long bigNumber;
+    float decimalNumber;
+    double bigDecimalNumber;
+    boolean yesOrNo;
+    char letter;
+    String text;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>byte</em>, <em>short</em>, <em>int</em>, and <em>long</em> can only store whole numbers, like 1, or 10
+ or -5.  The difference is in how large the numbers can be - bytes can only be
+between -128 and 127, whereas longs can be between -2<sup>63</sup> and 2<sup>63</sup>-1 (these are
+very, very big numbers). <em>int</em> is the usual choice out of these.</p>
+</div>
+<div class="paragraph">
+<p><em>float</em> and <em>double</em> can hold decimal numbers, like 2.5, or 10.0, or -0.5. The
+difference is that <em>double</em> can have more numbers after the decimal point than
+a <em>float</em> can. <em>double</em> is the usual choice between them.</p>
+</div>
+<div class="paragraph">
+<p>We will mostly be using int, double, and boolean from these types. We will
+also be using the type String, which is not a true "primitive" in Java, but is
+very commonly used and useful.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_control_flow">2.2. Control Flow</h3>
-<div class="sect3">
-<h4 id="_conditionals_if_else">2.2.1. Conditionals (if/else)</h4>
+<h3 id="_operators">2.2. Operators</h3>
+<div class="paragraph">
+<p>The most basic operator is =, the assignment operator. This operator is used
+to give variables values.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    boolean javaIsTheBest = true;
+    double twoAndAHalf = 2.5;
+    int number = 5;
+    String planet = "Earth";</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With number types, we can do normal number things, like add, subtract, multiply,
+and divide. Just like in normal math, sometimes we need to use brackets with
+our operators to make it clear which ones happen in which order. This is true
+for all of the operators.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    int one = 1;
+    int two = one + one;
+    int four = two * two;
+    int ten = 10;
+    int six = ten - four;
+    int five = ten / two;
 
+    int minusTwo = ten - six * two;
+    int eight = (ten - six) * two;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can also compare numbers to each other using &gt;, &lt;, &#8656;, &gt;=, and ==. These
+operators return boolean values, <em>true</em> and <em>false</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    boolean tenMoreThanFive = 10 &gt; 5;
+    boolean twoEqualsTwo = 2 == 2;
+    boolean zeroLessThanOne = 0 &lt; 1;
+    boolean threeLessOrEqualThree = 3 &lt;= 3;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are also the operators || and &amp;&amp;, which are used with booleans.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    boolean isRed = true;
+    boolean isCar = true;
+    boolean isRedCar = isRed &amp;&amp; isCar;
+
+    boolean hasDog = true;
+    boolean hasCat = false;
+    boolean hasPet = hasDog || hasCat;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The == operator from before can also be used with booleans and chars, not
+just numbers.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    char letter1 = 'a';
+    char letter2 = 'b';
+    char letter3 = 'b';
+    boolean same = letter2 == letter3;
+    boolean different = letter1 == letter2;
+    boolean compare = same == different;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is one more common operator, which is !. This is used to reverse the
+meaning of booleans. Related is the operator !=, which is like ! and ==
+combined. "a != b" is the same as "! (a == b)".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    boolean yes = true;
+    boolean no = ! yes;</pre>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_loops">2.2.2. Loops</h4>
-
+<h4 id="_arrays">2.2.1. Arrays</h4>
+<div class="paragraph">
+<p>Arrays are a special sort of type. An array allows you to have a variable
+that is actually a list with other nameless variables inside it. Making an
+array variable is just like making a normal variable, but you add square
+brackets, [ and ].</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    int[] numbers = new int[2];
+    numbers[0] = 10;
+    numbers[1] = 3;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how making an array variable looks different from making a normal
+variable. The <em>new</em> keyword is used, and there are square brackets on both
+side of the = . Inside the second pair of square brackets, you put the size
+of the array, which here is two. In Java, the first spot in an array is spot
+0, so this array only has spots 0 and 1, since its size is two.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_methods">2.3. Methods</h3>
+<h3 id="_public_static_void_main">2.3. public static void main</h3>
+<div class="paragraph">
+<p>Normally, programs need an "entry point", a place to start from at the very
+beginning. In Java, this is the "main method". The main method always looks
+the same:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public static void main(String[] args)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For now, all we need to know about is the name of the method, which here is
+<em>main</em>. The rest of it - <em>public</em>, <em>static</em>, <em>void</em>, and <em>String[] args</em> -
+will come later.</p>
+</div>
+<div class="sect3">
+<h4 id="_basic_i_o">2.3.1. Basic I/O</h4>
+<div class="paragraph">
+<p>Let&#8217;s make our program actually do something now. So far, we have this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+        public static void main(String[] args) {
+
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nothing really happens when this program is run, because we haven&#8217;t written
+anything inside of the main method. The program starts, has nothing to do, and
+stops right away. We can make the program print a message using</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    System.out.println("Devoxx4kids!");</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here, "println" is the name of a method we are calling, and it has one String
+parameter. <em>println</em> takes the argument we give it and prints it to the screen.</p>
+</div>
+<div class="paragraph">
+<p>All together, we now have:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+        public static void main(String[] args) {
+            System.out.println("Devoxx4kids!");
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that we have to use the curly braces, { and }, with our class and method
+declarations, and that we end statements, like println, with a semicolon ;.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s add a little more action. We can make the program ask us for input, do
+something with it, and print out a result. We&#8217;ll make it so the program takes
+what we type in and makes everything lower case.</p>
+</div>
+<div class="paragraph">
+<p>To be able to read things we type, the program will use something called Scanner.
+To use Scanner, we need to "import" it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    import java.util.Scanner;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>"import" statements go at the very top of your program, before the class
+declaration. Now we can use Scanner in our main method to get a line of text
+from the user.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    Scanner sc = new Scanner(System.in);
+    String line = sc.nextLine();</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we have a Scanner variable called "sc" and a String variable called "line".
+"line" holds the text we give to the program when we run it. We can make it
+all lower case and print it back out easily. Here&#8217;s what the whole thing will
+look like.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    import java.util.Scanner;
+
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            System.out.println("Say something:");
+            Scanner sc = new Scanner(System.in);
+            String line = sc.nextLine();
+            System.out.println(line.toLowerCase());
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can expand this and make it so that we can enter a second line of text
+which is also made lower case.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    import java.util.Scanner;
+
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Say something:");
+            String line = sc.nextLine();
+            System.out.println(line.toLowerCase());
+            System.out.println("Say something again:");
+            String line2 = sc.nextLine();
+            System.out.println(line2.toLowerCase());
+        }
+    }</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_comments">2.4. Comments</h3>
+<div class="paragraph">
+<p>Comments allow programmers to add notes to a program. The notes don&#8217;t do anything
+in the program, but they can make it easier for other programmers to understand
+what is happening. There are two ways to write comments in Java, and both are shown
+in the example below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    boolean hasCat = true; // do I have a cat?
+    boolean hasDog = true; // do I have a dog?
+
+    /* if I have either a dog or a cat, then
+       I have a pet! */
+    boolean hasPet = hasCat || hasDog;</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_control_flow">2.5. Control Flow</h3>
+<div class="paragraph">
+<p>So far, our program just runs in a straight line from top to bottom. What we
+need is some way to have our program make decisions, and some way to automatically
+do things more than once, so that we don&#8217;t need to just write our code over and
+over again.</p>
+</div>
+<div class="sect3">
+<h4 id="_conditionals_if_else">2.5.1. Conditionals (if/else)</h4>
+<div class="paragraph">
+<p>Conditionals allow our program to make decisions. The form of an if/else statement
+in Java is this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    if (condition) {
+        // do something
+    } else if (anotherCondition) {
+        // do something else
+    } else {
+        // do another thing
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>"condition" and "anotherCondition" can be anything with type <em>boolean</em>. If <em>condition</em>
+is <em>true</em>, then the first block of code is run, and the rest are skipped. If
+<em>anotherCondition</em> is true and <em>condition</em> is false, then only the second block
+is run. If <em>condition</em> and <em>anotherCondition</em> are both false, then the last block
+is run only. If both <em>condition</em> and <em>anotherCondition</em> are true, only the first
+block is run still.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_loops">2.5.2. Loops</h4>
+<div class="paragraph">
+<p>There are a few types of loop in Java. The most basic is the <em>while</em> loop. This
+loop is used with a boolean variable or expression, and it runs over and over
+again, so long as the boolean is true.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    while (true) {
+        // this loop will never end!
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can use a <em>while</em> loop along with <em>if/else</em> and <em>Scanner</em> from earlier
+to make our program keep asking us to type input. Let&#8217;s make a program that
+adds up numbers until we give it 0.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    Scanner sc = new Scanner(System.in);
+    int total = 0;
+    boolean quit = false;
+    while (! quit) {
+        System.out.println("Give me a number:");
+        int input = sc.nextInt();
+        if (input == 0) {
+            quit = true;
+        }
+        total = total + input;
+    }
+    System.out.println("The total is: " + total);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are some special keywords we can use when working with loops: <em>break</em> and
+<em>continue</em>. <em>break</em> causes the loop to stop completely, and <em>continue</em> makes the
+loop start from the top. We can use <em>break</em> instead of the <em>quit</em> variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    Scanner sc = new Scanner(System.in);
+    int total = 0;
+    while (true) { // looks like it will run forever...
+        System.out.println("Give me a number:");
+        int input = sc.nextInt();
+        if (input == 0) {
+            break; // but this makes it possible to stop the loop
+        }
+        total = total + input;
+    }
+    System.out.println("The total is: " + total);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What if we wanted to run our loop a specific number of times? We can do something
+like this with a <em>while</em> loop.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    int max = 5;
+    int times = 0;
+    int total = 2;
+    while (times &lt; max) {
+        total = total * 2;
+        times = times + 1;
+    }
+    System.out.println("total: " + total);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But now we have some extra variables that are only used for controlling the loop.
+This is where the <em>for</em> loop comes in. Here&#8217;s a <em>for</em> loop that does the same job
+as the above <em>while</em> loop:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    int total = 2;
+    for (int i = 0; i &lt; 5; i++) {
+        total = total * 2;
+    }
+    System.out.println("total: " + total);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that inside the parentheses, there are three parts, separated by semicolons.
+The first part, "int i = 0", declares our loop variable(s). The second part,
+"i &lt; 5" defines when the loop will stop. So long as i is less than 5, the loop will
+keep running. The last part, <em>i++</em>, is shorthand for "i = i + 1". It means that the
+loop variable <em>i</em> will become larger by one at the end of the loop.</p>
+</div>
+<div class="paragraph">
+<p>The last loop we&#8217;ll cover in this section is the <em>do-while</em> loop. This is just a
+special kind of <em>while</em> loop. Examine this <em>while</em> loop:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    while (false) {
+        System.out.println("Hello!");
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since <em>while</em> loops run over and over as long as the boolean condition is true,
+and this one is always false, this <em>while</em> loop will never actually run, not even
+once. The <em>do-while</em> loop is just a <em>while</em> that will always run at least once.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    do {
+        System.out.println("Hello!");
+    } while (false);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Try both of these out and see for yourself that the <em>while</em> loop does not print
+"Hello!", and the <em>do-while</em> prints it exactly once.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_methods">2.6. Methods</h3>
+<div class="paragraph">
+<p>Recall the declaration of the main method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public static void main(String[] args)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As we already know, "main" is the name of the method. But what about the rest
+of it?</p>
+</div>
+<div class="paragraph">
+<p><em>public</em> is the <em>visibility</em> of the method. <em>public</em> means that this method
+can be seen from anywhere else in the code. For now, this is the only visibility
+we will worry about. The other options are <em>protected</em>, <em>private</em>, and nothing.</p>
+</div>
+<div class="paragraph">
+<p><em>static</em> is a little more complicated to explain. <em>static</em> methods can be called
+all on their own, whereas non-static <em>instance</em> methods have to be called <strong>on</strong>
+an object. This will make more sense in the next section when we learn about
+Classes. For now, consider the methods <em>System.out.println(line)</em> and
+<em>line.toLowerCase()</em>. When we call <em>println</em>, it is called on its own. When we
+call <em>toLowerCase()</em>, it is called <strong>on</strong> a String. String is actually a Class
+type, not a primitive type, as was briefly mentioned earlier.</p>
+</div>
+<div class="paragraph">
+<p><em>void</em> is the return type of the method. <em>void</em> means that the method does not
+return anything, but this can instead be <em>double</em> or <em>int</em> or <em>boolean</em> or
+<em>char[]</em>, or any other type. For example, when we call <em>nextInt()</em> on a Scanner
+we know that it must <strong>return</strong> an <em>int</em>, since we can assign it to an int variable.</p>
+</div>
+<div class="paragraph">
+<p>Next is <em>main</em>, which is just the name given to the method. This can be anything
+you like, but it has to start with a letter and can&#8217;t contain spaces or
+punctuation.</p>
+</div>
+<div class="paragraph">
+<p>Last are the <em>parameters</em> of the method, which here is <em>String[] args</em>. This means
+that the method has a variable called <em>args</em> of type <em>array of String</em>. If you
+wanted to call the main method, you would need to give it an array of Strings,
+just like you have to give System.out.println a String to print.</p>
+</div>
+<div class="paragraph">
+<p>With this knowledge, we are now ready to create our own new methods. For now,
+they will all be <em>public static</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    // Takes a String and makes it LOUD!
+    public static String loud(String line) {
+        return line.toUpperCase();
+    }
+
+    // Takes a String and prints it LOUDLY!
+    public static void printLoud(String line) {
+        System.out.println(loud(line) + "!");
+    }
+
+    // Takes a number and adds one to it
+    public static double addOne(double number) {
+        return number + 1;
+    }
+
+    // Takes two numbers and multiplies them
+    public static double multiply(double first, double second) {
+        return first * second;
+    }
+
+    // Takes an array of numbers and sums them
+    public static double sum(double[] numbers) {
+        double total = 0;
+        for (int i = 0; i &lt; numbers.length; i++) {
+            total = total + numbers[i];
+        }
+        return total;
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can add them to our program and use them like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    import java.util.Scanner;
+
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            System.out.println("Say something:");
+            Scanner sc = new Scanner(System.in);
+            String line = sc.nextLine();
+            printLoud(line);
+        }
+
+        public static String loud(String line) {
+            return line.toUpperCase();
+        }
+
+        public static void printLoud(String line) {
+            System.out.println(loud(line) + "!");
+        }
+    }</pre>
+</div>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -552,31 +1151,139 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 </div>
 <div class="sect2">
-<h3 id="_operators">2.4. Operators</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_comments">2.5. Comments</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_types">2.6. Types</h3>
-<div class="sect3">
-<h4 id="_primitive_types">2.6.1. Primitive types</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_arrays">2.6.2. Arrays</h4>
-
-</div>
-</div>
-<div class="sect2">
 <h3 id="_class">2.7. Class</h3>
+<div class="paragraph">
+<p>Classes are how we can define our own types in Java. So far, we have only seen
+the keyword <em>class</em> once - in the basic class declaration we made to begin with
+our program.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Devoxx4kids {
+
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can add more classes by creating new files, named after the class we are
+putting inside them. Let&#8217;s make a new class called Person, and put it inside
+a new file named Person.java.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Person {
+
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Making a class allows us to do two things:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Define things that our type <strong>has</strong></p>
+</li>
+<li>
+<p>Define things that our type <strong>does</strong></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In the case of a Person class, we can <strong>have</strong> a first name, a last name, and
+an age, and we can <strong>do</strong> the action of introducing ourselves.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    public class Person {
+        String firstName;
+        String lastName;
+        int age;
+
+        public String introduction() {
+            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that the <em>introduction</em> method is <strong>not</strong> <em>static</em> anymore. This means
+that when we call <em>introduction</em>, we call it <strong>on</strong> a Person instance.</p>
+</div>
+<div class="paragraph">
+<p>This is how we could use our new class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    Person p = new Person();
+    p.firstName = "Mr.";
+    p.lastName = "Java";
+    p.age = 19;
+    System.out.println(p.introduction());</pre>
+</div>
+</div>
 <div class="paragraph">
 <p>VW, Lexus, Tesla, Honda, ??</p>
 </div>
 <div class="sect3">
 <h4 id="_constructors">2.7.1. Constructors</h4>
+<div class="paragraph">
+<p>Classes can also have a special kind of method called a <em>constructor</em>. These
+allow us to set the values of our variables more quickly, and maybe to
+automatically do some work before letting the variable be used. Let&#8217;s add a
+constructor to the Person class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    // Person.java
+    public class Person {
+        String firstName;
+        String lastName;
+        int age;
+
+        // Constructor method
+        public Person(String firstName, String lastName, int age) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = age;
+        }
+
+        public String introduction() {
+            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Constructor methods can have a visibility and a name, and that&#8217;s all. They never
+have return types and they cannot be static. Furthermore, their name is always
+exactly the same as the name of their Class. Let&#8217;s try using this constructor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    // Devoxx4kids.java
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            Person p = new Person("Mr.", "Java", 19);
+            System.out.println(p.introduction());
+        }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that we have two different Java files, compiling and running our program
+is a little different.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    javac Devoxx4kids.java Person.java
+    java Devoxx4kids</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have to give all of the names of our Java files to javac, but we only give
+the name of the one with our main method to java.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -595,8 +1302,13 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_programming_concepts">3. Advanced Programming Concepts</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_package">2.8. Package</h3>
+<h3 id="_package">3.1. Package</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -612,25 +1324,16 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 </div>
 <div class="sect2">
-<h3 id="_annotations">2.9. Annotations</h3>
-
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_advanced_programming_concepts">3. Advanced Programming Concepts</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_types_2">3.1. Types</h3>
+<h3 id="_types_2">3.2. Types</h3>
 <div class="sect3">
-<h4 id="_autoboxing">3.1.1. Autoboxing</h4>
+<h4 id="_autoboxing">3.2.1. Autoboxing</h4>
 <div class="paragraph">
 <p>Primitives vs Objects, pass by value vs reference</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exceptions">3.2. Exceptions</h3>
+<h3 id="_exceptions">3.3. Exceptions</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -645,78 +1348,84 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </ol>
 </div>
 <div class="sect3">
-<h4 id="_try_catch">3.2.1. try/catch</h4>
+<h4 id="_try_catch">3.3.1. try/catch</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_throws">3.2.2. throws</h4>
+<h4 id="_throws">3.3.2. throws</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_finally">3.2.3. finally</h4>
+<h4 id="_finally">3.3.3. finally</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_checked_and_runtime">3.2.4. Checked and runtime</h4>
+<h4 id="_checked_and_runtime">3.3.4. Checked and runtime</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_defining_your_own_exception_class">3.2.5. Defining your own exception class</h4>
+<h4 id="_defining_your_own_exception_class">3.3.5. Defining your own exception class</h4>
 <div class="paragraph">
 <p>ties in to inheritance</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_static_methods_constants_initializers">3.3. Static methods, constants, initializers</h3>
+<h3 id="_static_methods_constants_initializers">3.4. Static methods, constants, initializers</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_access_modifiers">3.4. Access Modifiers</h3>
+<h3 id="_access_modifiers">3.5. Access Modifiers</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_abstract_class">3.5. Abstract Class</h3>
+<h3 id="_abstract_class">3.6. Abstract Class</h3>
 <div class="paragraph">
 <p>Common behavior of cars</p>
 </div>
+<div class="sect3">
+<h4 id="_annotations">3.6.1. Annotations</h4>
+<div class="paragraph">
+<p>@Override</p>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_interface">3.6. Interface</h3>
+<h3 id="_interface">3.7. Interface</h3>
 <div class="paragraph">
 <p>Each car must know how to drive, turn etc</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_collections">3.7. Collections</h3>
+<h3 id="_collections">3.8. Collections</h3>
 <div class="sect3">
-<h4 id="_foreach">3.7.1. foreach</h4>
+<h4 id="_foreach">3.8.1. foreach</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_data_structures">3.7.2. data structures</h4>
+<h4 id="_data_structures">3.8.2. data structures</h4>
 <div class="paragraph">
 <p>set vs list vs map vs stack vs queue</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generics">3.8. Generics</h3>
+<h3 id="_generics">3.9. Generics</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_inheritance">3.9. Inheritance</h3>
+<h3 id="_inheritance">3.10. Inheritance</h3>
 <div class="sect3">
-<h4 id="_method_overloading">3.9.1. Method Overloading</h4>
+<h4 id="_method_overloading">3.10.1. Method Overloading</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_method_overriding">3.9.2. Method Overriding</h4>
+<h4 id="_method_overriding">3.10.2. Method Overriding</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_classpath_executable_jars">3.10. Classpath, executable JARs</h3>
+<h3 id="_classpath_executable_jars">3.11. Classpath, executable JARs</h3>
 
 </div>
 </div>
@@ -733,7 +1442,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2014-02-16 16:47:06 PST
+Last updated 2014-02-13 15:27:30 EST
 </div>
 </div>
 </body>

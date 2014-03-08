@@ -2,47 +2,597 @@
 
 Create analogy of cars ??
 
+=== Types
+
+Variables are pieces of information that our program can use. In Java, all
+variables have a type.
+
+==== Primitive types
+
+Java has some built in types called primitives. They include numbers, which
+can be 'byte, short, int, long, float,' or 'double'. They can be 'boolean' s,
+which are 'true' or 'false' (think Yes and No), and finally they can be 'char',
+which is just a single letter, like "a" or "b".
+
+----
+    byte smallestNumber;
+    short smallNumber;
+    int number;
+    long bigNumber;
+    float decimalNumber;
+    double bigDecimalNumber;
+    boolean yesOrNo;
+    char letter;
+    String text;
+----
+
+'byte', 'short', 'int', and 'long' can only store whole numbers, like 1, or 10
+ or -5.  The difference is in how large the numbers can be - bytes can only be
+between -128 and 127, whereas longs can be between -2^63^ and 2^63^-1 (these are
+very, very big numbers). 'int' is the usual choice out of these.
+
+'float' and 'double' can hold decimal numbers, like 2.5, or 10.0, or -0.5. The
+difference is that 'double' can have more numbers after the decimal point than
+a 'float' can. 'double' is the usual choice between them.
+
+We will mostly be using int, double, and boolean from these types. We will
+also be using the type String, which is not a true "primitive" in Java, but is
+very commonly used and useful.
+
+=== Operators
+
+The most basic operator is =, the assignment operator. This operator is used
+to give variables values.
+
+----
+    boolean javaIsTheBest = true;
+    double twoAndAHalf = 2.5;
+    int number = 5;
+    String planet = "Earth";
+----
+
+With number types, we can do normal number things, like add, subtract, multiply,
+and divide. Just like in normal math, sometimes we need to use brackets with
+our operators to make it clear which ones happen in which order. This is true
+for all of the operators.
+
+----
+    int one = 1;
+    int two = one + one;
+    int four = two * two;
+    int ten = 10;
+    int six = ten - four;
+    int five = ten / two;
+
+    int minusTwo = ten - six * two;
+    int eight = (ten - six) * two;
+----
+
+We can also compare numbers to each other using >, <, <=, >=, and ==. These
+operators return boolean values, 'true' and 'false'.
+
+----
+    boolean tenMoreThanFive = 10 > 5;
+    boolean twoEqualsTwo = 2 == 2;
+    boolean zeroLessThanOne = 0 < 1;
+    boolean threeLessOrEqualThree = 3 <= 3;
+----
+
+There are also the operators || and &&, which are used with booleans.
+
+----
+    boolean isRed = true;
+    boolean isCar = true;
+    boolean isRedCar = isRed && isCar;
+
+    boolean hasDog = true;
+    boolean hasCat = false;
+    boolean hasPet = hasDog || hasCat;
+----
+
+The == operator from before can also be used with booleans and chars, not
+just numbers.
+
+----
+    char letter1 = 'a';
+    char letter2 = 'b';
+    char letter3 = 'b';
+    boolean same = letter2 == letter3;
+    boolean different = letter1 == letter2;
+    boolean compare = same == different;
+----
+
+There is one more common operator, which is !. This is used to reverse the
+meaning of booleans. Related is the operator !=, which is like ! and ==
+combined. "a != b" is the same as "! (a == b)".
+
+----
+    boolean yes = true;
+    boolean no = ! yes;
+----
+
+==== Arrays
+
+Arrays are a special sort of type. An array allows you to have a variable
+that is actually a list with other nameless variables inside it. Making an
+array variable is just like making a normal variable, but you add square
+brackets, [ and ].
+
+----
+    int[] numbers = new int[2];
+    numbers[0] = 10;
+    numbers[1] = 3;
+----
+
+Notice how making an array variable looks different from making a normal
+variable. The 'new' keyword is used, and there are square brackets on both
+side of the = . Inside the second pair of square brackets, you put the size
+of the array, which here is two. In Java, the first spot in an array is spot
+0, so this array only has spots 0 and 1, since its size is two.
+
 === public static void main
+
+Normally, programs need an "entry point", a place to start from at the very
+beginning. In Java, this is the "main method". The main method always looks
+the same:
+
+----
+    public static void main(String[] args)
+----
+
+For now, all we need to know about is the name of the method, which here is
+'main'. The rest of it - 'public', 'static', 'void', and 'String[] args' -
+will come later.
 
 ==== Basic I/O
 
+Let's make our program actually do something now. So far, we have this:
+
+----
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+
+        }
+    }
+----
+
+Nothing really happens when this program is run, because we haven't written
+anything inside of the main method. The program starts, has nothing to do, and
+stops right away. We can make the program print a message using
+
+----
+    System.out.println("Devoxx4kids!");
+----
+
+Here, "println" is the name of a method we are calling, and it has one String
+parameter. 'println' takes the argument we give it and prints it to the screen.
+
+All together, we now have:
+
+----
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            System.out.println("Devoxx4kids!");
+        }
+    }
+----
+
+Notice that we have to use the curly braces, { and }, with our class and method
+declarations, and that we end statements, like println, with a semicolon ;.
+
+Let's add a little more action. We can make the program ask us for input, do
+something with it, and print out a result. We'll make it so the program takes
+what we type in and makes everything lower case.
+
+To be able to read things we type, the program will use something called Scanner.
+To use Scanner, we need to "import" it.
+
+----
+    import java.util.Scanner;
+----
+
+"import" statements go at the very top of your program, before the class
+declaration. Now we can use Scanner in our main method to get a line of text
+from the user.
+
+----
+    Scanner sc = new Scanner(System.in);
+    String line = sc.nextLine();
+----
+
+Now we have a Scanner variable called "sc" and a String variable called "line".
+"line" holds the text we give to the program when we run it. We can make it
+all lower case and print it back out easily. Here's what the whole thing will
+look like.
+
+----
+    import java.util.Scanner;
+
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            System.out.println("Say something:");
+            Scanner sc = new Scanner(System.in);
+            String line = sc.nextLine();
+            System.out.println(line.toLowerCase());
+        }
+    }
+----
+
+We can expand this and make it so that we can enter a second line of text
+which is also made lower case.
+
+----
+    import java.util.Scanner;
+
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Say something:");
+            String line = sc.nextLine();
+            System.out.println(line.toLowerCase());
+            System.out.println("Say something again:");
+            String line2 = sc.nextLine();
+            System.out.println(line2.toLowerCase());
+        }
+    }
+----
+
+=== Comments
+
+Comments allow programmers to add notes to a program. The notes don't do anything
+in the program, but they can make it easier for other programmers to understand
+what is happening. There are two ways to write comments in Java, and both are shown
+in the example below.
+
+----
+    boolean hasCat = true; // do I have a cat?
+    boolean hasDog = true; // do I have a dog?
+
+    /* if I have either a dog or a cat, then
+       I have a pet! */
+    boolean hasPet = hasCat || hasDog;
+----
+
 === Control Flow
+
+So far, our program just runs in a straight line from top to bottom. What we
+need is some way to have our program make decisions, and some way to automatically
+do things more than once, so that we don't need to just write our code over and
+over again.
 
 ==== Conditionals (if/else)
 
+Conditionals allow our program to make decisions. The form of an if/else statement
+in Java is this:
+
+----
+    if (condition) {
+        // do something
+    } else if (anotherCondition) {
+        // do something else
+    } else {
+        // do another thing
+    }
+----
+
+"condition" and "anotherCondition" can be anything with type 'boolean'. If 'condition'
+is 'true', then the first block of code is run, and the rest are skipped. If
+'anotherCondition' is true and 'condition' is false, then only the second block
+is run. If 'condition' and 'anotherCondition' are both false, then the last block
+is run only. If both 'condition' and 'anotherCondition' are true, only the first
+block is run still.
+
 ==== Loops
 
+There are a few types of loop in Java. The most basic is the 'while' loop. This
+loop is used with a boolean variable or expression, and it runs over and over
+again, so long as the boolean is true.
+
+----
+    while (true) {
+        // this loop will never end!
+    }
+----
+
+We can use a 'while' loop along with 'if/else' and 'Scanner' from earlier
+to make our program keep asking us to type input. Let's make a program that
+adds up numbers until we give it 0.
+
+----
+    Scanner sc = new Scanner(System.in);
+    int total = 0;
+    boolean quit = false;
+    while (! quit) {
+        System.out.println("Give me a number:");
+        int input = sc.nextInt();
+        if (input == 0) {
+            quit = true;
+        }
+        total = total + input;
+    }
+    System.out.println("The total is: " + total);
+----
+
+There are some special keywords we can use when working with loops: 'break' and
+'continue'. 'break' causes the loop to stop completely, and 'continue' makes the
+loop start from the top. We can use 'break' instead of the 'quit' variable.
+
+----
+    Scanner sc = new Scanner(System.in);
+    int total = 0;
+    while (true) { // looks like it will run forever...
+        System.out.println("Give me a number:");
+        int input = sc.nextInt();
+        if (input == 0) {
+            break; // but this makes it possible to stop the loop
+        }
+        total = total + input;
+    }
+    System.out.println("The total is: " + total);
+----
+
+What if we wanted to run our loop a specific number of times? We can do something
+like this with a 'while' loop.
+
+----
+    int max = 5;
+    int times = 0;
+    int total = 2;
+    while (times < max) {
+        total = total * 2;
+        times = times + 1;
+    }
+    System.out.println("total: " + total);
+----
+
+But now we have some extra variables that are only used for controlling the loop.
+This is where the 'for' loop comes in. Here's a 'for' loop that does the same job
+as the above 'while' loop:
+
+----
+    int total = 2;
+    for (int i = 0; i < 5; i++) {
+        total = total * 2;
+    }
+    System.out.println("total: " + total);
+----
+
+Notice that inside the parentheses, there are three parts, separated by semicolons.
+The first part, "int i = 0", declares our loop variable(s). The second part,
+"i < 5" defines when the loop will stop. So long as i is less than 5, the loop will
+keep running. The last part, 'i++', is shorthand for "i = i + 1". It means that the
+loop variable 'i' will become larger by one at the end of the loop.
+
+The last loop we'll cover in this section is the 'do-while' loop. This is just a
+special kind of 'while' loop. Examine this 'while' loop:
+
+----
+    while (false) {
+        System.out.println("Hello!");
+    }
+----
+
+Since 'while' loops run over and over as long as the boolean condition is true,
+and this one is always false, this 'while' loop will never actually run, not even
+once. The 'do-while' loop is just a 'while' that will always run at least once.
+
+----
+    do {
+        System.out.println("Hello!");
+    } while (false);
+----
+
+Try both of these out and see for yourself that the 'while' loop does not print
+"Hello!", and the 'do-while' prints it exactly once.
+
 === Methods
+
+Recall the declaration of the main method:
+
+----
+    public static void main(String[] args)
+----
+
+As we already know, "main" is the name of the method. But what about the rest
+of it?
+
+'public' is the 'visibility' of the method. 'public' means that this method
+can be seen from anywhere else in the code. For now, this is the only visibility
+we will worry about. The other options are 'protected', 'private', and nothing.
+
+'static' is a little more complicated to explain. 'static' methods can be called
+all on their own, whereas non-static 'instance' methods have to be called *on*
+an object. This will make more sense in the next section when we learn about
+Classes. For now, consider the methods 'System.out.println(line)' and
+'line.toLowerCase()'. When we call 'println', it is called on its own. When we
+call 'toLowerCase()', it is called *on* a String. String is actually a Class
+type, not a primitive type, as was briefly mentioned earlier.
+
+'void' is the return type of the method. 'void' means that the method does not
+return anything, but this can instead be 'double' or 'int' or 'boolean' or
+'char[]', or any other type. For example, when we call 'nextInt()' on a Scanner
+we know that it must *return* an 'int', since we can assign it to an int variable.
+
+Next is 'main', which is just the name given to the method. This can be anything
+you like, but it has to start with a letter and can't contain spaces or
+punctuation.
+
+Last are the 'parameters' of the method, which here is 'String[] args'. This means
+that the method has a variable called 'args' of type 'array of String'. If you
+wanted to call the main method, you would need to give it an array of Strings,
+just like you have to give System.out.println a String to print.
+
+With this knowledge, we are now ready to create our own new methods. For now,
+they will all be 'public static'.
+
+----
+    // Takes a String and makes it LOUD!
+    public static String loud(String line) {
+        return line.toUpperCase();
+    }
+
+    // Takes a String and prints it LOUDLY!
+    public static void printLoud(String line) {
+        System.out.println(loud(line) + "!");
+    }
+
+    // Takes a number and adds one to it
+    public static double addOne(double number) {
+        return number + 1;
+    }
+
+    // Takes two numbers and multiplies them
+    public static double multiply(double first, double second) {
+        return first * second;
+    }
+
+    // Takes an array of numbers and sums them
+    public static double sum(double[] numbers) {
+        double total = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            total = total + numbers[i];
+        }
+        return total;
+    }
+----
+
+We can add them to our program and use them like this:
+
+----
+    import java.util.Scanner;
+
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            System.out.println("Say something:");
+            Scanner sc = new Scanner(System.in);
+            String line = sc.nextLine();
+            printLoud(line);
+        }
+
+        public static String loud(String line) {
+            return line.toUpperCase();
+        }
+
+        public static void printLoud(String line) {
+            System.out.println(loud(line) + "!");
+        }
+    }
+----
 
 . drive
 . brake
 . turn
 
-=== Operators
-
-=== Comments
-
-=== Types
-
-==== Primitive types
-
-==== Arrays
-
 === Class
+
+Classes are how we can define our own types in Java. So far, we have only seen
+the keyword 'class' once - in the basic class declaration we made to begin with
+our program.
+
+----
+    public class Devoxx4kids {
+
+    }
+----
+
+We can add more classes by creating new files, named after the class we are
+putting inside them. Let's make a new class called Person, and put it inside
+a new file named Person.java.
+
+----
+    public class Person {
+
+    }
+----
+
+Making a class allows us to do two things:
+
+1. Define things that our type *has*
+2. Define things that our type *does*
+
+In the case of a Person class, we can *have* a first name, a last name, and
+an age, and we can *do* the action of introducing ourselves.
+
+----
+    public class Person {
+        String firstName;
+        String lastName;
+        int age;
+
+        public String introduction() {
+            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        }
+    }
+----
+
+Notice that the 'introduction' method is *not* 'static' anymore. This means
+that when we call 'introduction', we call it *on* a Person instance.
+
+This is how we could use our new class.
+
+----
+    Person p = new Person();
+    p.firstName = "Mr.";
+    p.lastName = "Java";
+    p.age = 19;
+    System.out.println(p.introduction());
+----
 
 VW, Lexus, Tesla, Honda, ??
 
 ==== Constructors
 
+Classes can also have a special kind of method called a 'constructor'. These
+allow us to set the values of our variables more quickly, and maybe to
+automatically do some work before letting the variable be used. Let's add a
+constructor to the Person class.
+
+----
+    // Person.java
+    public class Person {
+        String firstName;
+        String lastName;
+        int age;
+
+        // Constructor method
+        public Person(String firstName, String lastName, int age) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = age;
+        }
+
+        public String introduction() {
+            return "Hi! My name is " + firstName + " " + lastName + " and my age is " + age + "years.";
+        }
+    }
+----
+
+Constructor methods can have a visibility and a name, and that's all. They never
+have return types and they cannot be static. Furthermore, their name is always
+exactly the same as the name of their Class. Let's try using this constructor.
+
+----
+    // Devoxx4kids.java
+    public class Devoxx4kids {
+        public static void main(String[] args) {
+            Person p = new Person("Mr.", "Java", 19);
+            System.out.println(p.introduction());
+        }
+    }
+----
+
+Now that we have two different Java files, compiling and running our program
+is a little different.
+
+----
+    javac Devoxx4kids.java Person.java
+    java Devoxx4kids
+----
+
+We have to give all of the names of our Java files to javac, but we only give
+the name of the one with our main method to java.
+
 . color
 . how many doors ?
 . convertible ?
 . automatic or manual ?
-
-=== Package
-
-. org.devoxx4kids.java.cars.vw
-. org.devoxx4kids.java.cars.lexus
-. org.devoxx4kids.java.cars.honda
-
-=== Annotations

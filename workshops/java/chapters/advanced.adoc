@@ -1,5 +1,11 @@
 == Advanced Programming Concepts
 
+=== Package
+
+. org.devoxx4kids.java.cars.vw
+. org.devoxx4kids.java.cars.lexus
+. org.devoxx4kids.java.cars.honda
+
 === Types
 
 ==== Autoboxing
@@ -31,6 +37,10 @@ ties in to inheritance
 === Abstract Class
 
 Common behavior of cars
+
+==== Annotations
+
+@Override
 
 === Interface
 
