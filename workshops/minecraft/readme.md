@@ -9,6 +9,8 @@ You need to download/install only the following two components:
     * [Modkit for Mac](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/12742874198/1)
     * [Modkit for Windows - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622594726/1)
     * [Modkit for Windows - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622936096/1)
+    * [Modkit for Linux - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383845499/1)
+    * [Modkit for Linux - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383939033/1)
 
 That's it, now follow the [tutorials](http://www.youtube.com/embed/QkPq6KUvY7g?list=PLX8CzqL3ArzVET0IIHcCf3-JfzY8RL4xG).
 
