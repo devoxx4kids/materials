@@ -1,0 +1,14 @@
+= Getting Started with Java
+Arun Gupta, Andrew Azores, Jon VanAlten
+v0.2, Mar 5, 2014
+:toc:
+:toclevels: 3
+
+include::chapters/intro.adoc[]
+
+include::chapters/fundamentals.adoc[]
+
+include::chapters/advanced.adoc[]
+
+include::chapters/acks.adoc[]
+
