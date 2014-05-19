@@ -1,7 +1,3 @@
----
-layout: default
----
-
 # Minecraft Modding en utilisant Forge
 
 ## Instructions pour démarrer rapidement
