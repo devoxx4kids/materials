@@ -1,6 +1,6 @@
 materials
 =========
-This repository contains the Devoxx4Kids (http://www.devoxx4kids.com) Workshop materials.
+This repository contains the Devoxx4Kids (http://www.devoxx4kids.org) Workshop materials.
 
 We are providing it so anybody, any group in their neighbor, city, region and country 
 can teach (Java) software programming to children in a fun way.
