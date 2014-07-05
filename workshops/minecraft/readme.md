@@ -27,9 +27,7 @@ That's it, now follow the [tutorials](http://www.youtube.com/embed/QkPq6KUvY7g?l
 
 **Instructions**: 
 
-* On line 91 in the class EntityTNTPrimed, there is a statement saying `float f = 4.0F;`. Change the `4.0` to whatever number you want. The bigger the number, the 
-
-bigger the explosion.
+* On line 96 in the class EntityTNTPrimed, there is a statement saying `float f = 4.0F;`. Change the `4.0` to whatever number you want. The bigger the number, the bigger the explosion.
 
 **Gameplay**: 
 
