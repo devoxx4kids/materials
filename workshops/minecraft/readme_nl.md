@@ -18,8 +18,18 @@ Dat is alles. Ga nu naar youtube en bekijk de Minecraft [handleidingen](http://w
 
 ### Algemene Instructies
 
-* Om een class te openen, klik op het menu item `Navigate` en klik op `Open Type`. (Snel toets op Windows `Ctrl + Shift + T` of op Mac `Command + Shift + T`.) Vanuit de popup kan je zoeken naar iedere class in source code.
-* Wanneer je een item of blok wilt wijzigen, of het huidige geselecteerde item/blok wilt verwijderen, druk de toetsen `Ctrl + Space` in en kies een andere item of blok uit de getoonde lijst. 
+* **Om een klasse te openen**, klik op het menu item `Navigate` en klik op `Open Type`. (Snel toets op Windows `Ctrl + Shift + T` of op Mac `⌘⇧T`.) Vanuit de popup kan je zoeken naar iedere klasse in source code.
+* **Om naar een lijn te gaan** in een klasse, klik op het menu item `Navigate` en klik op `Go to Line...`. (Snel toets op Windows `Ctrl + L` of op Mac `⌘L`.)
+* **Om te zoeken** in een klasse, klik op het menu item `Edit` en klik op `Find/Replace...`. (Snel toets op Windows `Ctrl + F` of op Mac `⌘F`.)
+* Wanneer je een item of blok wilt wijzigen, of het huidige geselecteerde item/blok wilt verwijderen, druk de toetsen op Windows `Ctrl + Space` of op Mac `⌃ + Space` in en kies een andere item of blok uit de getoonde lijst. 
+
+### Opzetten van Eclipse en Minecraft
+
+* Open de eclipse toepassing vanuit de eclipse folder en kies als workspace **'forge/mcp/eclipse'**
+* Wacht eventjes tot alle fouten verdwenen zijn in de 'Problems' tab onderaan en druk dan op het groene cirkeltje met de witte driehoek ('run'). Minecraft start nu op.
+* Kies **'Single player'** en daarna **'Create New World'**. Geef een naam aan je wereld en klik zolang op de 'Game Mode' knop tot je **'Game Mode Creative'** ziet staan. Klik vervolgens op **'Create New World'**.
+* Tussen twee oefeningen door mag je niet vergeten om de wereld  op te slaan (**'Save and Quit to Title'**) en het spel af te sluiten (**'Quit Game'**). Anders riskeer je meerdere keren Minecraft op te starten.
+
 
 ### 1. Grotere TNT explosies
 
@@ -37,8 +47,8 @@ Dat is alles. Ga nu naar youtube en bekijk de Minecraft [handleidingen](http://w
 * Druk op de `Escape` toets om het voorraad scherm te sluiten.
 * Druk nu op het nummer van het vak waar de TNT in de balk zit om hem te selecteren. Wijs naar de grond en met een rechtermuis klik plaats je de TNT op de grond. Selecteer vervolgens het nummer van het vakje waar de Flint and Steel in de balk zit en plaats die naast de TNT. Na vier seconden zul je een gigantische explosie zien.
 
-### 2. Zombies verandert in diamanten
-**Doel**: Om zombies diamaneten te laten worden wanneer ze worden gedood.
+### 2. Zombies veranderen in diamanten
+**Doel**: Om zombies in diamanten te veranderen wanneer ze worden gedood.
 
 **Instructies**: 
 
@@ -112,7 +122,7 @@ Opmerking: Je kan voor `dirt` en `diamond` natuurlijk andere dingen kiezen. Bijv
 
 **Instructies**: 
 
-* In de class TileEntityFurnace, gebruik de toetsen `Ctrl + F` als je op een windows computer werkt of `Command + F` op een Macintosh computer, om het zoek venster te openen. Type "200" in het veld waar staat "Find". Druk nu op de knop met de tekst "Find" onder in het zoek venster.
+* In de class TileEntityFurnace, gebruik de toetsen `Ctrl + F` als je op een windows computer werkt of `⌘F` op een Mac computer, om het zoek venster te openen. Type "200" in het veld waar staat "Find". Druk nu op de knop met de tekst "Find" onder in het zoek venster.
 * Zoek de eerste 3 "200"s, en verander deze in "1". VERANDER ER NIET MEER alleen deze eerste 3.
 
 **Spel spelen**: 
@@ -146,7 +156,7 @@ SAND DIRT
 
 en het zal 8 diamanten maken.
 
-Opmerking: Je can de items/blokken veranderen in iedere items/blokken die je wilt. Om een blok te smelten, verander het `Item` gedeelte naar `Block`, en vice versa. Wanneer je een item wilt smelten naar een goud staaf, of ieder ander item, verander het in `Item.goldIngot.itemID`, of het item dat je wilt. Onthou dat je door `Ctrl + Space` het keuze menu opent met mogelijkheden. Je kan ook het patroon wijzigen naar jouw keuze, maar dit kan niet groter zijn dan 3x3.
+Opmerking: Je kan de items/blokken veranderen in iedere items/blokken die je wilt. Om een blok te smelten, verander het `Item` gedeelte naar `Block`, en vice versa. Wanneer je een item wilt smelten naar een goud staaf, of ieder ander item, verander het in `Item.goldIngot.itemID`, of het item dat je wilt. Onthou dat je door `Ctrl + Space` het keuze menu opent met mogelijkheden. Je kan ook het patroon wijzigen naar jouw keuze, maar dit kan niet groter zijn dan 3x3.
 
 **Spel spelen**: 
 
@@ -164,34 +174,36 @@ Opmerking: Je can de items/blokken veranderen in iedere items/blokken die je wil
 
 * Op regel 265 in de class EntityPig, plaats de volgende regels code vlak voor de laatste '}':
 
-		public void fly() {
+		public void fly()
+		{
 			double howMuchY = this.posY - this.lastTickPosY;
 			this.posY = this.posY + howMuchY;
 		}
 
-		public void onLivingUpdate() {
+		public void onLivingUpdate()
+		{
 			fly();
 		}
 * Op regel 225 in de class EntityPig, staat het volgende:
 
 		protected void fall(float par1)
-    		{
-        		super.fall(par1);
+    	{
+        	super.fall(par1);
 
-        		if (par1 &gt; 5.0F &amp;&amp; this.riddenByEntity instanceof EntityPlayer)
-        		{
-            		((EntityPlayer)this.riddenByEntity).triggerAchievement(AchievementList.flyPig);
-        		}
-    		}
+        	if (par1 > 5.0F && this.riddenByEntity instanceof EntityPlayer)
+        	{
+            	((EntityPlayer)this.riddenByEntity).triggerAchievement(AchievementList.flyPig);
+        	}
+    	}
 
-Haal het volgende stuk code weg:
+* Haal het volgende stuk code weg:
 
-        		super.fall(par1);
+    	super.fall(par1);
 
-        		if (par1 &gt; 5.0F &amp;&amp; this.riddenByEntity instanceof EntityPlayer)
-        		{
-            		((EntityPlayer)this.riddenByEntity).triggerAchievement(AchievementList.flyPig);
-        		}
+    	if (par1 > 5.0F && this.riddenByEntity instanceof EntityPlayer)
+    	{
+    		((EntityPlayer)this.riddenByEntity).triggerAchievement(AchievementList.flyPig);
+    	}
 
 Dit zorgt ervoor dat varkens geen verwondingen oplopen terwijl ze in de lucht zweven. Zonder deze code weg te halen, zou een varken na verloop van tijd sterven.
 
