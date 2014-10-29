@@ -5,12 +5,38 @@
 Je moet enkel de volgende twee componenten downloaden en installeren:
 
 * [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
-* Modding Kit (maak een keuze op basis van het besturingssystem dat je gebruikt)
-    * [Modkit voor Mac](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/12742874198/1)
-    * [Modkit voor Windows - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622594726/1)
-    * [Modkit voor Windows - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622936096/1)
-    * [Modkit voor Linux - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383845499/1)
-    * [Modkit voor Linux - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383939033/1)
+    * Installeer jdk-7u67 (JDK 1.8 is niet compatibel met Minecraft!)
+    * Zet de JAVA_HOME environment variabele op de installatie directory van de net geinstallareerde JDK bv. "C:\Program Files\Java\jdk1.7.0_67"
+    * Voeg de paden naar de %JAVA_HOME%\bin en %JAVA_HOME%\jre\bin toe aan de PATH environment variabele.
+    * Onder Windows is voor Eclipse ook de 32-bit jre nodig.
+* Ontwikkelomgeving
+    * Pak de Modding Kit voor jouw systeem uit. In de Modding Kit zit zowel Minecraft Forge als Eclipse (maak een keuze op basis van het besturingssystem dat je gebruikt)
+        * [Modkit voor Mac](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/12742874198/1)
+        * [Modkit voor Windows - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622594726/1)
+        * [Modkit voor Windows - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622936096/1)
+        * [Modkit voor Linux - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383845499/1)
+        * [Modkit voor Linux - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383939033/1)
+    * Eclipse inrichten
+        * Eclipse heeft onder Windows een 32-bit jre nodig om op te starten. Voeg in modkit-windows-1.6.4-64bit\eclipse\eclipse.ini volgende 2 regels toe:
+            * -vm
+            * <pad naar java>\jdk1.7.0_67\jre\bin\server\jvm.dll
+        * Open Eclipse. Bij het opstarten zal deze een fout geven omdat een onbekende workspace is opgegeven. Stel de workspace default in op modkit-windows-1.6.4-64bit\forge\mcp\eclipse.
+        * Voeg een nieuw project toe
+            * File > Import Project > General > Existing projects into workspace
+            * Kies modkit-windows-1.6.4-64bit\forge\mcp\eclipse
+    * Backup de Minecraft source zodat deze voor elke workshop teruggezet kan worden
+        * Kopieer modkit-windows-1.6.4-64bit\forge\mcp\src naar modkit-windows-1.6.4-64bit\backup\src. 
+    * Maak snelkoppelingen op je bureaublad zodat alles snel beschikbaar is tijdens de workshop
+        * snelkoppeling minecraft-eclipse die verwijst naar modkit-windows-1.6.4-64bit\eclipse\eclipse.exe
+        * snelkoppeling minecraft-modkit die verwijst naar de map modkit-windows-1.6.4-64bit
+* Vóór elke workshop
+    * Overschrijf modkit-windows-1.6.4-64bit\forge\mcp\src met modkit-windows-1.6.4-64bit\backup\src.
+    * Start Minecraft vanuit Eclipse 
+    * Kies Singleplayer
+    * Create New World
+    * Game Mode Creative
+    * More World Options > World Type: Superflat
+    * Kies een naam bv. D4K_denhaag en 'Create New World' 
 
 Dat is alles. Ga nu naar youtube en bekijk de Minecraft [handleidingen](http://www.youtube.com/embed/QkPq6KUvY7g?list=PLX8CzqL3ArzVET0IIHcCf3-JfzY8RL4xG). (Engels gesproken)
 
