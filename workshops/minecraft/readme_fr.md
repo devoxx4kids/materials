@@ -5,12 +5,7 @@
 Vous aurez besoin de downloader et d'installer les deux composants suivants :
 
 * [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
-* Modding Kit (Un des  suivants, en fonction de votre machine)
-    * [Modkit pour Mac](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/12742874198/1)
-    * [Modkit pour Windows - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622594726/1)
-    * [Modkit pour Windows - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622936096/1)
-    * [Modkit pour Linux - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383845499/1)
-    * [Modkit pour Linux - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383939033/1)
+* Modding Kit - UPDATED INSTRUCTIONS COMING SOON
 
 Vous pouvez maintenant suivre les [tutoriels](http://www.youtube.com/embed/QkPq6KUvY7g?list=PLX8CzqL3ArzVET0IIHcCf3-JfzY8RL4xG).
 

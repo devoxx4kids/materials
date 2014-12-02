@@ -10,12 +10,7 @@ Je moet enkel de volgende twee componenten downloaden en installeren:
     * Voeg de paden naar de %JAVA_HOME%\bin en %JAVA_HOME%\jre\bin toe aan de PATH environment variabele.
     * Onder Windows is voor Eclipse ook de 32-bit jre nodig.
 * Ontwikkelomgeving
-    * Pak de Modding Kit voor jouw systeem uit. In de Modding Kit zit zowel Minecraft Forge als Eclipse (maak een keuze op basis van het besturingssystem dat je gebruikt)
-        * [Modkit voor Mac](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/12742874198/1)
-        * [Modkit voor Windows - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622594726/1)
-        * [Modkit voor Windows - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/14622936096/1)
-        * [Modkit voor Linux - 32 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383845499/1)
-        * [Modkit voor Linux - 64 bit](https://delucaconsulting.app.box.com/d4kminecraft/1/1415067806/15383939033/1)
+    * Pak de Modding Kit voor jouw systeem uit. - UPDATED INSTRUCTIONS COMING SOON
     * Eclipse inrichten
         * Eclipse heeft onder Windows een 32-bit jre nodig om op te starten. Voeg in modkit-windows-1.6.4-64bit\eclipse\eclipse.ini volgende 2 regels toe:
             * -vm
