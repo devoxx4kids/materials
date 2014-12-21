@@ -390,12 +390,11 @@ public class RainWater {
 				return;
 			}
 		}
-		
-		if (!world.getBlock(x, y - 1, z).isBlockNormalCube()) {
-			return;
-		}
 
 		if (!world.isRemote) {
+			if (!world.getBlock(x, y - 1, z).isBlockNormalCube()) {
+				return;
+			}
 			world.setBlock(x, y, z, Blocks.water, 5, 1);
 		}
 	}
