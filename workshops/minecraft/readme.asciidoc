@@ -1,6 +1,6 @@
 = Minecraft Modding using Forge
 
-== Download
+== Download and Install
 
 . Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . Download and install Eclipse from http://www.eclipse.org/downloads/, pick "Eclipse IDE for Java Developers"
@@ -8,6 +8,20 @@
 . In the unzipped forge directory, give the command `./gradlew` for Mac or `gradlew` for Windows. The output should show `BUILD SUCCESSFUL`. Complete output of the command is shown at <<Gradlew_command_output>>.
 
 Detailed instructions are at http://www.minecraftforge.net/wiki/Installation/Source.
+
+== Verify
+
+This is a very important step as this will confirm that you can actually start modding.
+
+. Open up Eclipse
+. In the ``Select a workspace'' window, choose the location of `eclipse` directory in the unzipped forge directory as the workspace
+. Click on ``OK''
+. In the Eclipse window, you should see a ``Minecraft'' folder and be able to expand it. There should be no red exclamation marks next to it.
+
+=== Troubleshooting
+
+. If you selected a different directory, click on ``File'', ``Switch Workspace'', and select the correct directory.
+. If you don't see Minecraft folder, the `gradlew` command might have shown some errors. Try running it again.
 
 == The Main File
 
