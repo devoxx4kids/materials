@@ -4,7 +4,8 @@
 
 . Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . Download and install Eclipse from http://www.eclipse.org/downloads/, pick "Eclipse IDE for Java Developers"
-. Download and unzip Forge from http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.10-10.13.2.1230/forge-1.7.10-10.13.2.1230-src.zip
+. Download and unzip Forge from
+  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.10-10.13.2.1277/forge-1.7.10-10.13.2.1277-src.zip
 . In the unzipped forge directory, give the command `./gradlew
   setupDecompWorkspace eclipse` for Mac or `gradlew
   setupDecompWorkspace eclipse` for Windows. The output should show `BUILD SUCCESSFUL`. Complete output of the command is shown at <<Gradlew_command_output>>.
