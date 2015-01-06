@@ -9,7 +9,11 @@
   setupDecompWorkspace eclipse` for Mac or `gradlew
   setupDecompWorkspace eclipse` for Windows. The output should show `BUILD SUCCESSFUL`. Complete output of the command is shown at <<Gradlew_command_output>>.
 
-Detailed instructions are at http://www.minecraftforge.net/wiki/Installation/Source.
+A detailed video with complete installation steps on Mac is given below:
+
+video::1S1aL9Vn5eI[youtube]
+
+More details are also at http://www.minecraftforge.net/wiki/Installation/Source.
 
 == Verify
 
