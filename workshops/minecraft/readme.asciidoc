@@ -12,8 +12,6 @@
 
 A detailed video with complete installation steps on Mac is given below:
 
-image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=1S1aL9Vn5eI"]
-
 video::1S1aL9Vn5eI[youtube]
 
 More details are also at http://www.minecraftforge.net/wiki/Installation/Source.
