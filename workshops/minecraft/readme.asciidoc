@@ -116,6 +116,7 @@ Your main file should now look like <<Main_File_After_Register>>.
 ----
 package org.devoxx4kids.forge.mods;
 
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
