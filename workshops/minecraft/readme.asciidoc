@@ -12,7 +12,7 @@
 
 A detailed video with complete installation steps on Mac is given below:
 
-image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=1S1aL9Vn5eI"]
+image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
 
 video::1S1aL9Vn5eI[youtube]
 
