@@ -1,0 +1,192 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="2" x="265" y="26">
+    <statement name="DO">
+      <block type="variables_set" id="3" inline="true">
+        <field name="VAR">step</field>
+        <value name="VALUE">
+          <block type="math_number" id="4">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="sphero_calibrate" id="5" inline="true">
+            <value name="TIME">
+              <block type="math_number" id="6">
+                <field name="NUM">10</field>
+              </block>
+            </value>
+            <next>
+              <block type="sphero_set_rgb" id="7" inline="false">
+                <value name="COLOUR">
+                  <block type="colour_picker" id="8">
+                    <field name="COLOUR">#3333ff</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="procedures_callnoreturn" id="9" inline="false">
+                    <mutation name="roll">
+                      <arg name="direction"></arg>
+                      <arg name="speed"></arg>
+                    </mutation>
+                    <value name="ARG0">
+                      <block type="math_number" id="10">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="math_number" id="11">
+                        <field name="NUM">40</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="12" x="606" y="23">
+    <mutation>
+      <arg name="direction"></arg>
+      <arg name="speed"></arg>
+    </mutation>
+    <field name="NAME">roll</field>
+    <statement name="STACK">
+      <block type="sphero_wait" id="13" inline="true">
+        <value name="TIME">
+          <block type="math_number" id="14">
+            <field name="NUM">0.5</field>
+          </block>
+        </value>
+        <next>
+          <block type="sphero_turn" id="15" inline="true">
+            <value name="DIRECTION">
+              <block type="variables_get" id="16">
+                <field name="VAR">direction</field>
+              </block>
+            </value>
+            <next>
+              <block type="sphero_wait" id="17" inline="true">
+                <value name="TIME">
+                  <block type="math_number" id="18">
+                    <field name="NUM">0.5</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="sphero_set_speed" id="19" inline="true">
+                    <value name="SPEED">
+                      <block type="variables_get" id="20">
+                        <field name="VAR">speed</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sphero_rollForward" id="21"></block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="sphero_event" id="22" x="260" y="264">
+    <field name="EVENT">COLLISION</field>
+    <statement name="DO">
+      <block type="sphero_set_rgb" id="23" inline="false">
+        <value name="COLOUR">
+          <block type="colour_picker" id="24">
+            <field name="COLOUR">#ff0000</field>
+          </block>
+        </value>
+        <next>
+          <block type="math_change" id="25" inline="true">
+            <field name="VAR">step</field>
+            <value name="DELTA">
+              <block type="math_number" id="26">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_if" id="27" inline="false">
+                <mutation elseif="1"></mutation>
+                <value name="IF0">
+                  <block type="logic_compare" id="28" inline="true">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <block type="variables_get" id="29">
+                        <field name="VAR">step</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number" id="30">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="sphero_set_rgb" id="31" inline="false">
+                    <value name="COLOUR">
+                      <block type="colour_picker" id="32">
+                        <field name="COLOUR">#cc33cc</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="procedures_callnoreturn" id="33" inline="false">
+                        <mutation name="roll">
+                          <arg name="direction"></arg>
+                          <arg name="speed"></arg>
+                        </mutation>
+                        <value name="ARG0">
+                          <block type="math_number" id="34">
+                            <field name="NUM">135</field>
+                          </block>
+                        </value>
+                        <value name="ARG1">
+                          <block type="math_number" id="35">
+                            <field name="NUM">80</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <value name="IF1">
+                  <block type="logic_compare" id="36" inline="true">
+                    <field name="OP">GTE</field>
+                    <value name="A">
+                      <block type="variables_get" id="37">
+                        <field name="VAR">step</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number" id="38">
+                        <field name="NUM">2</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO1">
+                  <block type="sphero_set_rgb" id="39" inline="false">
+                    <value name="COLOUR">
+                      <block type="colour_picker" id="40">
+                        <field name="COLOUR">#33cc00</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sphero_stop" id="41"></block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

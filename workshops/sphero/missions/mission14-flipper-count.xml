@@ -1,0 +1,165 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="386" x="265" y="26">
+    <statement name="DO">
+      <block type="sphero_calibrate" id="508" inline="true">
+        <value name="TIME">
+          <block type="math_number" id="509">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="387" inline="true">
+            <field name="VAR">collisions</field>
+            <value name="VALUE">
+              <block type="math_number" id="388">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="procedures_callnoreturn" id="391" inline="false">
+                <mutation name="roll">
+                  <arg name="direction"></arg>
+                  <arg name="speed"></arg>
+                </mutation>
+                <value name="ARG0">
+                  <block type="math_number" id="392">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="math_number" id="467">
+                    <field name="NUM">60</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="393" x="606" y="23">
+    <mutation>
+      <arg name="direction"></arg>
+      <arg name="speed"></arg>
+    </mutation>
+    <field name="NAME">roll</field>
+    <statement name="STACK">
+      <block type="sphero_wait" id="394" inline="true">
+        <value name="TIME">
+          <block type="math_number" id="395">
+            <field name="NUM">0.5</field>
+          </block>
+        </value>
+        <next>
+          <block type="sphero_turn" id="396" inline="true">
+            <value name="DIRECTION">
+              <block type="variables_get" id="397">
+                <field name="VAR">direction</field>
+              </block>
+            </value>
+            <next>
+              <block type="sphero_set_speed" id="389" inline="true">
+                <value name="SPEED">
+                  <block type="variables_get" id="448">
+                    <field name="VAR">speed</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="sphero_set_rgb" id="400" inline="false">
+                    <value name="COLOUR">
+                      <block type="colour_picker" id="401">
+                        <field name="COLOUR">#3333ff</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sphero_rollForwardTimed" id="554" inline="true">
+                        <value name="TIME">
+                          <block type="math_number" id="555">
+                            <field name="NUM">10</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="sphero_event" id="403" x="266" y="225">
+    <field name="EVENT">COLLISION</field>
+    <statement name="DO">
+      <block type="sphero_set_rgb" id="404" inline="false">
+        <value name="COLOUR">
+          <block type="colour_picker" id="405">
+            <field name="COLOUR">#ff6600</field>
+          </block>
+        </value>
+        <next>
+          <block type="math_change" id="406" inline="true">
+            <field name="VAR">collisions</field>
+            <value name="DELTA">
+              <block type="math_number" id="407">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_if" id="408" inline="false">
+                <mutation else="1"></mutation>
+                <value name="IF0">
+                  <block type="logic_compare" id="409" inline="true">
+                    <field name="OP">LT</field>
+                    <value name="A">
+                      <block type="variables_get" id="410">
+                        <field name="VAR">collisions</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number" id="411">
+                        <field name="NUM">3</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="procedures_callnoreturn" id="412" inline="false">
+                    <mutation name="roll">
+                      <arg name="direction"></arg>
+                      <arg name="speed"></arg>
+                    </mutation>
+                    <value name="ARG0">
+                      <block type="math_number" id="413">
+                        <field name="NUM">180</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="math_number" id="486">
+                        <field name="NUM">60</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <statement name="ELSE">
+                  <block type="sphero_set_rgb" id="414" inline="false">
+                    <value name="COLOUR">
+                      <block type="colour_picker" id="415">
+                        <field name="COLOUR">#ff0000</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sphero_stop" id="416"></block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

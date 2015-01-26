@@ -1,0 +1,66 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="97" deletable="false" x="112" y="40">
+    <statement name="DO">
+      <block type="sphero_calibrate" id="129" inline="true">
+        <value name="TIME">
+          <block type="math_number" id="130">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_repeat_ext" id="98" inline="true">
+            <value name="TIMES">
+              <block type="math_number" id="99">
+                <field name="NUM">2</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="sphero_rollForward" id="100">
+                <next>
+                  <block type="sphero_wait" id="101" inline="true">
+                    <value name="TIME">
+                      <block type="math_number" id="102">
+                        <field name="NUM">0.5</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sphero_stop" id="103">
+                        <next>
+                          <block type="sphero_wait" id="104" inline="true">
+                            <value name="TIME">
+                              <block type="math_number" id="105">
+                                <field name="NUM">0.5</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="sphero_turn" id="106" inline="true">
+                                <value name="DIRECTION">
+                                  <block type="math_number" id="107">
+                                    <field name="NUM">180</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="sphero_wait" id="108" inline="true">
+                                    <value name="TIME">
+                                      <block type="math_number" id="109">
+                                        <field name="NUM">0.5</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

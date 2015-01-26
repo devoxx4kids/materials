@@ -1,0 +1,98 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="766" x="265" y="26">
+    <statement name="DO">
+      <block type="sphero_calibrate" id="767" inline="true">
+        <value name="TIME">
+          <block type="math_number" id="768">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <next>
+          <block type="procedures_callnoreturn" id="771" inline="false">
+            <mutation name="roll">
+              <arg name="direction"></arg>
+              <arg name="speed"></arg>
+            </mutation>
+            <value name="ARG0">
+              <block type="math_number" id="772">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="math_number" id="773">
+                <field name="NUM">60</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="774" x="606" y="23">
+    <mutation>
+      <arg name="direction"></arg>
+      <arg name="speed"></arg>
+    </mutation>
+    <field name="NAME">roll</field>
+    <statement name="STACK">
+      <block type="sphero_wait" id="775" inline="true">
+        <value name="TIME">
+          <block type="math_number" id="776">
+            <field name="NUM">0.5</field>
+          </block>
+        </value>
+        <next>
+          <block type="sphero_turn" id="777" inline="true">
+            <value name="DIRECTION">
+              <block type="variables_get" id="778">
+                <field name="VAR">direction</field>
+              </block>
+            </value>
+            <next>
+              <block type="sphero_set_speed" id="779" inline="true">
+                <value name="SPEED">
+                  <block type="variables_get" id="780">
+                    <field name="VAR">speed</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="sphero_set_rgb" id="781" inline="false">
+                    <value name="COLOUR">
+                      <block type="colour_picker" id="782">
+                        <field name="COLOUR">#3333ff</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sphero_rollForwardTimed" id="783" inline="true">
+                        <value name="TIME">
+                          <block type="math_number" id="784">
+                            <field name="NUM">10</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="sphero_event" id="785" x="262" y="193">
+    <field name="EVENT">COLLISION</field>
+    <statement name="DO">
+      <block type="sphero_set_rgb" id="797" inline="false">
+        <value name="COLOUR">
+          <block type="colour_picker" id="798">
+            <field name="COLOUR">#ff0000</field>
+          </block>
+        </value>
+        <next>
+          <block type="sphero_stop" id="799"></block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
