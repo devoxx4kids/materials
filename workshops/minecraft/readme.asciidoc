@@ -86,11 +86,9 @@ public class ChatItems {
 	
 	@SubscribeEvent
 	public void giveItems(ServerChatEvent event){
-		if (!(event.message.contains("potato"))) {
-			return;
+		if (event.message.contains("potato")) {
+			event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
 		}
-		
-		event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
 	}
 }
 ----
@@ -139,6 +137,51 @@ public class MainMod {
 . Press ``T'' to open up the chat window
 . Type in any message that contains the word ``potato''
 . You should receive one stack (one stack = 64 items) potatoes
+
+=== Change text/item
+
+Change text message and produce different item. Use Ctrl+Space to show the list of items.
+
+=== Different Items
+
+Produce different items for different chat text
+
+[[Different_Chat_Items_Code]]
+.Different Chat Items code
+====
+[source, java]
+----
+@SubscribeEvent
+public void giveItems(ServerChatEvent event){
+	if (event.message.contains("potato")) {
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+	}
+
+	if (event.message.contains("diamond")) {
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
+	}
+}
+----
+====
+
+=== Multiple Items
+
+Produce multiple items for chat text
+
+[[Multiple_Chat_Items_Code]]
+.Multiple Chat Items code
+====
+[source, java]
+----
+@SubscribeEvent
+public void giveItems(ServerChatEvent event){
+	if (event.message.contains("potato")) {
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
+	}
+}
+----
+====
 
 == Dragon Spawner
 
