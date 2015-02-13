@@ -183,7 +183,7 @@ public void giveItems(ServerChatEvent event){
 ----
 ====
 
-== Dragon Spawner
+== Ender Dragon Spawner
 
 **Purpose:** To spawn an Ender Dragon every time a player places a Dragon Egg block.
 
@@ -256,10 +256,10 @@ dragon.setLocationAndAngles(event.x + 5, event.y, event.z, 0, 0);
 ====
 [source, java]
 ----
-if (event.block != Blocks.sponge) {
+if (event.block == Blocks.sponge) {
 		event.world.setBlock(event.x, event.y, event.z, Blocks.air);
 		EntitySquid squid = new EntitySquid(event.world);
-		dragon.setLocationAndAngles(event.x, event.y, event.z, 0, 0);
+		squid.setLocationAndAngles(event.x, event.y, event.z, 0, 0);
 		event.world.spawnEntityInWorld(squid);
 }
 ----
