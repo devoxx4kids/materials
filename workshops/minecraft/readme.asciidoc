@@ -140,7 +140,7 @@ public class MainMod {
 
 === Change text/item
 
-Change text message and produce different item. Use Ctrl+Space to show the list of items.
+Change text message and produce a different item. For example change the text to ``diamond'' and item produced to `Diamond`. Use Ctrl+Space to show the list of items.
 
 === Different Items
 
@@ -206,15 +206,12 @@ public class DragonSpawner {
 	@SubscribeEvent
 	public void spawnDragon(PlaceEvent event) {
 		if (event.block != Blocks.dragon_egg) {
-			return;
+			event.world.setBlock(event.x, event.y, event.z, Blocks.air);
+			EntityDragon dragon = new EntityDragon(event.world);
+			dragon.setLocationAndAngles(event.x, event.y, event.z, 0, 0);
+			event.world.spawnEntityInWorld(dragon);
 		}
-		
-		event.world.setBlock(event.x, event.y, event.z, Blocks.air);
-		EntityDragon dragon = new EntityDragon(event.world);
-		dragon.setLocationAndAngles(event.x, event.y, event.z, 0, 0);
-		event.world.spawnEntityInWorld(dragon);
 	}
-
 }
 ----
 ====
@@ -236,6 +233,37 @@ MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 . Place down the dragon egg, and an Ender Dragon should spawn
 
 The player name will not be your normal player name, it will be a Forge-generated player name. Check your chat window to see what your player name is.
+
+=== Change block/entity
+
+Change block that triggers spawning and spawn a different item. For example change the block to `sponge` and entity to `EntitySquid`. Use Ctrl+Space to show the list of items.
+
+=== Change offset of entities
+
+Change `event.x`, `event.y`, `event.z` and add or subtract 5 to show entities are produced at an offset.
+
+.Spawn offset
+====
+[source, java]
+----
+dragon.setLocationAndAngles(event.x + 5, event.y, event.z, 0, 0);
+----
+====
+
+=== Spawn multiple entities
+
+.Spawn squid
+====
+[source, java]
+----
+if (event.block != Blocks.sponge) {
+		event.world.setBlock(event.x, event.y, event.z, Blocks.air);
+		EntitySquid squid = new EntitySquid(event.world);
+		dragon.setLocationAndAngles(event.x, event.y, event.z, 0, 0);
+		event.world.spawnEntityInWorld(squid);
+}
+----
+====
 
 == Overpowered Iron Golems
 
