@@ -238,6 +238,19 @@ The player name will not be your normal player name, it will be a Forge-generate
 
 Change block that triggers spawning and spawn a different item. For example change the block to `sponge` and entity to `EntitySquid`. Use Ctrl+Space to show the list of items.
 
+.Spawn squid
+====
+[source, java]
+----
+if (event.block == Blocks.sponge) {
+		event.world.setBlock(event.x, event.y, event.z, Blocks.air);
+		EntitySquid squid = new EntitySquid(event.world);
+		squid.setLocationAndAngles(event.x, event.y, event.z, 0, 0);
+		event.world.spawnEntityInWorld(squid);
+}
+----
+====
+
 === Change offset of entities
 
 Change `event.x`, `event.y`, `event.z` and add or subtract 5 to show entities are produced at an offset.
@@ -252,18 +265,7 @@ dragon.setLocationAndAngles(event.x + 5, event.y, event.z, 0, 0);
 
 === Spawn multiple entities
 
-.Spawn squid
-====
-[source, java]
-----
-if (event.block == Blocks.sponge) {
-		event.world.setBlock(event.x, event.y, event.z, Blocks.air);
-		EntitySquid squid = new EntitySquid(event.world);
-		squid.setLocationAndAngles(event.x, event.y, event.z, 0, 0);
-		event.world.spawnEntityInWorld(squid);
-}
-----
-====
+Spawn Ender Dragon from dragon egg and Squid from sponge.
 
 == Overpowered Iron Golems
 
