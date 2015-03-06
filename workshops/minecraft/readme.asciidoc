@@ -267,63 +267,6 @@ dragon.setLocationAndAngles(event.x + 5, event.y, event.z, 0, 0);
 
 Spawn Ender Dragon from dragon egg and Squid from sponge.
 
-== Overpowered Iron Golems
-
-**Purpose:** To add helpful potion effects to Iron Golems when they spawn in the world.
-
-**Instructions:**
-
-In your package, make a new class called `OverpoweredIronGolems` and replace its contents with <<Iron_Golems_Code>>.
-
-[[Iron_Golems_Code]]
-.Overpowered Iron Golems code
-====
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
-public class OverpoweredIronGolems {
-	
-	@SubscribeEvent
-	public void golemMagic(EntityJoinWorldEvent event) {
-		if (!(event.entity instanceof EntityIronGolem)) {
-			return;
-		}
-		
-		EntityLiving entity = (EntityLiving) event.entity;
-		entity.addPotionEffect(new PotionEffect(1, 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(5, 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(10, 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(11, 1000000, 5));
-	}
-
-}
-----
-====
-
-Then, register the class using the line shown in <<Iron_Golems_Register>>.
-
-[[Iron_Golems_Register]]
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
-----
-====
-
-**Gameplay:**
-
-. Spawn an Iron Golem by using the command "/summon VillagerGolem".
-. Spawn some hostile mobs near the Iron Golem
-
-The golem should move towards them to kill them. Normally, Iron Golems move slowly, but with the speed effect from the mod, they should move very fast.
-
 == Creeper Spawn Alert
 
 **Purpose:** To alert all players when a creeper spawns.
@@ -384,6 +327,174 @@ MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
 . Set the time to night time ("/time set night") 
 
 You should get a bunch of messages saying "A creeper has spawned!" in light green letters. One of these messages is sent to you every time a creeper spawns.
+
+=== Change color/format of message
+
+==== Change color to red
+
+.Color of message
+====
+[source,java]
+----
+player.addChatMessage(new ChatComponentText(
+		EnumChatFormatting.RED + "A creeper has spawned!"));
+----
+====
+
+Try different colors by code completion after `EnumChatFormatting`.
+
+==== Change style to italics
+
+.Style of message
+====
+[source,java]
+----
+player.addChatMessage(new ChatComponentText(
+		EnumChatFormatting.ITALIC + "A creeper has spawned!"));
+----
+====
+
+Try different styles by code completion after `EnumChatFormatting`.
+
+=== Change text of message
+
+.Style of message
+====
+[source,java]
+----
+player.addChatMessage(new ChatComponentText(
+		EnumChatFormatting.ITALIC + "Run away, a creeper has spawned!"));
+----
+====
+
+Talk about text within quotes.
+
+=== Print same message for different mobs
+
+.Same message for differet mobs using AND
+====
+[source, java]
+----
+if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZombie)) {
+	return;
+}
+----
+====
+
+OR
+
+.Same message for differet mobs using OR
+====
+[source, java]
+----
+if (!(event.entity instanceof EntityCreeper) || !(event.entity instanceof EntityZombie)) {
+	return;
+}
+----
+====
+
+Explain AND and OR
+
+=== Print different message for different mobs
+
+.Different message for different mobs
+====
+[source, java]
+----
+public void sendAlert(EntityJoinWorldEvent event) {
+	if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZombie)) {
+		return;
+	}
+	
+	String message;
+	
+	if (event.entity instanceof EntityCreeper) {
+		message = "A creeper has spawned";
+	} else {
+		message = "A zombie has spawned";
+	}
+
+	List players = event.entity.worldObj.playerEntities;
+
+	for (int i = 0; i < players.size(); i++) {
+		EntityPlayer player = (EntityPlayer) players.get(i);
+		player.addChatMessage(new ChatComponentText(
+				EnumChatFormatting.GREEN + message));
+	}
+}
+----
+====
+
+=== Print message for all mobs
+
+.Message for all mobs
+====
+[source, java]
+----
+if (!(event.entity instanceof EntityMob)) {
+	return;
+}
+----
+====
+
+Explain how to reach `EntityMob`
+
+== Overpowered Iron Golems
+
+**Purpose:** To add helpful potion effects to Iron Golems when they spawn in the world.
+
+**Instructions:**
+
+In your package, make a new class called `OverpoweredIronGolems` and replace its contents with <<Iron_Golems_Code>>.
+
+[[Iron_Golems_Code]]
+.Overpowered Iron Golems code
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
+public class OverpoweredIronGolems {
+	
+	@SubscribeEvent
+	public void golemMagic(EntityJoinWorldEvent event) {
+		if (!(event.entity instanceof EntityIronGolem)) {
+			return;
+		}
+		
+		EntityLiving entity = (EntityLiving) event.entity;
+		entity.addPotionEffect(new PotionEffect(1, 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(5, 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(10, 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(11, 1000000, 5));
+	}
+
+}
+----
+====
+
+Then, register the class using the line shown in <<Iron_Golems_Register>>.
+
+[[Iron_Golems_Register]]
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
+----
+====
+
+**Gameplay:**
+
+. Spawn an Iron Golem by using the command "/summon VillagerGolem".
+. Spawn some hostile mobs near the Iron Golem
+
+The golem should move towards them to kill them. Normally, Iron Golems move slowly, but with the speed effect from the mod, they should move very fast.
 
 == Sharp Snowballs
 
