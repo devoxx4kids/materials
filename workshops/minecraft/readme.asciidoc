@@ -439,6 +439,91 @@ if (!(event.entity instanceof EntityMob)) {
 
 Explain how to reach `EntityMob`
 
+== Sharp Snowballs
+
+**Purpose:** To turn all snowballs into arrows so that they can hurt entites.
+
+**Instructions:** In your package, create a new class called `SharpSnowballs`. Replace its code with <<Snowballs_Code>>.
+
+[[Snowballs_Code]]
+.Sharp Snowballs code
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
+public class SharpSnowballs {
+
+	@SubscribeEvent
+	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
+		Entity snowball = event.entity;
+		World world = snowball.worldObj;
+
+		if (!(snowball instanceof EntitySnowball)) {
+			return;
+		}
+
+		if (!world.isRemote) {
+			EntityArrow arrow = new EntityArrow(world);
+			arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ,
+					0, 0);
+			arrow.motionX = snowball.motionX;
+			arrow.motionY = snowball.motionY;
+			arrow.motionZ = snowball.motionZ;
+
+			// gets arrow out of player's head
+			// gets the angle of arrow right, in the direction of motion
+			arrow.posX += arrow.motionX;
+			arrow.posY += arrow.motionY;
+			arrow.posZ += arrow.motionZ;
+
+			world.spawnEntityInWorld(arrow);
+			snowball.setDead();
+		}
+	}
+
+}
+----
+====
+
+Register the new class using the line in <<Snowballs_Registering>>.
+
+[[Snowballs_Registering]]
+.Sharp Snowballs registering
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
+----
+====
+
+**Gameplay:**
+
+. Get a Snowball item from your inventory
+. Right click with it to throw it
+. It should turn into an arrow
+
+You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Snow blocks. The Snow Golem will act as a turret, shooting out snowballs that turn into arrows.
+
+=== Explosive snowballs
+
+[[Snowballs_Code]]
+.Explosive Snowballs code
+====
+[source, java]
+----
+EntityArrow arrow = new EntityArrow(world);
+arrow.fuse = 80;
+----
+====
+
 == Overpowered Iron Golems
 
 **Purpose:** To add helpful potion effects to Iron Golems when they spawn in the world.
@@ -495,77 +580,6 @@ MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 . Spawn some hostile mobs near the Iron Golem
 
 The golem should move towards them to kill them. Normally, Iron Golems move slowly, but with the speed effect from the mod, they should move very fast.
-
-== Sharp Snowballs
-
-**Purpose:** To turn all snowballs into arrows so that they can hurt entites.
-
-**Instructions:** In your package, create a new class called `SharpSnowballs`. Replace its code with <<Snowballs_Code>>.
-
-[[Snowballs_Code]]
-.Sharp Snowballs code
-====
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
-public class SharpSnowballs {
-
-	@SubscribeEvent
-	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
-		Entity entity = event.entity;
-		World world = entity.worldObj;
-
-		if (!(entity instanceof EntitySnowball)) {
-			return;
-		}
-
-		if (!world.isRemote) {
-			EntityArrow arrow = new EntityArrow(world);
-			arrow.setLocationAndAngles(entity.posX, entity.posY, entity.posZ,
-					0, 0);
-			arrow.motionX = entity.motionX;
-			arrow.motionY = entity.motionY;
-			arrow.motionZ = entity.motionZ;
-
-			arrow.posX += arrow.motionX;
-			arrow.posY += arrow.motionY;
-			arrow.posZ += arrow.motionZ;
-
-			world.spawnEntityInWorld(arrow);
-			entity.setDead();
-		}
-	}
-
-}
-----
-====
-
-Register the new class using the line in <<Snowballs_Registering>>.
-
-[[Snowballs_Registering]]
-.Sharp Snowballs registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
-----
-====
-
-**Gameplay:**
-
-. Get a Snowball item from your inventory
-. Right click with it to throw it
-. It should turn into an arrow
-
-You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Snow blocks. The Snow Golem will act as a turret, shooting out snowballs that turn into arrows.
 
 == Rain Water
 
