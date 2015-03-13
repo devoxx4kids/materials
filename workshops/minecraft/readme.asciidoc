@@ -519,7 +519,7 @@ You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Sno
 ====
 [source, java]
 ----
-EntityArrow arrow = new EntityArrow(world);
+EntityTNTPrimed arrow = new EntityTNTPrimed(world);
 arrow.fuse = 80;
 ----
 ====
