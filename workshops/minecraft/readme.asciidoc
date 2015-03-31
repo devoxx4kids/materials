@@ -45,6 +45,7 @@ In this package, create a new class called `MainMod.java`. To do this, right cli
 ----
 package org.devoxx4kids.forge.mods;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -198,6 +199,7 @@ package org.devoxx4kids.forge.mods;
 
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -205,8 +207,8 @@ public class DragonSpawner {
 	
 	@SubscribeEvent
 	public void spawnDragon(PlaceEvent event) {
-		if (event.block == Blocks.dragon_egg) {
-			event.world.setBlock(event.pos.getX(), event.pos.getY(), event.pos.getZ(), Blocks.air);
+		if (event.block == Blocks.dragon_egg.getBlockState().getBaseState()) {
+			event.world.setBlockToAir(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
 			EntityDragon dragon = new EntityDragon(event.world);
 			dragon.setLocationAndAngles(event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
 			event.world.spawnEntityInWorld(dragon);
@@ -242,8 +244,8 @@ Change block that triggers spawning and spawn a different item. For example chan
 ====
 [source, java]
 ----
-if (event.block == Blocks.sponge) {
-		event.world.setBlock(event.pos.getX(), event.pos.getY(), event.pos.getZ(), Blocks.air);
+if (event.placedBlock == Blocks.sponge.getBlockState().getBaseState()) {
+		event.world.setBlockToAir(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
 		EntitySquid squid = new EntitySquid(event.world);
 		squid.setLocationAndAngles(event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
 		event.world.spawnEntityInWorld(squid);
@@ -251,9 +253,11 @@ if (event.block == Blocks.sponge) {
 ----
 ====
 
+After doing this, press Control + Shift + O on a Windows computer or Cmd + Shift + O on a Mac computer to import certain classes and fix some errors. When you test out this mod, place down a Wet Sponge, not a Sponge.
+
 === Change offset of entities
 
-Change `event.x`, `event.y`, `event.z` and add or subtract 5 to show entities are produced at an offset.
+Change `event.pos.getX()`, `event.pos.getY()`, `event.pos.getZ()` and add or subtract 5 to show entities are produced at an offset.
 
 .Spawn offset
 ====
@@ -262,10 +266,6 @@ Change `event.x`, `event.y`, `event.z` and add or subtract 5 to show entities ar
 dragon.setLocationAndAngles(event.pos.getX() + 5, event.pos.getY(), event.pos.getZ(), 0, 0);
 ----
 ====
-
-=== Spawn multiple entities
-
-Spawn Ender Dragon from dragon egg and Squid from sponge.
 
 == Creeper Spawn Alert
 
@@ -301,8 +301,10 @@ public class CreeperSpawnAlert {
 
 		for (int i = 0; i < players.size(); i++) {
 			EntityPlayer player = (EntityPlayer) players.get(i);
-			player.addChatMessage(new ChatComponentText(
-					EnumChatFormatting.GREEN + "A creeper has spawned!"));
+			if (event.world.isRemote) {
+				player.addChatMessage(new ChatComponentText(
+						EnumChatFormatting.GREEN + "A creeper has spawned!"));
+			}
 		}
 	}
 
@@ -363,7 +365,7 @@ Try different styles by code completion after `EnumChatFormatting`.
 [source,java]
 ----
 player.addChatMessage(new ChatComponentText(
-		EnumChatFormatting.ITALIC + "Run away, a creeper has spawned!"));
+		EnumChatFormatting.GREEN + "Run away, a creeper has spawned!"));
 ----
 ====
 
@@ -418,8 +420,10 @@ public void sendAlert(EntityJoinWorldEvent event) {
 
 	for (int i = 0; i < players.size(); i++) {
 		EntityPlayer player = (EntityPlayer) players.get(i);
-		player.addChatMessage(new ChatComponentText(
-				EnumChatFormatting.GREEN + message));
+		if (event.world.isRemote) {
+			player.addChatMessage(new ChatComponentText(
+					EnumChatFormatting.GREEN + message));
+		}
 	}
 }
 ----
@@ -437,7 +441,7 @@ if (!(event.entity instanceof EntityMob)) {
 ----
 ====
 
-Explain how to reach `EntityMob`
+Explain how to reach `EntityMob`.
 
 == Sharp Snowballs
 
