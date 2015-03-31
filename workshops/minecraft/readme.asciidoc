@@ -668,7 +668,123 @@ To install your mod on your Minecraft launcher, follow the instructions at http:
 [source,text]
 ----
 forge> ./gradlew setupDecompWorkspace eclipse
+Downloading https://services.gradle.org/distributions/gradle-2.0-bin.zip
+.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Unzipping /Users/arungupta/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0-bin.zip to /Users/arungupta/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0
+Set executable permissions for: /Users/arungupta/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/bin/gradle
+Download http://files.minecraftforge.net/maven/net/minecraftforge/gradle/ForgeGradle/1.2-SNAPSHOT/ForgeGradle-1.2-20150329.235405-283.pom
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/RetroGuard/3.6.6/RetroGuard-3.6.6.pom
+Download http://repo1.maven.org/maven2/net/sf/opencsv/opencsv/2.3/opencsv-2.3.pom
+Download http://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom
+Download http://repo1.maven.org/maven2/com/github/jponge/lzma-java/1.3/lzma-java-1.3.pom
+Download http://repo1.maven.org/maven2/com/github/abrarsyed/jastyle/jAstyle/1.2/jAstyle-1.2.pom
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/2.1.0/trove4j-2.1.0.pom
+Download http://repo1.maven.org/maven2/com/cloudbees/diff4j/1.1/diff4j-1.1.pom
+Download http://repo1.maven.org/maven2/com/cloudbees/cloudbees-oss-parent/1/cloudbees-oss-parent-1.pom
+Download http://repo1.maven.org/maven2/net/md-5/SpecialSource/1.7.3/SpecialSource-1.7.3.pom
+Download http://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom
+Download http://repo1.maven.org/maven2/com/github/tony19/named-regexp/0.2.3/named-regexp-0.2.3.pom
+Download http://repo1.maven.org/maven2/org/ow2/asm/asm-debug-all/5.0.3/asm-debug-all-5.0.3.pom
+Download http://repo1.maven.org/maven2/org/ow2/asm/asm-parent/5.0.3/asm-parent-5.0.3.pom
+Download http://repo1.maven.org/maven2/org/ow2/ow2/1.3/ow2-1.3.pom
+Download http://repo1.maven.org/maven2/com/nothome/javaxdelta/2.0.1/javaxdelta-2.0.1.pom
+Download http://files.minecraftforge.net/maven/net/minecraftforge/srg2source/Srg2Source/3.2-SNAPSHOT/Srg2Source-3.2-20150109.190932-47.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcomponents-client/4.3.3/httpcomponents-client-4.3.3.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/project/7/project-7.pom
+Download http://repo1.maven.org/maven2/org/apache/apache/13/apache-13.pom
+Download http://repo1.maven.org/maven2/com/google/code/gson/gson/2.2.4/gson-2.2.4.pom
+Download http://repo1.maven.org/maven2/com/google/guava/guava/18.0/guava-18.0.pom
+Download http://repo1.maven.org/maven2/com/google/guava/guava-parent/18.0/guava-parent-18.0.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpmime/4.3.3/httpmime-4.3.3.pom
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/mcinjector/3.2-SNAPSHOT/mcinjector-3.2-20150210.031242-16.pom
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.5/jopt-simple-4.5.pom
+Download http://repo1.maven.org/maven2/org/jvnet/localizer/localizer/1.12/localizer-1.12.pom
+Download http://repo1.maven.org/maven2/org/jvnet/localizer/localizer-parent/1.12/localizer-parent-1.12.pom
+Download http://repo1.maven.org/maven2/commons-io/commons-io/1.4/commons-io-1.4.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/7/commons-parent-7.pom
+Download http://repo1.maven.org/maven2/org/apache/apache/4/apache-4.pom
+Download http://repo1.maven.org/maven2/trove/trove/1.0.2/trove-1.0.2.pom
+Download http://files.minecraftforge.net/maven/org/eclipse/jdt/org.eclipse.jdt.core/3.10.0.v20131029-1755/org.eclipse.jdt.core-3.10.0.v20131029-1755.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/jobs/3.5.300-v20130429-1813/jobs-3.5.300-v20130429-1813.pom
+Download http://repo1.maven.org/maven2/org/eclipse/osgi/3.9.1-v20130814-1242/osgi-3.9.1-v20130814-1242.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/contenttype/3.4.200-v20130326-1255/contenttype-3.4.200-v20130326-1255.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/resources/3.2.1-R32x_v20060914/resources-3.2.1-R32x_v20060914.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/common/3.6.200-v20130402-1505/common-3.6.200-v20130402-1505.pom
+Download http://repo1.maven.org/maven2/org/eclipse/text/org.eclipse.text/3.5.101/org.eclipse.text-3.5.101.pom
+Download http://repo1.maven.org/maven2/org/eclipse/jgit/org.eclipse.jgit/3.2.0.201312181205-r/org.eclipse.jgit-3.2.0.201312181205-r.pom
+Download http://repo1.maven.org/maven2/org/eclipse/jgit/org.eclipse.jgit-parent/3.2.0.201312181205-r/org.eclipse.jgit-parent-3.2.0.201312181205-r.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/preferences/3.5.100-v20130422-1538/preferences-3.5.100-v20130422-1538.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/3.9.0-v20130326-1255/runtime-3.9.0-v20130326-1255.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.3.2/httpcore-4.3.2.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcomponents-core/4.3.2/httpcomponents-core-4.3.2.pom
+Download http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/28/commons-parent-28.pom
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.6/commons-codec-1.6.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/22/commons-parent-22.pom
+Download http://repo1.maven.org/maven2/org/apache/apache/9/apache-9.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/preferences/3.5.200-v20140224-1527/preferences-3.5.200-v20140224-1527.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/registry/3.5.400-v20140428-1507/registry-3.5.400-v20140428-1507.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/compatibility/3.1.200-v20070502/compatibility-3.1.200-v20070502.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/expressions/3.3.0-v20070606-0010/expressions-3.3.0-v20070606-0010.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/filesystem/1.1.0-v20070606/filesystem-1.1.0-v20070606.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/org.eclipse.core.commands/3.6.0/org.eclipse.core.commands-3.6.0.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/org.eclipse.equinox.common/3.6.0/org.eclipse.equinox.common-3.6.0.pom
+Download http://repo1.maven.org/maven2/com/jcraft/jsch/0.1.46/jsch-0.1.46.pom
+Download http://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/6/oss-parent-6.pom
+Download http://repo1.maven.org/maven2/com/googlecode/javaewah/JavaEWAH/0.5.6/JavaEWAH-0.5.6.pom
+Download http://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/5/oss-parent-5.pom
+Download http://repo1.maven.org/maven2/org/eclipse/osgi/3.10.0-v20140606-1445/osgi-3.10.0-v20140606-1445.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/jobs/3.6.0-v20140424-0053/jobs-3.6.0-v20140424-0053.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/contenttype/3.4.200-v20140207-1251/contenttype-3.4.200-v20140207-1251.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/app/1.3.200-v20130910-1609/app-1.3.200-v20130910-1609.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/3.10.0-v20140318-2214/runtime-3.10.0-v20140318-2214.pom
+Download http://repo1.maven.org/maven2/org/eclipse/update/configurator/3.2.100-v20070615/configurator-3.2.100-v20070615.pom
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.7/jopt-simple-4.7.pom
 Download http://files.minecraftforge.net/maven/net/minecraftforge/gradle/ForgeGradle/1.2-SNAPSHOT/ForgeGradle-1.2-20150329.235405-283.jar
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/RetroGuard/3.6.6/RetroGuard-3.6.6.jar
+Download http://repo1.maven.org/maven2/net/sf/opencsv/opencsv/2.3/opencsv-2.3.jar
+Download http://repo1.maven.org/maven2/com/github/jponge/lzma-java/1.3/lzma-java-1.3.jar
+Download http://repo1.maven.org/maven2/com/github/abrarsyed/jastyle/jAstyle/1.2/jAstyle-1.2.jar
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/2.1.0/trove4j-2.1.0.jar
+Download http://repo1.maven.org/maven2/com/cloudbees/diff4j/1.1/diff4j-1.1.jar
+Download http://repo1.maven.org/maven2/net/md-5/SpecialSource/1.7.3/SpecialSource-1.7.3.jar
+Download http://repo1.maven.org/maven2/com/github/tony19/named-regexp/0.2.3/named-regexp-0.2.3.jar
+Download http://repo1.maven.org/maven2/org/ow2/asm/asm-debug-all/5.0.3/asm-debug-all-5.0.3.jar
+Download http://repo1.maven.org/maven2/com/nothome/javaxdelta/2.0.1/javaxdelta-2.0.1.jar
+Download http://files.minecraftforge.net/maven/net/minecraftforge/srg2source/Srg2Source/3.2-SNAPSHOT/Srg2Source-3.2-20150109.190932-47.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.jar
+Download http://repo1.maven.org/maven2/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar
+Download http://repo1.maven.org/maven2/com/google/guava/guava/18.0/guava-18.0.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpmime/4.3.3/httpmime-4.3.3.jar
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/mcinjector/3.2-SNAPSHOT/mcinjector-3.2-20150210.031242-16.jar
+Download http://repo1.maven.org/maven2/org/jvnet/localizer/localizer/1.12/localizer-1.12.jar
+Download http://repo1.maven.org/maven2/commons-io/commons-io/1.4/commons-io-1.4.jar
+Download http://repo1.maven.org/maven2/trove/trove/1.0.2/trove-1.0.2.jar
+Download http://files.minecraftforge.net/maven/org/eclipse/jdt/org.eclipse.jdt.core/3.10.0.v20131029-1755/org.eclipse.jdt.core-3.10.0.v20131029-1755.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/resources/3.2.1-R32x_v20060914/resources-3.2.1-R32x_v20060914.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/common/3.6.200-v20130402-1505/common-3.6.200-v20130402-1505.jar
+Download http://repo1.maven.org/maven2/org/eclipse/text/org.eclipse.text/3.5.101/org.eclipse.text-3.5.101.jar
+Download http://repo1.maven.org/maven2/org/eclipse/jgit/org.eclipse.jgit/3.2.0.201312181205-r/org.eclipse.jgit-3.2.0.201312181205-r.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.3.2/httpcore-4.3.2.jar
+Download http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.6/commons-codec-1.6.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/registry/3.5.400-v20140428-1507/registry-3.5.400-v20140428-1507.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/compatibility/3.1.200-v20070502/compatibility-3.1.200-v20070502.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/expressions/3.3.0-v20070606-0010/expressions-3.3.0-v20070606-0010.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/filesystem/1.1.0-v20070606/filesystem-1.1.0-v20070606.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/org.eclipse.core.commands/3.6.0/org.eclipse.core.commands-3.6.0.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/org.eclipse.equinox.common/3.6.0/org.eclipse.equinox.common-3.6.0.jar
+Download http://repo1.maven.org/maven2/com/jcraft/jsch/0.1.46/jsch-0.1.46.jar
+Download http://repo1.maven.org/maven2/com/googlecode/javaewah/JavaEWAH/0.5.6/JavaEWAH-0.5.6.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/app/1.3.200-v20130910-1609/app-1.3.200-v20130910-1609.jar
+Download http://repo1.maven.org/maven2/org/eclipse/update/configurator/3.2.100-v20070615/configurator-3.2.100-v20070615.jar
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.7/jopt-simple-4.7.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/preferences/3.5.200-v20140224-1527/preferences-3.5.200-v20140224-1527.jar
+Download http://repo1.maven.org/maven2/org/eclipse/osgi/3.10.0-v20140606-1445/osgi-3.10.0-v20140606-1445.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/jobs/3.6.0-v20140424-0053/jobs-3.6.0-v20140424-0053.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/contenttype/3.4.200-v20140207-1251/contenttype-3.4.200-v20140207-1251.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/3.10.0-v20140318-2214/runtime-3.10.0-v20140318-2214.jar
 ****************************
  Powered By MCP:             
  http://mcp.ocean-labs.de/   
@@ -677,20 +793,124 @@ Download http://files.minecraftforge.net/maven/net/minecraftforge/gradle/ForgeGr
  MCP Data version : snapshot_20141130
 ****************************
 :extractMcpData
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/mcp_snapshot/20141130-1.8/mcp_snapshot-20141130-1.8.zip
 :getVersionJson
 :extractUserDev
 Download http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.1.1341/forge-1.8-11.14.1.1341-userdev.jar
 :genSrgs
 :extractNatives
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl-platform/2.9.2-nightly-20140822/lwjgl-platform-2.9.2-nightly-20140822.pom
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/parent/2.9.2-nightly-20140822/parent-2.9.2-nightly-20140822.pom
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5.pom
+Download https://libraries.minecraft.net/tv/twitch/twitch-platform/6.5/twitch-platform-6.5.pom
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl-platform/2.9.2-nightly-20140822/lwjgl-platform-2.9.2-nightly-20140822-natives-osx.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-osx.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-platform/6.5/twitch-platform-6.5-natives-osx.jar
 :getAssetsIndex
 :getAssets
+Current status: 6/734   0%
 :makeStart
+Download https://libraries.minecraft.net/net/minecraft/launchwrapper/1.11/launchwrapper-1.11.pom
+Download http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.pom
+Download http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.11/2.3.3/akka-actor_2.11-2.3.3.pom
+Download http://repo1.maven.org/maven2/com/typesafe/config/1.2.1/config-1.2.1.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors-migration_2.11/1.1.0/scala-actors-migration_2.11-1.1.0.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.11.1/scala-compiler-2.11.1.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-library_2.11/1.0.2/scala-continuations-library_2.11-1.0.2.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-plugin_2.11.1/1.0.2/scala-continuations-plugin_2.11.1-1.0.2.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.1/scala-library-2.11.1.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.11.1/scala-reflect-2.11.1.pom
+Download https://libraries.minecraft.net/lzma/lzma/0.0.1/lzma-0.0.1.pom
+Download https://libraries.minecraft.net/java3d/vecmath/1.5.2/vecmath-1.5.2.pom
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3.pom
+Download https://libraries.minecraft.net/com/ibm/icu/icu4j-core-mojang/51.2/icu4j-core-mojang-51.2.pom
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.pom
+Download https://libraries.minecraft.net/com/paulscode/codecjorbis/20101023/codecjorbis-20101023.pom
+Download https://libraries.minecraft.net/com/paulscode/codecwav/20101023/codecwav-20101023.pom
+Download https://libraries.minecraft.net/com/paulscode/libraryjavasound/20101123/libraryjavasound-20101123.pom
+Download https://libraries.minecraft.net/com/paulscode/librarylwjglopenal/20100824/librarylwjglopenal-20100824.pom
+Download https://libraries.minecraft.net/com/paulscode/soundsystem/20120107/soundsystem-20120107.pom
+Download http://repo1.maven.org/maven2/io/netty/netty-all/4.0.15.Final/netty-all-4.0.15.Final.pom
+Download http://repo1.maven.org/maven2/io/netty/netty-parent/4.0.15.Final/netty-parent-4.0.15.Final.pom
+Download http://repo1.maven.org/maven2/com/google/guava/guava/17.0/guava-17.0.pom
+Download http://repo1.maven.org/maven2/com/google/guava/guava-parent/17.0/guava-parent-17.0.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/33/commons-parent-33.pom
+Download http://repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/25/commons-parent-25.pom
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/32/commons-parent-32.pom
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput/2.0.5/jinput-2.0.5.pom
+Download http://repo1.maven.org/maven2/net/java/jutils/jutils/1.0.0/jutils-1.0.0.pom
+Download https://libraries.minecraft.net/com/mojang/authlib/1.5.17/authlib-1.5.17.pom
+Download https://libraries.minecraft.net/com/mojang/realms/1.6.1/realms-1.6.1.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1.pom
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.pom
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j/2.0-beta9/log4j-2.0-beta9.pom
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.0-beta9/log4j-core-2.0-beta9.pom
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl/2.9.2-nightly-20140822/lwjgl-2.9.2-nightly-20140822.pom
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl_util/2.9.2-nightly-20140822/lwjgl_util-2.9.2-nightly-20140822.pom
+Download https://libraries.minecraft.net/tv/twitch/twitch/6.5/twitch-6.5.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors/2.11.0/scala-actors-2.11.0.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1.pom
+Download https://libraries.minecraft.net/tv/twitch/twitch-external-platform/4.5/twitch-external-platform-4.5.pom
+Download http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.pom
+Download https://libraries.minecraft.net/net/minecraft/launchwrapper/1.11/launchwrapper-1.11.jar
+Download http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.11/2.3.3/akka-actor_2.11-2.3.3.jar
+Download http://repo1.maven.org/maven2/com/typesafe/config/1.2.1/config-1.2.1.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors-migration_2.11/1.1.0/scala-actors-migration_2.11-1.1.0.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.11.1/scala-compiler-2.11.1.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-library_2.11/1.0.2/scala-continuations-library_2.11-1.0.2.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-plugin_2.11.1/1.0.2/scala-continuations-plugin_2.11.1-1.0.2.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.1/scala-library-2.11.1.jar
+Download http://files.minecraftforge.net/maven/org/scala-lang/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.11.1/scala-reflect-2.11.1.jar
+Download http://files.minecraftforge.net/maven/org/scala-lang/scala-swing_2.11/1.0.1/scala-swing_2.11-1.0.1.jar
+Download http://files.minecraftforge.net/maven/org/scala-lang/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2.jar
+Download https://libraries.minecraft.net/lzma/lzma/0.0.1/lzma-0.0.1.jar
+Download https://libraries.minecraft.net/java3d/vecmath/1.5.2/vecmath-1.5.2.jar
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3.jar
+Download https://libraries.minecraft.net/com/ibm/icu/icu4j-core-mojang/51.2/icu4j-core-mojang-51.2.jar
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.jar
+Download https://libraries.minecraft.net/com/paulscode/codecjorbis/20101023/codecjorbis-20101023.jar
+Download https://libraries.minecraft.net/com/paulscode/codecwav/20101023/codecwav-20101023.jar
+Download https://libraries.minecraft.net/com/paulscode/libraryjavasound/20101123/libraryjavasound-20101123.jar
+Download https://libraries.minecraft.net/com/paulscode/librarylwjglopenal/20100824/librarylwjglopenal-20100824.jar
+Download https://libraries.minecraft.net/com/paulscode/soundsystem/20120107/soundsystem-20120107.jar
+Download http://repo1.maven.org/maven2/io/netty/netty-all/4.0.15.Final/netty-all-4.0.15.Final.jar
+Download http://repo1.maven.org/maven2/com/google/guava/guava/17.0/guava-17.0.jar
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar
+Download http://repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4.jar
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput/2.0.5/jinput-2.0.5.jar
+Download http://repo1.maven.org/maven2/net/java/jutils/jutils/1.0.0/jutils-1.0.0.jar
+Download https://libraries.minecraft.net/com/mojang/authlib/1.5.17/authlib-1.5.17.jar
+Download https://libraries.minecraft.net/com/mojang/realms/1.6.1/realms-1.6.1.jar
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1.jar
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.jar
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.0-beta9/log4j-core-2.0-beta9.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl/2.9.2-nightly-20140822/lwjgl-2.9.2-nightly-20140822.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl_util/2.9.2-nightly-20140822/lwjgl_util-2.9.2-nightly-20140822.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch/6.5/twitch-6.5.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors/2.11.0/scala-actors-2.11.0.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-linux.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-windows.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-platform/6.5/twitch-platform-6.5-natives-windows-32.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-platform/6.5/twitch-platform-6.5-natives-windows-64.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-external-platform/4.5/twitch-external-platform-4.5-natives-windows-32.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-external-platform/4.5/twitch-external-platform-4.5-natives-windows-64.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl-platform/2.9.2-nightly-20140822/lwjgl-platform-2.9.2-nightly-20140822-natives-windows.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl-platform/2.9.2-nightly-20140822/lwjgl-platform-2.9.2-nightly-20140822-natives-linux.jar
+Download http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.jar
 [ant:javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
 [ant:javac] 1 warning
-:downloadMcpTools SKIPPED
-:downloadClient SKIPPED
-:downloadServer SKIPPED
-:mergeJars SKIPPED
+:downloadMcpTools
+:downloadClient
+:downloadServer
+:mergeJars
 :deobfuscateJar
 Applying SpecialSource...
 Applying Exceptor...
@@ -709,10 +929,50 @@ Note: Recompile with -Xlint:unchecked for details.
 :repackMinecraft
 :setupDecompWorkspace
 :eclipseClasspath
+Download https://libraries.minecraft.net/net/minecraft/launchwrapper/1.11/launchwrapper-1.11-sources.jar
+Download http://repo1.maven.org/maven2/org/ow2/asm/asm-debug-all/5.0.3/asm-debug-all-5.0.3-sources.jar
+Download http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.11/2.3.3/akka-actor_2.11-2.3.3-sources.jar
+Download http://repo1.maven.org/maven2/com/typesafe/config/1.2.1/config-1.2.1-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors-migration_2.11/1.1.0/scala-actors-migration_2.11-1.1.0-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.11.1/scala-compiler-2.11.1-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-library_2.11/1.0.2/scala-continuations-library_2.11-1.0.2-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-plugin_2.11.1/1.0.2/scala-continuations-plugin_2.11.1-1.0.2-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.1/scala-library-2.11.1-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.11.1/scala-reflect-2.11.1-sources.jar
+Download https://libraries.minecraft.net/java3d/vecmath/1.5.2/vecmath-1.5.2-sources.jar
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3-sources.jar
+Download https://libraries.minecraft.net/com/ibm/icu/icu4j-core-mojang/51.2/icu4j-core-mojang-51.2-sources.jar
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/codecjorbis/20101023/codecjorbis-20101023-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/codecwav/20101023/codecwav-20101023-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/libraryjavasound/20101123/libraryjavasound-20101123-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/librarylwjglopenal/20100824/librarylwjglopenal-20100824-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/soundsystem/20120107/soundsystem-20120107-sources.jar
+Download http://repo1.maven.org/maven2/io/netty/netty-all/4.0.15.Final/netty-all-4.0.15.Final-sources.jar
+Download http://repo1.maven.org/maven2/com/google/guava/guava/17.0/guava-17.0-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2-sources.jar
+Download http://repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4-sources.jar
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9-sources.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput/2.0.5/jinput-2.0.5-sources.jar
+Download http://repo1.maven.org/maven2/net/java/jutils/jutils/1.0.0/jutils-1.0.0-sources.jar
+Download http://repo1.maven.org/maven2/com/google/code/gson/gson/2.2.4/gson-2.2.4-sources.jar
+Download https://libraries.minecraft.net/com/mojang/authlib/1.5.17/authlib-1.5.17-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3-sources.jar
+Download http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.3.2/httpcore-4.3.2-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.0-beta9/log4j-core-2.0-beta9-sources.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl/2.9.2-nightly-20140822/lwjgl-2.9.2-nightly-20140822-sources.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl_util/2.9.2-nightly-20140822/lwjgl_util-2.9.2-nightly-20140822-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors/2.11.0/scala-actors-2.11.0-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1-sources.jar
 :eclipseJdt
 :eclipseProject
 :eclipse
 
 BUILD SUCCESSFUL
 
-Total time: 5 mins 38.591 secs
+Total time: 7 mins 44.767 secs
+----
