@@ -15,9 +15,9 @@ In this package, create a new class called `MainMod.java`. To do this, right cli
 ----
 package org.devoxx4kids.forge.mods;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 @Mod(modid = MainMod.MODID, version = MainMod.VERSION)
 public class MainMod {
@@ -50,7 +50,7 @@ package org.devoxx4kids.forge.mods;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ServerChatEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ChatItems {
 	
@@ -86,9 +86,9 @@ Your main file should now look like <<Main_File_After_Register>>.
 ----
 package org.devoxx4kids.forge.mods;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 @Mod(modid = MainMod.MODID, version = MainMod.VERSION)
 public class MainMod {
@@ -125,7 +125,7 @@ package org.devoxx4kids.forge.mods;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class DragonSpawner {
 	
@@ -158,7 +158,7 @@ MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 
 **Gameplay:**
 
-. Use the command "/give <your player name> 122" to give yourself a dragon egg
+. Use the command "/give <your player name> dragon_egg" to give yourself a dragon egg
 . Place down the dragon egg, and an Ender Dragon should spawn
 
 The player name will not be your normal player name, it will be a Forge-generated player name. Check your chat window to see what your player name is.
@@ -182,7 +182,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OverpoweredIronGolems {
 	
@@ -240,7 +240,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CreeperSpawnAlert {
 
@@ -299,7 +299,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class SharpSnowballs {
 
@@ -369,7 +369,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class RainWater {
 
