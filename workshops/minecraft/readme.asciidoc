@@ -600,6 +600,7 @@ package org.devoxx4kids.forge.mods;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -619,18 +620,16 @@ public class RainWater {
 		}
 
 		for (int i = y; i < 256; i++) {
-			if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.air) {
+			if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.air.getBlockState().getBaseState()) {
 				return;
 			}
 		}
 		
-		if (world.isRemote && !world.getBlockState(new BlockPos(x, y - 1, z)).getBlock().isNormalCube()) {
+		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).getBlock().isNormalCube()) {
 			return;
 		}
 
-		if (!world.isRemote) {
-			world.setBlockState(new BlockPos(x, y, z), Blocks.water.getBlockState().getBaseState());
-		}
+		world.setBlockState(new BlockPos(x, y, z), Blocks.water.getBlockState().getBaseState());
 	}
 
 }
