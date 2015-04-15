@@ -1,0 +1,979 @@
+= Minecraft Modding behulp van Forge
+
+== Downloaden en installeren
+
+. Download en installeer JDK uit http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+. Download en installeer Eclipse uit http://www.eclipse.org/downloads/, kies "Eclipse IDE for Java Developers"
+. Download en unzip Forge 1.8 uit
+  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.1.1341/forge-1.8-11.14.1.1341-src.zip
+. In de uitgepakte forge directory, geef het commando `./gradlew
+                                                        setupDecompWorkspace eclipse` voor Mac of `gradlew
+                                                        setupDecompWorkspace eclipse` voor Windows. De melding na het bouwen zou moeten zijn: `BUILD SUCCESSFUL`. De complete melding is hier <<Gradlew_command_output>> te vinden.
+
+Een gedetailleerde video met volledige installatie stappen op Mac wordt hieronder gegeven:
+
+image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
+
+video::1S1aL9Vn5eI[youtube]
+
+Meer details zijn ook te vinden op http://www.minecraftforge.net/wiki/Installation/Source.
+
+== Controleren van installatie.
+
+Dit is een zeer belangrijke stap, omdat dit zal bevestigen dat je daadwerkelijk kunt beginnen met modding.
+
+. Start Eclipse
+. In het ``Select a workspace'' venster, kies de locatie van `eclipse` directory in de uitgepakte forge directory als de workspace
+. Klik op ``OK''
+. In het venster Eclipse, moet je nu een ``folder Minecraft'' zien en in staat zijn om deze te openen. Er mogen geen rode uitroeptekens zichtbaar zijn.
+
+=== Problemen oplossen
+
+. Als je een andere map hebt geselecteerd, klikt je op ``Bestand'', ``Switch Workspace'', en selecteer de juiste directory.
+. Als je de Minecraft map niet ziet, zou de `gradlew` opdracht een aantal fouten hebben kunnen laten zien. Probeer het commando opnieuw.
+
+== Het Main bestand
+
+Om met modding te beginnen, hebben we het hoofd bestand nodig. Dit bestand zal al onze mods registreren zodat ze daadwerkelijk functioneren in het spel. Om dit hoofd bestand te maken, moet je eerst een nieuwe package aanmaken. Klik op de pijl naast de map "Minecraft" in de linker kant van je venster. Klik vervolgens rechts op "src/main/java" en selecteer New > Package. Noem het `org.devoxx4kids.forge.mods`.
+
+In dit package gaan we nu een nieuwe klasse met de naam `MainMod.java` aanmaken. Om dit te doen, klik met de rechtermuisknop op het nieuwe pakket dat je net hebt gemaakt en selecteer New> Class. Noem het `MainMod`. Het midden van je scherm zal de code te tonen. Vervang alle van de code de code in <<Setting_Up_The_Main_File>>.
+
+[[Setting_Up_The_Main_File]]
+.Setup van hoofdbestand
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
+public class MainMod {
+	public static final String MODID = "MyMods";
+	public static final String VERSION = "1.0";
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+
+	}
+}
+----
+====
+
+Je hoofd bestand is nu klaar voor gebruik.
+
+== Chat Items
+
+**Doel:** Om de speler items te laten ontvangen wanneer hij / zij een bepaald woord of een zin in een chatbericht zegt.
+
+**Instructies:** In je nieuwe package, `org.devoxx4kids.forge.mods`, maak een nieuw bestand aan met de naam `ChatItems.java`. Vervang de code met <<Chat_Items_Code>>.
+
+[[Chat_Items_Code]]
+.Chat Items code
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.ServerChatEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class ChatItems {
+	
+	@SubscribeEvent
+	public void giveItems(ServerChatEvent event){
+		if (event.message.contains("potato")) {
+			event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+		}
+	}
+}
+----
+====
+
+Registreer je mod in het hoofd bestand met behulp van de regel in <<Chat_Items_Registering>>. De regel moet worden geplaatst tussen de twee kringel haakjes achter de lijn die zegt `init()`.
+
+[[Chat_Items_Registering]]
+.Chat Items registering
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new ChatItems());
+----
+====
+
+Je hoofd bestand ziet er nu uit als in <<Main_File_After_Register>>.
+
+[[Main_File_After_Register]]
+.Main file after registering Chat Items
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
+public class MainMod {
+	public static final String MODID = "MyMods";
+	public static final String VERSION = "1.0";
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new ChatItems());
+	}
+}
+----
+====
+
+**Gameplay:**
+
+. Druk op ``T'' om het chatvenster te openen.
+. Typ in een bericht dat het woord ``potato'' bevat
+. Je moet een stapel ontvangen (een stapel = 64 artikelen) van aardappelen
+
+=== Tekst/item wijzigen
+
+Verander tekstbericht en produceer een ander item. Bijvoorbeeld: Verander de tekst naar ``diamant'' en geproduceerd item naar `Diamond`. Gebruik Ctrl + Space aan de lijst met items weer te geven.
+
+=== Verschillende items
+
+Produceren verschillende items voor verschillende chat-teksten
+
+[[Different_Chat_Items_Code]]
+.Different Chat Items code
+====
+[source, java]
+----
+@SubscribeEvent
+public void giveItems(ServerChatEvent event){
+	if (event.message.contains("potato")) {
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+	}
+
+	if (event.message.contains("diamond")) {
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
+	}
+}
+----
+====
+
+=== Meerdere Items
+
+Produceren van meerdere items voor chat tekst
+
+[[Multiple_Chat_Items_Code]]
+.Multiple Chat Items code
+====
+[source, java]
+----
+@SubscribeEvent
+public void giveItems(ServerChatEvent event){
+	if (event.message.contains("potato")) {
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
+	}
+}
+----
+====
+
+== Ender Dragon Spawner
+
+**Doel:** Om een ​​Ender Dragon tot leven te laten komen elke keer als een speler een Dragon Egg plaatst.
+
+**Instructies:** In het pakket `org.devoxx4kids.forge.mods`, maak een nieuwe klasse genaamd `DragonSpawner` en vervang de code met die van <<Dragon_Spawner_Code>>.
+
+[[Dragon_Spawner_Code]]
+.Dragon Spawner code
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class DragonSpawner {
+	
+	@SubscribeEvent
+	public void spawnDragon(PlaceEvent event) {
+		if (event.block == Blocks.dragon_egg.getBlockState().getBaseState()) {
+			event.world.setBlockToAir(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
+			EntityDragon dragon = new EntityDragon(event.world);
+			dragon.setLocationAndAngles(event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
+			event.world.spawnEntityInWorld(dragon);
+		}
+	}
+}
+----
+====
+
+
+Vervolgens, registreert deze klasse zoals je deed met Chat items, maar gebruik de regel zoals getoond in <<Dragon_Spawner_Registering>>.
+
+[[Dragon_Spawner_Registering]]
+.Dragon Spawner registering
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new DragonSpawner());
+----
+====
+
+**Gameplay:**
+
+. Gebruik de opdracht "/give <je spelers naam> dragon_egg" om jezelf een draak ei te geven.
+. Plaats het draak ei op het speelveld, en een Ender Dragon moet tot leven komen.
+
+De spelers naam zal niet je normale spelers naam zijn, het zal een door Forge-gegenereerde speler naam zijn. Controleer je chat-venster om te zien wat je spelersnaam is.
+
+=== Wijzig blok / entiteit
+
+Wijzig een blok dat triggers het tot leven laten komen en laat een ander item tot leven komen. Zo verander je het blok `sponge` in de entiteit `EntitySquid`. Gebruik Ctrl + Space aan de lijst met items weer te geven.
+
+.Spawn squid
+====
+[source, java]
+----
+if (event.placedBlock == Blocks.sponge.getBlockState().getBaseState()) {
+		event.world.setBlockToAir(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
+		EntitySquid squid = new EntitySquid(event.world);
+		squid.setLocationAndAngles(event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
+		event.world.spawnEntityInWorld(squid);
+}
+----
+====
+
+Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer of het doen van Cmd + Shift + O op een Mac-computer om bepaalde klassen te importeren en een aantal fouten te repareren. Wanneer je deze mod gaat testen, plaats in een Wet Sponge, niet een Sponge.
+
+=== Verander offset van entiteiten
+
+Verander `event.pos.getX ()`, `event.pos.getY ()`, `event.pos.getZ ()` en tel er 5 bij of af om aan te testen dat entiteiten worden getoond met een andere offset.
+
+.Spawn offset
+====
+[source, java]
+----
+dragon.setLocationAndAngles(event.pos.getX() + 5, event.pos.getY(), event.pos.getZ(), 0, 0);
+----
+====
+
+== Creeper Spawn Alert
+
+**Doel:** Om alle spelers te waarschuwen als er creeper tot leven komt.
+
+**Instructies:** In uw pakket, maak een nieuwe klasse met de naam `CreeperSpawnAlert`. Vervang de inhoud ervan met <<Creeper_Spawn_Code>>.
+
+[[Creeper_Spawn_Code]]
+.Creeper Spawn Alert code
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import java.util.List;
+
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class CreeperSpawnAlert {
+
+	@SubscribeEvent
+	public void sendAlert(EntityJoinWorldEvent event) {
+		if (!(event.entity instanceof EntityCreeper)) {
+			return;
+		}
+
+		List players = event.entity.worldObj.playerEntities;
+
+		for (int i = 0; i < players.size(); i++) {
+			EntityPlayer player = (EntityPlayer) players.get(i);
+			if (event.world.isRemote) {
+				player.addChatMessage(new ChatComponentText(
+						EnumChatFormatting.GREEN + "A creeper has spawned!"));
+			}
+		}
+	}
+
+}
+----
+====
+
+Registreert het gebruik van mod door middel van de regel in <<Creeper_Spawn_Registering>>.
+
+[[Creeper_Spawn_Registering]]
+.Creeper Spawn Alert registering
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
+----
+====
+
+**Gameplay:**
+
+. Zorg ervoor dat je niet in 'peaceful mode' speelt.
+. Stel de tijd naar 's nachts ("/time set night")
+
+Je moet een heleboel berichten te zien krijgen zoals: "A creeper has spawned!" in het licht groene letters. Een van deze berichten wordt naar jou gestuurd elke keer er een creeper tot leven komt.
+
+=== Verander kleur/formaat van het bericht
+
+==== Verander kleur naar rood
+
+.Color of message
+====
+[source,java]
+----
+player.addChatMessage(new ChatComponentText(
+		EnumChatFormatting.RED + "A creeper has spawned!"));
+----
+====
+
+Probeer verschillende kleuren door code aanvulling na `EnumChatFormatting`.
+
+==== Stijl wijzigen in cursief
+
+.Style of message
+====
+[source,java]
+----
+player.addChatMessage(new ChatComponentText(
+		EnumChatFormatting.ITALIC + "A creeper has spawned!"));
+----
+====
+
+Probeer verschillende stijlen door code aanvulling na `EnumChatFormatting`.
+
+=== Wijzig tekst van het bericht
+
+.Style of message
+====
+[source,java]
+----
+player.addChatMessage(new ChatComponentText(
+		EnumChatFormatting.GREEN + "Run away, a creeper has spawned!"));
+----
+====
+
+Praten over de tekst tussen aanhalingstekens.
+
+=== Print dezelfde boodschap voor verschillende mobs
+
+.Same message for differet mobs using AND
+====
+[source, java]
+----
+if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZombie)) {
+	return;
+}
+----
+====
+
+OF
+
+.Same message for differet mobs using OR
+====
+[source, java]
+----
+if (!(event.entity instanceof EntityCreeper) || !(event.entity instanceof EntityZombie)) {
+	return;
+}
+----
+====
+
+Uitleggen AND en OR
+
+=== Print andere boodschap voor verschillende mobs
+
+.Different message for different mobs
+====
+[source, java]
+----
+public void sendAlert(EntityJoinWorldEvent event) {
+	if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZombie)) {
+		return;
+	}
+	
+	String message;
+	
+	if (event.entity instanceof EntityCreeper) {
+		message = "A creeper has spawned";
+	} else {
+		message = "A zombie has spawned";
+	}
+
+	List players = event.entity.worldObj.playerEntities;
+
+	for (int i = 0; i < players.size(); i++) {
+		EntityPlayer player = (EntityPlayer) players.get(i);
+		if (event.world.isRemote) {
+			player.addChatMessage(new ChatComponentText(
+					EnumChatFormatting.GREEN + message));
+		}
+	}
+}
+----
+====
+
+=== Bericht afdrukken voor alle mobs
+
+.Message for all mobs
+====
+[source, java]
+----
+if (!(event.entity instanceof EntityMob)) {
+	return;
+}
+----
+====
+
+Uitleg hoe je een `EntityMob` maakt.
+
+== Sharp Sneeuwballen
+
+**Doel:** Om alle sneeuwballen om te zetten in pijlen zodat ze entites kunnen kwetsen.
+
+**Instructies:** Maak in je package, een nieuwe klasse met de naam `SharpSnowballs`. Vervang de code met <<Snowballs_Code>>.
+
+[[Snowballs_Code]]
+.Sharp Snowballs code
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class SharpSnowballs {
+
+	@SubscribeEvent
+	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
+		Entity snowball = event.entity;
+		World world = snowball.worldObj;
+
+		if (!(snowball instanceof EntitySnowball)) {
+			return;
+		}
+
+		if (!world.isRemote) {
+			EntityArrow arrow = new EntityArrow(world);
+			arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ,
+					0, 0);
+			arrow.motionX = snowball.motionX;
+			arrow.motionY = snowball.motionY;
+			arrow.motionZ = snowball.motionZ;
+
+			// gets arrow out of player's head
+			// gets the angle of arrow right, in the direction of motion
+			arrow.posX += arrow.motionX;
+			arrow.posY += arrow.motionY;
+			arrow.posZ += arrow.motionZ;
+
+			world.spawnEntityInWorld(arrow);
+			snowball.setDead();
+		}
+	}
+
+}
+----
+====
+
+Registreer de nieuwe klasse met behulp van de regel zoals beschreven in <<Snowballs_Registering>>.
+
+[[Snowballs_Registering]]
+.Sharp Snowballs registering
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
+----
+====
+
+**Gameplay:**
+
+. Zoek een Sneeuwbal voorwerp op je inventaris
+. Klik met de rechtermuisknop ermee te gooien
+. De sneeuwbal zou moet veranderen in een pijl
+
+Je kan ook Sneeuw Golems tot leven laten komen door het plaatsen van een pompoen bovenop een toren van twee Sneeuw blokken. De Sneeuw Golem zal fungeren als een torentje, dat sneeuwballen schiet die veranderen in pijlen.
+
+=== Explosieve sneeuwballen
+
+[[Snowballs_Code]]
+.Explosive Snowballs code
+====
+[source, java]
+----
+EntityTNTPrimed arrow = new EntityTNTPrimed(world);
+arrow.fuse = 80;
+----
+====
+
+== Overpowered Iron Golems
+
+**Doel:** Om nuttig magische effecten aan Iron Golems toe te voegen wanneer ze tot leven komen in de wereld.
+
+**Instructies:**
+
+In je package, maak een nieuwe klasse genaamd `OverpoweredIronGolems` en vervang de inhoud ervan met <<Iron_Golems_Code>>.
+
+[[Iron_Golems_Code]]
+.Overpowered Iron Golems code
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class OverpoweredIronGolems {
+	
+	@SubscribeEvent
+	public void golemMagic(EntityJoinWorldEvent event) {
+		if (!(event.entity instanceof EntityIronGolem)) {
+			return;
+		}
+		
+		EntityLiving entity = (EntityLiving) event.entity;
+		entity.addPotionEffect(new PotionEffect(1, 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(5, 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(10, 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(11, 1000000, 5));
+	}
+
+}
+----
+====
+
+Vervolgens registreert de klasse met behulp van de regel in <<Iron_Golems_Register>>.
+
+[[Iron_Golems_Register]]
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
+----
+====
+
+**Gameplay:**
+
+. Het tot leven laten komen van een Iron Golem met behulp van het commando "/summon VillagerGolem".
+. Het tot leven laten komen van enkele vijandige mobs in de buurt van de Iron Golem
+
+De golem zal zich naar hen toe gaan verplaatsen om hen te doden. Normaal gesproken, bewegen Iron Golems langzaam, maar met de snelheid instelling van de mod, moeten ze heel snel bewegen.
+
+== Rain Water
+
+**Doel:** Om water te plaatsen aan de voeten van entiteiten wanneer het regent.
+
+**Instructies:** In je package, maak een nieuwe klasse met de naam `RainWater` en vervang de inhoud ervan met <<Rain_Code>>.
+
+[[Rain_Code]]
+.Rain Water code
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class RainWater {
+
+	@SubscribeEvent
+	public void makeWater(LivingUpdateEvent event) {
+		Entity entity = event.entity;
+		World world = entity.worldObj;
+		int x = (int) Math.floor(entity.posX);
+		int y = (int) Math.floor(entity.posY);
+		int z = (int) Math.floor(entity.posZ);
+
+		if (!entity.worldObj.isRaining()) {
+			return;
+		}
+
+		for (int i = y; i < 256; i++) {
+			if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.air.getBlockState().getBaseState()) {
+				return;
+			}
+		}
+		
+		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).getBlock().isNormalCube()) {
+			return;
+		}
+
+		world.setBlockState(new BlockPos(x, y, z), Blocks.water.getBlockState().getBaseState());
+	}
+
+}
+----
+====
+
+Vervolgens registreert het gebruik van de mod zoals beschreven in regel van <<Rain_Registering>>.
+
+[[Rain_Registering]]
+.Rain Water registering
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new RainWater());
+----
+====
+
+**Gameplay:**
+
+. Gebruik de opdracht "/weather rain" om het weer regenachtig maken
+. Begin te bewegen, en het water zal verschijnen waar je ook gaat, maar het zal snel verdwijnen
+
+== Het delen van uw Mods
+
+Open de opdrachtprompt van uw computer. Navigeer naar uw Forge map. Vervolgens typt u het commando `gradlew build`. Op een Mac kan het zijn `./gradlew build`. Nadat het proces is voltooid, gaat u naar de "build" map, daarbinnen vind je weer een map met de naam "libs". In deze map, moet er een .jar-bestand genaamd `modid-1.0.jar` zijn. In dit .jar-bestand zitten al je mods.
+
+Om je mod in je Minecraft launcher te installeren, volg dan de instructies op http://www.minecraftforge.net/wiki/Installation/Universal.
+
+== Tips
+
+* Bij het wijzigen van een item of een blok, verwijder het huidige item / blok en druk op `Ctrl + Space` om de lijst met beschikbare opties te tonen.
+
+[[Gradlew_command_output]]
+== Gradlew command output
+
+[source,text]
+----
+forge> ./gradlew setupDecompWorkspace eclipse
+Downloading https://services.gradle.org/distributions/gradle-2.0-bin.zip
+.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Unzipping /Users/arungupta/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0-bin.zip to /Users/arungupta/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0
+Set executable permissions for: /Users/arungupta/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/bin/gradle
+Download http://files.minecraftforge.net/maven/net/minecraftforge/gradle/ForgeGradle/1.2-SNAPSHOT/ForgeGradle-1.2-20150329.235405-283.pom
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/RetroGuard/3.6.6/RetroGuard-3.6.6.pom
+Download http://repo1.maven.org/maven2/net/sf/opencsv/opencsv/2.3/opencsv-2.3.pom
+Download http://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom
+Download http://repo1.maven.org/maven2/com/github/jponge/lzma-java/1.3/lzma-java-1.3.pom
+Download http://repo1.maven.org/maven2/com/github/abrarsyed/jastyle/jAstyle/1.2/jAstyle-1.2.pom
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/2.1.0/trove4j-2.1.0.pom
+Download http://repo1.maven.org/maven2/com/cloudbees/diff4j/1.1/diff4j-1.1.pom
+Download http://repo1.maven.org/maven2/com/cloudbees/cloudbees-oss-parent/1/cloudbees-oss-parent-1.pom
+Download http://repo1.maven.org/maven2/net/md-5/SpecialSource/1.7.3/SpecialSource-1.7.3.pom
+Download http://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom
+Download http://repo1.maven.org/maven2/com/github/tony19/named-regexp/0.2.3/named-regexp-0.2.3.pom
+Download http://repo1.maven.org/maven2/org/ow2/asm/asm-debug-all/5.0.3/asm-debug-all-5.0.3.pom
+Download http://repo1.maven.org/maven2/org/ow2/asm/asm-parent/5.0.3/asm-parent-5.0.3.pom
+Download http://repo1.maven.org/maven2/org/ow2/ow2/1.3/ow2-1.3.pom
+Download http://repo1.maven.org/maven2/com/nothome/javaxdelta/2.0.1/javaxdelta-2.0.1.pom
+Download http://files.minecraftforge.net/maven/net/minecraftforge/srg2source/Srg2Source/3.2-SNAPSHOT/Srg2Source-3.2-20150109.190932-47.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcomponents-client/4.3.3/httpcomponents-client-4.3.3.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/project/7/project-7.pom
+Download http://repo1.maven.org/maven2/org/apache/apache/13/apache-13.pom
+Download http://repo1.maven.org/maven2/com/google/code/gson/gson/2.2.4/gson-2.2.4.pom
+Download http://repo1.maven.org/maven2/com/google/guava/guava/18.0/guava-18.0.pom
+Download http://repo1.maven.org/maven2/com/google/guava/guava-parent/18.0/guava-parent-18.0.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpmime/4.3.3/httpmime-4.3.3.pom
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/mcinjector/3.2-SNAPSHOT/mcinjector-3.2-20150210.031242-16.pom
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.5/jopt-simple-4.5.pom
+Download http://repo1.maven.org/maven2/org/jvnet/localizer/localizer/1.12/localizer-1.12.pom
+Download http://repo1.maven.org/maven2/org/jvnet/localizer/localizer-parent/1.12/localizer-parent-1.12.pom
+Download http://repo1.maven.org/maven2/commons-io/commons-io/1.4/commons-io-1.4.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/7/commons-parent-7.pom
+Download http://repo1.maven.org/maven2/org/apache/apache/4/apache-4.pom
+Download http://repo1.maven.org/maven2/trove/trove/1.0.2/trove-1.0.2.pom
+Download http://files.minecraftforge.net/maven/org/eclipse/jdt/org.eclipse.jdt.core/3.10.0.v20131029-1755/org.eclipse.jdt.core-3.10.0.v20131029-1755.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/jobs/3.5.300-v20130429-1813/jobs-3.5.300-v20130429-1813.pom
+Download http://repo1.maven.org/maven2/org/eclipse/osgi/3.9.1-v20130814-1242/osgi-3.9.1-v20130814-1242.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/contenttype/3.4.200-v20130326-1255/contenttype-3.4.200-v20130326-1255.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/resources/3.2.1-R32x_v20060914/resources-3.2.1-R32x_v20060914.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/common/3.6.200-v20130402-1505/common-3.6.200-v20130402-1505.pom
+Download http://repo1.maven.org/maven2/org/eclipse/text/org.eclipse.text/3.5.101/org.eclipse.text-3.5.101.pom
+Download http://repo1.maven.org/maven2/org/eclipse/jgit/org.eclipse.jgit/3.2.0.201312181205-r/org.eclipse.jgit-3.2.0.201312181205-r.pom
+Download http://repo1.maven.org/maven2/org/eclipse/jgit/org.eclipse.jgit-parent/3.2.0.201312181205-r/org.eclipse.jgit-parent-3.2.0.201312181205-r.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/preferences/3.5.100-v20130422-1538/preferences-3.5.100-v20130422-1538.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/3.9.0-v20130326-1255/runtime-3.9.0-v20130326-1255.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.3.2/httpcore-4.3.2.pom
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcomponents-core/4.3.2/httpcomponents-core-4.3.2.pom
+Download http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/28/commons-parent-28.pom
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.6/commons-codec-1.6.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/22/commons-parent-22.pom
+Download http://repo1.maven.org/maven2/org/apache/apache/9/apache-9.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/preferences/3.5.200-v20140224-1527/preferences-3.5.200-v20140224-1527.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/registry/3.5.400-v20140428-1507/registry-3.5.400-v20140428-1507.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/compatibility/3.1.200-v20070502/compatibility-3.1.200-v20070502.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/expressions/3.3.0-v20070606-0010/expressions-3.3.0-v20070606-0010.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/filesystem/1.1.0-v20070606/filesystem-1.1.0-v20070606.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/org.eclipse.core.commands/3.6.0/org.eclipse.core.commands-3.6.0.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/org.eclipse.equinox.common/3.6.0/org.eclipse.equinox.common-3.6.0.pom
+Download http://repo1.maven.org/maven2/com/jcraft/jsch/0.1.46/jsch-0.1.46.pom
+Download http://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/6/oss-parent-6.pom
+Download http://repo1.maven.org/maven2/com/googlecode/javaewah/JavaEWAH/0.5.6/JavaEWAH-0.5.6.pom
+Download http://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/5/oss-parent-5.pom
+Download http://repo1.maven.org/maven2/org/eclipse/osgi/3.10.0-v20140606-1445/osgi-3.10.0-v20140606-1445.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/jobs/3.6.0-v20140424-0053/jobs-3.6.0-v20140424-0053.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/contenttype/3.4.200-v20140207-1251/contenttype-3.4.200-v20140207-1251.pom
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/app/1.3.200-v20130910-1609/app-1.3.200-v20130910-1609.pom
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/3.10.0-v20140318-2214/runtime-3.10.0-v20140318-2214.pom
+Download http://repo1.maven.org/maven2/org/eclipse/update/configurator/3.2.100-v20070615/configurator-3.2.100-v20070615.pom
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.7/jopt-simple-4.7.pom
+Download http://files.minecraftforge.net/maven/net/minecraftforge/gradle/ForgeGradle/1.2-SNAPSHOT/ForgeGradle-1.2-20150329.235405-283.jar
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/RetroGuard/3.6.6/RetroGuard-3.6.6.jar
+Download http://repo1.maven.org/maven2/net/sf/opencsv/opencsv/2.3/opencsv-2.3.jar
+Download http://repo1.maven.org/maven2/com/github/jponge/lzma-java/1.3/lzma-java-1.3.jar
+Download http://repo1.maven.org/maven2/com/github/abrarsyed/jastyle/jAstyle/1.2/jAstyle-1.2.jar
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/2.1.0/trove4j-2.1.0.jar
+Download http://repo1.maven.org/maven2/com/cloudbees/diff4j/1.1/diff4j-1.1.jar
+Download http://repo1.maven.org/maven2/net/md-5/SpecialSource/1.7.3/SpecialSource-1.7.3.jar
+Download http://repo1.maven.org/maven2/com/github/tony19/named-regexp/0.2.3/named-regexp-0.2.3.jar
+Download http://repo1.maven.org/maven2/org/ow2/asm/asm-debug-all/5.0.3/asm-debug-all-5.0.3.jar
+Download http://repo1.maven.org/maven2/com/nothome/javaxdelta/2.0.1/javaxdelta-2.0.1.jar
+Download http://files.minecraftforge.net/maven/net/minecraftforge/srg2source/Srg2Source/3.2-SNAPSHOT/Srg2Source-3.2-20150109.190932-47.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.jar
+Download http://repo1.maven.org/maven2/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar
+Download http://repo1.maven.org/maven2/com/google/guava/guava/18.0/guava-18.0.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpmime/4.3.3/httpmime-4.3.3.jar
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/mcinjector/3.2-SNAPSHOT/mcinjector-3.2-20150210.031242-16.jar
+Download http://repo1.maven.org/maven2/org/jvnet/localizer/localizer/1.12/localizer-1.12.jar
+Download http://repo1.maven.org/maven2/commons-io/commons-io/1.4/commons-io-1.4.jar
+Download http://repo1.maven.org/maven2/trove/trove/1.0.2/trove-1.0.2.jar
+Download http://files.minecraftforge.net/maven/org/eclipse/jdt/org.eclipse.jdt.core/3.10.0.v20131029-1755/org.eclipse.jdt.core-3.10.0.v20131029-1755.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/resources/3.2.1-R32x_v20060914/resources-3.2.1-R32x_v20060914.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/common/3.6.200-v20130402-1505/common-3.6.200-v20130402-1505.jar
+Download http://repo1.maven.org/maven2/org/eclipse/text/org.eclipse.text/3.5.101/org.eclipse.text-3.5.101.jar
+Download http://repo1.maven.org/maven2/org/eclipse/jgit/org.eclipse.jgit/3.2.0.201312181205-r/org.eclipse.jgit-3.2.0.201312181205-r.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.3.2/httpcore-4.3.2.jar
+Download http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.6/commons-codec-1.6.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/registry/3.5.400-v20140428-1507/registry-3.5.400-v20140428-1507.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/compatibility/3.1.200-v20070502/compatibility-3.1.200-v20070502.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/expressions/3.3.0-v20070606-0010/expressions-3.3.0-v20070606-0010.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/filesystem/1.1.0-v20070606/filesystem-1.1.0-v20070606.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/org.eclipse.core.commands/3.6.0/org.eclipse.core.commands-3.6.0.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/org.eclipse.equinox.common/3.6.0/org.eclipse.equinox.common-3.6.0.jar
+Download http://repo1.maven.org/maven2/com/jcraft/jsch/0.1.46/jsch-0.1.46.jar
+Download http://repo1.maven.org/maven2/com/googlecode/javaewah/JavaEWAH/0.5.6/JavaEWAH-0.5.6.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/app/1.3.200-v20130910-1609/app-1.3.200-v20130910-1609.jar
+Download http://repo1.maven.org/maven2/org/eclipse/update/configurator/3.2.100-v20070615/configurator-3.2.100-v20070615.jar
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.7/jopt-simple-4.7.jar
+Download http://repo1.maven.org/maven2/org/eclipse/equinox/preferences/3.5.200-v20140224-1527/preferences-3.5.200-v20140224-1527.jar
+Download http://repo1.maven.org/maven2/org/eclipse/osgi/3.10.0-v20140606-1445/osgi-3.10.0-v20140606-1445.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/jobs/3.6.0-v20140424-0053/jobs-3.6.0-v20140424-0053.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/contenttype/3.4.200-v20140207-1251/contenttype-3.4.200-v20140207-1251.jar
+Download http://repo1.maven.org/maven2/org/eclipse/core/runtime/3.10.0-v20140318-2214/runtime-3.10.0-v20140318-2214.jar
+****************************
+ Powered By MCP:             
+ http://mcp.ocean-labs.de/   
+ Searge, ProfMobius, Fesh0r, 
+ R4wk, ZeuX, IngisKahn, bspkrs
+ MCP Data version : snapshot_20141130
+****************************
+:extractMcpData
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/mcp_snapshot/20141130-1.8/mcp_snapshot-20141130-1.8.zip
+:getVersionJson
+:extractUserDev
+Download http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.1.1341/forge-1.8-11.14.1.1341-userdev.jar
+:genSrgs
+:extractNatives
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl-platform/2.9.2-nightly-20140822/lwjgl-platform-2.9.2-nightly-20140822.pom
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/parent/2.9.2-nightly-20140822/parent-2.9.2-nightly-20140822.pom
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5.pom
+Download https://libraries.minecraft.net/tv/twitch/twitch-platform/6.5/twitch-platform-6.5.pom
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl-platform/2.9.2-nightly-20140822/lwjgl-platform-2.9.2-nightly-20140822-natives-osx.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-osx.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-platform/6.5/twitch-platform-6.5-natives-osx.jar
+:getAssetsIndex
+:getAssets
+Current status: 6/734   0%
+:makeStart
+Download https://libraries.minecraft.net/net/minecraft/launchwrapper/1.11/launchwrapper-1.11.pom
+Download http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.pom
+Download http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.11/2.3.3/akka-actor_2.11-2.3.3.pom
+Download http://repo1.maven.org/maven2/com/typesafe/config/1.2.1/config-1.2.1.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors-migration_2.11/1.1.0/scala-actors-migration_2.11-1.1.0.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.11.1/scala-compiler-2.11.1.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-library_2.11/1.0.2/scala-continuations-library_2.11-1.0.2.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-plugin_2.11.1/1.0.2/scala-continuations-plugin_2.11.1-1.0.2.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.1/scala-library-2.11.1.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.11.1/scala-reflect-2.11.1.pom
+Download https://libraries.minecraft.net/lzma/lzma/0.0.1/lzma-0.0.1.pom
+Download https://libraries.minecraft.net/java3d/vecmath/1.5.2/vecmath-1.5.2.pom
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3.pom
+Download https://libraries.minecraft.net/com/ibm/icu/icu4j-core-mojang/51.2/icu4j-core-mojang-51.2.pom
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.pom
+Download https://libraries.minecraft.net/com/paulscode/codecjorbis/20101023/codecjorbis-20101023.pom
+Download https://libraries.minecraft.net/com/paulscode/codecwav/20101023/codecwav-20101023.pom
+Download https://libraries.minecraft.net/com/paulscode/libraryjavasound/20101123/libraryjavasound-20101123.pom
+Download https://libraries.minecraft.net/com/paulscode/librarylwjglopenal/20100824/librarylwjglopenal-20100824.pom
+Download https://libraries.minecraft.net/com/paulscode/soundsystem/20120107/soundsystem-20120107.pom
+Download http://repo1.maven.org/maven2/io/netty/netty-all/4.0.15.Final/netty-all-4.0.15.Final.pom
+Download http://repo1.maven.org/maven2/io/netty/netty-parent/4.0.15.Final/netty-parent-4.0.15.Final.pom
+Download http://repo1.maven.org/maven2/com/google/guava/guava/17.0/guava-17.0.pom
+Download http://repo1.maven.org/maven2/com/google/guava/guava-parent/17.0/guava-parent-17.0.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/33/commons-parent-33.pom
+Download http://repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/25/commons-parent-25.pom
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-parent/32/commons-parent-32.pom
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput/2.0.5/jinput-2.0.5.pom
+Download http://repo1.maven.org/maven2/net/java/jutils/jutils/1.0.0/jutils-1.0.0.pom
+Download https://libraries.minecraft.net/com/mojang/authlib/1.5.17/authlib-1.5.17.pom
+Download https://libraries.minecraft.net/com/mojang/realms/1.6.1/realms-1.6.1.pom
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1.pom
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.pom
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j/2.0-beta9/log4j-2.0-beta9.pom
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.0-beta9/log4j-core-2.0-beta9.pom
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl/2.9.2-nightly-20140822/lwjgl-2.9.2-nightly-20140822.pom
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl_util/2.9.2-nightly-20140822/lwjgl_util-2.9.2-nightly-20140822.pom
+Download https://libraries.minecraft.net/tv/twitch/twitch/6.5/twitch-6.5.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors/2.11.0/scala-actors-2.11.0.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2.pom
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1.pom
+Download https://libraries.minecraft.net/tv/twitch/twitch-external-platform/4.5/twitch-external-platform-4.5.pom
+Download http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.pom
+Download https://libraries.minecraft.net/net/minecraft/launchwrapper/1.11/launchwrapper-1.11.jar
+Download http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.11/2.3.3/akka-actor_2.11-2.3.3.jar
+Download http://repo1.maven.org/maven2/com/typesafe/config/1.2.1/config-1.2.1.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors-migration_2.11/1.1.0/scala-actors-migration_2.11-1.1.0.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.11.1/scala-compiler-2.11.1.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-library_2.11/1.0.2/scala-continuations-library_2.11-1.0.2.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-plugin_2.11.1/1.0.2/scala-continuations-plugin_2.11.1-1.0.2.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.1/scala-library-2.11.1.jar
+Download http://files.minecraftforge.net/maven/org/scala-lang/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.11.1/scala-reflect-2.11.1.jar
+Download http://files.minecraftforge.net/maven/org/scala-lang/scala-swing_2.11/1.0.1/scala-swing_2.11-1.0.1.jar
+Download http://files.minecraftforge.net/maven/org/scala-lang/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2.jar
+Download https://libraries.minecraft.net/lzma/lzma/0.0.1/lzma-0.0.1.jar
+Download https://libraries.minecraft.net/java3d/vecmath/1.5.2/vecmath-1.5.2.jar
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3.jar
+Download https://libraries.minecraft.net/com/ibm/icu/icu4j-core-mojang/51.2/icu4j-core-mojang-51.2.jar
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.jar
+Download https://libraries.minecraft.net/com/paulscode/codecjorbis/20101023/codecjorbis-20101023.jar
+Download https://libraries.minecraft.net/com/paulscode/codecwav/20101023/codecwav-20101023.jar
+Download https://libraries.minecraft.net/com/paulscode/libraryjavasound/20101123/libraryjavasound-20101123.jar
+Download https://libraries.minecraft.net/com/paulscode/librarylwjglopenal/20100824/librarylwjglopenal-20100824.jar
+Download https://libraries.minecraft.net/com/paulscode/soundsystem/20120107/soundsystem-20120107.jar
+Download http://repo1.maven.org/maven2/io/netty/netty-all/4.0.15.Final/netty-all-4.0.15.Final.jar
+Download http://repo1.maven.org/maven2/com/google/guava/guava/17.0/guava-17.0.jar
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar
+Download http://repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4.jar
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput/2.0.5/jinput-2.0.5.jar
+Download http://repo1.maven.org/maven2/net/java/jutils/jutils/1.0.0/jutils-1.0.0.jar
+Download https://libraries.minecraft.net/com/mojang/authlib/1.5.17/authlib-1.5.17.jar
+Download https://libraries.minecraft.net/com/mojang/realms/1.6.1/realms-1.6.1.jar
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1.jar
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.jar
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.0-beta9/log4j-core-2.0-beta9.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl/2.9.2-nightly-20140822/lwjgl-2.9.2-nightly-20140822.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl_util/2.9.2-nightly-20140822/lwjgl_util-2.9.2-nightly-20140822.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch/6.5/twitch-6.5.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors/2.11.0/scala-actors-2.11.0.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-linux.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-windows.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-platform/6.5/twitch-platform-6.5-natives-windows-32.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-platform/6.5/twitch-platform-6.5-natives-windows-64.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-external-platform/4.5/twitch-external-platform-4.5-natives-windows-32.jar
+Download https://libraries.minecraft.net/tv/twitch/twitch-external-platform/4.5/twitch-external-platform-4.5-natives-windows-64.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl-platform/2.9.2-nightly-20140822/lwjgl-platform-2.9.2-nightly-20140822-natives-windows.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl-platform/2.9.2-nightly-20140822/lwjgl-platform-2.9.2-nightly-20140822-natives-linux.jar
+Download http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.jar
+[ant:javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
+[ant:javac] 1 warning
+:downloadMcpTools
+:downloadClient
+:downloadServer
+:mergeJars
+:deobfuscateJar
+Applying SpecialSource...
+Applying Exceptor...
+:decompile
+:processSources
+Injecting fml files
+Applying fml patches
+Applying forge patches
+:remapJar
+:extractMinecraftSrc
+:recompMinecraft
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+:repackMinecraft
+:setupDecompWorkspace
+:eclipseClasspath
+Download https://libraries.minecraft.net/net/minecraft/launchwrapper/1.11/launchwrapper-1.11-sources.jar
+Download http://repo1.maven.org/maven2/org/ow2/asm/asm-debug-all/5.0.3/asm-debug-all-5.0.3-sources.jar
+Download http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.11/2.3.3/akka-actor_2.11-2.3.3-sources.jar
+Download http://repo1.maven.org/maven2/com/typesafe/config/1.2.1/config-1.2.1-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors-migration_2.11/1.1.0/scala-actors-migration_2.11-1.1.0-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.11.1/scala-compiler-2.11.1-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-library_2.11/1.0.2/scala-continuations-library_2.11-1.0.2-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-plugin_2.11.1/1.0.2/scala-continuations-plugin_2.11.1-1.0.2-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.1/scala-library-2.11.1-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.11.1/scala-reflect-2.11.1-sources.jar
+Download https://libraries.minecraft.net/java3d/vecmath/1.5.2/vecmath-1.5.2-sources.jar
+Download http://repo1.maven.org/maven2/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3-sources.jar
+Download https://libraries.minecraft.net/com/ibm/icu/icu4j-core-mojang/51.2/icu4j-core-mojang-51.2-sources.jar
+Download http://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/codecjorbis/20101023/codecjorbis-20101023-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/codecwav/20101023/codecwav-20101023-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/libraryjavasound/20101123/libraryjavasound-20101123-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/librarylwjglopenal/20100824/librarylwjglopenal-20100824-sources.jar
+Download https://libraries.minecraft.net/com/paulscode/soundsystem/20120107/soundsystem-20120107-sources.jar
+Download http://repo1.maven.org/maven2/io/netty/netty-all/4.0.15.Final/netty-all-4.0.15.Final-sources.jar
+Download http://repo1.maven.org/maven2/com/google/guava/guava/17.0/guava-17.0-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2-sources.jar
+Download http://repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4-sources.jar
+Download http://repo1.maven.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9-sources.jar
+Download http://repo1.maven.org/maven2/net/java/jinput/jinput/2.0.5/jinput-2.0.5-sources.jar
+Download http://repo1.maven.org/maven2/net/java/jutils/jutils/1.0.0/jutils-1.0.0-sources.jar
+Download http://repo1.maven.org/maven2/com/google/code/gson/gson/2.2.4/gson-2.2.4-sources.jar
+Download https://libraries.minecraft.net/com/mojang/authlib/1.5.17/authlib-1.5.17-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3-sources.jar
+Download http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.3.2/httpcore-4.3.2-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9-sources.jar
+Download http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.0-beta9/log4j-core-2.0-beta9-sources.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl/2.9.2-nightly-20140822/lwjgl-2.9.2-nightly-20140822-sources.jar
+Download https://libraries.minecraft.net/org/lwjgl/lwjgl/lwjgl_util/2.9.2-nightly-20140822/lwjgl_util-2.9.2-nightly-20140822-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/scala-actors/2.11.0/scala-actors-2.11.0-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2-sources.jar
+Download http://repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1-sources.jar
+:eclipseJdt
+:eclipseProject
+:eclipse
+
+BUILD SUCCESSFUL
+
+Total time: 7 mins 44.767 secs
+----
