@@ -207,7 +207,7 @@ public class DragonSpawner {
 	
 	@SubscribeEvent
 	public void spawnDragon(PlaceEvent event) {
-		if (event.block == Blocks.dragon_egg.getBlockState().getBaseState()) {
+		if (event.placedBlock == Blocks.dragon_egg.getBlockState().getBaseState()) {
 			event.world.setBlockToAir(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
 			EntityDragon dragon = new EntityDragon(event.world);
 			dragon.setLocationAndAngles(event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
