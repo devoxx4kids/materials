@@ -682,9 +682,9 @@ public class WallClimber {
 		}
 		
 		if (player.isBlocking()) {
-			player.motionY = 0;
-		} else if (player.isSneaking()) {
 			player.motionY = -0.5;
+		} else if (player.isSneaking()) {
+			player.motionY = 0;
 		} else {
 			player.motionY = 0.5;
 		}
@@ -721,8 +721,8 @@ MinecraftForge.EVENT_BUS.register(new WallClimber());
 
 . Build a wall straight up with any solid block you want
 . Run into that wall and you should start going up
-. Hold Shift to go down instead of up
-. Block with a sword to stop moving up or down
+. Block with a sword to go down instead of up
+. Hold Shift to stop moving up or down
 
 == Arrow Shotgun
 
