@@ -1,4 +1,4 @@
-= Minecraft Modding behulp van Forge
+= Minecraft aanpassen met behulp van Forge
 
 == Downloaden en installeren
 
@@ -29,14 +29,14 @@ Dit is een zeer belangrijke stap, omdat dit zal bevestigen dat je daadwerkelijk 
 
 === Problemen oplossen
 
-. Als je een andere map hebt geselecteerd, klikt je op ``Bestand'', ``Switch Workspace'', en selecteer de juiste directory.
+. Als je een andere map hebt geselecteerd, klikt je op ``Bestand'', ``Wijzig Workspace'', en selecteer de juiste directory.
 . Als je de Minecraft map niet ziet, zou de `gradlew` opdracht een aantal fouten hebben kunnen laten zien. Probeer het commando opnieuw.
 
-== Het Main bestand
+== Het Main bestand (= start van het progamma Minecraft)
 
-Om met modding te beginnen, hebben we het hoofd bestand nodig. Dit bestand zal al onze mods registreren zodat ze daadwerkelijk functioneren in het spel. Om dit hoofd bestand te maken, moet je eerst een nieuwe package aanmaken. Klik op de pijl naast de map "Minecraft" in de linker kant van je venster. Klik vervolgens rechts op "src/main/java" en selecteer New > Package. Noem het `org.devoxx4kids.forge.mods`.
+Om te beginnen met aanpassingen aan Minecraft, hebben we een hoofdbestand nodig. Dit bestand zal al onze aanpassingen registreren zodat ze daadwerkelijk gaan doen wat ze moeten doen in het spel. Om dit hoofdbestand te maken, moet je eerst een nieuwe package (= mappen structuur) aanmaken. Klik op de pijl naast de map "Minecraft" in de linker kant van je venster. Klik vervolgens rechts op "src/main/java" en selecteer New > Package. Noem het `org.devoxx4kids.forge.mods`.
 
-In dit package gaan we nu een nieuwe klasse met de naam `MainMod.java` aanmaken. Om dit te doen, klik met de rechtermuisknop op het nieuwe pakket dat je net hebt gemaakt en selecteer New> Class. Noem het `MainMod`. Het midden van je scherm zal de code te tonen. Vervang alle van de code de code in <<Setting_Up_The_Main_File>>.
+In dit package gaan we nu een nieuwe klasse (= een soort van bouwtekening voor nieuwe mogelijkheden voor Minecraft) met de naam `MainMod.java` aanmaken. Om dit te doen, klik met de rechtermuisknop op het nieuwe pakket dat je net hebt gemaakt en selecteer New> Class. Noem het `MainMod`. Het midden van je scherm zal de code te tonen. Vervang alle van de code de code in <<Setting_Up_The_Main_File>>.
 
 [[Setting_Up_The_Main_File]]
 .Setup van hoofdbestand
@@ -57,7 +57,7 @@ public class MainMod {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-
+		// Hier zullen we onze aanpassingen gaan plaatsen.
 	}
 }
 ----
@@ -65,14 +65,14 @@ public class MainMod {
 
 Je hoofd bestand is nu klaar voor gebruik.
 
-== Chat Items
+== Chat Voorwerpen
 
-**Doel:** Om de speler items te laten ontvangen wanneer hij / zij een bepaald woord of een zin in een chatbericht zegt.
+**Doel:** De speler items laten ontvangen wanneer hij / zij een bepaald woord (= aardappel) in een chatbericht schrijft.
 
-**Instructies:** In je nieuwe package, `org.devoxx4kids.forge.mods`, maak een nieuw bestand aan met de naam `ChatItems.java`. Vervang de code met <<Chat_Items_Code>>.
+**Instructies:** Maak in je nieuwe package, `org.devoxx4kids.forge.mods`, een nieuw bestand aan met de naam `ChatItems.java`. Vervang de code met <<Chat_Items_Code>>.
 
 [[Chat_Items_Code]]
-.Chat Items code
+.Chat Voorwerpen code
 ====
 [source, java]
 ----
@@ -87,7 +87,7 @@ public class ChatItems {
 	
 	@SubscribeEvent
 	public void giveItems(ServerChatEvent event){
-		if (event.message.contains("potato")) {
+		if (event.message.contains("aardappel")) {
 			event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
 		}
 	}
@@ -95,10 +95,10 @@ public class ChatItems {
 ----
 ====
 
-Registreer je mod in het hoofd bestand met behulp van de regel in <<Chat_Items_Registering>>. De regel moet worden geplaatst tussen de twee kringel haakjes achter de lijn die zegt `init()`.
+Registreer je mod in het hoofd bestand met behulp van de regel in <<Registreren_Chat_Voorwerpen>>. De regel moet worden geplaatst tussen de twee accolades (= {}) achter de lijn die zegt `init()`.
 
-[[Chat_Items_Registering]]
-.Chat Items registering
+[[Registreren_Chat_Voorwerpen]]
+.Registreren van Chat Voorwerpen
 ====
 [source, java]
 ----
@@ -109,7 +109,7 @@ MinecraftForge.EVENT_BUS.register(new ChatItems());
 Je hoofd bestand ziet er nu uit als in <<Main_File_After_Register>>.
 
 [[Main_File_After_Register]]
-.Main file after registering Chat Items
+.Hoofdbestand na registreren van Chat voorwerpen
 ====
 [source, java]
 ----
@@ -133,44 +133,50 @@ public class MainMod {
 ----
 ====
 
-**Gameplay:**
+**Spel spelen:**
 
-. Druk op ``T'' om het chatvenster te openen.
-. Typ in een bericht dat het woord ``potato'' bevat
-. Je moet een stapel ontvangen (een stapel = 64 artikelen) van aardappelen
+. Druk op 'T' om het chatvenster te openen.
+. Schrijf in een chatbericht waarin het woord 'aardappel' voorkomt
+. Je moet een stapel aardappelen ontvangen (een stapel = 64 artikelen).
 
-=== Tekst/item wijzigen
+=== Tekst/voorwerp wijzigen
 
-Verander tekstbericht en produceer een ander item. Bijvoorbeeld: Verander de tekst naar ``diamant'' en geproduceerd item naar `Diamond`. Gebruik Ctrl + Space aan de lijst met items weer te geven.
+Instructies: Ga terug naar Eclipse. Verander het woord in het tekstbericht en produceer een ander item. Bijvoorbeeld: Verander de tekst `aardappel` in `diamant` en het geproduceerde voorwerp `Items.potato` in `Items.diamond`. Gebruik Ctrl + Space aan de lijst met items weer te geven.
 
-=== Verschillende items
+**Spel spelen:**
 
-Produceren verschillende items voor verschillende chat-teksten
+. Druk op 'T' om het chatvenster te openen.
+. Schrijf in een chatbericht waarin het woord 'diamant' voorkomt
+. Je moet een stapel diamanten ontvangen (een stapel = 64 artikelen).
+
+=== Verschillende voorwerpen
+
+Instructies: Ga terug naar Eclipse. Maak de code voor het aanmaken van verschillende voorwerpen voor verschillende chat-teksten
 
 [[Different_Chat_Items_Code]]
-.Different Chat Items code
+.Code voor Verschillende Chat Voorwerpen
 ====
 [source, java]
 ----
 @SubscribeEvent
 public void giveItems(ServerChatEvent event){
-	if (event.message.contains("potato")) {
+	if (event.message.contains("aardappel")) {
 		event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
 	}
 
-	if (event.message.contains("diamond")) {
+	if (event.message.contains("diamant")) {
 		event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
 	}
 }
 ----
 ====
 
-=== Meerdere Items
+=== Meerdere Voorwerpen
 
-Produceren van meerdere items voor chat tekst
+Produceren van meerdere voorwerpen voor chat tekst
 
 [[Multiple_Chat_Items_Code]]
-.Multiple Chat Items code
+.Code Meerdere Chat Voorwerpen
 ====
 [source, java]
 ----
@@ -184,14 +190,14 @@ public void giveItems(ServerChatEvent event){
 ----
 ====
 
-== Ender Dragon Spawner
+= Ender Dragon Spawner
 
 **Doel:** Om een ​​Ender Dragon tot leven te laten komen elke keer als een speler een Dragon Egg plaatst.
 
 **Instructies:** In het pakket `org.devoxx4kids.forge.mods`, maak een nieuwe klasse genaamd `DragonSpawner` en vervang de code met die van <<Dragon_Spawner_Code>>.
 
 [[Dragon_Spawner_Code]]
-.Dragon Spawner code
+.Code Dragon Spawner
 ====
 [source, java]
 ----
@@ -219,10 +225,10 @@ public class DragonSpawner {
 ====
 
 
-Vervolgens, registreert deze klasse zoals je deed met Chat items, maar gebruik de regel zoals getoond in <<Dragon_Spawner_Registering>>.
+Vervolgens, registreert deze klasse zoals je deed met Chat voorwerpen, maar gebruik de regel zoals getoond in <<Dragon_Spawner_Registering>>.
 
 [[Dragon_Spawner_Registering]]
-.Dragon Spawner registering
+.Registreren van Dragon Spawner code
 ====
 [source, java]
 ----
@@ -230,18 +236,18 @@ MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 ----
 ====
 
-**Gameplay:**
+**Spel spelen:**
 
 . Gebruik de opdracht "/give <je spelers naam> dragon_egg" om jezelf een draak ei te geven.
-. Plaats het draak ei op het speelveld, en een Ender Dragon moet tot leven komen.
+. Plaats het draak ei op het speelveld, en een `Ender Dragon` moet tot leven komen.
 
-De spelers naam zal niet je normale spelers naam zijn, het zal een door Forge-gegenereerde speler naam zijn. Controleer je chat-venster om te zien wat je spelersnaam is.
+De spelersnaam zal niet je normale spelersnaam zijn, het zal een door Forge-gemaakte spelersnaam zijn. Controleer je chat-venster om te zien wat je spelersnaam is.
 
 === Wijzig blok / entiteit
 
-Wijzig een blok dat triggers het tot leven laten komen en laat een ander item tot leven komen. Zo verander je het blok `sponge` in de entiteit `EntitySquid`. Gebruik Ctrl + Space aan de lijst met items weer te geven.
+Wijzig de code die ervoor zorgt dat voorwerpen tot leven laten komen en laat een ander voorwerp tot leven komen. Hieronder zie je hoe je een `sponge` blok in een voorwerp `EntitySquid` (=inktvis) veranderd. Gebruik Ctrl + Space aan de lijst met voorwerpen weer te geven.
 
-.Spawn squid
+.Inktvis tot leven laten komen
 ====
 [source, java]
 ----
@@ -254,13 +260,13 @@ if (event.placedBlock == Blocks.sponge.getBlockState().getBaseState()) {
 ----
 ====
 
-Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer of het doen van Cmd + Shift + O op een Mac-computer om bepaalde klassen te importeren en een aantal fouten te repareren. Wanneer je deze mod gaat testen, plaats in een Wet Sponge, niet een Sponge.
+Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer of het doen van Cmd + Shift + O op een Mac-computer om bepaalde klassen te importeren en een aantal fouten te repareren. Wanneer je deze mod gaat testen, plaats in een `Wet Sponge`, niet een `Sponge`.
 
-=== Verander offset van entiteiten
+=== Verander afstanden tussen van voorwerpen
 
-Verander `event.pos.getX ()`, `event.pos.getY ()`, `event.pos.getZ ()` en tel er 5 bij of af om aan te testen dat entiteiten worden getoond met een andere offset.
+Verander `event.pos.getX ()`, `event.pos.getY ()`, `event.pos.getZ ()` en tel er 5 bij of af om aan te testen dat nieuwe voorwerpen worden geplaatst met een andere tussen afstand.
 
-.Spawn offset
+.Afstand tussen nieuwe voorwerpen
 ====
 [source, java]
 ----
@@ -268,14 +274,14 @@ dragon.setLocationAndAngles(event.pos.getX() + 5, event.pos.getY(), event.pos.ge
 ----
 ====
 
-== Creeper Spawn Alert
+== Nieuwe Creeper geboorte waarschuwing
 
 **Doel:** Om alle spelers te waarschuwen als er creeper tot leven komt.
 
-**Instructies:** In uw pakket, maak een nieuwe klasse met de naam `CreeperSpawnAlert`. Vervang de inhoud ervan met <<Creeper_Spawn_Code>>.
+**Instructies:**  Maak een nieuwe klasse in je package met de naam `CreeperSpawnAlert`. Vervang de inhoud ervan met <<Creeper_Spawn_Code>>.
 
 [[Creeper_Spawn_Code]]
-.Creeper Spawn Alert code
+.Code Nieuwe Creeper Geboorte Waarschuwing
 ====
 [source, java]
 ----
@@ -304,7 +310,7 @@ public class CreeperSpawnAlert {
 			EntityPlayer player = (EntityPlayer) players.get(i);
 			if (event.world.isRemote) {
 				player.addChatMessage(new ChatComponentText(
-						EnumChatFormatting.GREEN + "A creeper has spawned!"));
+						EnumChatFormatting.GREEN + "Een creeper is tot leven gekomen!"));
 			}
 		}
 	}
@@ -313,10 +319,10 @@ public class CreeperSpawnAlert {
 ----
 ====
 
-Registreert het gebruik van mod door middel van de regel in <<Creeper_Spawn_Registering>>.
+Registreert het gebruik van aanpassing door middel van de regel in <<Creeper_Spawn_Registering>>.
 
 [[Creeper_Spawn_Registering]]
-.Creeper Spawn Alert registering
+.Code Registreren Nieuwe Creeper geboorte
 ====
 [source, java]
 ----
@@ -324,57 +330,57 @@ MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
 ----
 ====
 
-**Gameplay:**
+**Spel spelen:**
 
 . Zorg ervoor dat je niet in 'peaceful mode' speelt.
 . Stel de tijd naar 's nachts ("/time set night")
 
-Je moet een heleboel berichten te zien krijgen zoals: "A creeper has spawned!" in het licht groene letters. Een van deze berichten wordt naar jou gestuurd elke keer er een creeper tot leven komt.
+Je moet een heleboel berichten te zien krijgen zoals: "Een creeper is tot leven gekomen!" in licht groene letters. Een van deze berichten wordt naar jou gestuurd elke keer als er een creeper tot leven komt.
 
 === Verander kleur/formaat van het bericht
 
 ==== Verander kleur naar rood
 
-.Color of message
+.Kleur van bericht
 ====
 [source,java]
 ----
 player.addChatMessage(new ChatComponentText(
-		EnumChatFormatting.RED + "A creeper has spawned!"));
+		EnumChatFormatting.RED + "Een creeper is tot leven gekomen!"));
 ----
 ====
 
-Probeer verschillende kleuren door code aanvulling na `EnumChatFormatting`.
+Probeer verschillende kleuren door code aanvulling na `EnumChatFormatting`. (Ctrl + Spatie)
 
 ==== Stijl wijzigen in cursief
 
-.Style of message
+.Stijl van berichten
 ====
 [source,java]
 ----
 player.addChatMessage(new ChatComponentText(
-		EnumChatFormatting.ITALIC + "A creeper has spawned!"));
+		EnumChatFormatting.ITALIC + "Een creeper is tot leven gekomen!"));
 ----
 ====
 
-Probeer verschillende stijlen door code aanvulling na `EnumChatFormatting`.
+Probeer verschillende stijlen door code aanvulling na `EnumChatFormatting`. (Ctrl + Spatie)
 
 === Wijzig tekst van het bericht
 
-.Style of message
+.Stijl van berichten
 ====
 [source,java]
 ----
 player.addChatMessage(new ChatComponentText(
-		EnumChatFormatting.GREEN + "Run away, a creeper has spawned!"));
+		EnumChatFormatting.GREEN + "Wegrennen, een creeper is tot leven gekomen!"));
 ----
 ====
 
-Praten over de tekst tussen aanhalingstekens.
+Je kan zelf bepalen welke tekst er getoond wordt door de tekst tussen aanhalingstekens te wijzigen.
 
-=== Print dezelfde boodschap voor verschillende mobs
+=== Print dezelfde boodschap voor verschillende aanpassingen
 
-.Same message for differet mobs using AND
+.Dezelfde berichten voor verschillende aanpassingen door gebruik te maken van 'AND' (= && tekens).
 ====
 [source, java]
 ----
@@ -386,7 +392,7 @@ if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZom
 
 OF
 
-.Same message for differet mobs using OR
+.Dezelfde berichten voor verschillende aanpassingen door gebruik te maken van 'OR' (= || tekens).
 ====
 [source, java]
 ----
@@ -398,9 +404,9 @@ if (!(event.entity instanceof EntityCreeper) || !(event.entity instanceof Entity
 
 Uitleggen AND en OR
 
-=== Print andere boodschap voor verschillende mobs
+=== Print andere boodschap voor verschillende aanpassingen
 
-.Different message for different mobs
+.Print andere boodschap voor verschillende aanpassingen
 ====
 [source, java]
 ----
@@ -412,9 +418,9 @@ public void sendAlert(EntityJoinWorldEvent event) {
 	String message;
 	
 	if (event.entity instanceof EntityCreeper) {
-		message = "A creeper has spawned";
+		message = "Een creeper is tot leven gekomen!";
 	} else {
-		message = "A zombie has spawned";
+		message = "Een zombie is tot leven gekomen!";
 	}
 
 	List players = event.entity.worldObj.playerEntities;
@@ -430,9 +436,9 @@ public void sendAlert(EntityJoinWorldEvent event) {
 ----
 ====
 
-=== Bericht afdrukken voor alle mobs
+=== Bericht afdrukken met alle aanpassingen
 
-.Message for all mobs
+.Bericht afdrukken met alle aanpassingen
 ====
 [source, java]
 ----
@@ -444,14 +450,14 @@ if (!(event.entity instanceof EntityMob)) {
 
 Uitleg hoe je een `EntityMob` maakt.
 
-== Sharp Sneeuwballen
+== Pijl Sneeuwballen
 
-**Doel:** Om alle sneeuwballen om te zetten in pijlen zodat ze entites kunnen kwetsen.
+**Doel:** Om alle sneeuwballen om te zetten in pijlen zodat ze eenheden kunnen kwetsen.
 
 **Instructies:** Maak in je package, een nieuwe klasse met de naam `SharpSnowballs`. Vervang de code met <<Snowballs_Code>>.
 
 [[Snowballs_Code]]
-.Sharp Snowballs code
+.Code Pijl Sneeuwballen
 ====
 [source, java]
 ----
@@ -501,7 +507,7 @@ public class SharpSnowballs {
 Registreer de nieuwe klasse met behulp van de regel zoals beschreven in <<Snowballs_Registering>>.
 
 [[Snowballs_Registering]]
-.Sharp Snowballs registering
+.Registreren Pijl Sneeuwballen
 ====
 [source, java]
 ----
@@ -509,7 +515,7 @@ MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
 ----
 ====
 
-**Gameplay:**
+**Spel spelen:**
 
 . Zoek een Sneeuwbal voorwerp op je inventaris
 . Klik met de rechtermuisknop ermee te gooien
@@ -520,7 +526,7 @@ Je kan ook Sneeuw Golems tot leven laten komen door het plaatsen van een pompoen
 === Explosieve sneeuwballen
 
 [[Snowballs_Code]]
-.Explosive Snowballs code
+.Code Explosieve Sneeuwballen
 ====
 [source, java]
 ----
@@ -529,16 +535,16 @@ arrow.fuse = 80;
 ----
 ====
 
-== Overpowered Iron Golems
+== Iron Golems Met Super Krachten
 
-**Doel:** Om nuttig magische effecten aan Iron Golems toe te voegen wanneer ze tot leven komen in de wereld.
+**Doel:** Om super krachten aan Iron Golems toe te voegen wanneer ze tot leven komen in de wereld.
 
 **Instructies:**
 
-In je package, maak een nieuwe klasse genaamd `OverpoweredIronGolems` en vervang de inhoud ervan met <<Iron_Golems_Code>>.
+Maak in je package een nieuwe klasse genaamd `OverpoweredIronGolems` en vervang de inhoud ervan met <<Iron_Golems_Code>>.
 
 [[Iron_Golems_Code]]
-.Overpowered Iron Golems code
+.Code Iron Golems Met Super Krachten
 ====
 [source, java]
 ----
@@ -572,6 +578,7 @@ public class OverpoweredIronGolems {
 Vervolgens registreert de klasse met behulp van de regel in <<Iron_Golems_Register>>.
 
 [[Iron_Golems_Register]]
+.Code Registreren Iron Golems Met Super Krachten
 ====
 [source, java]
 ----
@@ -579,21 +586,21 @@ MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 ----
 ====
 
-**Gameplay:**
+**Spel spelen:**
 
 . Het tot leven laten komen van een Iron Golem met behulp van het commando "/summon VillagerGolem".
-. Het tot leven laten komen van enkele vijandige mobs in de buurt van de Iron Golem
+. Het tot leven laten komen van enkele vijandige aanpassingen in de buurt van de Iron Golem
 
-De golem zal zich naar hen toe gaan verplaatsen om hen te doden. Normaal gesproken, bewegen Iron Golems langzaam, maar met de snelheid instelling van de mod, moeten ze heel snel bewegen.
+De golem zal zich naar hen toe gaan verplaatsen om hen te doden. Normaal gesproken, bewegen Iron Golems langzaam, maar met de snelheid instelling van de aanpassing, moeten ze heel snel bewegen.
 
-== Rain Water
+== Regen Water
 
-**Doel:** Om water te plaatsen aan de voeten van entiteiten wanneer het regent.
+**Doel:** Om water te plaatsen aan de voeten van eenheden wanneer het regent.
 
-**Instructies:** In je package, maak een nieuwe klasse met de naam `RainWater` en vervang de inhoud ervan met <<Rain_Code>>.
+**Instructies:** Maak in je package een nieuwe klasse met de naam `RainWater` en vervang de inhoud ervan met <<Rain_Code>>.
 
 [[Rain_Code]]
-.Rain Water code
+.Code Regen Water
 ====
 [source, java]
 ----
@@ -640,7 +647,7 @@ public class RainWater {
 Vervolgens registreert het gebruik van de mod zoals beschreven in regel van <<Rain_Registering>>.
 
 [[Rain_Registering]]
-.Rain Water registering
+.Registreren Regen Water
 ====
 [source, java]
 ----
@@ -648,23 +655,25 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 ----
 ====
 
-**Gameplay:**
+**Spel spelen:**
 
 . Gebruik de opdracht "/weather rain" om het weer regenachtig maken
 . Begin te bewegen, en het water zal verschijnen waar je ook gaat, maar het zal snel verdwijnen
 
-== Het delen van uw Mods
+= De volgende opdrachten hoef je niet tijdens de workshop uit te voeren, maar kan je doen als je nog tijd over hebt of thuis nog verder gaat met aanpassingen maken van Minecraft.
 
-Open de opdrachtprompt van uw computer. Navigeer naar uw Forge map. Vervolgens typt u het commando `gradlew build`. Op een Mac kan het zijn `./gradlew build`. Nadat het proces is voltooid, gaat u naar de "build" map, daarbinnen vind je weer een map met de naam "libs". In deze map, moet er een .jar-bestand genaamd `modid-1.0.jar` zijn. In dit .jar-bestand zitten al je mods.
+== Het delen van je aanpassingen
+
+Open de opdrachtprompt van je computer. Navigeer naar uw Forge map. Vervolgens typt je het commando `gradlew build`. Op een Mac kan het zijn `./gradlew build`. Nadat het proces is voltooid, gaat je naar de "build" map, daarbinnen vind je weer een map met de naam "libs". In deze map, moet er een .jar-bestand genaamd `modid-1.0.jar` zijn. In dit .jar-bestand zitten al je mods.
 
 Om je mod in je Minecraft launcher te installeren, volg dan de instructies op http://www.minecraftforge.net/wiki/Installation/Universal.
 
 == Tips
 
-* Bij het wijzigen van een item of een blok, verwijder het huidige item / blok en druk op `Ctrl + Space` om de lijst met beschikbare opties te tonen.
+* Bij het wijzigen van een voorwerp of een blok, verwijder het huidige voorwerp / blok en druk op `Ctrl + Space` om de lijst met beschikbare opties te tonen.
 
 [[Gradlew_command_output]]
-== Gradlew command output
+== Uitvoer van Gradlew commando
 
 [source,text]
 ----
