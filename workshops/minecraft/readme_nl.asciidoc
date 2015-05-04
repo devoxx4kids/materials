@@ -65,6 +65,23 @@ public class MainMod {
 
 Je hoofd bestand is nu klaar voor gebruik.
 
+= Spel starten
+
+Om Minecraft te starten, moet je in Eclipse de 'Client' starten. Boven in het scherm van Eclipse zie je als het goed is de onderstaande knoppen.
+Klik op het groene knopje met het witte driehoekje om Minecraft te starten. Je kan ook op het kleine zwarte driehoekje klikken en daarna op 'Client' om Minecraft te starten.
+
+image::images/start-client.png[]
+
+= Spel stoppen
+
+Om Minecraft te stoppen, moet je in Eclipse de 'Client' stoppen. Onder in het scherm van Eclipse zie je als het goed is de 'Console' view. Hierin zie je alle informatie teksten die de 'Client' laat zien. In de menubalk van deze console zie je een rode knop. Als daar op klikt zal de 'Client' stoppen.
+
+image::images/stop-client.png[]
+
+= LET OP: Wanneer je wijzigingen in de code van Minecraft maakt is het noodzakelijk dat je de 'Client' opnieuw opstart omdat je anders je aanpassing niet zien.
+
+= Opdrachten
+
 == Chat Voorwerpen
 
 **Doel:** De speler items laten ontvangen wanneer hij / zij een bepaald woord (= aardappel) in een chatbericht schrijft.
@@ -211,9 +228,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class DragonSpawner {
 	
-	@SubscribeEvent
+@SubscribeEvent
 	public void spawnDragon(PlaceEvent event) {
-		if (event.block == Blocks.dragon_egg.getBlockState().getBaseState()) {
+		if (event.placedBlock == Blocks.dragon_egg.getBlockState().getBaseState()) {
 			event.world.setBlockToAir(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
 			EntityDragon dragon = new EntityDragon(event.world);
 			dragon.setLocationAndAngles(event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
@@ -243,9 +260,9 @@ MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 
 De spelersnaam zal niet je normale spelersnaam zijn, het zal een door Forge-gemaakte spelersnaam zijn. Controleer je chat-venster om te zien wat je spelersnaam is.
 
-=== Wijzig blok / entiteit
+=== Wijzig blok / eenheid
 
-Wijzig de code die ervoor zorgt dat voorwerpen tot leven laten komen en laat een ander voorwerp tot leven komen. Hieronder zie je hoe je een `sponge` blok in een voorwerp `EntitySquid` (=inktvis) veranderd. Gebruik Ctrl + Space aan de lijst met voorwerpen weer te geven.
+Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een ander voorwerp tot leven komen. Hieronder zie je hoe je een `sponge` blok in een voorwerp `EntitySquid` (=inktvis) veranderd. Gebruik Ctrl + Space aan de lijst met voorwerpen weer te geven.
 
 .Inktvis tot leven laten komen
 ====
