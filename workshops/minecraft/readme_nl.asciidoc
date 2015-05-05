@@ -2,15 +2,16 @@
 
 == Downloaden en installeren
 
-. Download en installeer JDK uit http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-. Download en installeer Eclipse uit http://www.eclipse.org/downloads/, kies "Eclipse IDE for Java Developers"
-. Download en unzip Forge 1.8 uit
+. Download en installeer JDK van http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+. Download en installeer Eclipse van http://www.eclipse.org/downloads/, kies "Eclipse IDE for Java Developers"
+. Download en unzip (= bestand uitpakken)  Forge 1.8 van
   http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.1.1341/forge-1.8-11.14.1.1341-src.zip
-. In de uitgepakte forge directory, geef het commando `./gradlew
+. Ga naar de uitgepakte forge directory, geef het commando `./gradlew
                                                         setupDecompWorkspace eclipse` voor Mac of `gradlew
-                                                        setupDecompWorkspace eclipse` voor Windows. De melding na het bouwen zou moeten zijn: `BUILD SUCCESSFUL`. De complete melding is hier <<Gradlew_command_output>> te vinden.
+                                                        setupDecompWorkspace eclipse` voor Windows. +
+De melding na het bouwen zou moeten zijn: `BUILD SUCCESSFUL`. De complete melding is <<Gradlew_command_output, hier>> te vinden.
 
-Een gedetailleerde video met volledige installatie stappen op Mac wordt hieronder gegeven:
+Een gedetailleerde video met volledige installatiestappen op Mac wordt hieronder gegeven:
 
 image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
 
@@ -20,17 +21,17 @@ Meer details zijn ook te vinden op http://www.minecraftforge.net/wiki/Installati
 
 == Controleren van installatie.
 
-Dit is een zeer belangrijke stap, omdat dit zal bevestigen dat je daadwerkelijk kunt beginnen met modding.
+Dit is een zeer belangrijke stap, omdat dit je laat zien dat je écht kunt beginnen met het aanpassen van Minecraft.
 
 . Start Eclipse
-. In het ``Select a workspace'' venster, kies de locatie van `eclipse` directory in de uitgepakte forge directory als de workspace
+. In het ``Select a workspace'' venster, kies je de locatie van `eclipse` directory in de uitgepakte forge directory als de workspace
 . Klik op ``OK''
-. In het venster Eclipse, moet je nu een ``folder Minecraft'' zien en in staat zijn om deze te openen. Er mogen geen rode uitroeptekens zichtbaar zijn.
+. In het venster Eclipse, moet je nu een ``folder Minecraft'' zien en kunnen openen. Er mogen geen rode uitroeptekens zichtbaar zijn.
 
 === Problemen oplossen
 
 . Als je een andere map hebt geselecteerd, klikt je op ``Bestand'', ``Wijzig Workspace'', en selecteer de juiste directory.
-. Als je de Minecraft map niet ziet, zou de `gradlew` opdracht een aantal fouten hebben kunnen laten zien. Probeer het commando opnieuw.
+. Als je de Minecraft map niet ziet, zou de `gradlew` opdracht een aantal fouten kunnen laten zien. Probeer het commando opnieuw.
 
 == Het Main bestand (= start van het progamma Minecraft)
 
