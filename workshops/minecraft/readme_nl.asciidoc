@@ -211,11 +211,11 @@ public void giveItems(ServerChatEvent event){
 Probeer je aanpassingen uit.
 
 
-= Ender Dragon Spawner
+= Ender Dragon tot leven wekken
 
-**Doel:** Om een ​​Ender Dragon tot leven te laten komen elke keer als een speler een Dragon Egg plaatst.
+**Doel:** Elke keer als een speler een Dragon Egg plaatst een Ender Dragon tot leven laten komen.
 
-**Instructies:** In het pakket `org.devoxx4kids.forge.mods`, maak een nieuwe klasse genaamd `DragonSpawner` en vervang de code met die van <<Dragon_Spawner_Code>>.
+**Instructies:** Ga terug naar Eclipse en maak in de package `org.devoxx4kids.forge.mods` een nieuwe klasse genaamd `DragonSpawner`. Vervang de code met de <<Dragon_Spawner_Code>>.
 
 [[Dragon_Spawner_Code]]
 .Code Dragon Spawner
@@ -245,8 +245,7 @@ public class DragonSpawner {
 ----
 ====
 
-
-Vervolgens, registreert deze klasse zoals je deed met Chat voorwerpen, maar gebruik de regel zoals getoond in <<Dragon_Spawner_Registering>>.
+Registreer vervolgens deze klasse zoals je deed met Chat items, maar gebruik de regel zoals getoond in <<Dragon_Spawner_Registering>>.
 
 [[Dragon_Spawner_Registering]]
 .Registreren van Dragon Spawner code
@@ -259,16 +258,18 @@ MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 
 **Spel spelen:**
 
-. Gebruik de opdracht "/give <je spelers naam> dragon_egg" om jezelf een draak ei te geven.
-. Plaats het draak ei op het speelveld, en een `Ender Dragon` moet tot leven komen.
+. Gebruik de opdracht "/give <je spelersnaam> dragon_egg" om jezelf een dragon egg te geven.
+. Plaats het ei op het speelveld en een `Ender Dragon` zal tot leven komen.
 
-De spelersnaam zal niet je normale spelersnaam zijn, het zal een door Forge-gemaakte spelersnaam zijn. Controleer je chat-venster om te zien wat je spelersnaam is.
+Kijk in het chat-venster wat je spelersnaam is, dit is niet je normale minecraft-spelersnaam.
 
-=== Wijzig blok / eenheid
+=== Wijzig block/entity
 
-Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een ander voorwerp tot leven komen. Hieronder zie je hoe je een `sponge` blok in een voorwerp `EntitySquid` (=inktvis) veranderd. Gebruik Ctrl + Space aan de lijst met voorwerpen weer te geven.
+**Doel:** Een block maken waarmee je een entity tot leven kan wekken.
 
-.Inktvis tot leven laten komen
+**Instructies:** Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een andere entity tot leven komen. Verander met onderstaande code een `sponge` block in een `EntitySquid` (=inktvis). Gebruik Ctrl + spatie om de lijst met voorwerpen weer te geven.
+
+.Spawn Squid Code
 ====
 [source, java]
 ----
@@ -281,11 +282,11 @@ if (event.placedBlock == Blocks.sponge.getBlockState().getBaseState()) {
 ----
 ====
 
-Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer of het doen van Cmd + Shift + O op een Mac-computer om bepaalde klassen te importeren en een aantal fouten te repareren. Wanneer je deze mod gaat testen, plaats in een `Wet Sponge`, niet een `Sponge`.
+Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer of Cmd + Shift + O op een Mac-computer om bepaalde klasses te importeren en een aantal fouten te repareren. Wanneer je deze mod gaat testen, plaats in een `Wet Sponge`, niet een `Sponge`.
 
-=== Verander afstanden tussen van voorwerpen
+=== Verander offsets van entities
 
-Verander `event.pos.getX ()`, `event.pos.getY ()`, `event.pos.getZ ()` en tel er 5 bij of af om aan te testen dat nieuwe voorwerpen worden geplaatst met een andere tussen afstand.
+**Instructie:** Verander in de code `event.pos.getX ()`, `event.pos.getY ()`, `event.pos.getZ ()` en tel er 5 bij of af om  te testen dat nieuwe voorwerpen worden geplaatst met een andere offset (=tussenafstand).
 
 .Afstand tussen nieuwe voorwerpen
 ====
@@ -295,14 +296,14 @@ dragon.setLocationAndAngles(event.pos.getX() + 5, event.pos.getY(), event.pos.ge
 ----
 ====
 
-== Nieuwe Creeper geboorte waarschuwing
+== Creeper spawn-waarschuwing
 
-**Doel:** Om alle spelers te waarschuwen als er creeper tot leven komt.
+**Doel:** Alle spelers waarschuwen wanneer er een creeper tot leven komt.
 
-**Instructies:**  Maak een nieuwe klasse in je package met de naam `CreeperSpawnAlert`. Vervang de inhoud ervan met <<Creeper_Spawn_Code>>.
+**Instructies:**  Maak een nieuwe klasse in de package met de naam `CreeperSpawnAlert`. Vervang de code in het bestand met de <<Creeper_Spawn_Code>>.
 
 [[Creeper_Spawn_Code]]
-.Code Nieuwe Creeper Geboorte Waarschuwing
+.Code Nieuwe Creeper Span Alerrt
 ====
 [source, java]
 ----
@@ -353,14 +354,16 @@ MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
 
 **Spel spelen:**
 
-. Zorg ervoor dat je niet in 'peaceful mode' speelt.
-. Stel de tijd naar 's nachts ("/time set night")
+. Zorg ervoor dat je niet in de 'peaceful mode' speelt.
+. Verander de tijd naar 's nachts ("/time set night")
 
-Je moet een heleboel berichten te zien krijgen zoals: "Een creeper is tot leven gekomen!" in licht groene letters. Een van deze berichten wordt naar jou gestuurd elke keer als er een creeper tot leven komt.
+Je moet een heleboel berichten te zien krijgen zoals: "Een creeper is tot leven gekomen!" in lichtgroene letters. Dit bericht wordt elke keer naar jou gestuurd wanneer een creeper tot leven komt.
 
 === Verander kleur/formaat van het bericht
 
-==== Verander kleur naar rood
+==== Verander de kleur naar rood
+
+**Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
 
 .Kleur van bericht
 ====
@@ -371,9 +374,11 @@ player.addChatMessage(new ChatComponentText(
 ----
 ====
 
-Probeer verschillende kleuren door code aanvulling na `EnumChatFormatting`. (Ctrl + Spatie)
+Probeer verschillende kleuren op de plek in de code na `EnumChatFormatting`. (Ctrl + Spatie)
 
 ==== Stijl wijzigen in cursief
+
+**Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
 
 .Stijl van berichten
 ====
@@ -384,9 +389,11 @@ player.addChatMessage(new ChatComponentText(
 ----
 ====
 
-Probeer verschillende stijlen door code aanvulling na `EnumChatFormatting`. (Ctrl + Spatie)
+Probeer verschillende stijlen in de code achter `EnumChatFormatting`. (Ctrl + Spatie)
 
 === Wijzig tekst van het bericht
+
+**Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
 
 .Stijl van berichten
 ====
@@ -397,11 +404,13 @@ player.addChatMessage(new ChatComponentText(
 ----
 ====
 
-Je kan zelf bepalen welke tekst er getoond wordt door de tekst tussen aanhalingstekens te wijzigen.
+Je kan zelf bepalen welke tekst er getoond wordt door de tekst tussen de aanhalingstekens te wijzigen.
 
-=== Print dezelfde boodschap voor verschillende aanpassingen
+=== Print dezelfde boodschap voor verschillende mods
 
-.Dezelfde berichten voor verschillende aanpassingen door gebruik te maken van 'AND' (= && tekens).
+**Instructie:** Pas de code aan om het bericht voor de creeper ook voor een andere entity te gebruiken. Dit kan op twee manieren. Zie hieronder.
+
+.Dezelfde berichten voor verschillende mods door gebruik te maken van 'AND' (= && tekens).
 ====
 [source, java]
 ----
@@ -425,9 +434,11 @@ if (!(event.entity instanceof EntityCreeper) || !(event.entity instanceof Entity
 
 Uitleggen AND en OR
 
-=== Print andere boodschap voor verschillende aanpassingen
+=== Print een andere boodschap voor verschillende mods
 
-.Print andere boodschap voor verschillende aanpassingen
+**Instructie:** Maak voor elke entity een ander bericht, doe dit zoals hieronder beschreven.
+
+.Print een andere boodschap voor verschillende mods
 ====
 [source, java]
 ----
@@ -457,9 +468,11 @@ public void sendAlert(EntityJoinWorldEvent event) {
 ----
 ====
 
-=== Bericht afdrukken met alle aanpassingen
+=== Bericht printen met alle aanpassingen
 
-.Bericht afdrukken met alle aanpassingen
+**Instructie:** Maak de code waarmee ...
+
+.Bericht printen met alle aanpassingen
 ====
 [source, java]
 ----
@@ -471,14 +484,14 @@ if (!(event.entity instanceof EntityMob)) {
 
 Uitleg hoe je een `EntityMob` maakt.
 
-== Pijl Sneeuwballen
+== Scherpe sneeuwballen
 
-**Doel:** Om alle sneeuwballen om te zetten in pijlen zodat ze eenheden kunnen kwetsen.
+**Doel:** Alle sneeuwballen omzetten in pijlen zodat ze entities kunnen beschadigen.
 
-**Instructies:** Maak in je package, een nieuwe klasse met de naam `SharpSnowballs`. Vervang de code met <<Snowballs_Code>>.
+**Instructies:** Maak in je package een nieuwe klasse met de naam `SharpSnowballs` aan. Vervang de code met de  <<Sharp_Snowballs_Code>>.
 
-[[Snowballs_Code]]
-.Code Pijl Sneeuwballen
+[[Sharp_Snowballs_Code]]
+.Code Scherpe sneeuwballen
 ====
 [source, java]
 ----
@@ -538,13 +551,15 @@ MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
 
 **Spel spelen:**
 
-. Zoek een Sneeuwbal voorwerp op je inventaris
-. Klik met de rechtermuisknop ermee te gooien
+. Zoek een Sneeuwbalvoorwerp op in je inventory
+. Klik met de rechtermuisknop om ermee te gooien
 . De sneeuwbal zou moet veranderen in een pijl
 
-Je kan ook Sneeuw Golems tot leven laten komen door het plaatsen van een pompoen bovenop een toren van twee Sneeuw blokken. De Sneeuw Golem zal fungeren als een torentje, dat sneeuwballen schiet die veranderen in pijlen.
+Je kan ook Sneeuwgolem maken door het plaatsen van een pompoen bovenop een toren van twee Sneeuwblokken. De Sneeuwgolem zal een torentje worden dat sneeuwballen schiet die veranderen in pijlen.
 
 === Explosieve sneeuwballen
+
+**Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
 
 [[Snowballs_Code]]
 .Code Explosieve Sneeuwballen
