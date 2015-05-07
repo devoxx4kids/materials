@@ -573,14 +573,14 @@ arrow.fuse = 80;
 
 == Iron Golems Met Super Krachten
 
-**Doel:** Om super krachten aan Iron Golems toe te voegen wanneer ze tot leven komen in de wereld.
+**Doel:** Het geven van superkrachten aan Iron Golems wanneer ze tot leven komen in de wereld.
 
 **Instructies:**
 
-Maak in je package een nieuwe klasse genaamd `OverpoweredIronGolems` en vervang de inhoud ervan met <<Iron_Golems_Code>>.
+Maak in je package een nieuwe klasse genaamd `OverpoweredIronGolems`. Vervang de code ervan met <<Iron_Golems_Code>>.
 
 [[Iron_Golems_Code]]
-.Code Iron Golems Met Super Krachten
+.Code Iron Golems Met Superkrachten
 ====
 [source, java]
 ----
@@ -611,7 +611,7 @@ public class OverpoweredIronGolems {
 ----
 ====
 
-Vervolgens registreert de klasse met behulp van de regel in <<Iron_Golems_Register>>.
+Vervolgens registreer de klasse met behulp van de regel in <<Iron_Golems_Register>>.
 
 [[Iron_Golems_Register]]
 .Code Registreren Iron Golems Met Super Krachten
@@ -624,16 +624,16 @@ MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 
 **Spel spelen:**
 
-. Het tot leven laten komen van een Iron Golem met behulp van het commando "/summon VillagerGolem".
-. Het tot leven laten komen van enkele vijandige aanpassingen in de buurt van de Iron Golem
+. Laat een Iron golem tot leven komen met het commando "/summon VillagerGolem".
+. Laat een paar vijandige mobs tot leven komen in de buurt van de Iron Golem
 
-De golem zal zich naar hen toe gaan verplaatsen om hen te doden. Normaal gesproken, bewegen Iron Golems langzaam, maar met de snelheid instelling van de aanpassing, moeten ze heel snel bewegen.
+De golem zal zich naar hen toe verplaatsen om hen te doden. Normaal gesproken bewegen Iron Golems langzaam, maar met de snelheidsinstelling van de aanpassing, zullen ze heel snel bewegen.
 
-== Regen Water
+== Regenwater
 
-**Doel:** Om water te plaatsen aan de voeten van eenheden wanneer het regent.
+**Doel:** Wanneer het regent water plaatsen aan de voeten van entities.
 
-**Instructies:** Maak in je package een nieuwe klasse met de naam `RainWater` en vervang de inhoud ervan met <<Rain_Code>>.
+**Instructies:** Maak in je package een nieuwe klasse met de naam `RainWater`. Vervang de code ervan met <<Rain_Code>>.
 
 [[Rain_Code]]
 .Code Regen Water
@@ -680,7 +680,7 @@ public class RainWater {
 ----
 ====
 
-Vervolgens registreert het gebruik van de mod zoals beschreven in regel van <<Rain_Registering>>.
+Vervolgens registreer het gebruik van de mod zoals beschreven in regel van <<Rain_Registering>>.
 
 [[Rain_Registering]]
 .Registreren Regen Water
@@ -694,7 +694,7 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 **Spel spelen:**
 
 . Gebruik de opdracht "/weather rain" om het weer regenachtig maken
-. Begin te bewegen, en het water zal verschijnen waar je ook gaat, maar het zal snel verdwijnen
+. Begin te bewegen. Waar jee ook gaat zal er water verschijnen, maar zodra je stilstaat zal het snel verdwijnen.
 
 = De volgende opdrachten hoef je niet tijdens de workshop uit te voeren, maar kan je doen als je nog tijd over hebt of thuis nog verder gaat met aanpassingen maken van Minecraft.
 
