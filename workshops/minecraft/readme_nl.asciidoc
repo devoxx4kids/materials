@@ -704,13 +704,14 @@ public class MainMod {
 . Zoek een Sneeuwbal in je voorraad. (Type 'E' om je voorraad te openen. Klik vervolgens op het laatste tabje en daar zie je de 'snowball')
 . Klik met je muis op de sneeuwbal en dan klik je een van de lege vakjes onderin.
 . Druk op 'esc' om je voorraad te sluiten.
-. Als je nu een sneeuwbal gooit met behulp van de rechtermuis toets. Dan zullen de sneeuwballen veranderen in pijlen!!
+. Als je nu een sneeuwbal gooit met behulp van de rechtermuis toets. Dan zullen de sneeuwballen veranderen in pijlen!! Schiet maar hoog in de lucht.
 . *TIP* Je kan ook een Sneeuwgolem maken door 2 sneeuwblokken en 1 pompoen op elkaar te plaatsen. De Sneeuwgolem zal een torentje worden dat sneeuwballen schiet die veranderen in pijlen.
 
 image::images/inventory_snowball.png[]
 
 === Explosieve sneeuwballen
 
+**Doel:** Sneeuwballen veranderen in TNT pakketjes die ontploffen nadat je ze hebt gegooid.
 **Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
 
 [[Snowballs_Code]]
@@ -718,10 +719,50 @@ image::images/inventory_snowball.png[]
 ====
 [source, java]
 ----
-EntityTNTPrimed arrow = new EntityTNTPrimed(world);
-arrow.fuse = 80;
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class SharpSnowballs {
+
+	@SubscribeEvent
+	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
+		Entity snowball = event.entity;
+		World world = snowball.worldObj;
+
+		if (!(snowball instanceof EntitySnowball)) {
+			return;
+		}
+
+		if (!world.isRemote) {
+			// Hier moet je de code aanpassen.
+			EntityTNTPrimed arrow = new EntityTNTPrimed(world);
+            arrow.fuse = 80;
+
+			arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ,
+					0, 0);
+			arrow.motionX = snowball.motionX;
+			arrow.motionY = snowball.motionY;
+			arrow.motionZ = snowball.motionZ;
+
+			arrow.posX += arrow.motionX;
+			arrow.posY += arrow.motionY;
+			arrow.posZ += arrow.motionZ;
+
+			world.spawnEntityInWorld(arrow);
+			snowball.setDead();
+		}
+	}
+
+}
 ----
 ====
+
 
 == Iron Golems Met Super Krachten
 
@@ -763,21 +804,44 @@ public class OverpoweredIronGolems {
 ----
 ====
 
-Vervolgens registreer de klasse met behulp van de regel in <<Iron_Golems_Register>>.
+Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Iron_Golems_Register>>.
 
 [[Iron_Golems_Register]]
 .Code Registreren Iron Golems Met Super Krachten
 ====
 [source, java]
 ----
-MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
+package org.devoxx4kids.forge.mods;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
+public class MainMod {
+	public static final String MODID = "MyMods";
+	public static final String VERSION = "1.0";
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new ChatItems());
+		MinecraftForge.EVENT_BUS.register(new DragonSpawner());
+		MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
+		MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
+		MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
+	}
+}
 ----
 ====
 
 **Spel spelen:**
 
-. Laat een Iron golem tot leven komen met het commando "/summon VillagerGolem".
-. Laat een paar vijandige mobs tot leven komen in de buurt van de Iron Golem
+. Stop de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Start de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Selecteer je wereld.
+. Laat een Iron golem tot leven komen. (Type 'T' en dan type je '/summon VillagerGolem' ).
+. Laat een paar vijandige karakters tot leven komen in de buurt van de Iron Golem
 
 De golem zal zich naar hen toe verplaatsen om hen te doden. Normaal gesproken bewegen Iron Golems langzaam, maar met de snelheidsinstelling van de aanpassing, zullen ze heel snel bewegen.
 
@@ -832,21 +896,45 @@ public class RainWater {
 ----
 ====
 
-Vervolgens registreer het gebruik van de mod zoals beschreven in regel van <<Rain_Registering>>.
+Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Rain_Registering>>.
 
 [[Rain_Registering]]
 .Registreren Regen Water
 ====
 [source, java]
 ----
-MinecraftForge.EVENT_BUS.register(new RainWater());
+package org.devoxx4kids.forge.mods;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
+public class MainMod {
+	public static final String MODID = "MyMods";
+	public static final String VERSION = "1.0";
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new ChatItems());
+		MinecraftForge.EVENT_BUS.register(new DragonSpawner());
+		MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
+		MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
+		MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
+		MinecraftForge.EVENT_BUS.register(new RainWater());
+	}
+}
 ----
 ====
 
 **Spel spelen:**
 
-. Gebruik de opdracht "/weather rain" om het weer regenachtig maken
-. Begin te bewegen. Waar jee ook gaat zal er water verschijnen, maar zodra je stilstaat zal het snel verdwijnen.
+. Stop de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Start de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Selecteer je wereld.
+. Type 'T' en dan type je '/weather rain' om het weer regenachtig maken.
+. Begin te bewegen. Waar je ook gaat zal er water verschijnen, maar zodra je stilstaat zal het snel verdwijnen.
 
 = De volgende opdrachten hoef je niet tijdens de workshop uit te voeren, maar kan je doen als je nog tijd over hebt of thuis nog verder gaat met aanpassingen maken van Minecraft.
 
@@ -855,10 +943,6 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 Open de opdrachtprompt van je computer. Navigeer naar uw Forge map. Vervolgens typt je het commando `gradlew build`. Op een Mac kan het zijn `./gradlew build`. Nadat het proces is voltooid, gaat je naar de "build" map, daarbinnen vind je weer een map met de naam "libs". In deze map, moet er een .jar-bestand genaamd `modid-1.0.jar` zijn. In dit .jar-bestand zitten al je mods.
 
 Om je mod in je Minecraft launcher te installeren, volg dan de instructies op http://www.minecraftforge.net/wiki/Installation/Universal.
-
-== Tips
-
-* Bij het wijzigen van een voorwerp of een blok, verwijder het huidige voorwerp / blok en druk op `Ctrl + Space` om de lijst met beschikbare opties te tonen.
 
 [[Gradlew_command_output]]
 == Uitvoer van Gradlew commando
