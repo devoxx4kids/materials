@@ -175,10 +175,13 @@ public class MainMod {
 
 === Tekst/voorwerp wijzigen
 
-Instructies: Ga terug naar Eclipse. Verander het woord in het tekstbericht en maak een ander item. Bijvoorbeeld: Verander de tekst `aardappel` in `diamant` en het gemaakte voorwerp `Items.potato` in `Items.diamond`. Gebruik Ctrl + spatie om de lijst met items weer te geven. (Zie 'Belangrijke informatie voor de workshop')
+Instructies: Ga terug naar Eclipse. (Gebruik de 'esc' toets om Minecraft te verlaten.) Verander het woord in het tekstbericht en maak een ander item. Bijvoorbeeld: Verander de tekst `aardappel` in `diamant` en het gemaakte voorwerp `Items.potato` in `Items.diamond`. Gebruik Ctrl + spatie om de lijst met items weer te geven. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
 
 **Spel spelen:**
 
+. Stop de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Start de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Selecteer je wereld.
 . Druk op `T` om het chatvenster te openen.
 . Schrijf een chatbericht waarin het woord `diamant` voorkomt.
 . Je moet een stapel diamanten ontvangen.
