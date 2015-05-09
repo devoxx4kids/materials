@@ -572,7 +572,8 @@ Vergeet niet je 'Client' opnieuw te starten wanneer je je aanpassing gaat testen
 === Bericht tonen bij het tot leven komen van een voorwerp
 
 **Doel:** Bericht tonen wanneer een voorwerp tot leven komt. Het maakt niet uit welk soort voorwerp.
-**Instructie:** Pas de code aan zoals je hieronder
+
+**Instructie:** Pas de code aan zoals je hieronder.
 
 .Bericht tonen bij het tot leven komen van een voorwerp
 ====
@@ -712,6 +713,7 @@ image::images/inventory_snowball.png[]
 === Explosieve sneeuwballen
 
 **Doel:** Sneeuwballen veranderen in TNT pakketjes die ontploffen nadat je ze hebt gegooid.
+
 **Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
 
 [[Snowballs_Code]]
