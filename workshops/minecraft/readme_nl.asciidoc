@@ -66,18 +66,27 @@ public class MainMod {
 
 Je hoofd bestand is nu klaar voor gebruik.
 
-= Spel starten
+= Belangrijke informatie voor de workshop:
+
+== Spel starten
 
 Om Minecraft te starten, moet je in Eclipse de 'Client' starten. Boven in het scherm van Eclipse zie je als het goed is de onderstaande knoppen.
 Klik op het groene knopje met het witte driehoekje om Minecraft te starten. Je kan ook op het kleine zwarte driehoekje klikken en daarna op 'Client' om Minecraft te starten.
 
 image::images/start-client.png[]
 
-= Spel stoppen
+== Spel stoppen
 
 Om Minecraft te stoppen, moet je in Eclipse de 'Client' stoppen. Onder in het scherm van Eclipse zie je als het goed is de 'Console' view. Hierin zie je alle logging (= een soort logboek) die de 'Client' laat zien. In de menubalk van deze console zie je een rode stopknop. Als je daar op klikt zal de 'Client' stoppen.
 
 image::images/stop-client.png[]
+
+== Ctrl + spatie commando
+
+We gebruiken Eclipse om onze aanpassingen in te maken. Eclipse is heel handig en je kan er snel mee werken. Vooral als je gaat werken met sneltoetsen. Sneltoesten zijn toetsenbord combinaties waarvoor je anders je muis zou gebruiken. Eentje die we veel gebruiken in de workshop is 'Ctrl+Spatie'. Hiermee kan je een lijst laten tonen met mogelijke opties. Zoals je kunt zien in het plaatje hieronder.
+Om de lijst te laten zien moet je cursor na de '.' van een klasse plaatsen. Vervolgens klik je de toesten 'Ctrl + spatie' in om te lijst te tonen.
+
+image::images/ctrlspace.png[]
 
 *LET OP: Wanneer je wijzigingen in de code van Minecraft maakt, is het belangrijk dat je de 'Client' opnieuw opstart. Doe je dit niet, dan doen je aanpassingen het niet.*
 
@@ -153,13 +162,20 @@ public class MainMod {
 
 **Spel spelen:**
 
+. Start de 'Client' in Eclipse. Minecraft zal starten.
+. In Minecraft, selecteer 'Singleplayer'
+. Selecteer 'Create New World'
+. Geef je wereld een naam.
+. Selecteer 'Game Mode: Creative' door 2 keer op de knop op het midden van het scherm te klikken.
+. Selecteer 'Create New World'
+. Je wereld zal nu gebouwd worden en het spel zal starten.
 . Druk op 'T' om het chatvenster te openen.
 . Schrijf een chatbericht waarin het woord `aardappel` voorkomt.
 . Je moet een stapel aardappelen ontvangen (een stapel = 64 artikelen).
 
 === Tekst/voorwerp wijzigen
 
-Instructies: Ga terug naar Eclipse. Verander het woord in het tekstbericht en maak een ander item. Bijvoorbeeld: Verander de tekst `aardappel` in `diamant` en het gemaakte voorwerp `Items.potato` in `Items.diamond`. Gebruik Ctrl + spatie om de lijst met items weer te geven.
+Instructies: Ga terug naar Eclipse. Verander het woord in het tekstbericht en maak een ander item. Bijvoorbeeld: Verander de tekst `aardappel` in `diamant` en het gemaakte voorwerp `Items.potato` in `Items.diamond`. Gebruik Ctrl + spatie om de lijst met items weer te geven. (Zie 'Belangrijke informatie voor de workshop')
 
 **Spel spelen:**
 
@@ -267,7 +283,7 @@ Kijk in het chat-venster wat je spelersnaam is, dit is niet je normale minecraft
 
 **Doel:** Een block maken waarmee je een entity tot leven kan wekken.
 
-**Instructies:** Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een andere entity tot leven komen. Verander met onderstaande code een `sponge` block in een `EntitySquid` (=inktvis). Gebruik Ctrl + spatie om de lijst met voorwerpen weer te geven.
+**Instructies:** Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een andere entity tot leven komen. Verander met onderstaande code een `sponge` block in een `EntitySquid` (=inktvis). Gebruik Ctrl + spatie om de lijst met voorwerpen weer te geven. (zie 'Belangrijke informatie voor de workshop')
 
 .Spawn Squid Code
 ====
@@ -374,7 +390,7 @@ player.addChatMessage(new ChatComponentText(
 ----
 ====
 
-Probeer verschillende kleuren op de plek in de code na `EnumChatFormatting`. (Ctrl + Spatie)
+Probeer verschillende kleuren op de plek in de code na `EnumChatFormatting`. (Gebruik 'Ctrl + Spatie', zie 'Belangrijke informatie voor de workshop')
 
 ==== Stijl wijzigen in cursief
 
