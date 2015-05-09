@@ -58,8 +58,8 @@ image::images/stop-client.png[]
 
 == Ctrl + spatie commando
 
-We gebruiken Eclipse om onze aanpassingen in te maken. Eclipse is heel handig en je kan er snel mee werken. Vooral als je gaat werken met sneltoetsen. Sneltoesten zijn toetsenbord combinaties waarvoor je anders je muis zou gebruiken. Eentje die we veel gebruiken in de workshop is `Ctrl+Spatie`. Hiermee kan je een lijst laten tonen met mogelijke opties. Zoals je kunt zien in het plaatje hieronder.
-Om de lijst te laten zien moet je cursor na de `.` van een klasse plaatsen. Vervolgens klik je de toesten `Ctrl + spatie` in om te lijst te tonen.
+We gebruiken Eclipse om onze aanpassingen in te maken. Eclipse is heel handig en je kan er snel mee werken. Vooral als je gaat werken met sneltoetsen. Sneltoesten zijn toetsenbord combinaties waarvoor je anders je muis zou gebruiken. Eentje die we veel gebruiken in de workshop is `Ctrl+Spatie`, voor een lijst met mogelijke opties. Zoals je kunt zien in het plaatje hieronder.
+Om de lijst te laten zien moet je cursor na de `.` van een klasse plaatsen. Vervolgens klik je de toesten `Ctrl + spatie` om de lijst te tonen.
 
 image::images/ctrlspace.png[]
 
@@ -334,9 +334,9 @@ public class MainMod {
 
 === Wijzig block/voorwerp
 
-**Doel:** Elke keer als een speler een `Sponge` plaatst een `Squid` tot leven laten komen.
+**Doel:** Elke keer als een speler een `Sponge` (=spons) plaatst een `Squid` (=inktvis)  tot leven laten komen.
 
-**Instructies:** Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een andere voorwerp tot leven komen. Met de onderstaande code laat je een `Squid` (=inktvis) tot leven komen wanneer je een `sponge` block plaatst. Gebruik Ctrl + spatie om de lijst met voorwerpen weer te geven. (zie `Belangrijke informatie`)
+**Instructies:** Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een andere voorwerp tot leven komen. Met de onderstaande code laat je een `Squid` tot leven komen wanneer je een `sponge` block plaatst. Gebruik Ctrl + spatie om de lijst met voorwerpen weer te geven. (zie `Belangrijke informatie`)
 
 .Spawn Squid Code
 [source, java]
@@ -360,7 +360,7 @@ Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer o
 . Selecteer je wereld.
 . Kijk in het chat-venster door op 'T' te drukken wat je spelersnaam is, dit is niet je normale minecraft-spelersnaam.
 . Gebruik de opdracht `/give <je spelersnaam> sponge` om jezelf een sponge te geven.
-. Plaats de sponge in het water en een `Squid` (=inktvis) zal tot leven komen.
+. Plaats de sponge in het water en een `Squid` zal tot leven komen.
 
 <<<
 
