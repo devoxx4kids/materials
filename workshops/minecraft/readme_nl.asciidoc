@@ -188,7 +188,7 @@ Instructies: Ga terug naar Eclipse. (Gebruik de 'esc' toets om Minecraft te verl
 
 === Verschillende voorwerpen
 
-Instructies: Ga terug naar Eclipse. Maak de code voor het aanmaken van verschillende voorwerpen voor verschillende chat-teksten
+Instructies: Ga terug naar Eclipse. Maak de code voor het aanmaken van verschillende voorwerpen voor verschillende chat-teksten.
 
 [[Different_Chat_Items_Code]]
 .Code voor Verschillende Chat Items
@@ -207,11 +207,20 @@ public void giveItems(ServerChatEvent event){
 }
 ----
 ====
-Probeer je aanpassingen uit.
+
+**Spel spelen:**
+
+. Stop de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Start de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Selecteer je wereld.
+. Druk op `T` om het chatvenster te openen.
+. Schrijf een chatbericht waarin het woord `aardappel` of `diamant` of beide voorkomt.
+. Je moet een stapel aardappelen of diamanten of allebei ontvangen.
+
 
 === Meerdere Voorwerpen
 
-Instructies: Ga terug naar Eclipse. Het maken van meerdere voorwerpen voor chat-tekst
+Instructies: Ga terug naar Eclipse. Meerdere verschillende voorwerpen krijgen bij bepaalde chat-teksten.
 
 [[Multiple_Chat_Items_Code]]
 .Code Meerdere Chat Voorwerpen
@@ -220,15 +229,22 @@ Instructies: Ga terug naar Eclipse. Het maken van meerdere voorwerpen voor chat-
 ----
 @SubscribeEvent
 public void giveItems(ServerChatEvent event){
-	if (event.message.contains("potato")) {
+	if (event.message.contains("aardappel")) {
 		event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
 		event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
 	}
 }
 ----
 ====
-Probeer je aanpassingen uit.
 
+**Spel spelen:**
+
+. Stop de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Start de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Selecteer je wereld.
+. Druk op `T` om het chatvenster te openen.
+. Schrijf een chatbericht waarin het woord `aardappel` voorkomt.
+. Je krijgt een stapel van 64 aardappelen en 64 diamanten.
 
 = Ender Dragon tot leven wekken
 
@@ -264,29 +280,48 @@ public class DragonSpawner {
 ----
 ====
 
-Registreer vervolgens deze klasse zoals je deed met Chat items, maar gebruik de regel zoals getoond in <<Dragon_Spawner_Registering>>.
+Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Dragon_Spawner_Registering>>.
 
 [[Dragon_Spawner_Registering]]
 .Registreren van Dragon Spawner code
 ====
 [source, java]
 ----
-MinecraftForge.EVENT_BUS.register(new DragonSpawner());
+package org.devoxx4kids.forge.mods;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
+public class MainMod {
+	public static final String MODID = "MyMods";
+	public static final String VERSION = "1.0";
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new ChatItems());
+		MinecraftForge.EVENT_BUS.register(new DragonSpawner());
+	}
+}
 ----
 ====
 
 **Spel spelen:**
 
+. Stop de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Start de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Selecteer je wereld.
+. Kijk in het chat-venster door op 'T' te drukken wat je spelersnaam is, dit is niet je normale minecraft-spelersnaam.
 . Gebruik de opdracht "/give <je spelersnaam> dragon_egg" om jezelf een dragon egg te geven.
 . Plaats het ei op het speelveld en een `Ender Dragon` zal tot leven komen.
 
-Kijk in het chat-venster wat je spelersnaam is, dit is niet je normale minecraft-spelersnaam.
+=== Wijzig block/voorwerp
 
-=== Wijzig block/entity
+**Doel:** Elke keer als een speler een 'Sponge' plaatst een 'Squid' tot leven laten komen.
 
-**Doel:** Een block maken waarmee je een entity tot leven kan wekken.
-
-**Instructies:** Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een andere entity tot leven komen. Verander met onderstaande code een `sponge` block in een `EntitySquid` (=inktvis). Gebruik Ctrl + spatie om de lijst met voorwerpen weer te geven. (zie 'Belangrijke informatie voor de workshop')
+**Instructies:** Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een andere voorwerp tot leven komen. Met de onderstaande code laat je een 'Squid' (=inktvis) tot leven komen wanneer je een `sponge` block plaatst. Gebruik Ctrl + spatie om de lijst met voorwerpen weer te geven. (zie 'Belangrijke informatie voor de workshop')
 
 .Spawn Squid Code
 ====
@@ -301,11 +336,20 @@ if (event.placedBlock == Blocks.sponge.getBlockState().getBaseState()) {
 ----
 ====
 
-Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer of Cmd + Shift + O op een Mac-computer om bepaalde klasses te importeren en een aantal fouten te repareren. Wanneer je deze mod gaat testen, plaats in een `Wet Sponge`, niet een `Sponge`.
+Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer of Cmd + Shift + O op een Mac-computer om bepaalde klasses te importeren en een aantal fouten te repareren.
 
-=== Verander offsets van entities
+**Spel spelen:**
 
-**Instructie:** Verander in de code `event.pos.getX ()`, `event.pos.getY ()`, `event.pos.getZ ()` en tel er 5 bij of af om  te testen dat nieuwe voorwerpen worden geplaatst met een andere offset (=tussenafstand).
+. Stop de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Start de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Selecteer je wereld.
+. Kijk in het chat-venster door op 'T' te drukken wat je spelersnaam is, dit is niet je normale minecraft-spelersnaam.
+. Gebruik de opdracht "/give <je spelersnaam> sponge" om jezelf een sponge te geven.
+. Plaats de sponge in het water en een `Squid` (=inktvis) zal tot leven komen.
+
+=== Verander de start plek wanneer voorwerpen tot leven komen.
+
+**Instructie:** Verander in de code `event.pos.getX ()`, `event.pos.getY ()`, `event.pos.getZ ()` en tel er 5 bij of af om te testen dat nieuwe voorwerpen worden geplaatst met een andere start plek.
 
 .Afstand tussen nieuwe voorwerpen
 ====
@@ -314,6 +358,15 @@ Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer o
 dragon.setLocationAndAngles(event.pos.getX() + 5, event.pos.getY(), event.pos.getZ(), 0, 0);
 ----
 ====
+
+**Spel spelen:**
+
+. Stop de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Start de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Selecteer je wereld.
+. Kijk in het chat-venster door op 'T' te drukken wat je spelersnaam is, dit is niet je normale minecraft-spelersnaam.
+. Gebruik de opdracht "/give <je spelersnaam> dragon_egg" om jezelf een dragon egg te geven.
+. Plaats het ei op het speelveld en een `Ender Dragon` zal tot leven komen op 5 vakjes van de plek waar je hebt geklikt met je muis.
 
 == Creeper spawn-waarschuwing
 
@@ -360,14 +413,32 @@ public class CreeperSpawnAlert {
 ----
 ====
 
-Registreert het gebruik van mods door middel van de regel in <<Creeper_Spawn_Registering>>.
+Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Creeper_Spawn_Registering>>.
 
 [[Creeper_Spawn_Registering]]
 .Code Registreren Nieuwe Creeper geboorte
 ====
 [source, java]
 ----
-MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
+package org.devoxx4kids.forge.mods;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
+public class MainMod {
+	public static final String MODID = "MyMods";
+	public static final String VERSION = "1.0";
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new ChatItems());
+		MinecraftForge.EVENT_BUS.register(new DragonSpawner());
+		MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
+	}
+}
 ----
 ====
 
