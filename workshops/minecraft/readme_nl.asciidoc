@@ -402,10 +402,8 @@ public class CreeperSpawnAlert {
 
 		for (int i = 0; i < players.size(); i++) {
 			EntityPlayer player = (EntityPlayer) players.get(i);
-			if (event.world.isRemote) {
-				player.addChatMessage(new ChatComponentText(
-						EnumChatFormatting.GREEN + "Een creeper is tot leven gekomen!"));
-			}
+			player.addChatMessage(new ChatComponentText(
+					EnumChatFormatting.GREEN + "Een creeper is tot leven gekomen!"));
 		}
 	}
 
@@ -444,10 +442,13 @@ public class MainMod {
 
 **Spel spelen:**
 
-. Zorg ervoor dat je niet in de 'peaceful mode' speelt.
-. Verander de tijd naar 's nachts ("/time set night")
+. Stop de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Start de 'Client' vanuit Eclipse. (Zie 'Belangrijke informatie voor de workshop' hoe je dat moet doen.)
+. Selecteer je wereld.
+. Zorg ervoor dat je niet in de 'peaceful mode' speelt. Dit kan je wijzigingen door 'T' te toetsen en type dan '/difficulty 2'
+. Verander de tijd naar 's nachts. Dit kan je wijzigingen door 'T' te toetsen en type dan '/time set night'
 
-Je moet een heleboel berichten te zien krijgen zoals: "Een creeper is tot leven gekomen!" in lichtgroene letters. Dit bericht wordt elke keer naar jou gestuurd wanneer een creeper tot leven komt.
+Je moet een heleboel berichten te zien krijgen met de tekst: "Een creeper is tot leven gekomen!" in lichtgroene letters. Dit bericht wordt elke keer naar jou gestuurd wanneer een creeper tot leven komt.
 
 === Verander kleur/formaat van het bericht
 
@@ -465,6 +466,7 @@ player.addChatMessage(new ChatComponentText(
 ====
 
 Probeer verschillende kleuren op de plek in de code na `EnumChatFormatting`. (Gebruik 'Ctrl + Spatie', zie 'Belangrijke informatie voor de workshop')
+Vergeet niet je 'Client' opnieuw te starten wanneer je je aanpassing gaat testen.
 
 ==== Stijl wijzigen in cursief
 
@@ -479,7 +481,8 @@ player.addChatMessage(new ChatComponentText(
 ----
 ====
 
-Probeer verschillende stijlen in de code achter `EnumChatFormatting`. (Ctrl + Spatie)
+Probeer verschillende stijlen in de code achter `EnumChatFormatting`. (Gebruik 'Ctrl + Spatie', zie 'Belangrijke informatie voor de workshop')
+Vergeet niet je 'Client' opnieuw te starten wanneer je je aanpassing gaat testen.
 
 === Wijzig tekst van het bericht
 
@@ -495,15 +498,21 @@ player.addChatMessage(new ChatComponentText(
 ====
 
 Je kan zelf bepalen welke tekst er getoond wordt door de tekst tussen de aanhalingstekens te wijzigen.
+Vergeet niet je 'Client' opnieuw te starten wanneer je je aanpassing gaat testen.
 
 === Print dezelfde boodschap voor verschillende mods
 
-**Instructie:** Pas de code aan om het bericht voor de creeper ook voor een andere entity te gebruiken. Dit kan op twee manieren. Zie hieronder.
+**Instructie:** Pas de code aan om het bericht voor de creeper ook voor zombies te gebruiken. Dit kan op twee manieren.
 
-.Dezelfde berichten voor verschillende mods door gebruik te maken van 'AND' (= && tekens).
+. Door 'AND' (= && tekens). Hierbij wordt er gecontroleerd of beide controles waar zijn. Alleen dan wordt er iets mee gedaan.
+. Door 'OR (= || tekens).  Hierbij wordt er gecontroleerd of een of allebei van de twee controles waar zijn. Alleen dan wordt er iets mee gedaan.
+
+
+.Dezelfde berichten voor verschillende voorwerpen door gebruik te maken van 'AND' (= && tekens).
 ====
 [source, java]
 ----
+// Als voorwerp en geen creeper en geen zombie is, dan doen we niks. (return betekent hier, ga verder met andere code)
 if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZombie)) {
 	return;
 }
@@ -512,21 +521,20 @@ if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZom
 
 OF
 
-.Dezelfde berichten voor verschillende aanpassingen door gebruik te maken van 'OR' (= || tekens).
+.Dezelfde berichten voor verschillende voorwerpen door gebruik te maken van 'OR' (= || tekens).
 ====
 [source, java]
 ----
+// Als voorwerp of geen creeper is of geen zombie, dan doen we niks. (return betekent hier, ga verdere met andere code)
 if (!(event.entity instanceof EntityCreeper) || !(event.entity instanceof EntityZombie)) {
 	return;
 }
 ----
 ====
 
-Uitleggen AND en OR
+=== Print een andere boodschap voor verschillende aanpassingen
 
-=== Print een andere boodschap voor verschillende mods
-
-**Instructie:** Maak voor elke entity een ander bericht, doe dit zoals hieronder beschreven.
+**Instructie:** Maak voor elke voorwerp een ander bericht. Pas hiervoor de code van 'CreeperSpawnAlert.java' aan zoals hieronder.
 
 .Print een andere boodschap voor verschillende mods
 ====
@@ -557,6 +565,8 @@ public void sendAlert(EntityJoinWorldEvent event) {
 }
 ----
 ====
+
+Vergeet niet je 'Client' opnieuw te starten wanneer je je aanpassing gaat testen.
 
 === Bericht printen met alle aanpassingen
 
