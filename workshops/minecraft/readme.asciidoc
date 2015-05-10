@@ -889,6 +889,12 @@ Open up your computer's command prompt. Navigate to your Forge folder. Then, typ
 
 To install your mod on your Minecraft launcher, follow the instructions at http://www.minecraftforge.net/wiki/Installation/Universal.
 
+== Minecraft Modding Book from O'Reilly
+
+Are you interested in creating a new item, new block, new recipe, new textures, and lots of other fun mods? Then check out http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge] from O'Reilly.
+
+image::images/minecraft-modding-book-cover.png[link="http://shop.oreilly.com/product/0636920036562.do"]
+
 == Tips
 
 * When changing an item or block, delete the current item/block and press `Ctrl + Space` to pull up a list of items and blocks that are availible.
