@@ -59,7 +59,7 @@ image::images/stop-client.png[]
 == Ctrl + spatie commando
 
 We gebruiken Eclipse om onze aanpassingen in te maken. Eclipse is heel handig en je kan er snel mee werken. Vooral als je gaat werken met sneltoetsen. Sneltoesten zijn toetsenbord combinaties waarvoor je anders je muis zou gebruiken. Eentje die we veel gebruiken in de workshop is `Ctrl+Spatie`, voor een lijst met mogelijke opties. Zoals je kunt zien in het plaatje hieronder.
-Om de lijst te laten zien moet je cursor na de `.` van een klasse plaatsen. Vervolgens klik je de toesten `Ctrl + spatie` om de lijst te tonen.
+Om de lijst te laten zien moet je de cursor na de `.` van een klasse plaatsen. Vervolgens klik je de toesten `Ctrl + spatie` om de lijst te tonen.
 
 image::images/ctrlspace.png[]
 
@@ -233,7 +233,7 @@ public void giveItems(ServerChatEvent event){
 
 === Meerdere Voorwerpen
 
-Instructies: Ga terug naar Eclipse. Meerdere verschillende voorwerpen krijgen bij bepaalde chat-teksten.
+Instructies: Ga terug naar Eclipse. Maak de code om verschillende voorwerpen te krijgen bij bepaalde chat-teksten.
 
 [[Multiple_Chat_Items_Code]]
 .Code Meerdere Chat Voorwerpen
@@ -393,7 +393,7 @@ dragon.setLocationAndAngles(
 **Instructies:**  Maak een nieuwe klasse in de package met de naam `CreeperSpawnAlert`. Vervang de code in het bestand met de <<Creeper_Spawn_Code>>.
 
 [[Creeper_Spawn_Code]]
-.Code Nieuwe Creeper Span Alerrt
+.Code Nieuwe Creeper Span Alert
 [source, java]
 ----
 package org.devoxx4kids.forge.mods;
@@ -431,7 +431,7 @@ public class CreeperSpawnAlert {
 Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Creeper_Spawn_Registering>>.
 
 [[Creeper_Spawn_Registering]]
-.Code Registreren Nieuwe Creeper geboorte
+.Code Registreren Nieuwe Creeper spawn alert
 [source, java]
 ----
 package org.devoxx4kids.forge.mods;
@@ -517,8 +517,8 @@ Vergeet niet je `Client` opnieuw te starten wanneer je je aanpassing gaat testen
 
 **Instructie:** Pas de code aan om het bericht voor de creeper ook voor zombies te gebruiken. Dit kan op twee manieren.
 
-. Door `AND` (= && tekens). Hierbij wordt er gecontroleerd of beide controles waar zijn. Alleen dan wordt er iets mee gedaan.
-. Door `OR` (= || tekens).  Hierbij wordt er gecontroleerd of een of allebei van de twee controles waar zijn. Alleen dan wordt er iets mee gedaan.
+. Door `AND` (= && tekens). Hierbij wordt er gecontroleerd of beide controles waar zijn. Alleen dan wordt er iets mee gedaan. Voorbeeld bij AND: Dit betekent dat het tekstbericht bij het gebruiken van de AND code alleen getoond wordt wanneer er een creeper AND (= en) een zombie tegelijk tot leven komen. Je ziet geen bericht als er alleen een creeper tot leven komt, of alleen een zombie.
+. Door `OR` (= || tekens).  Hierbij wordt er gecontroleerd of een of allebei van de twee controles waar zijn. Alleen dan wordt er iets mee gedaan. Voorbeeld bij AND: Dit betekent dat het tekstbericht bij het gebruiken van de OR code getoond wordt wanneer er een creeper, OR (= of) een zombie tot leven komt,  OR (= of) als een creeper en een zombie tegelijk tot leven komen.
 
 
 .Dezelfde berichten voor verschillende voorwerpen door gebruik te maken van `AND` (= && tekens).
