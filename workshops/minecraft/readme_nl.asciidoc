@@ -324,7 +324,7 @@ public class MainMod {
 **Spel spelen:**
 
 . Stop de `Client` vanuit Eclipse. (Zie `Belangrijke informatie` hoe je dat moet doen.)
-. Start de `Clien` vanuit Eclipse. (Zie `Belangrijke informatie` hoe je dat moet doen.)
+. Start de `Client` vanuit Eclipse. (Zie `Belangrijke informatie` hoe je dat moet doen.)
 . Selecteer je wereld.
 . Kijk in het chat-venster door op 'T' te drukken wat je spelersnaam is, dit is niet je normale minecraft-spelersnaam.
 . Gebruik de opdracht `/give <je spelersnaam> dragon_egg` om jezelf een dragon egg te geven.
