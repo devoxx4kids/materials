@@ -1,5 +1,22 @@
 = Minecraft Modding using Forge
 
+*Table of Contents*
+
+. <<Download>>
+. <<Main_File>>
+. <<Chat_Items>>
+. <<Dragon_Spawner>>
+. <<Creeper_Alert>>
+. <<Sharp_Snowballs>>
+. <<OP_Golems>>
+. <<Rain_Water>>
+. <<Wall_Climber>>
+. <<Shotgun>>
+. <<Skeleton_War>>
+. <<Book>>
+. <<Tips>>
+
+[[Download]]
 == Download and Install
 
 . Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
@@ -18,7 +35,7 @@ video::1S1aL9Vn5eI[youtube]
 
 More details are also at http://www.minecraftforge.net/wiki/Installation/Source.
 
-== Verify
+=== Verify
 
 This is a very important step as this will confirm that you can actually start modding.
 
@@ -32,6 +49,7 @@ This is a very important step as this will confirm that you can actually start m
 . If you selected a different directory, click on ``File'', ``Switch Workspace'', and select the correct directory.
 . If you don't see Minecraft folder, the `gradlew` command might have shown some errors. Try running it again.
 
+[[Main_File]]
 == The Main File
 
 To start modding, we need a main file. This file will register all of our mods so that they actually function in the game. To make this main file, first you need to make a new package. Click on the arrow next to the "Minecraft" folder in the left side of your window. Then, right click on "src/main/java" and select New > Package. Name it `org.devoxx4kids.forge.mods`.
@@ -65,6 +83,7 @@ public class MainMod {
 
 Your main file is now ready to go.
 
+[[Chat_Items]]
 == Chat Items
 
 **Purpose:** To make the player receive items when he/she says a certain word or phrase in a chat message.
@@ -184,6 +203,7 @@ public void giveItems(ServerChatEvent event){
 ----
 ====
 
+[[Dragon_Spawner]]
 == Ender Dragon Spawner
 
 **Purpose:** To spawn an Ender Dragon every time a player places a Dragon Egg block.
@@ -267,6 +287,7 @@ dragon.setLocationAndAngles(event.pos.getX() + 5, event.pos.getY(), event.pos.ge
 ----
 ====
 
+[[Creeper_Alert]]
 == Creeper Spawn Alert
 
 **Purpose:** To alert all players when a creeper spawns.
@@ -443,6 +464,7 @@ if (!(event.entity instanceof EntityMob)) {
 
 Explain how to reach `EntityMob`.
 
+[[Sharp_Snowballs]]
 == Sharp Snowballs
 
 **Purpose:** To turn all snowballs into arrows so that they can hurt entites.
@@ -528,6 +550,7 @@ arrow.fuse = 80;
 ----
 ====
 
+[[OP_Golems]]
 == Overpowered Iron Golems
 
 **Purpose:** To add helpful potion effects to Iron Golems when they spawn in the world.
@@ -585,6 +608,7 @@ MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 
 The golem should move towards them to kill them. Normally, Iron Golems move slowly, but with the speed effect from the mod, they should move very fast.
 
+[[Rain_Water]]
 == Rain Water
 
 **Purpose:** To place water at the feet of entities when it is raining.
@@ -652,6 +676,7 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 . Use the command "/weather rain" to make the weather rainy
 . Start moving, and water should be placed wherever you go, but it will disappear quickly
 
+[[Wall_Climber]]
 == Wall Climber
 
 **Purpose:** To allow players to climb up straight walls without any blocks or other help.
@@ -724,6 +749,7 @@ MinecraftForge.EVENT_BUS.register(new WallClimber());
 . Block with a sword to go down instead of up
 . Hold Shift to stop moving up or down
 
+[[Shotgun]]
 == Arrow Shotgun
 
 **Purpose:** To turn a stick into a shotgun that fires 20 flaming arrows on right click.
@@ -799,6 +825,7 @@ MinecraftForge.EVENT_BUS.register(new ArrowShotgun());
 . Get a Stick item from your inventory
 . Right click anywhere to shoot arrows
 
+[[Skeleton_War]]
 == Skeleton War
 
 **Purpose:** To make all skeletons try to kill each other and also receive armor on spawning.
@@ -883,18 +910,21 @@ MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 . Right click on the ground two times to spawn two skeletons
 . The skeletons should have assorted pieces of armor; they should also be shooting each other
 
+[[Sharing]]
 == Sharing Your Mods
 
 Open up your computer's command prompt. Navigate to your Forge folder. Then, type the command `gradlew build`. On a Mac it may be `./gradlew build`. After the process completes, navigate to the "build" folder, then the "libs" folder inside that. In that folder, there should be a .jar file called `modid-1.0.jar`. This .jar file is all of your mods. 
 
 To install your mod on your Minecraft launcher, follow the instructions at http://www.minecraftforge.net/wiki/Installation/Universal.
 
+[[Book]]
 == Minecraft Modding Book from O'Reilly
 
 Are you interested in creating a new item, new block, new recipe, new textures, and lots of other fun mods? Then check out http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge] from O'Reilly.
 
 image::images/minecraft-modding-book-cover.png[link="http://shop.oreilly.com/product/0636920036562.do"]
 
+[[Tips]]
 == Tips
 
 * When changing an item or block, delete the current item/block and press `Ctrl + Space` to pull up a list of items and blocks that are availible.
