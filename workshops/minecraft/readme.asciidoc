@@ -425,7 +425,7 @@ Explain AND and OR
 [source, java]
 ----
 public void sendAlert(EntityJoinWorldEvent event) {
-	if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZombie)) {
+	if (!(event.entity instanceof EntityCreeper || event.entity instanceof EntityZombie)) {
 		return;
 	}
 	
