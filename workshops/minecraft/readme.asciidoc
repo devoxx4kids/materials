@@ -1,20 +1,11 @@
 = Minecraft Modding using Forge
+:toc:
+:toc-placement!:
 
-*Table of Contents*
+This workshops shows how to get started with Minecraft Modding using
+Forge.
 
-. <<Download>>
-. <<Main_File>>
-. <<Chat_Items>>
-. <<Dragon_Spawner>>
-. <<Creeper_Alert>>
-. <<Sharp_Snowballs>>
-. <<OP_Golems>>
-. <<Rain_Water>>
-. <<Wall_Climber>>
-. <<Shotgun>>
-. <<Skeleton_War>>
-. <<Book>>
-. <<Tips>>
+toc::[]
 
 [[Download]]
 == Download and Install
