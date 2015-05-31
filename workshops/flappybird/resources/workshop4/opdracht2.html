@@ -1,0 +1,50 @@
+<!doctype html>
+
+<head>
+
+<style>
+#game {
+   border : 1px solid black;
+
+}
+
+</style>
+
+
+<script>
+    var y = 0;
+
+   var blockObj = {x: 10, y:0};
+   var score = 0;
+
+  function init() {
+      setInterval(dropBlock, 100);
+  }
+
+
+  function dropBlock() {
+     var canvas = document.getElementById("game");
+     var ctx = canvas.getContext("2d");
+
+     // clear canvas
+     ctx.clearRect(blockObj.x,blockObj.y,50,50);
+
+     blockObj.y += 10;
+
+     // draw block on new position
+     ctx.save();
+     ctx.fillStyle = 'red';
+     ctx.fillRect (blockObj.x,blockObj.y, 50, 50);
+
+  }
+
+
+</script>
+
+</head>
+
+
+<body onload="init()">
+<canvas id="game" width="800" height="600">
+
+</canvas>
