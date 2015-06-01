@@ -1,0 +1,178 @@
+
+<!doctype html>
+
+<head>
+
+<style>
+#game {
+   border : 1px solid black;
+   background : url(background.png);
+}
+
+</style>
+
+
+<script>
+    var y = 0;
+
+    var personObj = {x: 250, y:500};
+   var blockObj = {x: 10, y:0};
+  var score = 0;
+
+  function init() {
+      setInterval(dropBlock, 100);
+    drawPerson();
+    drawScoreBoard();
+    }
+
+
+    function drawScoreBoard()
+  {
+     var canvas = document.getElementById("game");
+     var ctx = canvas.getContext("2d");
+
+     ctx.save();
+     ctx.fillStyle = "rgb(0,0,0)";
+       ctx.fillRect (600, 10, 190,580);
+
+     ctx.fillStyle    = '#fff';
+     ctx.font         = '30px sans-serif';
+     ctx.textBaseline = 'top';
+     ctx.fillText ('Score', 620, 150);
+     ctx.fillText (score, 620, 175);
+
+     ctx.drawImage(logo,605, 15);
+     ctx.restore();
+
+
+  }
+
+
+    function drawCollision()
+  {
+    var canvas = document.getElementById("game");
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle    = '#00f';
+    ctx.font         = 'italic 30px sans-serif';
+    ctx.textBaseline = 'top';
+    ctx.fillText ('Boem!', 200, 200);
+    score = score + 10;
+    drawScoreBoard();
+  }
+
+
+    function checkCollision()
+  {
+
+     if (blockObj.y > personObj.y-50   && personObj.x > blockObj.x  && personObj.x < blockObj.x + 50 )
+     {
+     drawCollision();
+     blockObj.y = 0;
+     blockObj.x = Math.floor(Math.random()*550);
+     drawPerson();
+     }
+
+
+  }
+
+  function checkBlockAtFloor()
+  {
+     if (blockObj.y > 600 )
+     {
+    blockObj.y = 0;
+    blockObj.x = Math.floor(Math.random()*550);
+     }
+  }
+
+    function dropBlock(){
+     var canvas = document.getElementById("game");
+     var ctx = canvas.getContext("2d");
+
+     // clear canvas
+     ctx.clearRect(blockObj.x,blockObj.y,50,50);
+
+     // new position
+     blockObj.y += 10;
+
+     // draw block on new position
+     ctx.save();
+    /* ctx.fillStyle = "rgb(200,0,0)";
+       ctx.fillRect (blockObj.x,blockObj.y, 50, 50);
+    */
+
+     ctx.drawImage(fruit,blockObj.x, blockObj.y);
+        ctx.restore();
+
+     // check if there is a collision
+     checkCollision();
+
+     // check if block reached the floor
+     checkBlockAtFloor();
+
+   }
+
+
+  function drawPerson(){
+    var ctx = document.getElementById('game').getContext("2d");
+    //ctx.drawImage(knight, knightObj.x, knightObj.y);
+    //setTimeout(drawKnight,300);
+    var img = new Image();
+    img.onload = function(){
+          ctx.drawImage(img,personObj.x, personObj.y);
+    }
+
+    var head = new Image();
+    head.onload = function(){
+          ctx.drawImage(head,personObj.x, personObj.y-38);
+    }
+    img.src="images/person.png";
+    head.src="images/head.png";
+
+  }
+
+  function movePerson(dir)
+  {
+    var ctx = document.getElementById('game').getContext("2d");
+      ctx.clearRect(personObj.x,personObj.y-50,100,150);
+      if(dir == 'left'){
+
+        if(personObj.x > 0){
+          personObj.x-=10;
+        }
+      }
+      if(dir == 'right'){
+        if(personObj.x < 500){
+          personObj.x+=10;
+          }
+      }
+      drawPerson();
+  }
+
+  function doKeyDown(evt){
+       //alert(evt.keyCode);
+    if(evt.keyCode == 37) {
+      movePerson('left')
+    }
+    if(evt.keyCode == 39) {
+       movePerson('right')
+    }
+
+  }
+
+  window.addEventListener('keydown',doKeyDown,false)
+</script>
+
+</head>
+
+
+<body onload="init();">
+<canvas id="game" width="800" height="600">
+
+</canvas>
+
+<img id="fruit" src="images/fruit-4.50.png" style="display : none" >
+<img id="logo" src="images/catchme.png" style="display : none" >
+
+</body>
+
+</html>
