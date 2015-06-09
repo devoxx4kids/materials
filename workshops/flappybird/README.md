@@ -6,7 +6,7 @@ The workshop 'Create your own Flappy Bird' is a workshop for kids to learn how t
 
 The game will be created with HTML5, CSS and Javascript. Also we use a library call Phaser.IO. First we'll give a short introduction into these technologies and then we start coding!
 
-
+  
 
 ##Instructions
 
