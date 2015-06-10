@@ -10,7 +10,16 @@ The game will be created with HTML5, CSS and Javascript. Also we use a library c
 
 ##Instructions
 
-TODO
+
+* Extra help is included in the side notes of the presentation.
+* First explain who you are and tell something about why coding is your passion.
+* Than you can start with the Future Lesson and show what is possible now and in  the near future.
+* A small introduction into HTML5, CSS
+* A small introduction into coding, programming. For example what is programming exactly.
+* Build your own Flappy Bird. The game is build with Phaser.io (http://www.phaser.io), a framework for building games.
+* Step by step we're going to build the game. In few assignments we have build the game. All the resources you can find here :
+
+
 
 
 ##Author
