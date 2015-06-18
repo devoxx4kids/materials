@@ -202,7 +202,7 @@
 							<h1>CSS</h1>
 
 							<aside class="notes">
-
+									An small introduction into CSS
 							</aside>
 				</section>
 
@@ -248,7 +248,7 @@
 				<section>
 					<h2 translate>Assignment 2 </h2>
 					<h3 translate>Make your website more beautifull</h3>
-					<p translate>Goto : http://www.cssdesk.com</p>
+					<p translate>Goto: http://www.cssdesk.com</p>
 
 					<aside class="notes">
 
@@ -275,6 +275,8 @@
 
 
 						<aside class="notes">
+							 Explain what is a programming language exactly.
+							 You can't use plain english and you have to be precise.
 
 						</aside>
 				</section>
@@ -287,6 +289,10 @@
 	var z = x + y;
 
 </code></pre>
+
+						<aside class="notes">
+
+						</aside>
 				</section>
 
 				<section>
@@ -295,6 +301,10 @@
 	var age = prompt("What's your age");
 
 </code></pre>
+
+				<aside class="notes">
+
+				</aside>
 				</section>
 
 				<section>
@@ -307,11 +317,20 @@
 	var c = myFunction(2, 3);
 
 </code></pre>
+				<aside class="notes">
+
+				</aside>
+
 				</section>
 
 
 				<section data-background="img/flappy_bird.jpg">
 					<h1 style="color : white">Flappy Bird</h1>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 
@@ -319,6 +338,11 @@
 					<h1 translate>Editor</h1>
 					<h1>Brackets</h1>
 					<img src="img/brackets-ed.jpeg"/>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
@@ -328,21 +352,41 @@
 						<li>main.js</li>
 						<li>phaser.min.js</li>
 					</ul>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
 					<h1 translate>Library</h1>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
 					<h2>Phaser Framework</h2>
 					<img src="img/phaser.png" style="background : white; height : 400px;">
 					<h3>www.phaser.io</h3>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 
 				<section>
 					 <h1 translate>Start</h1>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 
@@ -353,6 +397,11 @@
 <div id="gameDiv"> </div>
 
 </code></pre>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
@@ -365,6 +414,11 @@
 							ctx.fillStyle = 'yellow';
 							ctx.fillRect (200,200, 50, 50);
 					</script>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 
@@ -372,10 +426,20 @@
 					<h2 translate>Assignment 3</h2>
 					<h3>Download 'Flappy Bird' </h3>
 					<h3>http://www.codingstuff.org/teach</h3>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
 					<h1 translate>The bird</h1>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
@@ -385,6 +449,11 @@
 						<li>update()</li>
 						<li>jump()</li>
 					</ul>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
@@ -396,6 +465,11 @@ game.stage.backgroundColor = '#71c5cf';
 // Load the bird sprite
 game.load.image('bird', bird);
 					</code></pre>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
@@ -416,6 +490,12 @@ var spaceKey = this.game.input.keyboard
 			.addKey(Phaser.Keyboard.SPACEBAR);
 spaceKey.onDown.add(this.jump, this);
 					</code></pre>
+
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 
@@ -435,16 +515,33 @@ if (this.bird.inWorld == false)
 // Add a vertical velocity to the bird
 this.bird.body.velocity.y = -350;
 					</code></pre>
+
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 
 				<section>
 					<h2 translate>Assignment 4</h2>
 					<h3>Open assignment 4 &amp; change the  'bird'</h3>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
 					<h1 translate>The Pipes</h1>
+
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
@@ -453,6 +550,11 @@ this.bird.body.velocity.y = -350;
 game.load.image('pipe', 'pipe');
 
 </code></pre>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
@@ -464,6 +566,11 @@ this.pipes.enableBody = true;  // Add physics to the group
 this.pipes.createMultiple(20, 'pipe'); // Create 20 pipes
 
 </code></pre>
+
+				<aside class="notes">
+
+				</aside>
+
 				</section>
 
 
@@ -490,6 +597,10 @@ pipe.outOfBoundsKill = true;
 
 </code></pre>
 
+					<aside class="notes">
+
+					</aside>
+
 
 				</section>
 
@@ -509,6 +620,11 @@ addRowOfPipes: function() {
 
 
 </code></pre>
+
+				<aside class="notes">
+
+				</aside>
+
 				</section>
 
 
@@ -519,16 +635,31 @@ addRowOfPipes: function() {
 this.timer = game.time.events.loop(1500, this.addRowOfPipes, this);
 
 </code></pre>
+
+				<aside class="notes">
+
+				</aside>
+
 				</section>
 
 
 				<section>
 					<h2 translate>Assignment 5</h2>
 					<h3>Open assignment 5 &amp; change the 'pipes'</h3>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
 					<h2 translate>Scores</h2>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 				<section>
@@ -548,6 +679,11 @@ this.score += 1;
 this.labelScore.text = this.score;
 
 </code></pre>
+
+					<aside class="notes">
+
+					</aside>
+
 				</section>
 
 
