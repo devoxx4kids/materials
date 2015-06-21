@@ -1,0 +1,1686 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Don't Dictate, Evaluate! An Introduction to Functional Programming with
+ Dr.
+ Racket
+\end_layout
+
+\begin_layout Part
+Introduction
+\end_layout
+
+\begin_layout Section
+Ground Rules Reminder
+\end_layout
+
+\begin_layout Itemize
+You must be respectful and courteous toward everyone in this room.
+\end_layout
+
+\begin_layout Itemize
+You must keep your attention focused on functional programming with Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket.
+\end_layout
+
+\begin_layout Itemize
+Call me 
+\begin_inset Quotes eld
+\end_inset
+
+mulhern
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+Dr.
+ Mulhern
+\begin_inset Quotes erd
+\end_inset
+
+ if you like formality.
+\end_layout
+
+\begin_layout Section
+Expectations
+\end_layout
+
+\begin_layout Standard
+You will not write an amazing application today, but you will achieve some
+ pretty neat visual effects.
+ You will learn about a way of programming that is a little different from
+ what is most normal or typical and get a chance to experiment with it with
+ some guidance.
+ You will not get a complete introduction to Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket or functional programming, because this tutorial is only two hours
+ and two hours is not enough for a complete introduction.
+ But I hope the experience will be enough to open your minds to some pretty
+ subtle new ideas and to a hugely valuable way of thinking and programming.
+\end_layout
+
+\begin_layout Section
+Getting the Most Out of this Tutorial
+\end_layout
+
+\begin_layout Standard
+This tutorial is not a cookbook-style tutorial where you will follow the
+ same directions as everybody else and, if you get it right, end up with
+ the same program at the end.
+ Simple Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket programs that do neat things are very easy to write.
+ So I will focus on teaching you just enough so that you can experiment
+ with existing programs, and come up with new and interesting variations
+ on these programs.
+ The format of the tutorial will be something like the following.
+\end_layout
+
+\begin_layout Standard
+First, I will show you a few things.
+ Do not feel that you have to follow along while I show you, I have tried
+ to put everything you need to know in this document.
+ After a short time, I'll stop and ask you to copy what I've done, and then
+ experiment a little on your own.
+ If you run into trouble, ask someone sitting near you for help.
+ If nobody near you can help, ask me.
+ Make sure to try out a few different things.
+ Eventually, I will ask you all to stop, and I'll explain to you what you
+ have done.
+ Then we'll go through the whole cycle again a few more times.
+\end_layout
+
+\begin_layout Standard
+There are some sections marked 
+\begin_inset Quotes eld
+\end_inset
+
+Extra
+\begin_inset Quotes erd
+\end_inset
+
+.
+ You do not need to do those to do the next part of the tutorial, but you
+ should feel free to do them if you have extra time.
+\end_layout
+
+\begin_layout Standard
+Do not try to copy and paste images or example Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket expressions from this document.
+ Type them in instead.
+ The Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket expressions in the document do not copy well to Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket and you will do better if you get the practice of typing them, anyway.
+\end_layout
+
+\begin_layout Standard
+Make sure to save your files to your USB key before you move on to the next
+ step.
+\end_layout
+
+\begin_layout Part
+Let's Get Started
+\end_layout
+
+\begin_layout Section
+Getting Started
+\end_layout
+
+\begin_layout Subsection
+Setup
+\end_layout
+
+\begin_layout Standard
+Start Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket and make sure that your environment is set up correctly.
+\end_layout
+
+\begin_layout Enumerate
+Start a new file.
+\end_layout
+
+\begin_layout Enumerate
+For your language, select 
+\begin_inset Quotes eld
+\end_inset
+
+Intermediate Student with Lambda
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Hint: If you see a yellow warning bar at the bottom your changes have not
+ yet been applied.
+ Press the 
+\begin_inset Quotes eld
+\end_inset
+
+Run
+\begin_inset Quotes erd
+\end_inset
+
+ button to apply your changes.
+\end_layout
+
+\begin_layout Subsection
+Loading the Racket Documentation into Your Browser
+\end_layout
+
+\begin_layout Standard
+To load the documentation, choose 
+\begin_inset Quotes eld
+\end_inset
+
+Help
+\begin_inset Quotes erd
+\end_inset
+
+ and then 
+\begin_inset Quotes eld
+\end_inset
+
+Racket Documentation
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Your browser will open to display the documentation on your laptop.
+ After the documentation page is done loading, look for 
+\begin_inset Quotes eld
+\end_inset
+
+How to Design Programs Teachpacks
+\begin_inset Quotes erd
+\end_inset
+
+ and then for the 
+\begin_inset Quotes eld
+\end_inset
+
+2e
+\begin_inset Quotes erd
+\end_inset
+
+ teachpacks specifically.
+\end_layout
+
+\begin_layout Subsection
+Entering Values
+\end_layout
+
+\begin_layout Standard
+Enter some 
+\emph on
+values
+\emph default
+ at the prompt.
+ Press the return key after you enter each value.
+\end_layout
+
+\begin_layout Enumerate
+The easiest values to enter are numbers, e.g., 1, -3, 2.14, 3/5, 1e10, 1+3i.
+ The last two numbers are slightly unusual.
+ The first is a number represented using scientific notation and the second
+ is a complex number, but they are both just numbers.
+ You can enter all these numbers just by typing at the keyboard.
+\end_layout
+
+\begin_layout Enumerate
+Next easiest are images.
+ See the Racket Planet Cute Images documentation for a few simple images.
+ You can enter these images just by copying the image and then pasting it
+ at the prompt.
+\end_layout
+
+\begin_layout Standard
+Make sure that you are entering your code in the 
+\begin_inset Quotes eld
+\end_inset
+
+Interactions Pane
+\begin_inset Quotes erd
+\end_inset
+
+.
+ If there gets to be too much clutter on your screen, just press the 
+\begin_inset Quotes eld
+\end_inset
+
+Run
+\begin_inset Quotes erd
+\end_inset
+
+ button to clear it.
+\end_layout
+
+\begin_layout Standard
+Note that the 
+\emph on
+intepreter
+\emph default
+ responds, every time, by displaying the value that you entered.
+ If you entered multiple values before pressing the return key it displays
+ one value, then the next, and so on.
+\end_layout
+
+\begin_layout Subsubsection
+Extra!
+\end_layout
+
+\begin_layout Standard
+Next easiest are strings.
+ Strings are just lists of characters.
+ However, Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket needs some extra information to distinguish a string from other things.
+ So that Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket can tell that you mean a list of characters, you must surround your
+ list of characters with a pair of double quotation marks, so
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Lisp,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+"I am an example string"
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+means to Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket an 
+\emph on
+I
+\emph default
+, followed by a space, followed by an 
+\emph on
+a
+\emph default
+, then an 
+\emph on
+m
+\emph default
+, and so forth.
+ Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket displays a string value with surrounding quotation marks, so that
+ you will understand that the value is a string.
+\end_layout
+
+\begin_layout Section
+Next Steps: Programming, i.e, evaluating
+\end_layout
+
+\begin_layout Subsection
+Importing Some Useful Libraries
+\end_layout
+
+\begin_layout Standard
+Add the following additional lines at the top of your Definitions Pane.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(require 2htdp/image)
+\end_layout
+
+\begin_layout Plain Layout
+
+(require 2htdp/universe)
+\end_layout
+
+\begin_layout Plain Layout
+
+(require 2htdp/planetcute)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These are all libraries of useful names that you will find convenient.
+\end_layout
+
+\begin_layout Subsection
+Entering Non-Value Expressions
+\end_layout
+
+\begin_layout Standard
+Enter some non-value expressions at the prompt.
+ Pay most attention to expressions that evaluate to images.
+ Note that expressions that are not values are always surrounded with parenthese
+s.
+\end_layout
+
+\begin_layout Subsubsection
+Expressions where the value is a number
+\end_layout
+
+\begin_layout Standard
+You can do the usual arithmetic computations, like adding, subtracting,
+ and so forth.
+ However, Dr.
+ Racket expects a different 
+\emph on
+syntax
+\emph default
+ than you may be used to.
+ All arithmetic expression follow an obvious pattern.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+lstparams "language=Lisp"
+inline true
+status open
+
+\begin_layout Plain Layout
+
+(+ 2 32)
+\end_layout
+
+\end_inset
+
+ means the sum of 2 and 32
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+\begin_inset listings
+lstparams "language=Lisp"
+inline true
+status open
+
+\begin_layout Plain Layout
+
+(* 2 32)
+\end_layout
+
+\end_inset
+
+
+\emph default
+ means the product of 2 and 32
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+\begin_inset listings
+lstparams "language=Lisp"
+inline true
+status open
+
+\begin_layout Plain Layout
+
+(/ 2 32)
+\end_layout
+
+\end_inset
+
+
+\emph default
+ means 2 divided by 32
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+\begin_inset listings
+lstparams "language=Lisp"
+inline true
+status open
+
+\begin_layout Plain Layout
+
+(remainder 37 14)
+\end_layout
+
+\end_inset
+
+
+\emph default
+ means the amount that is left over after 14 is subtracted from 37 as many
+ times as possible, 9
+\end_layout
+
+\begin_layout Standard
+The remainder operator is often not so important in your mathematics classes,
+ but is very handy in the writing of computer programs.
+\end_layout
+
+\begin_layout Subsubsection
+Expressions where the value is an image
+\end_layout
+
+\begin_layout Standard
+There are lots of expressions where the value is an image.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+lstparams "language=Lisp"
+inline true
+status open
+
+\begin_layout Plain Layout
+
+(circle 32 "solid" "red")
+\end_layout
+
+\end_inset
+
+ evaluates to an image: a red, filled in, circle with radius 32
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+lstparams "language=Lisp"
+inline true
+status open
+
+\begin_layout Plain Layout
+
+(square 32 "outline" "blue")
+\end_layout
+
+\end_inset
+
+ evaluates to a square with some different properties
+\end_layout
+
+\begin_layout Standard
+You can construct many more shapes than this.
+ The Racket Documentation describes them all.
+\end_layout
+
+\begin_layout Standard
+Besides circle and square, radial-star makes some particularly nice images,
+ but star, rhombus, rectangle, ellipse, and triangle are also nice.
+ Try out different colors as well.
+ Dr.
+ Racket knows about magenta, lavender, and crimson, but not puce.
+\end_layout
+
+\begin_layout Subsubsection
+Extra!
+\end_layout
+
+\begin_layout Standard
+You may already know about the RGB representation of colors.
+ An expression that evaluates to a color can be constructed with the 
+\emph on
+make-color
+\emph default
+ function.
+ For example, 
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(make-color 255 0 0)
+\end_layout
+
+\end_inset
+
+ makes the color red, because it gives the maximum possible value to the
+ red component of the color and the value 0 to the other two components.
+ So the expression 
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(circle 30 "solid" (make-color 255 0 0))
+\end_layout
+
+\end_inset
+
+ evaluates to exactly the same value as the expression 
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(circle 30 "solid" "red")
+\end_layout
+
+\end_inset
+
+.
+ You can make expressions with make-color using three numbers or four numbers.
+ If you use four numbers, the fourth number represents opacity.
+\end_layout
+
+\begin_layout Standard
+Note that the representation of the value of the expression is just the
+ expression itself; when there is no obvious better way to represent a value,
+ Dr.
+ Racket chooses the simplest expression that constructs the value.
+\end_layout
+
+\begin_layout Standard
+The best way to see what the color looks like is to make a shape of that
+ color.
+ 
+\end_layout
+
+\begin_layout Section
+Making Complex Expressions
+\end_layout
+
+\begin_layout Standard
+This section is about building up more complex expressions from simple expressio
+n.
+\end_layout
+
+\begin_layout Subsection
+Making Your First Complex Shape
+\end_layout
+
+\begin_layout Standard
+Open the file 
+\begin_inset Quotes eld
+\end_inset
+
+complex-shapes' in Dr.
+ Racket.
+ You will find this file in the examples folder (
+\begin_inset CommandInset href
+LatexCommand href
+target "./examples"
+type "file:"
+
+\end_inset
+
+).
+ Press the 
+\begin_inset Quotes eld
+\end_inset
+
+Run
+\begin_inset Quotes erd
+\end_inset
+
+ button.
+ At the prompt enter my-star and my-circle.
+ The interpreter will display a star and a circle.
+ Enter the expression
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(overlay my-star my-circle)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+.
+ The value of this expression is a star overlayed on a circle.
+ Enter 
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(scale 10 my-star)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+.
+ The value of this expression is a star ten times bigger than the value
+ of my-star.
+\end_layout
+
+\begin_layout Subsection
+Anatomy of the Definitions File
+\end_layout
+
+\begin_layout Standard
+There are only two lines in the file.Each of these lines is a 
+\emph on
+definition
+\emph default
+.
+ A definition assigns a value to a name.
+ Each definition starts with 
+\emph on
+define
+\emph default
+, then a name, and then an expression.
+ It is the 
+\emph on
+value
+\emph default
+ of the expression, not the expression itself, that the name stands for.
+ Wherever you need to, you can always use the name, my-star, in place of
+ the star image that it stands for.
+\end_layout
+
+\begin_layout Subsection
+More Expressions and More Definitions
+\end_layout
+
+\begin_layout Standard
+Experiment with the other ways of writing complex image expressions in Dr.
+ Racket.
+ The Dr.
+ Racket Documentation describes them, with examples.
+ Besides overlay, beside and above are quite nice for combining multiple
+ images.
+ Besides scale, rotate, flip-horizontal, and flip-vertical are nice ways
+ for writing expressions with a single image.
+\end_layout
+
+\begin_layout Standard
+Here are a few simple examples to get you started.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sample-images/pinwheel1.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sample-images/necker.png
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sample-images/game-scene.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sample-images/dollar.png
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For working with Planet Cute images, overlay/xy and beside/align are often
+ helpful.
+\end_layout
+
+\begin_layout Subsection
+Extra!
+\end_layout
+
+\begin_layout Itemize
+Experiment with textual images.
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(text "Hello" 32 "blue")
+\end_layout
+
+\end_inset
+
+ evaluates to a blue string of moderate size.
+ You can write expressions with textual images in the same way that you
+ can write expressions with any other kind of image.
+\end_layout
+
+\begin_layout Itemize
+Experiment with using make-color when writing image expressions.
+\end_layout
+
+\begin_layout Section
+The Really Important Point
+\end_layout
+
+\begin_layout Standard
+In a functional programming language 
+\emph on
+every expression
+\emph default
+ has a value.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Well, not unless the language is 
+\emph on
+purely
+\emph default
+ functional, like Haskell.
+ But we are using a functional core of racket, so every expression that
+ you will use today will evaluate to a value.
+\end_layout
+
+\end_inset
+
+ Contrast with Scratch (and many other languages) where some expressions
+ have a value but quite as many do not.
+\end_layout
+
+\begin_layout Part
+Project: A Simple Animation
+\end_layout
+
+\begin_layout Standard
+This part of the workshop is about very simple animations and the essential
+ concept of 
+\emph on
+functions
+\emph default
+.
+\end_layout
+
+\begin_layout Section
+Getting Started
+\end_layout
+
+\begin_layout Subsection
+Running Your First Animation
+\end_layout
+
+\begin_layout Standard
+Open the file 
+\begin_inset Quotes eld
+\end_inset
+
+expanding-circle.rkt
+\begin_inset Quotes erd
+\end_inset
+
+ in Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket.
+ You will find this file in the examples folder (
+\begin_inset CommandInset href
+LatexCommand href
+target "./examples"
+type "file:"
+
+\end_inset
+
+) of this handout directory.
+ Press the 
+\begin_inset Quotes eld
+\end_inset
+
+Run
+\begin_inset Quotes erd
+\end_inset
+
+ button.
+ At the prompt, enter
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(animate circle-on-background)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and press the return key.
+ This animation runs forever.
+ When you become tired of it, close it.
+ Notice that when you close it, the interpreter displays a number; clearly
+ the value of the expression is a number.
+\end_layout
+
+\begin_layout Subsection
+The Anatomy of Your First Animation
+\end_layout
+
+\begin_layout Standard
+Look at the code in the file.
+ There are only 5 distinct items .
+ Three of the blocks start with 
+\emph on
+define
+\emph default
+, and two with 
+\emph on
+check-expect
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+The expression in the first definition is just like the expressions that
+ you have already worked with.
+\end_layout
+
+\begin_layout Standard
+The two other expressions are lambda-expressions.
+ These represent 
+\emph on
+functions
+\emph default
+.
+ Each of the function definitions has a test block below it, which shows
+ how the function is used, and what it is expected to do.
+ Each of the tests starts with check-expect, then an expression which uses
+ the function name, then a different expression which evaluates to the same
+ value as the first expression.
+\end_layout
+
+\begin_layout Standard
+Use the tests as examples that show you how to form expressions with the
+ function names.
+ In each case, the expression should evaluate to an image.
+ Try several different expressions that use the function names.
+ For these functions it turns out that every different expression has a
+ different value.
+\end_layout
+
+\begin_layout Subsection
+The animate function
+\end_layout
+
+\begin_layout Standard
+You probably already know that a movie is nothing but a sequence of still
+ frames.
+ The frames are displayed so rapidly that your brain interprets the sequence
+ of images it sees as continuous motion.
+ The animate function works just like a movie.
+ The frames it constructs and displays are the values of the expressions
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(circle-on-background 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+(circle-on-background 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+(circle-on-background 2)
+\end_layout
+
+\begin_layout Plain Layout
+
+(circle-on-background 3)
+\end_layout
+
+\begin_layout Plain Layout
+
+(circle-on-background 4)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and so forth.
+\end_layout
+
+\begin_layout Standard
+The pattern here is pretty obvious; what changes in the expression is the
+ number, which goes up by 1 every time.
+ Of course, the value of the expression changes accordingly, and the circle
+ on the background gets larger as the number increases.
+\end_layout
+
+\begin_layout Section
+Modifying the Animation
+\end_layout
+
+\begin_layout Standard
+Save your definitions file with a new name, like 
+\begin_inset Quotes eld
+\end_inset
+
+my-animation.rkt
+\begin_inset Quotes erd
+\end_inset
+
+ and experiment with modifying the definitions to change the animation.
+ Experiment by modifying your definitions in small steps.
+ You can do really simple things, like modifying the color or size of the
+ background.
+ You can make the circle grow more slowly or more rapidly using some very
+ simple arithmetic.
+ You can make the size of the circle fluctuate in interesting ways using
+ somewhat more complex arithmetic.
+ You can change the type of shape that gets displayed.
+ You can use Planet Cute images instead of geometric shapes.
+\end_layout
+
+\begin_layout Section
+Getting Rid of Failing Tests
+\end_layout
+
+\begin_layout Standard
+If you change your animation substantially, your tests will probably fail.
+ If you get rid of the tests, your untested code will be highlighted in
+ yellow/black.
+ Use the 
+\begin_inset Quotes eld
+\end_inset
+
+Clear Error Highlights
+\begin_inset Quotes erd
+\end_inset
+
+ menu item to clear this, if it bothers you.
+ Eventually, you will wish to change your language to the full racket language.
+ You can do this by selecting the Racket language, and putting the line
+ 
+\begin_inset listings
+lstparams "language=Lisp"
+inline true
+status open
+
+\begin_layout Plain Layout
+
+#lang racket
+\end_layout
+
+\end_inset
+
+ at the top of your file.
+\end_layout
+
+\begin_layout Section
+Extra!
+\end_layout
+
+\begin_layout Itemize
+Use the fact that colors can be made from numbers to write an animation
+ where the color changes instead of or in addition to the size of the circle.
+ Since the maximum value for any of the RGB values is 255, the remainder
+ operator is very useful to prevent your animation from crashing.
+\end_layout
+
+\begin_layout Itemize
+Use overlay/xy or overlay/offset to move a shape on the background.
+\end_layout
+
+\begin_layout Section
+The Really Important Point
+\end_layout
+
+\begin_layout Standard
+In a functional language, functions are values.
+ This means that a function can be treated in exactly the same way as any
+ other value, e.g., 0.
+ This is true of all functional languages, even those that are not purely
+ functional, because it is so very handy.
+\end_layout
+
+\begin_layout Part
+Extra: A Simple GUI Application
+\end_layout
+
+\begin_layout Section
+Getting Started
+\end_layout
+
+\begin_layout Standard
+Open the file 
+\begin_inset Quotes eld
+\end_inset
+
+gui-app.rkt
+\begin_inset Quotes erd
+\end_inset
+
+ in Dr.
+\begin_inset space \space{}
+\end_inset
+
+ Racket.
+ You will find this file in the examples folder (
+\begin_inset CommandInset href
+LatexCommand href
+target "./examples"
+type "file:"
+
+\end_inset
+
+) of this handout directory.
+ Press the 
+\begin_inset Quotes eld
+\end_inset
+
+Run
+\begin_inset Quotes erd
+\end_inset
+
+ button.
+ At the prompt, enter
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(my-gui-app circle-on-background)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and press the return key.
+ It does exactly the same thing as the expanding circle animation.
+ The big difference is that my-gui-app does not use animate, it uses big-bang.
+ animate is a simple function for making simple animations; big-bang is
+ a really general function for making GUIs.
+ The next thing to do is to extend my-gui-app so that it reacts to key presses.
+\end_layout
+
+\begin_layout Subsection
+The Anatomy of this GUI
+\end_layout
+
+\begin_layout Subsubsection
+Understanding halve
+\end_layout
+
+\begin_layout Standard
+Look at the code in the file.
+ There is only one new definition, halve.
+ Examine its test, and write a second, different one, that passes.
+ There are lots of clues to what this halve function does.
+ First, its name means to cut in half.
+ Second, note the use of the / for division in the body of halve.
+ Third, note that 150 is one half of 300.
+\end_layout
+
+\begin_layout Subsubsection
+Using halve
+\end_layout
+
+\begin_layout Standard
+Modify my-gui-app to use halve.
+ In a reasonable place near the end of the big-bang expression, insert the
+ expression
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+This is not actually an expression in the expression/value sense, but it
+ looks just like an expression.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(on-key halve)
+\end_layout
+
+\end_inset
+
+.
+ I always go in alphabetical order, so I would put the on-key expression
+ before the on-tick expression, but not before the 0.
+ big-bang has around 20 possibiliites besides on-key, on-tick, and to-draw,
+ and alphabetizing them makes it easy for me to find them.
+ Now, start my-gui-app again, and while it is running, press any key.
+ Your GUI will respond.
+\end_layout
+
+\begin_layout Subsection
+Understanding the GUI
+\end_layout
+
+\begin_layout Standard
+This GUI uses a design concept that all properly constructed GUIs use, the
+ MVC design.
+ It has three parts: model, view, and controller.
+ In this example, the model is a number.
+ The initial value of the number is 0.
+ The view is how the model is displayed; that is handled by the circle-on-backgr
+ound function.
+ The controller is everything that changes the model.
+ The controller is always an expression that evaluates to a new value of
+ the model using the old value of the model and sometimes other information.
+ In the animation, the only expression was
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(add1 world)
+\end_layout
+
+\end_inset
+
+.
+ This expression always evaluates to one more than the value of world.
+\end_layout
+
+\begin_layout Standard
+For this interactive GUI you just added an on-key expression that cause
+ the model to be divided by 2 when any key is pressed.
+\end_layout
+
+\begin_layout Standard
+Now, modify my-gui-app by adding the expression
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Lisp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(state true)
+\end_layout
+
+\end_inset
+
+and run your application again.
+ You will see an additional screen which shows the model, a single number.
+ At first, the number will be 0, then it will increase by 1.
+ When you press a key, it will be halved.
+\end_layout
+
+\begin_layout Subsection
+Modifying the GUI
+\end_layout
+
+\begin_layout Standard
+You can try any of the ideas from the previous animation section to modify
+ your GUI.
+ Remember that your on-key function is part of the controller, and the model
+ is just a single number.
+ So, any expression that starts with your on-key function must evaluate
+ to a number.
+ If it evaluates to anything else, your GUI will crash.
+ Try it and see.
+\end_layout
+
+\begin_layout Standard
+You can change the initial value of the world, and you can change the on-tick
+ function as well.
+\end_layout
+
+\begin_layout Section
+The Really Important Point
+\end_layout
+
+\begin_layout Standard
+Model, View, Controller.
+ Keep them separate.
+ If you fail, confusion abounds.
+\end_layout
+
+\begin_layout Part
+Next Steps
+\end_layout
+
+\begin_layout Section
+Some Complete Programs
+\end_layout
+
+\begin_layout Standard
+Look in the subdirectory 
+\begin_inset CommandInset href
+LatexCommand href
+target "./extras"
+type "file:"
+
+\end_inset
+
+ for a few complete examples.
+ These all start as soon as you press 
+\begin_inset Quotes eld
+\end_inset
+
+Run
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+More Resources
+\end_layout
+
+\begin_layout Standard
+Here are a bunch of options that you can try if you want to continue working
+ with Dr.
+ Racket.
+\end_layout
+
+\begin_layout Itemize
+Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket, along with lots of useful resources, is freely available online
+ at: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://racket-lang.org/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Realm of Racket
+\begin_inset Quotes erd
+\end_inset
+
+ is a book with a focus on programming games and a website here: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.realmofracket.com/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+How to Design Programs, Second Edition
+\begin_inset Quotes erd
+\end_inset
+
+ is a very complete work in progress with a website here: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.ccs.neu.edu/home/matthias/HtDP2e/
+\end_layout
+
+\end_inset
+
+.
+ It is about how to design programs in any language, but the authors, who
+ are also the developers of Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket, make use of the teaching languages and teachpacks you have used
+ today.
+\end_layout
+
+\begin_layout Itemize
+Pyret (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.pyret.org/
+\end_layout
+
+\end_inset
+
+) is an exciting spinoff project.
+ You do not need to install anything, you can develop your programs in a
+ browser.
+ Pyret uses indentation, and does not have so many parentheses, so it is
+ arguably easier for a humans to read Pyret code.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Picturing Programs
+\begin_inset Quotes erd
+\end_inset
+
+ (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://picturingprograms.com/
+\end_layout
+
+\end_inset
+
+) has about the same goals as 
+\begin_inset Quotes eld
+\end_inset
+
+How to Design Programs
+\begin_inset Quotes erd
+\end_inset
+
+.
+ It has its own graphical teachpack, which has some more capabilities than
+ the standard teachpacks we used in this class.
+\end_layout
+
+\begin_layout Itemize
+This website (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.cdf.toronto.edu/~heap/racket_lectures.html
+\end_layout
+
+\end_inset
+
+) has a bunch of instructional videos about programming in Dr.
+\begin_inset space \space{}
+\end_inset
+
+Racket.
+\end_layout
+
+\begin_layout Section
+Really Important Vocabulary
+\end_layout
+
+\begin_layout Description
+definition A definition is the assignment of a value to a name.
+\end_layout
+
+\begin_layout Description
+function A function that maps values to values.
+ In mathematics, usually written as 
+\begin_inset Formula $f(x)=x+1$
+\end_inset
+
+.
+ In Dr.
+ Racket, the same function would be written as 
+\begin_inset listings
+lstparams "language=Lisp"
+inline true
+status open
+
+\begin_layout Plain Layout
+
+(define (f x) (+ x 1))
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+interpreter A program that executes another program in a given language.
+ e.g.
+ a Python interpreter, a Java interpreter, etc.
+\end_layout
+
+\begin_layout Description
+lambda-expression A function value.
+\end_layout
+
+\begin_layout Description
+syntax The rules for forming valid expressions in a language.
+\end_layout
+
+\begin_layout Description
+value A value is an expression that can not be further evaluated to a simpler
+ expression.
+\end_layout
+
+\end_body
+\end_document
