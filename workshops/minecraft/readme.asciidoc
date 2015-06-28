@@ -901,6 +901,127 @@ MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 . Right click on the ground two times to spawn two skeletons
 . The skeletons should have assorted pieces of armor; they should also be shooting each other
 
+[[Fast_Bows]]
+== Fast Bows
+
+**Purpose:** To add an enchantment which reduces the time needed to nock an arrow on a bow and pull it back all the way.
+
+**Instructions:** In your package, create a new class called `EnchantmentArrowFast` and replace its contents with <<Fast_Arrow_Code>>. The name `EnchantmentArrowFast` is modeled after other bow enchantments' names in the code. For example, the enchantment Flame, which sets arrows on fire after they are launched, is called `EnchantmentArrowFire`.
+
+[[Fast_Arrow_Code]]
+.Fast Bows code
+====
+[source, java]
+----
+ppackage org.devoxx4kids.forge.mods;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.init.Items;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class EnchantmentArrowFast extends Enchantment {
+	public EnchantmentArrowFast(int enchID, ResourceLocation enchName,
+			int enchWeight) {
+		super(enchID, enchName, enchWeight, EnumEnchantmentType.BOW);
+		this.setName("arrowFast");
+	}
+
+	/**
+	 * Returns the minimal value of enchantability needed on the enchantment
+	 * level passed.
+	 */
+	public int getMinEnchantability(int enchantmentLevel) {
+		return 12 + (enchantmentLevel - 1) * 20;
+	}
+
+	/**
+	 * Returns the maximum value of enchantability nedded on the enchantment
+	 * level passed.
+	 */
+	public int getMaxEnchantability(int enchantmentLevel) {
+		return this.getMinEnchantability(enchantmentLevel) + 25;
+	}
+
+	/**
+	 * Returns the maximum level that the enchantment can have.
+	 */
+	public int getMaxLevel() {
+		return 2;
+	}
+
+	@SubscribeEvent
+	public void decreaseBowUseDuration(PlayerUseItemEvent.Start event) {
+		if (event.item.getItem() == null) {
+			return;
+		}
+
+		if (event.item.getItem() != Items.bow) {
+			return;
+		}
+
+		int level = EnchantmentHelper.getEnchantmentLevel(Test.haste.effectId,
+				event.item);
+
+		switch (level) {
+		case 2:
+			event.duration -= 10;
+			break;
+		case 1:
+			event.duration -= 5;
+			break;
+		default:
+			break;
+		}
+
+	}
+}
+----
+====
+
+Then, you will need to add some extra lines of code besides just the registering line. Right after the line in your main file that says `public static final String VERSION = "1.0";`, add the line of code from <<Fast_Arrow_Constant>>
+
+[[Fast_Arrow_Constant]]
+.Fast Bows enchantment constant
+====
+[source, java]
+----
+public static final Enchantment haste = new EnchantmentArrowFast(150, new ResourceLocation("haste"), 2);
+----
+====
+
+After that, put the code from <<Fast_Arrow_Registering>> in your `init()` method to register the mod.
+
+[[Fast_Arrow_Registering]]
+.Fast Bows registering
+====
+[source, java]
+----
+Enchantment.addToBookList(haste);
+MinecraftForge.EVENT_BUS.register(haste);
+====
+
+Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("Haste" instead of "Enchantment.arrowFast"). If you close the "src/main/java" folder in which all of your files are in, you should see a folder labeled "src/main/resources" directly underneath. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
+
+[[Fast_Bows_Lang_File]]
+====
+[source, text]
+----
+enchantment.arrowFast=Haste
+----
+====
+
+**Gameplay:**
+
+. Get a Bow from your inventory
+. Get an Enchanted Book that has the enchantment Haste I or Haste II on it from your inventory
+. Use an anvil to combine the two items you got
+. Get out another bow from your inventory, but don't enchant it
+. Compare the shooting speeds of the two bows
+
 [[Sharing]]
 == Sharing Your Mods
 
