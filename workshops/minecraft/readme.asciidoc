@@ -531,6 +531,8 @@ MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
 
 You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Snow blocks. The Snow Golem will act as a turret, shooting out snowballs that turn into arrows.
 
+Tip: spawn a Zombie or two for the Snow Golems to shoot.
+
 === Explosive snowballs
 
 [[Snowballs_Code]]
