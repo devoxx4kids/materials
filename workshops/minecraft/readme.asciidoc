@@ -141,6 +141,8 @@ public class MainMod {
 	}
 }
 ----
+Once you've finished editing the files, click the green 'Run Client' button on the Eclipse menu bar to build and run your modified Minecraft.
+
 ====
 
 **Gameplay:**
