@@ -1044,7 +1044,7 @@ image::images/minecraft-modding-book-cover.png[link="http://shop.oreilly.com/pro
 [[Video_Tutorial]]
 == Minecraft Modding Video Tutorial from O'Reilly
 
-Are you interested in following these instructions and learning a bit of Java in the process as well? Then check out http://www.infiniteskills.com/training/minecraft-modding-with-forge.html?network=coverqr[Minecraft Modding with Forge Training Video] from O'Reilly.
+Are you interested in following these instructions and learning a bit of Java in the process as well? Then check out http://www.infiniteskills.com/training/minecraft-modding-with-forge.html?network=coverqr[Minecraft Modding with Forge Training Video] from O'Reilly or scan the QR code from your phone.
 
 image::images/minecraft-modding-oreilly-video-course.jpg[link="http://www.infiniteskills.com/training/minecraft-modding-with-forge.html?network=coverqr"]
 
