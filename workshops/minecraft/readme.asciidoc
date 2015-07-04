@@ -997,6 +997,8 @@ Then, you will need to add some extra lines of code besides just the registering
 ----
 public static final Enchantment haste = new EnchantmentArrowFast(150, new ResourceLocation("haste"), 2);
 ----
+
+Don't forget to add the appropriate imports for Enchantment and ResourceLocation.
 ====
 
 After that, put the code from <<Fast_Arrow_Registering>> in your `init()` method to register the mod.
