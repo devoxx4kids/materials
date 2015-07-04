@@ -735,6 +735,8 @@ Then, register it using the line shown in <<Climber_Registering>>.
 FMLCommonHandler.instance().bus().register(new WallClimber());
 MinecraftForge.EVENT_BUS.register(new WallClimber());
 ----
+
+You'll find that Eclipse flags a missing import for FMLCommonHandler so make sure to add it as we did earlier. 
 ====
 
 **Gameplay:**
