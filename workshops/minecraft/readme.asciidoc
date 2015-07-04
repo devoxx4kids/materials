@@ -919,7 +919,7 @@ MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 ====
 [source, java]
 ----
-ppackage org.devoxx4kids.forge.mods;
+package org.devoxx4kids.forge.mods;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
