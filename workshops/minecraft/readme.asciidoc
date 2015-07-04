@@ -1012,7 +1012,7 @@ Enchantment.addToBookList(haste);
 MinecraftForge.EVENT_BUS.register(haste);
 ====
 
-Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("Haste" instead of "enchantment.arrowFast"). If you close the "src/main/java" folder in which all of your files are in, you should see a folder labeled "src/main/resources" directly underneath. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
+Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("Haste" instead of "enchantment.arrowFast"). If you close the "src/main/java" folder in which all of your files are located, you should see a folder labeled "src/main/resources" directly underneath. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
 
 [[Fast_Bows_Lang_File]]
 .Fast Bows .lang file
