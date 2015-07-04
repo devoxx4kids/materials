@@ -967,7 +967,7 @@ public class EnchantmentArrowFast extends Enchantment {
 			return;
 		}
 
-		int level = EnchantmentHelper.getEnchantmentLevel(Test.haste.effectId,
+		int level = EnchantmentHelper.getEnchantmentLevel(MainMod.haste.effectId,
 				event.item);
 
 		switch (level) {
