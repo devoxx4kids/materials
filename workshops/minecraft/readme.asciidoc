@@ -724,7 +724,7 @@ public void makeTNT(LivingUpdateEvent event) {
 
 . Use the command "/weather thunder" to make the weather stormy
 . Spawn a mob in the world, watch for TNT to be placed wherever the
-  mob goes. It will blow up after 4 seconds.
+  mob goes. The TNT will blow up after 4 seconds.
 
 [[Wall_Climber]]
 == Wall Climber
