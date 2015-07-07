@@ -670,14 +670,14 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 . Use the command "/weather rain" to make the weather rainy
 . Start moving, and water should be placed wherever you go, but it will disappear quickly
 
-=== TNT Rain
+=== TNT Thunder
 
 **Purpose**: Spawn a TNT with fuse at a random duration wherever an entity is walking
 
 **Instructions**: Add the following method in `RainWater` class:
 
-[[TNT_Rain]]
-.TNT Rain Code
+[[TNT_Thunder]]
+.TNT Thunder Code
 ====
 [source, java]
 ----
@@ -719,6 +719,12 @@ public void makeTNT(LivingUpdateEvent event) {
 }
 ----
 ====
+
+**Gameplay:**
+
+. Use the command "/weather thunder" to make the weather stormy
+. Spawn a mob in the world, watch for TNT to be placed wherever the
+  mob goes. It will blow up after 4 seconds.
 
 [[Wall_Climber]]
 == Wall Climber
