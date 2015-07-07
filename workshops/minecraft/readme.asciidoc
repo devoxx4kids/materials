@@ -321,7 +321,6 @@ public class CreeperSpawnAlert {
 			}
 		}
 	}
-
 }
 ----
 ====
@@ -507,7 +506,6 @@ public class SharpSnowballs {
 			snowball.setDead();
 		}
 	}
-
 }
 ----
 ====
@@ -584,7 +582,6 @@ public class OverpoweredIronGolems {
 		entity.addPotionEffect(new PotionEffect(10, 1000000, 5));
 		entity.addPotionEffect(new PotionEffect(11, 1000000, 5));
 	}
-
 }
 ----
 ====
@@ -637,7 +634,7 @@ public class RainWater {
 		int y = (int) Math.floor(entity.posY);
 		int z = (int) Math.floor(entity.posZ);
 
-		if (!entity.worldObj.isRaining()) {
+		if (!world.isRaining()) {
 			return;
 		}
 
@@ -653,7 +650,6 @@ public class RainWater {
 
 		world.setBlockState(new BlockPos(x, y, z), Blocks.water.getBlockState().getBaseState());
 	}
-
 }
 ----
 ====
@@ -673,6 +669,56 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 
 . Use the command "/weather rain" to make the weather rainy
 . Start moving, and water should be placed wherever you go, but it will disappear quickly
+
+=== TNT Rain
+
+**Purpose**: Spawn a TNT with fuse at a random duration wherever an entity is walking
+
+**Instructions**: Add the following method in `RainWater` class:
+
+[[TNT_Rain]]
+.TNT Rain Code
+====
+[source, java]
+----
+@SubscribeEvent
+public void makeTNT(LivingUpdateEvent event) {
+	Entity entity = event.entity;
+	World world = entity.worldObj;
+	int x = (int) Math.floor(entity.posX);
+	int y = (int) Math.floor(entity.posY);
+	int z = (int) Math.floor(entity.posZ);
+
+	if (!world.isThundering()) {
+		return;
+	}
+
+	for (int i = y; i < 256; i++) {
+		if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.air
+				.getBlockState().getBaseState()) {
+			return;
+		}
+	}
+
+	if (world.isRemote
+			|| !world.getBlockState(new BlockPos(x, y - 1, z)).getBlock()
+					.isNormalCube()) {
+		return;
+	}
+	
+	Random random = new Random();
+	
+	if (random.nextInt(40) != 1) {
+		return;
+	}
+
+	EntityTNTPrimed tnt = new EntityTNTPrimed(world);
+	tnt.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, 0, 0);
+	tnt.fuse = 80;
+	world.spawnEntityInWorld(tnt);
+}
+----
+====
 
 [[Wall_Climber]]
 == Wall Climber
