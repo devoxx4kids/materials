@@ -930,7 +930,6 @@ public class SkeletonWar {
 		entity.setCurrentItemOrArmor(1,
 				new ItemStack(boots.get(random.nextInt(5))));
 	}
-
 }
 
 ----
@@ -1028,7 +1027,6 @@ public class EnchantmentArrowFast extends Enchantment {
 		default:
 			break;
 		}
-
 	}
 }
 ----
