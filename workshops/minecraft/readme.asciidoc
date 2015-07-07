@@ -757,7 +757,6 @@ public class WallClimber {
 		} else {
 			player.motionY = 0.5;
 		}
-		
 	}
 	
 	@SubscribeEvent
