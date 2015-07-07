@@ -535,7 +535,10 @@ Tip: spawn a Zombie or two for the Snow Golems to shoot.
 
 === Explosive snowballs
 
-[[Snowballs_Code]]
+Replace `EntityArrow arrow = new EntityArrow(world);` line with the
+code shown in <<Explosive_Snowballs_Code>>.
+
+[[Explosive_Snowballs_Code]]
 .Explosive Snowballs code
 ====
 [source, java]
