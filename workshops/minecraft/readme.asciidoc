@@ -460,7 +460,7 @@ Explain how to reach `EntityMob`.
 [[Sharp_Snowballs]]
 == Sharp Snowballs
 
-**Purpose:** To turn all snowballs into arrows so that they can hurt entites.
+**Purpose:** To turn all snowballs into arrows so that they can hurt entities.
 
 **Instructions:** In your package, create a new class called `SharpSnowballs`. Replace its code with <<Snowballs_Code>>.
 
