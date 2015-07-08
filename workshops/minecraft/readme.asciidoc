@@ -79,7 +79,7 @@ Your main file is now ready to go.
 
 **Purpose:** To make the player receive items when he/she says a certain word or phrase in a chat message.
 
-**Instructions:** In your new package, `org.devoxx4kids.forge.mods`, make a new file called `ChatItems.java`. Replace its code with <<Chat_Items_Code>>.
+**Instructions:** In your new package, `org.devoxx4kids.forge.mods`, make a new file called `ChatItems`. Replace its code with <<Chat_Items_Code>>.
 
 [[Chat_Items_Code]]
 .Chat Items code
