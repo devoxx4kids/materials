@@ -176,7 +176,8 @@ int checkSensor(int trigPin, int echoPin, char* lowKey, int iLowKey, char* highK
   digitalWrite(trigPin, LOW);
   
   duration = pulseIn(echoPin, HIGH);
-  distance = (duration/2) / 29.1;
+  distance = (duration/2) / 29.1;  
+  /* ce calcul bizarre parce que le resultat n'est pas en cm par defaut. */
 
 
   if (distance > HIGHEST || distance <= 0){
@@ -222,7 +223,7 @@ void playNote(int note){
   
   delay(pauseBetweenNotes);
   
-  // stop the tone playing:
+  // stop the tone playing: arreter de jouer la note
   noTone(PIEZO_PIN);
   
   Serial.print(  "jouer ");
