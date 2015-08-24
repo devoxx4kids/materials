@@ -141,7 +141,8 @@ public class MainMod {
 	}
 }
 ----
-Once you've finished editing the files, click the green 'Run Client' button on the Eclipse menu bar to build and run your modified Minecraft.
+Once you've finished editing the files, click the green 'Run Client'
+button on the Eclipse menu bar to build and run your modded Minecraft.
 
 ====
 
@@ -248,6 +249,8 @@ MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 . Place down the dragon egg, and an Ender Dragon should spawn
 
 The player name will not be your normal player name, it will be a Forge-generated player name. Check your chat window to see what your player name is.
+
+NOTE: You may get the error "`You don't have permissions to perform the command`". The reason it says that you don't have permission to run the command is because you don't have cheats enabled in your world. When you are creating a world, there will be a box that says you are in "`Survival`" mode. Click on the box until it says "`Creative`" mode, which will automatically enable cheats. Then, create the rest of the world normally. You will need to create a new world for this.
 
 === Change block/entity
 
