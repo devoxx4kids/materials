@@ -71,7 +71,7 @@ image::images/ctrlspace.png[]
 
 Om te beginnen met aanpassingen aan Minecraft, hebben we een hoofdbestand nodig. Dit bestand zal al onze mods (= aanpassingen) registreren zodat ze daadwerkelijk gaan doen wat ze moeten doen in het spel. Om dit hoofdbestand te maken, moet je eerst een nieuwe package (= mappen structuur) aanmaken. Klik op de pijl naast de map "Minecraft" in de linker kant van je venster. Klik vervolgens rechts op "src/main/java" en selecteer New > Package. Noem het `org.devoxx4kids.forge.mods`.
 
-In dit package gaan we nu een nieuwe klasse aanmaken (= een soort van bouwtekening voor nieuwe mogelijkheden voor Minecraft) met de naam `MainMod.java`. Om dit te doen, klik met de rechtermuisknop op het nieuwe pakket dat je net hebt gemaakt en selecteer New> Class. Noem het `MainMod`. Het midden van je scherm zal de code tonen. Vervang de hele code door de code in <<Setting_Up_The_Main_File>>.
+In dit package gaan we nu een nieuwe klasse aanmaken (= een soort van bouwtekening voor nieuwe mogelijkheden voor Minecraft) met de naam `MainMod`. Om dit te doen, klik met de rechtermuisknop op het nieuwe pakket dat je net hebt gemaakt en selecteer New> Class. Noem het `MainMod`. Het midden van je scherm zal de code tonen. Vervang de hele code door de code in <<Setting_Up_The_Main_File>>.
 
 [[Setting_Up_The_Main_File]]
 .Setup van hoofdbestand
@@ -106,7 +106,7 @@ Je hoofd bestand is nu klaar voor gebruik.
 
 **Doel:** De speler items (= voorwerpen) laten ontvangen wanneer hij / zij een bepaald woord (bijvoorbeeld het woord `aardappel`) in een chatbericht schrijft.
 
-**Instructies:** Maak in je nieuwe package, `org.devoxx4kids.forge.mods`, een nieuw bestand aan met de naam `ChatItems.java`. Vervang de code met <<Chat_Items_Code>>.
+**Instructies:** Klik met de rechtermuisknop op de package `org.devoxx4kids.forge.mods` en klik op New> Class. Geeft dit bestand de naam `ChatItems`. Vervang de code met <<Chat_Items_Code>>.
 
 [[Chat_Items_Code]]
 .Chat Items code
