@@ -11,7 +11,7 @@ toc::[]
 == Download and Install
 
 . Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-. Download and install Eclipse from http://www.eclipse.org/downloads/, pick "Eclipse IDE for Java Developers"
+. Download and install Eclipse from http://www.eclipse.org/downloads/, pick "`Eclipse IDE for Java Developers`"
 . Download Forge 1.8 from
   http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.1.1341/forge-1.8-11.14.1.1341-src.zip
 
@@ -46,9 +46,9 @@ More details are also at http://www.minecraftforge.net/wiki/Installation/Source.
 This is a very important step as this will confirm that you can actually start modding.
 
 . Open up Eclipse
-. In the ``Select a workspace'' window, choose the location of `eclipse` directory in the unzipped forge directory as the workspace
-. Click on ``OK''
-. In the Eclipse window, you should see a ``Minecraft'' folder and be able to expand it. There should be no red exclamation marks next to it.
+. In the "`Select a workspace`" window, choose the location of `eclipse` directory in the unzipped forge directory as the workspace
+. Click on "`OK`"
+. In the Eclipse window, you should see a "`Minecraft`" folder and be able to expand it. There should be no red exclamation marks next to it.
 
 === Troubleshooting
 
@@ -58,9 +58,9 @@ This is a very important step as this will confirm that you can actually start m
 [[Main_File]]
 == The Main File
 
-To start modding, we need a main file. This file will register all of our mods so that they actually function in the game. To make this main file, first you need to make a new package. Click on the arrow next to the "Minecraft" folder in the left side of your window. Then, right click on "src/main/java" and select New > Package. Name it `org.devoxx4kids.forge.mods`.
+To start modding, we need a main file. This file will register all of our mods so that they actually function in the game. To make this main file, first you need to make a new package. Click on the arrow next to the "`Minecraft`" folder in the left side of your window. Then, right click on "src/main/java" and select New > Package. Name it `org.devoxx4kids.forge.mods`.
 
-In this package, create a new class called `MainMod.java`. To do this, right click on the new package you created and select New > Class. Name it `MainMod`. The middle of your screen will show its code. Replace all of the code with the code in <<Setting_Up_The_Main_File>>.
+We need to create a new class in this package. To do this, right click on the new package you created and select New > Class. Name it `MainMod`. The middle of your screen will show its code. Replace all of the code with the code in <<Setting_Up_The_Main_File>>.
 
 [[Setting_Up_The_Main_File]]
 .Set up the main file
