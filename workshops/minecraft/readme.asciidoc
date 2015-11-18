@@ -12,11 +12,26 @@ toc::[]
 
 . Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . Download and install Eclipse from http://www.eclipse.org/downloads/, pick "Eclipse IDE for Java Developers"
-. Download and unzip Forge 1.8 from
+. Download Forge 1.8 from
   http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.1.1341/forge-1.8-11.14.1.1341-src.zip
-. In the unzipped forge directory, give the command `./gradlew
-  setupDecompWorkspace eclipse` for Mac or `gradlew
-  setupDecompWorkspace eclipse` for Windows. The output should show `BUILD SUCCESSFUL`. Complete output of the command is shown at <<Gradlew_command_output>>.
+
+Follow the instructions for Mac or Windows as explained below.
+
+=== Mac
+. In Finder, go to Applications, Utilities, double click on Terminal
+. Change directory to Desktop as `cd Desktop`
+. Make a new directory by giving the command `mkdir forge`
+. Change to the directory `cd forge`
+. Unzip the downloaded Forge 1.8 zip file as `unzip ~/Downloads/forge-1.8-11.14.3.1450-src.zip`
+. Give the command `./gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
+
+=== Windows
+. Open a Command Prompt as explained at http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window
+. Change directory to Desktop as `cd Desktop`
+. Make a new directory by giving the command `mkdir forge`
+. Change to the directory `cd forge`
+. In File Explorer, double click on the Forge 1.8 zip file downloaded earlier and extract all the contents in this newly created directory.
+. Give the command `gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
 
 A detailed video with complete installation steps on Mac is given below:
 
