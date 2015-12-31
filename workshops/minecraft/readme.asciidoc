@@ -8,7 +8,7 @@ Forge is for client-side modding, which only works if you have the mod installed
 
 link:readme-forge.asciidoc[Forge Workshop]
 
-http://shop.oreilly.com/product/0636920036562.do[Forge Book]
+http://shop.oreilly.com/product/0636920036562.do[Forge Book by O'Reilly]
 
 image::images/spigot-logo.png[]
 
