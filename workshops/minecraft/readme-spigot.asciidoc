@@ -1,0 +1,64 @@
+= Minecraft Modding using Spigot
+:toc:
+:toc-placement!:
+
+This workshop shows how to get started with server-side Minecraft modding using Spigot.
+
+toc::[]
+
+[[Requirements]]
+== Requirements
+
+* A paid Minecraft account
+* A Mac or a Windows computer
+
+[[Download]]
+== Download and Install
+
+. **JDK:** Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+. **NetBeans:** Download and install NetBeans from https://netbeans.org/downloads/, click the download button below the "`Java SE`" column
+. **Spigot:** Download Spigot 1.8 from http://getspigot.org/spigot18/spigot_server.jar
+
+Follow the instructions for Mac or windows as explained below.
+
+=== Mac
+. In Finder, go to Applications, Utilities, and double click on Terminal
+. Change directory to Desktop: `cd Desktop`
+. Make a new "`spigot`" directory: `mkdir spigot`
+. Change to the directory: `cd spigot`
+. Copy the spigot server file to the "`spigot`" directory: `cp ~/Downloads/spigot_server.jar .`
+** The spigot server file is usually in the "`Downloads`" directory, but if it is not, you can manually copy it using Finder
+. Run the spigot server file: `java -jar spigot_server.jar`
+** The server will stop and you will see a message like `[15:24:34 INFO]: You need to agree to the EULA in order to run the server. Go to eula.txt for more info.`
+. Set the EULA to true by giving this command in the "`spigot`" directory in Terminal: `sed s/false/true/g eula.txt | tee eula.txt`
+. Start the server again: `java -jar spigot_server.jar`
+
+=== Windows
+. Open a Command Prompt as explained at http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window
+. Change directory to Desktop: `cd Desktop`
+. Make a new "`spigot`" directory: `mkdir spigot`
+. Change to the directory: `cd spigot`
+. Using File Explorer, copy the "`spigot_server.jar`", which is usually in the "`Downloads`" directory, into the new "`spigot`" directory
+. In Command Prompt, in the "`spigot`" directory, run the spigot server file: `java -jar spigot_server.jar`
+** The server will stop and you will see a message like `[15:24:34 INFO]: You need to agree to the EULA in order to run the server. Go to eula.txt for more info.`
+. Open up the "`eula.txt`" file by double-clicking on it. Change the text "`eula=false`" to "`eula=true`" and save it
+. Start the server again: `java -jar spigot_server.jar`
+
+=== Verify
+
+This step is important because it makes sure that your server is working correctly.
+
+. Open up the Minecraft 1.8.9 client
+. Click on the "`Multiplayer`" button
+. Click "`Add server`"
+. In the "`Server Address`" box, type in `localhost`
+** The server name can be whatever you want
+. Click "`Done`"
+. Double-click on the server to connect
+** The server should say "`A Minecraft Server`" under the server name
+
+
+=== Troubleshooting
+
+. If the server stops because of the EULA again, make sure that you set it to true and save the file.
+. If you see a red message on the server in Minecraft that says "`Can't connect to server.`", your server is not running. Start it again by using `java -jar spigot_server.jar` and click the "`Refresh`" button to see if it works.
