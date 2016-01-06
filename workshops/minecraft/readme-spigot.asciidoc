@@ -62,3 +62,61 @@ This step is important because it makes sure that your server is working correct
 
 . If the server stops because of the EULA again, make sure that you set it to true and save the file.
 . If you see a red message on the server in Minecraft that says "`Can't connect to server.`", your server is not running. Start it again by using `java -jar spigot_server.jar` and click the "`Refresh`" button to see if it works.
+
+[[First_Plugin]]
+== Creating your First Plugin
+
+This plugin will be a simple plugin that will print a message in your server console when it is enabled.
+
+To make a plugin, we will be using an archetype. An archetype is like a cookie cutter, and in this case, it will make all of the essential plugin files for you.
+
+=== Gameplay
+
+[[Crafting_Experience]]
+== Crafting Experience
+
+Experience can be hard to get in normal Minecraft, and it is very useful once you get it. This plugin aims to make experience collection easier by giving the player experience whenever he or she crafts an item.
+
+=== Gameplay
+
+. Get a Crafting Table from your inventory
+. Place down the Crafting Table in the world
+. Get out three Cobblestone blocks from your inventory
+. Open up the Crafting Table by right-clicking on it
+. Place the three Cobblestone blocks in a row in the Crafting Table inventory
+. Take out the Cobblestone Slabs that appear on the right
+. An experience bottle should fall where you are and give you some experience
+** If you don't see the experience level at the bottom, change your gamemode to Survival by typing the command `/gamemode 0`
+
+[[Cat_Arrows]]
+== Cat Arrows
+
+Normal bows are a bit boring, because they do exactly what bows are supposed to do. Now, with this plugin, you can make bows shoot out cats instead of arrows!
+
+=== Gameplay
+
+. Get out a Bow from your inventory
+. Hold down right-click to charge the bow until it starts shaking
+. Release right-click to fire the bow, and instead of firing an arrow, it should fire a cat
+. Get out a Power V Enchanted Book and a Flame I Enchanted Book from your inventory
+. Get out two more Bows from your inventory, along with an Anvil
+. Place down the Anvil and right-click on it to open it
+. Place one of the Bows in the right-hand slot and place the Power V Enchanted Book in the slot next to it
+. Take out the enchanted Bow that appears on the right
+. Place the other Bow in the right-hand slot and place the Flame I Enchanted Book in the slot next to it
+. Take out the enchanted Bow that appears on the right
+. Shoot the Bow with Power V to launch the cat farther, and shoot the Bow with Flame I to launch flaming cats
+
+[[Ore_Shrooms]]
+== Ore Shrooms
+
+Valuable ores like diamonds and emeralds can be even harder to come by than experience. Mushrooms, however, are easy to make, because you can grow one small mushroom into a giant one. With this plugin, giant mushrooms will not only contain mushroom blocks, but they will also have diamond, emerald, gold, and iron blocks.
+
+=== Gameplay
+
+. Get out a Red Mushroom, a Brown Mushroom, a Bone Meal, and a Mycelium from your inventory
+. Place down two Mycelium about 10 blocks away from each other
+. Place the Red Mushroom on one Mycelium and the Brown Mushroom on the other Mycelium
+. Right-click on both mushrooms with Bone Meal
+. It may take a few tries, but the mushrooms will eventually grow into huge mushrooms
+. The huge mushrooms should have lots of ore blocks on them, as well as some huge mushroom blocks
