@@ -6,9 +6,11 @@ image::images/forge-logo.png[]
 
 Forge is for client-side modding, which only works if you have the mod installed. With Forge, you can do lots of cool things like making new blocks, items, mobs, and even biomes and dimensions.
 
-link:readme-forge.asciidoc[Forge Workshop]
+link:readme-forge.asciidoc[Minecraft Moddingw with Forge Workshop]
 
-http://shop.oreilly.com/product/0636920036562.do[Forge Book by O'Reilly]
+http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge Book by O'Reilly]
+
+http://www.infiniteskills.com/training/minecraft-modding-with-forge.html?network=coverqr[Minecraft Modding with Forge Video Tutorial by O'Reilly]
 
 image::images/spigot-logo.png[]
 
