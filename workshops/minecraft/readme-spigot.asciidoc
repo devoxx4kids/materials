@@ -66,7 +66,7 @@ This step is important because it makes sure that your server is working correct
 [[First_Plugin]]
 == Creating your First Plugin
 
-This plugin will be a simple plugin that will print a message in your server console when it is enabled.
+This plugin will be a simple plugin that will print a message in your server console when it is enabled. The plugin will serve to show you how to make and install a plugin on your server.
 
 === Creating the Plugin Project
 
@@ -100,7 +100,7 @@ image::images/netbeans-name-and-location.png[]
 * "`Project Location:`" is where your project will be stored. In this box, enter the name of the folder you made for storing all of your plugins. Again, in this example, that folder is "`spigot-workshop`", and it is on the Desktop. 
 * "`Group Id:`" is a way to identify your project uniquely from others. In this example, we will be using the group ID of "`org.devoxx4kids.spigot.plugins`", and it is highly recommended that you do as well. All of the code examples in this workshop will be using this group ID. 
 * "`Package:`" specifies what package all of your files will be stored in. The package should be the group ID, a period, and then the project name without the dash. In this example, the group ID is "`org.devoxx4kids.spigot.plugins`" and the project name is "first-plugin". The project name without the dashes is "`firstplugin`", so the package name should be "`org.devoxx4kids.spigot.plugins.firstplugin`".
-* In the box titled "`Additional Creation Properties:`", under the column "`Key`", you will see a line that says "`pluginApp`". Click on the text next to it under the column "`Value`", and it should become highlighted. That box will specify the name for your plugin's main file. This name will be created from the project name. First, capitalize the first letter of each word (words are separated by dashes), then remove the dash. For example, "`first-plugin`" turns into "`First-Plugin`" (capitalizing), then "`FirstPlugin`" (remove dashes). Enter this name into this box.
+* In the box titled "`Additional Creation Properties:`", under the column "`Key`", you will see a line that says "`pluginFile`". Click on the text next to it under the column "`Value`", and it should become highlighted. That box will specify the name for your plugin's main file. This name will be created from the project name. First, capitalize the first letter of each word (words are separated by dashes), then remove the dash. For example, "`first-plugin`" turns into "`First-Plugin`" (capitalizing), then "`FirstPlugin`" (remove dashes). Enter this name into this box.
 * Also, in the "`Key`" column of "`Additional Creation Properties:`", you will see a line that says "`spigot`". In the next box, enter the file path to the directory you made where your spigot server is. This is not the directory where your plugins are stored, but is the one where you put the spigot server file.
 
 Once you have changed all the values to match what they should be, click "`Finish`" to create your project. Your screen should now look like <<NetBeans_Project_Created>>.
