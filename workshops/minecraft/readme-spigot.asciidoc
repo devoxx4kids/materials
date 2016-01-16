@@ -68,9 +68,54 @@ This step is important because it makes sure that your server is working correct
 
 This plugin will be a simple plugin that will print a message in your server console when it is enabled.
 
-To make a plugin, we will be using an archetype. An archetype is like a cookie cutter, and in this case, it will make all of the essential plugin files for you.
+=== Creating the Plugin Project
+
+To make a plugin, we will be using an archetype. An archetype is like a cookie cutter, and in this case, it will make all of the essential plugin files for you. NetBeans, which is the IDE we are using, has a way to make projects from archetypes. This tool will let you make a plugin with whatever name you want easily so that you can work on the functionality of the plugin rather than the boring task of making all of the files.
+
+To start off, you will want a folder for all your plugins. In this example, we will be using a folder on the Desktop named "`spigot-workshop`". Usually, the directory for plugin development and the directory for the actual server are separate, and that is what we are doing here.
+
+Now, open up NetBeans. After it loads, you should see a screen like <<NetBeans_Welcome_Screen>>
+
+[[NetBeans_Welcome_Screen]]
+.NetBeans welcome screen
+image::images/netbeans-welcome.png[]
+
+In NetBeans, locate the "`File`" menu. Select "`File`" > "`New Project`". Once you click on that, you should see a window like the one in <<NetBeans_New_Project>>.
+
+[[NetBeans_New_Project]]
+.NetBeans new project
+image::images/netbeans-new-project.png[]
+
+In this window, double-click on the "`Maven`" folder on the column on the left to open it up. Then, select "`Project From Archetype`" from the column on the right. You may need to scroll down a bit to see it. Once you have selected these options, click on "`Next >`".
+
+In the next window that shows up, there will be a "`Search:`" box. In that box, enter the text "`spigot`". In the box that says "`Known Archetypes:`" you should see an archetype named "`Spigot Plugin for Devoxx4Kids Workshops`". Click on that, then click on "`Next >`".
+
+The next window that will show up will look like <<NetBeans_Name_Location>>. This is where you will specify your plugin's name, location, and group ID, as well as your spigot server directory.
+
+[[NetBeans_Name_Location]]
+.Project name and location
+image::images/netbeans-name-and-location.png[]
+
+* "`Project Name:`" is your plugin's name. Since this is your first plugin, it is recommended to call it "`first-plugin`". 
+* "`Project Location:`" is where your project will be stored. In this box, enter the name of the folder you made for storing all of your plugins. Again, in this example, that folder is "`spigot-workshop`", and it is on the Desktop. 
+* "`Group Id:`" is a way to identify your project uniquely from others. In this example, we will be using the group ID of "`org.devoxx4kids.spigot.plugins`", and it is highly recommended that you do as well. All of the code examples in this workshop will be using this group ID. 
+* "`Package:`" specifies what package all of your files will be stored in. The package should be the group ID, a period, and then the project name without the dash. In this example, the group ID is "`org.devoxx4kids.spigot.plugins`" and the project name is "first-plugin". The project name without the dashes is "`firstplugin`", so the package name should be "`org.devoxx4kids.spigot.plugins.firstplugin`".
+* In the box titled "`Additional Creation Properties:`", under the column "`Key`", you will see a line that says "`pluginApp`". Click on the text next to it under the column "`Value`", and it should become highlighted. That box will specify the name for your plugin's main file. This name will be created from the project name. First, capitalize the first letter of each word (words are separated by dashes), then remove the dash. For example, "`first-plugin`" turns into "`First-Plugin`" (capitalizing), then "`FirstPlugin`" (remove dashes). Enter this name into this box.
+* Also, in the "`Key`" column of "`Additional Creation Properties:`", you will see a line that says "`spigot`". In the next box, enter the file path to the directory you made where your spigot server is. This is not the directory where your plugins are stored, but is the one where you put the spigot server file.
+
+Once you have changed all the values to match what they should be, click "`Finish`" to create your project. Your screen should now look like <<NetBeans_Project_Created>>.
+
+[[NetBeans_Project_Created]]
+.NetBeans after project creation
+image::images/netbeans-project-created.png[]
+
+The part on the left is your project. The text at the bottom should say "`BUILD SUCCESS`" if your project was created successfully.
 
 === Gameplay
+
+To copy the plugin into your server's "`plugins`" folder, right click on the project (in this case, the part that says "`first-plugin`"), and select "`Clean and Build`". This will automatically package your plugin for you and copy it over to your server directory. You will need to do this every time you make a change to your plugin.
+
+To test out this plugin, start your server (go to the server folder in Command Prompt / Terminal and run the command `java -jar spigot_server.jar`). If it is already started, stop it (type `stop` after the "`>`" and type Enter) and start it again.
 
 [[Crafting_Experience]]
 == Crafting Experience
