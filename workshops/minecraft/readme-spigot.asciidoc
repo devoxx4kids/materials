@@ -68,6 +68,7 @@ This step is important because it makes sure that your server is working correct
 
 This plugin will be a simple plugin that will print a message in your server console when it is enabled. The plugin will serve to show you how to make and install a plugin on your server.
 
+[[Using_The_Archetype]]
 === Creating the Plugin Project
 
 To make a plugin, we will be using an archetype. An archetype is like a cookie cutter, and in this case, it will make all of the essential plugin files for you. NetBeans, which is the IDE we are using, has a way to make projects from archetypes. This tool will let you make a plugin with whatever name you want easily so that you can work on the functionality of the plugin rather than the boring task of making all of the files.
@@ -96,12 +97,12 @@ The next window that will show up will look like <<NetBeans_Name_Location>>. Thi
 .Project name and location
 image::images/netbeans-name-and-location.png[]
 
-* "`Project Name:`" is your plugin's name. Since this is your first plugin, it is recommended to call it "`first-plugin`". 
-* "`Project Location:`" is where your project will be stored. In this box, enter the name of the folder you made for storing all of your plugins. Again, in this example, that folder is "`spigot-workshop`", and it is on the Desktop. 
-* "`Group Id:`" is a way to identify your project uniquely from others. In this example, we will be using the group ID of "`org.devoxx4kids.spigot.plugins`", and it is highly recommended that you do as well. All of the code examples in this workshop will be using this group ID. 
-* "`Package:`" specifies what package all of your files will be stored in. The package should be the group ID, a period, and then the project name without the dash. In this example, the group ID is "`org.devoxx4kids.spigot.plugins`" and the project name is "first-plugin". The project name without the dashes is "`firstplugin`", so the package name should be "`org.devoxx4kids.spigot.plugins.firstplugin`".
-* In the box titled "`Additional Creation Properties:`", under the column "`Key`", you will see a line that says "`pluginFile`". Click on the text next to it under the column "`Value`", and it should become highlighted. That box will specify the name for your plugin's main file. This name will be created from the project name. First, capitalize the first letter of each word (words are separated by dashes), then remove the dash. For example, "`first-plugin`" turns into "`First-Plugin`" (capitalizing), then "`FirstPlugin`" (remove dashes). Enter this name into this box.
-* Also, in the "`Key`" column of "`Additional Creation Properties:`", you will see a line that says "`spigot`". In the next box, enter the file path to the directory you made where your spigot server is. This is not the directory where your plugins are stored, but is the one where you put the spigot server file.
+* "`Project Name:`" is your plugin's name. Since this is your first plugin, it is recommended to call it `first-plugin`. 
+* "`Project Location:`" is where your project will be stored. In this box, enter the name of the folder you made for storing all of your plugins. Again, in this example, that folder is `spigot-workshop`, and it is on the Desktop. 
+* "`Group Id:`" is a way to identify your project uniquely from others. In this example, we will be using the group ID of `org.devoxx4kids.spigot.plugins`, and it is highly recommended that you do as well. All of the code examples in this workshop will be using this group ID. 
+* "`Package:`" specifies what package all of your files will be stored in. The package should be the group ID, a period, and then the project name without the dash. In this example, the group ID is `org.devoxx4kids.spigot.plugins` and the project name is `first-plugin`. The project name without the dashes is `firstplugin`, so the package name should be `org.devoxx4kids.spigot.plugins.firstplugin`.
+* In the box titled "`Additional Creation Properties:`", under the column "`Key`", you will see a line that says `pluginFile`. Click on the text next to it under the column "`Value`", and it should become highlighted. That box will specify the name for your plugin's main file. This name will be created from the project name. First, capitalize the first letter of each word (words are separated by dashes), then remove the dash. For example, `first-plugin` turns into `First-Plugin` (capitalizing), then `FirstPlugin` (remove dashes). Enter this name into this box.
+* Also, in the "`Key`" column of "`Additional Creation Properties:`", you will see a line that says `spigot`. In the next box, enter the file path to the directory you made where your spigot server is. This is not the directory where your plugins are stored, but is the one where you put the spigot server file.
 
 Once you have changed all the values to match what they should be, click "`Finish`" to create your project. Your screen should now look like <<NetBeans_Project_Created>>.
 
@@ -111,16 +112,122 @@ image::images/netbeans-project-created.png[]
 
 The part on the left is your project. The text at the bottom should say "`BUILD SUCCESS`" if your project was created successfully.
 
+Your plugin is now of complete. Now, we will test it out to see if it works.
+
 === Gameplay
 
 To copy the plugin into your server's "`plugins`" folder, right click on the project (in this case, the part that says "`first-plugin`"), and select "`Clean and Build`". This will automatically package your plugin for you and copy it over to your server directory. You will need to do this every time you make a change to your plugin.
 
 To test out this plugin, start your server (go to the server folder in Command Prompt / Terminal and run the command `java -jar spigot_server.jar`). If it is already started, stop it (type `stop` after the "`>`" and type Enter) and start it again.
 
+Once you start your server, it will print out the messages it usually does. What you are looking for will appear near the bottom. It will look something like <<First_Plugin_Messages>>. These messages will tell you that your plugin is working correctly.
+
+[[First_Plugin_Messages]]
+.FirstPlugin messages
+====
+[source, text]
+----
+[18:31:08 INFO]: [first-plugin] Enabling first-plugin v1.0-SNAPSHOT
+[18:31:08 INFO]: [first-plugin] org.devoxx4kids.spigot.plugins.firstplugin.FirstPlugin.onEnable()
+----
+====
+
+Now that you have a simple plugin working, let's move on to a more fun one.
+
 [[Crafting_Experience]]
 == Crafting Experience
 
 Experience can be hard to get in normal Minecraft, and it is very useful once you get it. This plugin aims to make experience collection easier by giving the player experience whenever he or she crafts an item.
+
+To start off, create a new project with the archetype like before. If you forgot how to, refer to <<Using_The_Archetype>>. The value for "`Project Name:`" should be `crafting-experience`, the value for "`pluginFile`"" should be `CraftingExperience`, and the value for "`Package:`" should be `org.devoxx4kids.spigot.plugins.craftingexperience`. All of the other values should stay the same.
+
+In this plugin, we will be using a "`Listener`". Listeners can "`listen`" for certain events and act upon them as you specify. This Listener will wait for when a player crafts an item, and when it finds that event, it will spawn an experience bottle at the player's location.
+
+To make the Listener, open up the folder that says "`Source Packages`". In that folder, you will see a package with the package name that you gave earlier. Open that up as well. In that package, you will see a file called `CraftingExperience.java`. This file is your plugin's main file. Right-click on the package that you opened up and select "`New`" > "`Java Class`". Change the "`Class Name:`" to `CraftingExperienceListener`. Click "`Finish`" to create and open the file. It should look like <<Listener_Empty>>.
+
+[[Listener_Empty]]
+.Emtpy Listener file
+====
+[source, java]
+----
+package org.devoxx4kids.spigot.plugins.craftingexperience;
+
+public class CraftingExperienceListener {
+
+}
+----
+====
+
+Replace the code inside it with the code from <<Crafting_Experience_Listener>>.
+
+[[Crafting_Experience_Listener]]
+.CraftingExperience Listener code
+====
+[source, java]
+----
+package org.devoxx4kids.spigot.plugins.craftingexperience;
+
+import org.bukkit.World;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.ThrownExpBottle;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.CraftItemEvent;
+
+class CraftingExperienceListener implements Listener {
+
+    @EventHandler
+    public void giveExperience(CraftItemEvent event) {
+        Player player = (Player) event.getWhoClicked();
+        World world = player.getWorld();
+        world.spawn(player.getLocation(), ThrownExpBottle.class);
+    }
+
+}
+----
+====
+
+The last thing you will have to do to get the Listener working is to register it in `CraftingExperience.java`. Open up that file, and copy the code from <<Crafting_Experience_Register_Listener>> to the `onEnable()` method of the class.
+
+[[Crafting_Experience_Register_Listener]]
+.CraftingExperience Listener registration
+====
+[source, java]
+----
+getServer().getPluginManager().registerEvents(new CraftingExperienceListener(), this);
+----
+====
+
+The entire file should now look like <<Crafting_Experience_Finished_File>>.
+
+[[Crafting_Experience_Finished_File]]
+.CraftingExperience finished file
+====
+[source, java]
+----
+package org.devoxx4kids.spigot.plugins.craftingexperience;
+
+import java.util.logging.Level;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class CraftingExperience extends JavaPlugin {
+    // This code is called after the server starts and after the /reload command
+    @Override
+    public void onEnable() {
+        getLogger().log(Level.INFO, "{0}.onEnable()", this.getClass().getName());
+        getServer().getPluginManager().registerEvents(new CraftingExperienceListener(), this);
+    }
+
+    // This code is called before the server stops and after the /reload command
+    @Override
+    public void onDisable() {
+        getLogger().log(Level.INFO, "{0}.onDisable()", this.getClass().getName());
+    }
+}
+----
+====
+
+Your plugin is now completed. Make sure to right-click on it and select "`Clean and Build`" so that it is packaged and copied into the server.
 
 === Gameplay
 
@@ -130,6 +237,7 @@ Experience can be hard to get in normal Minecraft, and it is very useful once yo
 . Open up the Crafting Table by right-clicking on it
 . Place the three Cobblestone blocks in a row in the Crafting Table inventory
 . Take out the Cobblestone Slabs that appear on the right
+** This plugin will work with any crafting recipe; you don't necessarily have to use cobblestone slabs
 . An experience bottle should fall where you are and give you some experience
 ** If you don't see the experience level at the bottom, change your gamemode to Survival by typing the command `/gamemode 0`
 
@@ -137,6 +245,71 @@ Experience can be hard to get in normal Minecraft, and it is very useful once yo
 == Cat Arrows
 
 Normal bows are a bit boring, because they do exactly what bows are supposed to do. Now, with this plugin, you can make bows shoot out cats instead of arrows!
+
+To start off, create a new project with the archetype like before. If you forgot how to, refer to <<Using_The_Archetype>>. The value for "`Project Name:`" should be `cat-arrows`, the value for "`pluginFile`"" should be `CatArrows`, and the value for "`Package:`" should be `org.devoxx4kids.spigot.plugins.catarrows`. All of the other values should stay the same.
+
+Like the previous plugin, this plugin will use a Listener. To make the Listener, open up the folder that says "`Source Packages`". In that folder, you will see a package with the package name that you gave earlier. Open that up as well. In that package, you will see a file called `CatArrows.java`. This file is your plugin's main file. Right-click on the package that you opened up and select "`New`" > "`Java Class`". Change the "`Class Name:`" to `CatArrowsListener`. Click "`Finish`" to create and open the file. Replace the code inside it with the code from <<Cat_Arrows_Listener>>.
+
+[[Cat_Arrows_Listener]]
+.CatArrows Listener code
+====
+[source, java]
+----
+package org.devoxx4kids.spigot.plugins.catarrows;
+
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Ocelot;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.inventory.ItemStack;
+
+class CatArrowsListener implements Listener {
+
+    @EventHandler
+    public void makeCatArrows(EntityShootBowEvent event) {
+        Entity entity = event.getEntity();
+        
+        if (!(entity instanceof Player)) {
+            return;
+        }
+        
+        event.setCancelled(true);
+        Player player = (Player) entity;
+        ItemStack bow = player.getItemInHand();
+        bow.setDurability((short) (bow.getDurability() - 1));
+        Snowball snowball = player.throwSnowball();
+        Ocelot cat = player.getWorld().spawn(player.getEyeLocation(), Ocelot.class);
+        cat.setVelocity(snowball.getVelocity());
+        snowball.remove();
+
+        if (bow.getEnchantments().containsKey(Enchantment.ARROW_DAMAGE)) {
+            cat.setVelocity(cat.getVelocity().multiply(bow.getEnchantmentLevel(Enchantment.ARROW_DAMAGE) + 1));
+        }
+
+        if (bow.getEnchantments().containsKey(Enchantment.ARROW_FIRE)) {
+            cat.setFireTicks(bow.getEnchantmentLevel(Enchantment.ARROW_FIRE) * 100);
+        }
+    }
+}
+----
+====
+
+The last thing you will have to do to get the Listener working is to register it in `CatArrows.java`. Open up that file, and copy the code from <<Cat_Arrows_Register_Listener>> to the `onEnable()` method of the class.
+
+[[Cat_Arrows_Register_Listener]]
+.CatArrows Listener registration
+====
+[source, java]
+----
+getServer().getPluginManager().registerEvents(new CatArrowsListener(), this);
+----
+====
+
+Your plugin is now completed. Make sure to right-click on it and select "`Clean and Build`" so that it is packaged and copied into the server.
 
 === Gameplay
 
@@ -156,6 +329,79 @@ Normal bows are a bit boring, because they do exactly what bows are supposed to 
 == Ore Shrooms
 
 Valuable ores like diamonds and emeralds can be even harder to come by than experience. Mushrooms, however, are easy to make, because you can grow one small mushroom into a giant one. With this plugin, giant mushrooms will not only contain mushroom blocks, but they will also have diamond, emerald, gold, and iron blocks.
+
+To start off, create a new project with the archetype like before. If you forgot how to, refer to <<Using_The_Archetype>>. The value for "`Project Name:`" should be `ore-shrooms`, the value for "`pluginFile`"" should be `OreShrooms`, and the value for "`Package:`" should be `org.devoxx4kids.spigot.plugins.oreshrooms`. All of the other values should stay the same.
+
+Like the previous plugin, this plugin will use a Listener. To make the Listener, open up the folder that says "`Source Packages`". In that folder, you will see a package with the package name that you gave earlier. Open that up as well. In that package, you will see a file called `OreShrooms.java`. This file is your plugin's main file. Right-click on the package that you opened up and select "`New`" > "`Java Class`". Change the "`Class Name:`" to `OreShroomsListener`. Click "`Finish`" to create and open the file. Replace the code inside it with the code from <<Ore_Shrooms_Listener>>.
+
+[[Ore_Shrooms_Listener]]
+.OreShrooms Listener code
+====
+[source, java]
+----
+package org.devoxx4kids.spigot.plugins.oreshrooms;
+
+import java.util.Random;
+import org.bukkit.Material;
+import org.bukkit.TreeType;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.world.StructureGrowEvent;
+
+class OreShroomsListener implements Listener {
+
+    @EventHandler
+    public void makeOreBlocks(StructureGrowEvent event) {
+        Material ore = Material.AIR;
+        
+        if (event.getSpecies() != TreeType.BROWN_MUSHROOM && event.getSpecies() != TreeType.RED_MUSHROOM) {
+            return;
+        }
+
+        Random random = new Random();
+
+        for (int block = 0; block < event.getBlocks().size(); block++) {
+            switch (random.nextInt(5)) {
+                case 0:
+                    ore = Material.DIAMOND_BLOCK;
+                    break;
+                case 1:
+                    ore = Material.EMERALD_BLOCK;
+                    break;
+                case 2:
+                    ore = Material.IRON_BLOCK;
+                    break;
+                case 3:
+                    ore = Material.GOLD_BLOCK;
+                    break;
+                case 4:
+                    if (event.getSpecies() == TreeType.BROWN_MUSHROOM) {
+                        ore = Material.HUGE_MUSHROOM_1;
+                    } else if (event.getSpecies() == TreeType.RED_MUSHROOM) {
+                        ore = Material.HUGE_MUSHROOM_2;
+                    }
+                    break;
+            }
+
+            event.getBlocks().get(block).setType(ore);
+        }
+    }
+}
+----
+====
+
+The last thing you will have to do to get the Listener working is to register it in `OreShrooms.java`. Open up that file, and copy the code from <<Ore_Shrooms_Register_Listener>> to the `onEnable()` method of the class.
+
+[[Ore_Shrooms_Register_Listener]]
+.OreShrooms Listener registration
+====
+[source, java]
+----
+getServer().getPluginManager().registerEvents(new OreShroomsListener(), this);
+----
+====
+
+Your plugin is now completed. Make sure to right-click on it and select "`Clean and Build`" so that it is packaged and copied into the server.
 
 === Gameplay
 
