@@ -16,4 +16,4 @@ image::images/spigot-logo.png[]
 
 Spigot is for server-side modding, and anyone who connects to the server can enjoy the mods installed. Most big servers, like Mineplex and Hypixel, are Spigot servers.
 
-link:readme-spigot.asciidoc[Spigot Workshop]
+link:readme-spigot.asciidoc[Minecraft Modding with Spigot Workshop]
