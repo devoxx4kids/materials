@@ -71,7 +71,7 @@ This plugin will be a simple plugin that will print a message in your server con
 [[Using_The_Archetype]]
 === Creating the Plugin Project
 
-To make a plugin, we will be using an archetype. An archetype is like a cookie cutter, and in this case, it will make all of the essential plugin files for you. NetBeans, which is the IDE we are using, has a way to make projects from archetypes. This tool will let you make a plugin with whatever name you want easily so that you can work on the functionality of the plugin rather than the boring task of making all of the files.
+To make a plugin, we will be using a _Maven archetype_. An archetype is like a cookie cutter, and in this case, it will make all of the essential plugin files for you. NetBeans, which is the IDE we are using, has a way to make projects from archetypes. This tool will let you make a plugin with whatever name you want easily so that you can work on the functionality of the plugin rather than the boring task of making all of the files.
 
 To start off, you will want a folder for all your plugins. In this example, we will be using a folder on the Desktop named "`spigot-workshop`". Usually, the directory for plugin development and the directory for the actual server are separate, and that is what we are doing here.
 
@@ -81,7 +81,7 @@ Now, open up NetBeans. After it loads, you should see a screen like <<NetBeans_W
 .NetBeans welcome screen
 image::images/netbeans-welcome.png[]
 
-In NetBeans, locate the "`File`" menu. Select "`File`" > "`New Project`". Once you click on that, you should see a window like the one in <<NetBeans_New_Project>>.
+In NetBeans, select "`File`" > "`New Project`". Once you click on that, you should see a window like the one in <<NetBeans_New_Project>>.
 
 [[NetBeans_New_Project]]
 .NetBeans new project
