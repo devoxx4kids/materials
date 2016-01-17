@@ -69,7 +69,7 @@ This step is important because it makes sure that your server is working correct
 This plugin will be a simple plugin that will print a message in your server console when it is enabled. The plugin will serve to show you how to make and install a plugin on your server.
 
 [[Using_The_Archetype]]
-=== Creating the Plugin Project
+=== Creating the Plugin
 
 To make a plugin, we will be using a _Maven archetype_. An archetype is like a cookie cutter, and in this case, it will make all of the essential plugin files for you. NetBeans, which is the IDE we are using, has a way to make projects from archetypes. This tool will let you make a plugin with whatever name you want easily so that you can work on the functionality of the plugin rather than the boring task of making all of the files.
 
@@ -139,12 +139,18 @@ Now that you have a simple plugin working, let's move on to a more fun one.
 
 Experience can be hard to get in normal Minecraft, and it is very useful once you get it. This plugin aims to make experience collection easier by giving the player experience whenever he or she crafts an item.
 
+=== Creating the Plugin
+
 To start off, create a new project with the archetype like before. If you forgot how to, refer to <<Using_The_Archetype>>. The value for "`Project Name:`" should be `crafting-experience`, the value for "`pluginFile`"" should be `CraftingExperience`, and the value for "`Package:`" should be `org.devoxx4kids.spigot.plugins.craftingexperience`. All of the other values should stay the same.
 
-In this plugin, we will be using a "`Listener`". Listeners can "`listen`" for certain events and act upon them as you specify. This Listener will wait for when a player crafts an item, and when it finds that event, it will spawn an experience bottle at the player's location.
+In this plugin, we will be using a "`Listener`". Listeners can "`listen`" for certain events and act upon them as you specify. This Listener will wait for when a player crafts an item, and when it finds that event, it will spawn an experience bottle at the player's location. To make the Listener:
 
-To make the Listener, open up the folder that says "`Source Packages`". In that folder, you will see a package with the package name that you gave earlier. Open that up as well. In that package, you will see a file called `CraftingExperience.java`. This file is your plugin's main file. Right-click on the package that you opened up and select "`New`" > "`Java Class`". Change the "`Class Name:`" to `CraftingExperienceListener`. Click "`Finish`" to create and open the file. It should look like <<Listener_Empty>>.
-
+. Open up the folder that says "`Source Packages`". 
+. In that folder, you will see a package with the package name that you gave earlier. Open that up as well. 
+. In that package, you will see a file called `CraftingExperience.java`. This file is your plugin's main file. Right-click on the package that you opened up and select "`New`" > "`Java Class`". 
+. Set the "`Class Name:`" to `CraftingExperienceListener`. 
+. Click "`Finish`" to create and open the file. It should look like <<Listener_Empty>>.
++
 [[Listener_Empty]]
 .Emtpy Listener file
 ====
@@ -157,9 +163,9 @@ public class CraftingExperienceListener {
 }
 ----
 ====
-
-Replace the code inside it with the code from <<Crafting_Experience_Listener>>.
-
++
+. Replace the code inside it with the code from <<Crafting_Experience_Listener>>.
++
 [[Crafting_Experience_Listener]]
 .CraftingExperience Listener code
 ====
@@ -186,9 +192,9 @@ class CraftingExperienceListener implements Listener {
 }
 ----
 ====
-
-The last thing you will have to do to get the Listener working is to register it in `CraftingExperience.java`. Open up that file, and copy the code from <<Crafting_Experience_Register_Listener>> to the `onEnable()` method of the class.
-
++
+. The last thing you will have to do to get the Listener working is to register it in `CraftingExperience.java`. Open up that file, and copy the code from <<Crafting_Experience_Register_Listener>> to the `onEnable()` method of the class.
++
 [[Crafting_Experience_Register_Listener]]
 .CraftingExperience Listener registration
 ====
@@ -197,9 +203,9 @@ The last thing you will have to do to get the Listener working is to register it
 getServer().getPluginManager().registerEvents(new CraftingExperienceListener(), this);
 ----
 ====
-
-The entire file should now look like <<Crafting_Experience_Finished_File>>.
-
++
+. The entire file should now look like <<Crafting_Experience_Finished_File>>.
++
 [[Crafting_Experience_Finished_File]]
 .CraftingExperience finished file
 ====
@@ -226,8 +232,8 @@ public class CraftingExperience extends JavaPlugin {
 }
 ----
 ====
-
-Your plugin is now completed. Make sure to right-click on it and select "`Clean and Build`" so that it is packaged and copied into the server.
++
+. Your plugin is now complete. Make sure to right-click on it and select "`Clean and Build`" so that it is packaged and copied into the server.
 
 === Gameplay
 
@@ -246,10 +252,19 @@ Your plugin is now completed. Make sure to right-click on it and select "`Clean 
 
 Normal bows are a bit boring, because they do exactly what bows are supposed to do. Now, with this plugin, you can make bows shoot out cats instead of arrows!
 
+=== Creating the Plugin
+
 To start off, create a new project with the archetype like before. If you forgot how to, refer to <<Using_The_Archetype>>. The value for "`Project Name:`" should be `cat-arrows`, the value for "`pluginFile`"" should be `CatArrows`, and the value for "`Package:`" should be `org.devoxx4kids.spigot.plugins.catarrows`. All of the other values should stay the same.
 
-Like the previous plugin, this plugin will use a Listener. To make the Listener, open up the folder that says "`Source Packages`". In that folder, you will see a package with the package name that you gave earlier. Open that up as well. In that package, you will see a file called `CatArrows.java`. This file is your plugin's main file. Right-click on the package that you opened up and select "`New`" > "`Java Class`". Change the "`Class Name:`" to `CatArrowsListener`. Click "`Finish`" to create and open the file. Replace the code inside it with the code from <<Cat_Arrows_Listener>>.
+Like the previous plugin, this plugin will use a Listener. To make the Listener: 
 
+. Open up the folder that says "`Source Packages`". 
+. In that folder, you will see a package with the package name that you gave earlier. Open that up as well. 
+. In that package, you will see a file called `CatArrows.java`. This file is your plugin's main file. Right-click on the package that you opened up and select "`New`" > "`Java Class`". 
+. Set the "`Class Name:`" to `CatArrowsListener`. 
+. Click "`Finish`" to create and open the file. 
+. Replace the code inside it with the code from <<Cat_Arrows_Listener>>.
++
 [[Cat_Arrows_Listener]]
 .CatArrows Listener code
 ====
@@ -297,9 +312,9 @@ class CatArrowsListener implements Listener {
 }
 ----
 ====
-
-The last thing you will have to do to get the Listener working is to register it in `CatArrows.java`. Open up that file, and copy the code from <<Cat_Arrows_Register_Listener>> to the `onEnable()` method of the class.
-
++
+. The last thing you will have to do to get the Listener working is to register it in `CatArrows.java`. Open up that file, and copy the code from <<Cat_Arrows_Register_Listener>> to the `onEnable()` method of the class.
++
 [[Cat_Arrows_Register_Listener]]
 .CatArrows Listener registration
 ====
@@ -308,8 +323,8 @@ The last thing you will have to do to get the Listener working is to register it
 getServer().getPluginManager().registerEvents(new CatArrowsListener(), this);
 ----
 ====
-
-Your plugin is now completed. Make sure to right-click on it and select "`Clean and Build`" so that it is packaged and copied into the server.
++
+. Your plugin is now complete. Make sure to right-click on it and select "`Clean and Build`" so that it is packaged and copied into the server's "`plugins`" directory.
 
 === Gameplay
 
@@ -330,10 +345,19 @@ Your plugin is now completed. Make sure to right-click on it and select "`Clean 
 
 Valuable ores like diamonds and emeralds can be even harder to come by than experience. Mushrooms, however, are easy to make, because you can grow one small mushroom into a giant one. With this plugin, giant mushrooms will not only contain mushroom blocks, but they will also have diamond, emerald, gold, and iron blocks.
 
+=== Creating the Plugin
+
 To start off, create a new project with the archetype like before. If you forgot how to, refer to <<Using_The_Archetype>>. The value for "`Project Name:`" should be `ore-shrooms`, the value for "`pluginFile`"" should be `OreShrooms`, and the value for "`Package:`" should be `org.devoxx4kids.spigot.plugins.oreshrooms`. All of the other values should stay the same.
 
-Like the previous plugin, this plugin will use a Listener. To make the Listener, open up the folder that says "`Source Packages`". In that folder, you will see a package with the package name that you gave earlier. Open that up as well. In that package, you will see a file called `OreShrooms.java`. This file is your plugin's main file. Right-click on the package that you opened up and select "`New`" > "`Java Class`". Change the "`Class Name:`" to `OreShroomsListener`. Click "`Finish`" to create and open the file. Replace the code inside it with the code from <<Ore_Shrooms_Listener>>.
+Like the previous plugin, this plugin will use a Listener. To make the Listener: 
 
+. Open up the folder that says "`Source Packages`". 
+. In that folder, you will see a package with the package name that you gave earlier. Open that up as well. 
+. In that package, you will see a file called `OreShrooms.java`. This file is your plugin's main file. Right-click on the package that you opened up and select "`New`" > "`Java Class`". 
+. Set the "`Class Name:`" to `OreShroomsListener`. 
+. Click "`Finish`" to create and open the file. 
+. Replace the code inside it with the code from <<Ore_Shrooms_Listener>>.
++
 [[Ore_Shrooms_Listener]]
 .OreShrooms Listener code
 ====
@@ -389,9 +413,9 @@ class OreShroomsListener implements Listener {
 }
 ----
 ====
-
-The last thing you will have to do to get the Listener working is to register it in `OreShrooms.java`. Open up that file, and copy the code from <<Ore_Shrooms_Register_Listener>> to the `onEnable()` method of the class.
-
++
+. The last thing you will have to do to get the Listener working is to register it in `OreShrooms.java`. Open up that file, and copy the code from <<Ore_Shrooms_Register_Listener>> to the `onEnable()` method of the class.
++
 [[Ore_Shrooms_Register_Listener]]
 .OreShrooms Listener registration
 ====
@@ -400,8 +424,8 @@ The last thing you will have to do to get the Listener working is to register it
 getServer().getPluginManager().registerEvents(new OreShroomsListener(), this);
 ----
 ====
-
-Your plugin is now completed. Make sure to right-click on it and select "`Clean and Build`" so that it is packaged and copied into the server.
++
+. Your plugin is now complete. Make sure to right-click on it and select "`Clean and Build`" so that it is packaged and copied into the server.
 
 === Gameplay
 
