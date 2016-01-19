@@ -1,3 +1,5 @@
+*.toc
 *.aux
 *.log
 *.synctex.gz
+.directory
