@@ -21,6 +21,7 @@ Wir brauchen für das Spiel zwei Spieler. Beide verhalten sich gleich, daher rei
 \includegraphics[width=0.6\textwidth]{images/aufgabe5_pong_sprite_spieler1_1.png}
 \begin{enumerate}\addtocounter{enumi}{6}
 \item Nun soll das neue Sprite noch den Namen \emph{Spieler1} erhalten
+\item als letztes lösche das Objekt mit der Katze, sofern es noch vorhanden ist
 \end{enumerate}
 \includegraphics[width=0.6\textwidth]{images/aufgabe5_pong_sprite_spieler1_2.png}
 
@@ -76,11 +77,46 @@ Der zweite Spieler sollte nun so aussehen:
 Probiere aus, ob du beide Spieler mit den Tasten \emph{w,s} und \emph{o,l} bedienen kannst.
 
 \subsection{Der Ball kommt ins Spiel}
-tbc.
+Nun muss das Verhalten des Balls programmiert werden: Der Ball soll vom Rand abprallen. Wenn ein Spieler den Ball trifft, soll der Ball zurückgeschlagen werden. Trifft der Ball hinter einem Spieler auf den Rand, erhält der andere Spieler einen Punkt.
+
 \subsubsection{Male einen Ball}
+Zunächst klicke auf das \textit{Neues Objekt malen}-Icon, um einen Sprite für den Ball zu erzeugen. 
+Du malst einen Ball mit Hilfe des Werkzeugs \emph{Ellipse}:
 
 \includegraphics[width=0.6\textwidth]{images/aufgabe5_pong_sprite_ball_malen.png}
 
+
+\subsubsection{Der Ball fliegt}
+\begin{enumerate}
+\item Selektiere nun das neu erstellt Sprite und ändere seinen Namen auf \emph{Ball}.
+\item Füge nun die Kachel \textit{Wenn grüne Fahne angeklickt} dem Skript für den Ball zu.
+\item Als nächsten initialisieren wir den Ball. 
+Initialisieren bedeutet, beim Programmstart Dinge festzulegen, damit das Programm immer gleich abläuft. In unserem Fall bedeutet dies, beim Spielstart eine Ausgangssituation für den Ball festzulegen. So startet der Ball immer an der gleichen Position:
+\begin{enumerate}
+\item Füge die Kachel \textit{zeige dich} an die Kachel \textit{Wenn grüne Fahne angeklickt}
+\item Als nächsten Befehl füge die Kachel \textit{gehe zu x: y:} an die Kachel \textit{zeige dich}. Setze den Wert für \emph{x} auf \emph{-200} und für \emph{y} auf \emph{0}
+\item Am Spielbeginn soll der Ball in eine zufällige Richtung fliegen. Dies erreichst du indem, du die Kachel \textit{zeige Richtung} verwendest und als Wert die Kachel \textit{Zufallszahl von: bis:} einfügst. Trage für \emph{von} \emph{50} und für \emph{bis} \emph{130} ein.
+\item Füge die fertige Kachel \textit{zeige Richtung} an die Kachel  \textit{gehe zu x: y:}  anfügst.
+\end{enumerate}
+\item Nach der Initialisierung kann nun der Ball zum Programmstart in eine zufällige Richtung zeigen, aber noch nicht bewegen. Das ist noch kein richtiges Spiel, daher sollen die nun folgenden Anweisungen immer wieder ausgeführt werden. Das erreichst du indem du die Kachel \textit{wiederhole fortlaufend} an die letzte Kachel deines Skripts anfügst 
+\item nun kommen die Dinge, die der Ball immer wieder ausführen soll:
+\begin{enumerate}
+\item Als erstes soll der Ball von der Wand abprallen, wenn sie berührt. Dazu ziehst du die Kachel \textit{pralle von Rand ab} in die Schleife \textit{wiederhole fortlaufend}. 
+\item Damit sich der Ball bewegt fügst du die Kachel \textit{gehe ... er Schritt} an die Kachel \textit{pralle von Rand ab}. Setze den Wert in der Kachel auf \emph{10}. Dieser Wert bestimmt wie schnell der Ball fliegt.  
+\item Jetzt fehlt noch das Schlagen des Balls durch die Spieler. Durch den Schlag ändert der Ball zufällig seine Richtung:
+\begin{enumerate}
+\item Füge die Kachel \textit{falls} an die letzte Kachel in der Schleife ein.
+\item Verwende als Bedingung für die Kachel \textit{wird ... berührt?} und wähle aus der Liste der Objekte dafür \emph{Spieler1}
+\item Füge nun in die Kachel \textit{falls} die Kachel \textit{zeige Richtung ...}
+\item Als Wert für die Richtung verwendest du die Kachel \textit{Zufallszahl von: bis:}.
+\item Trage für \emph{von} \emph{50} und für \emph{bis} \emph{130} ein.
+\end{enumerate}
+\item Tue das Gleiche für den zweiten Spieler.
+\item Für den zweiten Spieler muss der Wertebereich für die Zufallszahl \emph{von} \emph{-50}  \emph{bis} \emph{-130} gehen. 
+\end{enumerate}
+\end{enumerate}
+
+So sollte dein Skript jetzt aussehen: 
 
 \includegraphics[width=0.6\textwidth]{images/aufgabe5_pong_sprite_ball_1.png}
 
@@ -98,6 +134,19 @@ tbc.
 
 \includegraphics[width=0.6\textwidth]{images/aufgabe5_pong_spieler_variablen_2.png}
 \includegraphics[width=0.6\textwidth]{images/aufgabe5_pong_spieler_variablen_3.png}
+
+\subsection{Erweiterungen}
+Das Pong-Spiel ist nun ersteinmal fertig, dennoch kannst du es erweitern:
+
+\begin{enumerate}
+\item Versuche das Programm so zu erweitern, dass der Ball schneller wird sobald ein Spieler den Ball getroffen hat. Du brauchst dafür eine weitere Variable, die die Geschwindigkeit des Balls enthält.
+\item Die Auslinien sind durch die rote und blaue Linie im Hintergrund dargestellt. Gezählt wird, wenn der Ball die rote oder blaue Farbe berührt. Überlege wie du das Programm umbauen müsstest, wenn die Auslinien selbst Objekte sind. Diese Objekt sollen merken können sobald sie der Ball trifft und die Punkte entsprechend anpassen.
+\item Nachdem die Auslinien Objekte geworden sind, kannst du aus dem Tennisspiel ein Fußballspiel machen. Hierzu brauchst du nur die Auslinien auf Torlänge zu kürzen. 
+\end{enumerate}
+
+
+
+
 
 
 
