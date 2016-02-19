@@ -41,10 +41,14 @@ Even though BB-8 has escaped the stormtroopers, he is stuck on an unknown planet
 BB-8 is doing some more exploring, but this time, he is doing it by himself.
 
 [[Activity_5]]
-=== 
+=== Speedometer
+
+The Resistance is testing out a new, color-coded speedometer in BB-8.
 
 [[Activity_6]]
-===
+=== Party!!!
+
+The Resistance has a party after it blows up an Imperial Stardestroyer, and BB-8 is showing off his dance moves.
 
 [[Activity_7]]
 === Base Infiltration
@@ -54,4 +58,4 @@ BB-8 is waiting outside an enemy base. When he gets the signal, he will infiltra
 [[Activity_8]]
 === Better Control System
 
-BB-8 can connect to a mobile device for control in more than the four cardinal directions. He is using this to help the rebels gain data about Starkiller Base.
+BB-8 can connect to a mobile device for control in more than the four cardinal directions. He is using this to help the Resistance gain data aboutx Starkiller Base.
