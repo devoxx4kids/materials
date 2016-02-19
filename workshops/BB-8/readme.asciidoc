@@ -1,0 +1,57 @@
+= Programming BB-8
+:toc:
+:toc-placement!:
+
+This workshop shows how to program a real-life version of the BB-8 droid from Star Wars.
+
+toc::[]
+
+[[Requirements]]
+== Requirements
+
+* A mobile device made by Apple (iPhone, iPad, etc.)
+** No laptops or Android devices (app only available on mobile Apple devices)
+* https://tickleapp.com/[Tickle app] (download on mobile device)
+
+[[How_To_Use_Tickle]]
+== How to use Tickle
+
+== Activites
+
+
+
+[[Activity_1]]
+=== Run from the Stormtroopers
+
+The stormtroopers are trying to capture BB-8! He has to go fast and use evasive maneuvers to outrun them.
+
+[[Activity_2]]
+=== Escaped!
+
+BB-8 has escaped the pursuing stormtroopers, and he is very happy, so he is doing a victory dance.
+
+[[Activity_3]]
+=== Remote Reconnaissance
+
+Even though BB-8 has escaped the stormtroopers, he is stuck on an unknown planet. He is letting you take control for a bit to do some exploring
+
+[[Activity_4]]
+=== Exploring
+
+BB-8 is doing some more exploring, but this time, he is doing it by himself.
+
+[[Activity_5]]
+=== 
+
+[[Activity_6]]
+===
+
+[[Activity_7]]
+=== Base Infiltration
+
+BB-8 is waiting outside an enemy base. When he gets the signal, he will infiltrate the base and find a good spot to spy from. He will need to be completely still, and he will also turn off his bright lights.
+
+[[Activity_8]]
+=== Better Control System
+
+BB-8 can connect to a mobile device for control in more than the four cardinal directions. He is using this to help the rebels gain data about Starkiller Base.
