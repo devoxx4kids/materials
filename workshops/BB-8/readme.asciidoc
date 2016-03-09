@@ -16,7 +16,7 @@ toc::[]
 [[How_To_Use_Tickle]]
 == How to use Tickle
 
-== Activites
+== Activities
 
 
 
