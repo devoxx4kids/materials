@@ -1,9 +1,9 @@
 package org.devoxx4kids.forge.mods;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.entity.projectile.EntitySpectralArrow;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -20,21 +20,20 @@ public class SharpSnowballs {
 		}
 
 		if (!world.isRemote) {
-			EntityTNTPrimed tnt = new EntityTNTPrimed(world);
-			tnt.fuse = 80;
-			tnt.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ,
+			EntityArrow arrow = new EntitySpectralArrow(world);
+			arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ,
 					0, 0);
-			tnt.motionX = snowball.motionX;
-			tnt.motionY = snowball.motionY;
-			tnt.motionZ = snowball.motionZ;
+			arrow.motionX = snowball.motionX;
+			arrow.motionY = snowball.motionY;
+			arrow.motionZ = snowball.motionZ;
 
 			// gets arrow out of player's head
 			// gets the angle of arrow right, in the direction of motion
-			tnt.posX += tnt.motionX;
-			tnt.posY += tnt.motionY;
-			tnt.posZ += tnt.motionZ;
+			arrow.posX += arrow.motionX;
+			arrow.posY += arrow.motionY;
+			arrow.posZ += arrow.motionZ;
 
-			world.spawnEntityInWorld(tnt);
+			world.spawnEntityInWorld(arrow);
 			snowball.setDead();
 		}
 	}

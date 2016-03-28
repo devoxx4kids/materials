@@ -16,7 +16,7 @@ public class WallClimber {
 			return;
 		}
 
-		if (player.isBlocking()) {
+		if (!player.isCollided) {
 			player.motionY = -0.5;
 		} else if (player.isSneaking()) {
 			player.motionY = 0;

@@ -5,8 +5,9 @@ import java.util.List;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -26,13 +27,11 @@ public class CreeperSpawnAlert {
 			message = "A zombie has spawned";
 		}
 
-		List players = event.entity.worldObj.playerEntities;
+		List<EntityPlayer> players = event.entity.worldObj.playerEntities;
 
-		for (int i = 0; i < players.size(); i++) {
-			EntityPlayer player = (EntityPlayer) players.get(i);
+		for (EntityPlayer player : players) {
 			if (event.world.isRemote) {
-				player.addChatMessage(new ChatComponentText(
-						EnumChatFormatting.GREEN + message));
+				player.addChatMessage(new TextComponentString(message).setChatStyle((new Style()).setColor(TextFormatting.GREEN)));
 			}
 		}
 	}

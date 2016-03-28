@@ -2,7 +2,7 @@ package org.devoxx4kids.forge.mods;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -17,7 +17,7 @@ public class RainWater {
 		int y = (int) Math.floor(entity.posY);
 		int z = (int) Math.floor(entity.posZ);
 
-		if (!entity.worldObj.isRaining()) {
+		if (!world.isRaining()) {
 			return;
 		}
 
@@ -27,11 +27,11 @@ public class RainWater {
 			}
 		}
 
-		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).getBlock().isNormalCube()) {
+		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).isNormalCube()) {
 			return;
 		}
 
-		world.setBlockState(new BlockPos(x, y, z), Blocks.web.getBlockState().getBaseState());
+		world.setBlockState(new BlockPos(x, y, z), Blocks.water.getBlockState().getBaseState());
 	}
 
 }

@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -17,10 +17,10 @@ public class SkeletonWar {
 
 	@SubscribeEvent
 	public void makeWarNotPeace(EntityJoinWorldEvent event) {
-		if (!(event.entity instanceof EntityMob)) {
+		if (!(event.entity instanceof EntitySkeleton)) {
 			return;
 		}
-		EntityMob entity = (EntityMob) event.entity;
+		EntitySkeleton entity = (EntitySkeleton) event.entity;
 
 		List<ItemArmor> helmets = Arrays.asList(Items.leather_helmet,
 				Items.chainmail_helmet, Items.golden_helmet, Items.iron_helmet,
@@ -35,19 +35,18 @@ public class SkeletonWar {
 				Items.chainmail_boots, Items.golden_boots, Items.iron_boots,
 				Items.diamond_boots);
 
-		entity.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
-				entity, EntityMob.class, true));
+		entity.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntitySkeleton>(
+				entity, EntitySkeleton.class, true));
 		entity.canPickUpLoot();
 
 		Random random = new Random();
-		entity.setCurrentItemOrArmor(4,
+		entity.setItemStackToSlot(EntityEquipmentSlot.HEAD,
 				new ItemStack(helmets.get(random.nextInt(5))));
-		entity.setCurrentItemOrArmor(3,
+		entity.setItemStackToSlot(EntityEquipmentSlot.CHEST,
 				new ItemStack(chestplates.get(random.nextInt(5))));
-		entity.setCurrentItemOrArmor(2,
+		entity.setItemStackToSlot(EntityEquipmentSlot.LEGS,
 				new ItemStack(leggings.get(random.nextInt(5))));
-		entity.setCurrentItemOrArmor(1,
+		entity.setItemStackToSlot(EntityEquipmentSlot.FEET,
 				new ItemStack(boots.get(random.nextInt(5))));
 	}
-
 }
