@@ -18,8 +18,6 @@ toc::[]
 
 == Activites
 
-
-
 [[Activity_1]]
 === Run from the Stormtroopers
 
