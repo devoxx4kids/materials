@@ -8,7 +8,6 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -18,10 +17,10 @@ public class SkeletonWar {
 
 	@SubscribeEvent
 	public void makeWarNotPeace(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntitySkeleton)) {
+		if (!(event.entity instanceof EntityMob)) {
 			return;
 		}
-		EntitySkeleton skeleton = (EntitySkeleton) event.getEntity();
+		EntityMob entity = (EntityMob) event.entity;
 
 		List<ItemArmor> helmets = Arrays.asList(Items.leather_helmet,
 				Items.chainmail_helmet, Items.golden_helmet, Items.iron_helmet,
@@ -36,18 +35,18 @@ public class SkeletonWar {
 				Items.chainmail_boots, Items.golden_boots, Items.iron_boots,
 				Items.diamond_boots);
 
-		skeleton.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
-				skeleton, EntitySkeleton.class, true));
-		skeleton.canPickUpLoot();
+		entity.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
+				entity, EntityMob.class, true));
+		entity.canPickUpLoot();
 
 		Random random = new Random();
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(
-				helmets.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(
-				chestplates.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(
-				leggings.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.FEET,
+		entity.setCurrentItemOrArmor(4,
+				new ItemStack(helmets.get(random.nextInt(5))));
+		entity.setCurrentItemOrArmor(3,
+				new ItemStack(chestplates.get(random.nextInt(5))));
+		entity.setCurrentItemOrArmor(2,
+				new ItemStack(leggings.get(random.nextInt(5))));
+		entity.setCurrentItemOrArmor(1,
 				new ItemStack(boots.get(random.nextInt(5))));
 	}
 

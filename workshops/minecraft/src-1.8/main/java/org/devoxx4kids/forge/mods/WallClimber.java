@@ -16,7 +16,7 @@ public class WallClimber {
 			return;
 		}
 
-		if (player.isActiveItemStackBlocking()) {
+		if (player.isBlocking()) {
 			player.motionY = -0.5;
 		} else if (player.isSneaking()) {
 			player.motionY = 0;
@@ -28,10 +28,12 @@ public class WallClimber {
 
 	@SubscribeEvent
 	public void negateFallDamage(LivingFallEvent event) {
-		if (!(event.getEntity() instanceof EntityPlayer)) {
+		if (!(event.entity instanceof EntityPlayer)) {
 			return;
-		}
+    		}
 
-		event.setCanceled(true);
+    	 	EntityPlayer player = (EntityPlayer) event.entity;
+
+    		event.setCanceled(true);
 	}
 }

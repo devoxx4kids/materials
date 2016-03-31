@@ -1,5 +1,10 @@
 package org.devoxx4kids.forge.mods;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentProtection;
+import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -13,15 +18,15 @@ public class MainMod {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-//		MinecraftForge.EVENT_BUS.register(new ChatItems());
-//		MinecraftForge.EVENT_BUS.register(new DragonSpawner());
-//		MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
-//		MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
-//		MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
-//		MinecraftForge.EVENT_BUS.register(new RainWater());
-//		FMLCommonHandler.instance().bus().register(new WallClimber());
-//		MinecraftForge.EVENT_BUS.register(new WallClimber());
-//		MinecraftForge.EVENT_BUS.register(new ArrowShotgun());
+		MinecraftForge.EVENT_BUS.register(new ChatItems());
+		MinecraftForge.EVENT_BUS.register(new DragonSpawner());
+		MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
+		MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
+		MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
+		MinecraftForge.EVENT_BUS.register(new RainWater());
+		FMLCommonHandler.instance().bus().register(new WallClimber());
+		MinecraftForge.EVENT_BUS.register(new WallClimber());
+		MinecraftForge.EVENT_BUS.register(new ArrowShotgun());
 		MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 	}
 }

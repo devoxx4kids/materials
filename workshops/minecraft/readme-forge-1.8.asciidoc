@@ -17,8 +17,8 @@ toc::[]
 
 . **JDK:** Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . **Eclipse:** Download and install Eclipse from http://www.eclipse.org/downloads/, pick "`Eclipse IDE for Java Developers`"
-. **Forge:** Download Forge 1.9 from
-  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.9-12.16.0.1816-1.9/forge-1.9-12.16.0.1816-1.9-mdk.zip
+. **Forge:** Download Forge 1.8 from
+  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.1.1341/forge-1.8-11.14.1.1341-src.zip
 
 Follow the instructions for Mac or Windows as explained below.
 
@@ -27,7 +27,7 @@ Follow the instructions for Mac or Windows as explained below.
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
 . Change to the directory `cd forge`
-. Unzip the downloaded Forge 1.9 zip file as `unzip ~/Downloads/forge-1.9-12.16.0.1816-1.9-mdk.zip`
+. Unzip the downloaded Forge 1.8 zip file as `unzip ~/Downloads/forge-1.8-11.14.3.1450-src.zip`
 . Give the command `./gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
 
 === Windows
@@ -35,7 +35,7 @@ Follow the instructions for Mac or Windows as explained below.
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
 . Change to the directory `cd forge`
-. In File Explorer, double click on the Forge 1.9 zip file downloaded earlier and extract all the contents in this newly created directory.
+. In File Explorer, double click on the Forge 1.8 zip file downloaded earlier and extract all the contents in this newly created directory.
 . Give the command `gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
 
 A detailed video with complete installation steps on Mac is given below:
@@ -53,17 +53,17 @@ This is a very important step as this will confirm that you can actually start m
 . Open up Eclipse
 . In the "`Select a workspace`" window, choose the location of `eclipse` directory in the unzipped forge directory as the workspace
 . Click on "`OK`"
-. In the Eclipse window, you should see a "`MDKExample`" folder and be able to expand it. There should be no red exclamation marks next to it.
+. In the Eclipse window, you should see a "`Minecraft`" folder and be able to expand it. There should be no red exclamation marks next to it.
 
 === Troubleshooting
 
 . If you selected a different directory, click on ``File'', ``Switch Workspace'', and select the correct directory.
-. If you don't see the MDKExample folder, the `gradlew` command might have shown some errors. Try running it again.
+. If you don't see Minecraft folder, the `gradlew` command might have shown some errors. Try running it again.
 
 [[Main_File]]
 == The Main File
 
-To start modding, we need a main file. This file will register all of our mods so that they actually function in the game. To make this main file, first you need to make a new package. Click on the arrow next to the "`MDKExample`" folder in the left side of your window. Then, right click on "src/main/java" and select New > Package. Name it `org.devoxx4kids.forge.mods`.
+To start modding, we need a main file. This file will register all of our mods so that they actually function in the game. To make this main file, first you need to make a new package. Click on the arrow next to the "`Minecraft`" folder in the left side of your window. Then, right click on "src/main/java" and select New > Package. Name it `org.devoxx4kids.forge.mods`.
 
 We need to create a new class in this package. To do this, right click on the new package you created and select New > Class. Name it `MainMod`. The middle of your screen will show its code. Replace all of the code with the code in <<Setting_Up_The_Main_File>>.
 
@@ -114,12 +114,11 @@ import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ChatItems {
-
+	
 	@SubscribeEvent
-	public void giveItems(ServerChatEvent event) {
-		if (event.getMessage().contains("potato")) {
-			event.getPlayer().inventory.addItemStackToInventory(new ItemStack(
-					Items.potato, 64));
+	public void giveItems(ServerChatEvent event){
+		if (event.message.contains("potato")) {
+			event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
 		}
 	}
 }
@@ -188,12 +187,12 @@ Produce different items for different chat text
 ----
 @SubscribeEvent
 public void giveItems(ServerChatEvent event){
-	if (event.getMessage().contains("potato")) {
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+	if (event.message.contains("potato")) {
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
 	}
 
-	if (event.getMessage().contains("diamond")) {
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
+	if (event.message.contains("diamond")) {
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
 	}
 }
 ----
@@ -210,9 +209,9 @@ Produce multiple items for chat text
 ----
 @SubscribeEvent
 public void giveItems(ServerChatEvent event){
-	if (event.getMessage().contains("potato")) {
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
+	if (event.message.contains("potato")) {
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+		event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
 	}
 }
 ----
@@ -233,22 +232,20 @@ public void giveItems(ServerChatEvent event){
 package org.devoxx4kids.forge.mods;
 
 import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.dragon.phase.PhaseList;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class DragonSpawner {
-
+	
 	@SubscribeEvent
 	public void spawnDragon(PlaceEvent event) {
-		if (event.getPlacedBlock() == Blocks.sponge.getBlockState().getBaseState()) {
-			event.getWorld().setBlockToAir(new BlockPos(event.getPos().getX(), event.getPos().getY(),event.getPos().getZ()));
-			EntityDragon dragon = new EntityDragon(event.getWorld());
-			dragon.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
-			dragon.getPhaseManager().setPhase(PhaseList.TAKEOFF);
-			event.getWorld().spawnEntityInWorld(dragon);
+		if (event.placedBlock == Blocks.dragon_egg.getBlockState().getBaseState()) {
+			event.world.setBlockToAir(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
+			EntityDragon dragon = new EntityDragon(event.world);
+			dragon.setLocationAndAngles(event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
+			event.world.spawnEntityInWorld(dragon);
 		}
 	}
 }
@@ -283,11 +280,11 @@ Change block that triggers spawning and spawn a different item. For example chan
 ====
 [source, java]
 ----
-if (event.getPlacedBlock() == Blocks.sponge.getBlockState().getBaseState()) {
-	event.getWorld().setBlockToAir(new BlockPos(event.getPos().getX(), event.getPos().getY(),event.getPos().getZ()));
-	EntitySquid squid = new EntitySquid(event.getWorld());
-	squid.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
-	event.getWorld().spawnEntityInWorld(squid);
+if (event.placedBlock == Blocks.sponge.getBlockState().getBaseState()) {
+		event.world.setBlockToAir(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
+		EntitySquid squid = new EntitySquid(event.world);
+		squid.setLocationAndAngles(event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
+		event.world.spawnEntityInWorld(squid);
 }
 ----
 ====
@@ -296,13 +293,13 @@ After doing this, press Control + Shift + O on a Windows computer or Cmd + Shift
 
 === Change offset of entities
 
-Change `event.pos.getX()`, `event.pos.getY()`, `event.pos.getZ()` and add or subtract 5 to spawn entities at an offset.
+Change `event.pos.getX()`, `event.pos.getY()`, `event.pos.getZ()` and add or subtract 5 to show entities are produced at an offset.
 
 .Spawn offset
 ====
 [source, java]
 ----
-dragon.setLocationAndAngles(event.getPos().getX() + 5, event.getPos().getY(), event.getPos().getZ(), 0, 0);
+dragon.setLocationAndAngles(event.pos.getX() + 5, event.pos.getY(), event.pos.getZ(), 0, 0);
 ----
 ====
 
@@ -323,10 +320,9 @@ package org.devoxx4kids.forge.mods;
 import java.util.List;
 
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -334,16 +330,17 @@ public class CreeperSpawnAlert {
 
 	@SubscribeEvent
 	public void sendAlert(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntityCreeper)) {
+		if (!(event.entity instanceof EntityCreeper)) {
 			return;
 		}
 
-		List players = event.getEntity().worldObj.playerEntities;
+		List players = event.entity.worldObj.playerEntities;
 
 		for (int i = 0; i < players.size(); i++) {
 			EntityPlayer player = (EntityPlayer) players.get(i);
-			if (event.getWorld().isRemote) {
-				player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "A creeper has spawned!"));
+			if (event.world.isRemote) {
+				player.addChatMessage(new ChatComponentText(
+						EnumChatFormatting.GREEN + "A creeper has spawned!"));
 			}
 		}
 	}
@@ -377,7 +374,8 @@ You should get a bunch of messages saying "A creeper has spawned!" in light gree
 ====
 [source,java]
 ----
-player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "A creeper has spawned!"));
+player.addChatMessage(new ChatComponentText(
+		EnumChatFormatting.RED + "A creeper has spawned!"));
 ----
 ====
 
@@ -389,7 +387,8 @@ Try different colors by code completion after `EnumChatFormatting`.
 ====
 [source,java]
 ----
-player.addChatComponentMessage(new TextComponentString(TextFormatting.ITALIC + "A creeper has spawned!"));
+player.addChatMessage(new ChatComponentText(
+		EnumChatFormatting.ITALIC + "A creeper has spawned!"));
 ----
 ====
 
@@ -401,7 +400,8 @@ Try different styles by code completion after `EnumChatFormatting`.
 ====
 [source,java]
 ----
-player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "Run away, a creeper has spawned!"));
+player.addChatMessage(new ChatComponentText(
+		EnumChatFormatting.GREEN + "Run away, a creeper has spawned!"));
 ----
 ====
 
@@ -413,7 +413,7 @@ Talk about text within quotes.
 ====
 [source, java]
 ----
-if (!(event.getEntity() instanceof EntityCreeper && event.getEntity() instanceof EntityZombie)) {
+if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZombie)) {
 	return;
 }
 ----
@@ -425,7 +425,7 @@ OR
 ====
 [source, java]
 ----
-if (!(event.getEntity() instanceof EntityCreeper) || !(event.getEntity() instanceof EntityZombie)) {
+if (!(event.entity instanceof EntityCreeper) || !(event.entity instanceof EntityZombie)) {
 	return;
 }
 ----
@@ -439,26 +439,26 @@ Explain AND and OR
 ====
 [source, java]
 ----
-@SubscribeEvent
 public void sendAlert(EntityJoinWorldEvent event) {
-	if (!(event.getEntity() instanceof EntityCreeper || event.getEntity() instanceof EntityZombie)) {
+	if (!(event.entity instanceof EntityCreeper || event.entity instanceof EntityZombie)) {
 		return;
 	}
 	
 	String message;
 	
-	if (event.getEntity() instanceof EntityCreeper) {
+	if (event.entity instanceof EntityCreeper) {
 		message = "A creeper has spawned";
 	} else {
 		message = "A zombie has spawned";
 	}
 
-	List players = event.getEntity().worldObj.playerEntities;
+	List players = event.entity.worldObj.playerEntities;
 
 	for (int i = 0; i < players.size(); i++) {
 		EntityPlayer player = (EntityPlayer) players.get(i);
-		if (event.getWorld().isRemote) {
-			player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + message));
+		if (event.world.isRemote) {
+			player.addChatMessage(new ChatComponentText(
+					EnumChatFormatting.GREEN + message));
 		}
 	}
 }
@@ -471,7 +471,7 @@ public void sendAlert(EntityJoinWorldEvent event) {
 ====
 [source, java]
 ----
-if (!(event.getEntity() instanceof EntityMob)) {
+if (!(event.entity instanceof EntityMob)) {
 	return;
 }
 ----
@@ -494,8 +494,8 @@ Explain how to reach `EntityMob`.
 package org.devoxx4kids.forge.mods;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -504,7 +504,7 @@ public class SharpSnowballs {
 
 	@SubscribeEvent
 	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
-		Entity snowball = event.getEntity();
+		Entity snowball = event.entity;
 		World world = snowball.worldObj;
 
 		if (!(snowball instanceof EntitySnowball)) {
@@ -512,7 +512,7 @@ public class SharpSnowballs {
 		}
 
 		if (!world.isRemote) {
-			EntityTippedArrow arrow = new EntityTippedArrow(world);
+			EntityArrow arrow = new EntityArrow(world);
 			arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ,
 					0, 0);
 			arrow.motionX = snowball.motionX;
@@ -565,7 +565,7 @@ code shown in <<Explosive_Snowballs_Code>>.
 [source, java]
 ----
 EntityTNTPrimed arrow = new EntityTNTPrimed(world);
-arrow.setFuse(80);
+arrow.fuse = 80;
 ----
 ====
 
@@ -587,24 +587,23 @@ package org.devoxx4kids.forge.mods;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OverpoweredIronGolems {
-
+	
 	@SubscribeEvent
 	public void golemMagic(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntityIronGolem)) {
+		if (!(event.entity instanceof EntityIronGolem)) {
 			return;
 		}
-
-		EntityLiving entity = (EntityLiving) event.getEntity();
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(5), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 1000000, 5));
+		
+		EntityLiving entity = (EntityLiving) event.entity;
+		entity.addPotionEffect(new PotionEffect(1, 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(5, 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(10, 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(11, 1000000, 5));
 	}
 }
 ----
@@ -643,7 +642,7 @@ package org.devoxx4kids.forge.mods;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -652,7 +651,7 @@ public class RainWater {
 
 	@SubscribeEvent
 	public void makeWater(LivingUpdateEvent event) {
-		Entity entity = event.getEntity();
+		Entity entity = event.entity;
 		World world = entity.worldObj;
 		int x = (int) Math.floor(entity.posX);
 		int y = (int) Math.floor(entity.posY);
@@ -667,8 +666,8 @@ public class RainWater {
 				return;
 			}
 		}
-
-		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).isFullCube()) {
+		
+		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).getBlock().isNormalCube()) {
 			return;
 		}
 
@@ -705,50 +704,41 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+@SubscribeEvent
+public void makeTNT(LivingUpdateEvent event) {
+	Entity entity = event.entity;
+	World world = entity.worldObj;
+	int x = (int) Math.floor(entity.posX);
+	int y = (int) Math.floor(entity.posY);
+	int z = (int) Math.floor(entity.posZ);
 
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class RainWater {
-
-	@SubscribeEvent
-	public void makeWater(LivingUpdateEvent event) {
-		Entity entity = event.getEntity();
-		World world = entity.worldObj;
-		int x = (int) Math.floor(entity.posX);
-		int y = (int) Math.floor(entity.posY);
-		int z = (int) Math.floor(entity.posZ);
-
-		if (!entity.worldObj.isThundering()) {
-			return;
-		}
-
-		for (int i = y; i < 256; i++) {
-			if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.air.getBlockState().getBaseState()) {
-				return;
-			}
-		}
-
-		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).isFullCube()) {
-			return;
-		}
-
-		Random random = new Random();
-	
-		if (random.nextInt(40) != 1) {
-			return;
-		}
-
-		EntityTNTPrimed tnt = new EntityTNTPrimed(world);
-		tnt.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, 0, 0);
-		tnt.setFuse(80);
-		world.spawnEntityInWorld(tnt);
+	if (!world.isThundering()) {
+		return;
 	}
+
+	for (int i = y; i < 256; i++) {
+		if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.air
+				.getBlockState().getBaseState()) {
+			return;
+		}
+	}
+
+	if (world.isRemote
+			|| !world.getBlockState(new BlockPos(x, y - 1, z)).getBlock()
+					.isNormalCube()) {
+		return;
+	}
+	
+	Random random = new Random();
+	
+	if (random.nextInt(40) != 1) {
+		return;
+	}
+
+	EntityTNTPrimed tnt = new EntityTNTPrimed(world);
+	tnt.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, 0, 0);
+	tnt.fuse = 80;
+	world.spawnEntityInWorld(tnt);
 }
 ----
 ====
@@ -779,33 +769,34 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class WallClimber {
-
+	
 	@SubscribeEvent
 	public void climbWall(PlayerTickEvent event) {
-
+		
 		EntityPlayer player = event.player;
-
+		
 		if (!player.isCollidedHorizontally) {
 			return;
 		}
-
-		if (player.isActiveItemStackBlocking()) {
+		
+		if (player.isBlocking()) {
 			player.motionY = -0.5;
 		} else if (player.isSneaking()) {
 			player.motionY = 0;
 		} else {
 			player.motionY = 0.5;
 		}
-
 	}
-
+	
 	@SubscribeEvent
 	public void negateFallDamage(LivingFallEvent event) {
-		if (!(event.getEntity() instanceof EntityPlayer)) {
+		if (!(event.entity instanceof EntityPlayer)) {
 			return;
-		}
+    		}
 
-		event.setCanceled(true);
+    	 	EntityPlayer player = (EntityPlayer) event.entity;
+
+    		event.setCanceled(true);
 	}
 }
 ----
@@ -835,7 +826,7 @@ You'll find that Eclipse flags a missing import for FMLCommonHandler so make sur
 [[Shotgun]]
 == Arrow Shotgun
 
-**Purpose:** To make all bows fire 20 flaming arrows instead of one arrow.
+**Purpose:** To turn a stick into a shotgun that fires 20 flaming arrows on right click.
 
 **Instructions:** In your package, create a new class called `ArrowShotgun` and replace its contents with <<Arrow_Code>>.
 
@@ -847,18 +838,12 @@ You'll find that Eclipse flags a missing import for FMLCommonHandler so make sur
 package org.devoxx4kids.forge.mods;
 
 import java.util.Random;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemBow;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ArrowShotgun {
@@ -866,25 +851,32 @@ public class ArrowShotgun {
 	private final int arrows = 20;
 
 	@SubscribeEvent
-	public void shootArrows(ArrowLooseEvent event) {
-		EntityPlayer player = event.getEntityPlayer();
-		World world = event.getWorld();
+	public void shootArrows(PlayerInteractEvent event) {
+		EntityPlayer player = event.entityPlayer;
+		World world = event.world;
+
+		if (player.getHeldItem() == null) {
+			return;
+		}
+
+		if ((event.action != Action.RIGHT_CLICK_AIR && event.action != Action.RIGHT_CLICK_BLOCK)
+				|| player.getHeldItem().getItem() != Items.stick) {
+			return;
+		}
 
 		Random random = new Random();
 
-		float velocity = 2.0F;
-
 		for (int i = 0; i < arrows; i++) {
-			EntityArrow arrow = new EntityTippedArrow(world, player);
-			arrow.func_184547_a(player, player.rotationPitch, player.rotationYaw, 0.0F, ItemBow.func_185059_b(event.getCharge()) * 3.0F, 12.0F);
-			arrow.canBePickedUp = EntityArrow.PickupStatus.DISALLOWED;
+			EntityArrow arrow = new EntityArrow(world, player, 2);
+			arrow.posX += arrow.motionX + random.nextFloat() - 0.5F;
+			arrow.posY += arrow.motionY + random.nextFloat() - 0.5F;
+			arrow.posZ += arrow.motionZ + random.nextFloat() - 0.5F;
+			arrow.canBePickedUp = 0;
 			arrow.setFire(10000);
 			if (!world.isRemote) {
 				world.spawnEntityInWorld(arrow);
 			}
 		}
-
-		event.setCanceled(true);
 	}
 }
 ----
@@ -903,10 +895,8 @@ MinecraftForge.EVENT_BUS.register(new ArrowShotgun());
 
 **Gameplay:**
 
-. Get a Bow item from your inventory
-. Hold right click to charge it
-. Release right click when the bow begins shaking
-. 20 flaming arrows should be fired out
+. Get a Stick item from your inventory
+. Right click anywhere to shoot arrows
 
 [[Skeleton_War]]
 == Skeleton War
@@ -925,12 +915,9 @@ package org.devoxx4kids.forge.mods;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -940,10 +927,10 @@ public class SkeletonWar {
 
 	@SubscribeEvent
 	public void makeWarNotPeace(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntitySkeleton)) {
+		if (!(event.entity instanceof EntitySkeleton)) {
 			return;
 		}
-		EntitySkeleton skeleton = (EntitySkeleton) event.getEntity();
+		EntitySkeleton entity = (EntitySkeleton) event.entity;
 
 		List<ItemArmor> helmets = Arrays.asList(Items.leather_helmet,
 				Items.chainmail_helmet, Items.golden_helmet, Items.iron_helmet,
@@ -958,22 +945,22 @@ public class SkeletonWar {
 				Items.chainmail_boots, Items.golden_boots, Items.iron_boots,
 				Items.diamond_boots);
 
-		skeleton.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
-				skeleton, EntitySkeleton.class, true));
-		skeleton.canPickUpLoot();
+		entity.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
+				entity, EntitySkeleton.class, true));
+		entity.canPickUpLoot();
 
 		Random random = new Random();
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(
-				helmets.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(
-				chestplates.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(
-				leggings.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.FEET,
+		entity.setCurrentItemOrArmor(4,
+				new ItemStack(helmets.get(random.nextInt(5))));
+		entity.setCurrentItemOrArmor(3,
+				new ItemStack(chestplates.get(random.nextInt(5))));
+		entity.setCurrentItemOrArmor(2,
+				new ItemStack(leggings.get(random.nextInt(5))));
+		entity.setCurrentItemOrArmor(1,
 				new ItemStack(boots.get(random.nextInt(5))));
 	}
-
 }
+
 ----
 ====
 
@@ -995,7 +982,7 @@ MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 . The skeletons should have assorted pieces of armor; they should also be shooting each other
 
 [[Fast_Bows]]
-== Fast Bows (not ready for 1.9 yet)
+== Fast Bows
 
 **Purpose:** To add an enchantment which reduces the time needed to nock an arrow on a bow and pull it back all the way.
 
