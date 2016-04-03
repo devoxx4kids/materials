@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 public class MainMod {
 	public static final String MODID = "MyMods";
 	public static final String VERSION = "1.0";
+	
+	public static final Enchantment haste = new EnchantmentArrowFast();
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
@@ -28,5 +30,8 @@ public class MainMod {
 		MinecraftForge.EVENT_BUS.register(new WallClimber());
 		MinecraftForge.EVENT_BUS.register(new ArrowShotgun());
 		MinecraftForge.EVENT_BUS.register(new SkeletonWar());
+		
+		MinecraftForge.EVENT_BUS.register(haste);
+		Enchantment.enchantmentRegistry.register(100, new ResourceLocation("arrowFast"), haste);
 	}
 }

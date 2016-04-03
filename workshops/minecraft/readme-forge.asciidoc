@@ -995,7 +995,7 @@ MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 . The skeletons should have assorted pieces of armor; they should also be shooting each other
 
 [[Fast_Bows]]
-== Fast Bows (not ready for 1.9 yet)
+== Fast Bows
 
 **Purpose:** To add an enchantment which reduces the time needed to nock an arrow on a bow and pull it back all the way.
 
@@ -1012,14 +1012,15 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.init.Items;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EnchantmentArrowFast extends Enchantment {
-	public EnchantmentArrowFast(int enchID, ResourceLocation enchName,
-			int enchWeight) {
-		super(enchID, enchName, enchWeight, EnumEnchantmentType.BOW);
+	public EnchantmentArrowFast() {
+		super(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.BOW,
+				new EntityEquipmentSlot[] { EntityEquipmentSlot.MAINHAND,
+						EntityEquipmentSlot.OFFHAND });
 		this.setName("arrowFast");
 	}
 
@@ -1047,24 +1048,24 @@ public class EnchantmentArrowFast extends Enchantment {
 	}
 
 	@SubscribeEvent
-	public void decreaseBowUseDuration(PlayerUseItemEvent.Start event) {
-		if (event.item.getItem() == null) {
+	public void decreaseBowUseDuration(LivingEntityUseItemEvent.Tick event) {
+		if (event.getItem() == null) {
 			return;
 		}
 
-		if (event.item.getItem() != Items.bow) {
+		if (event.getItem().getItem() != Items.bow) {
 			return;
 		}
 
-		int level = EnchantmentHelper.getEnchantmentLevel(MainMod.haste.effectId,
-				event.item);
+		int level = EnchantmentHelper.getEnchantmentLevel(MainMod.haste,
+				event.getItem());
 
 		switch (level) {
-		case 2:
-			event.duration -= 10;
-			break;
 		case 1:
-			event.duration -= 5;
+			event.setDuration(event.getDuration() - 1);
+			break;
+		case 2:
+			event.setDuration(event.getDuration() - 2);
 			break;
 		default:
 			break;
@@ -1081,7 +1082,7 @@ Then, you will need to add some extra lines of code besides just the registering
 ====
 [source, java]
 ----
-public static final Enchantment haste = new EnchantmentArrowFast(150, new ResourceLocation("haste"), 2);
+public static final Enchantment haste = new EnchantmentArrowFast();
 ----
 
 Don't forget to add the appropriate imports for Enchantment and ResourceLocation.
@@ -1094,8 +1095,8 @@ After that, put the code from <<Fast_Arrow_Registering>> in your `init()` method
 ====
 [source, java]
 ----
-Enchantment.addToBookList(haste);
 MinecraftForge.EVENT_BUS.register(haste);
+Enchantment.enchantmentRegistry.register(100, new ResourceLocation("arrowFast"), haste);
 ====
 
 Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("Haste" instead of "enchantment.arrowFast"). If you close the "src/main/java" folder in which all of your files are located, you should see a folder labeled "src/main/resources" directly underneath. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
@@ -1115,7 +1116,7 @@ enchantment.arrowFast=Haste
 . Get an Enchanted Book that has the enchantment "Haste I" or "Haste II" on it from your inventory
 . Use an anvil to combine the two items you got
 . Get out another bow from your inventory, but don't enchant it
-. Compare the shooting speeds of the two bows
+. Compare the shooting speeds of the two bows - the ones with Haste should be significantly faster than the one without any enchantmeents
 
 [[Sharing]]
 == Sharing Your Mods
