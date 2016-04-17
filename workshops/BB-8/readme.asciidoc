@@ -90,7 +90,7 @@ When you are done, the code for BB-8 should look like <<workshop_1_final>>.
 
 [[workshop_1_final]]
 .Activity 1 finished code
-image::images/workshop-1-final.png[height=50%]
+image::images/workshop-1-final.png[width=50%]
 
 ==== Try it!
 
@@ -111,7 +111,7 @@ When you are done, the code for BB-8 should look like <<workshop_2_final>>.
 
 [[workshop_2_final]]
 .Activity 2 finished code
-image::images/workshop-2-final.png[height=50%]
+image::images/workshop-2-final.png[width=50%]
 
 ==== Try it!
 
@@ -132,7 +132,7 @@ When you are done, the code for BB-8 should look like <<workshop_3_final>>. The 
 
 [[workshop_3_final]]
 .Activity 3 finished code
-image::images/workshop-3-final.png[height=50%]
+image::images/workshop-3-final.png[width=50%]
 
 ==== Try it!
 
@@ -153,7 +153,7 @@ When you are done, the code for BB-8 should look like <<workshop_4_final>>.
 
 [[workshop_4_final]]
 .Activity 4 finished code
-image::images/workshop-4-final.png[height=50%]
+image::images/workshop-4-final.png[width=50%]
 
 ==== Try it!
 
@@ -174,11 +174,11 @@ When you are done, the code for BB-8 should look like <<workshop_5_final_1>> and
 
 [[workshop_5_final_1]]
 .Activity 5 finished code - part 1
-image::images/workshop-5-final-1.png[height=50%]
+image::images/workshop-5-final-1.png[width=50%]
 
 [[workshop_5_final_2]]
 .Activity 5 finished code - part 2
-image::images/workshop-5-final-2.png[height=50%]
+image::images/workshop-5-final-2.png[width=50%]
 
 ==== Try it!
 
@@ -199,11 +199,11 @@ When you are done, the code for BB-8 should look like <<workshop_6_final_1>> and
 
 [[workshop_6_final_1]]
 .Activity 6 finished code - part 1
-image::images/workshop-6-final-1.png[height=50%]
+image::images/workshop-6-final-1.png[width=50%]
 
 [[workshop_6_final_2]]
 .Activity 6 finished code - part 2
-image::images/workshop-6-final-2.png[height=50%]
+image::images/workshop-6-final-2.png[width=50%]
 
 ==== Try it!
 
@@ -224,11 +224,11 @@ When you are done, the code for BB-8 should look like <<workshop_7_final_1>> and
 
 [[workshop_7_final_1]]
 .Activity 7 finished code - part 1
-image::images/workshop-7-final-1.png[height=50%]
+image::images/workshop-7-final-1.png[width=50%]
 
 [[workshop_7_final_2]]
 .Activity 7 finished code - part 2
-image::images/workshop-7-final-2.png[height=50%]
+image::images/workshop-7-final-2.png[width=50%]
 
 ==== Try it!
 
@@ -251,15 +251,15 @@ When you are done, the code for BB-8 should look like <<workshop_8_BB-8>>, the c
 
 [[workshop_8_BB-8]]
 .Activity 8 finished code - BB-8
-image::images/workshop-8-final-BB-8.png[height=50%]
+image::images/workshop-8-final-BB-8.png[width=50%]
 
 [[workshop_8_square_button]]
 .Activity 8 finished code - square button
-image::images/workshop-8-final-square-button.png[height=50%]
+image::images/workshop-8-final-square-button.png[width=50%]
 
 [[workshop_8_circle_button]]
 .Activity 8 finished code - circle button
-image::images/workshop-8-final-circle-button.png[height=50%]
+image::images/workshop-8-final-circle-button.png[width=50%]
 
 ==== Try it!
 
