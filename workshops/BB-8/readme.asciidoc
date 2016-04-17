@@ -35,19 +35,19 @@ When you launch Tickle, you should see:
 
 === Add code to a project
 
-* If you aren't already in the project's code window, find the project in the "`My Projects`" page and tap on its picture.
-* You will see a list of blocks at the left of your screen with 6 categories next to it. Tap on a category to navigate to it. You can also swipe up and down on the list to navigate.
-* To add a block to the code, drag it from the list of blocks into the large, dark gray area on the right of your screen.
-* To connect two blocks together, align them until a white line shows up in between them. This is where the block you are dragging will connect to the block that has been placed down.
-* A block that is between two other blocks cannot be moved by itself. If you are moving a block, you must move everything connected underneath it as well. If you want to move a specific block, you can move a stack of blocks out, then replace everything except the first block.
-* To delete a block or a stack of blocks, drag it into the block list.
-* Always start a stack of blocks with a "`starting block`" - starting blocks are the ones with a rounded top. Whenever the event written on the starting block happens, the stack of blocks underneath will execute.
-* Some code blocks have values that can be changed. These values include: numbers, text, etc. To change these values, tap on the box with the value and type in a new value.
-** Blocks like `... + ...` and `ask ... and wait` require variables or text input.
-** If tapping on the box does nothing, that means the box requires a block to go inside it. Blocks that go inside other blocks have rounded edges and are usually conditional statements (think of them as yes/no questions).
-*** Blocks like `if ... then` `wait until ...` require conditional statements. These include `... = ...` (true when the two values are equal, false when they aren't), `finger touching down?` (true when finger is touching the stage, false when it isn't), and others.
-* To add a variable to the project, tap the "`+ Add Variable`" button at the bottom-left of your screen. Choose "`[x] Variable`", name it, and select "`For all objects`". Sometimes for other projects, you will want variables to be "`For this object`", but in this workshop, all variables are for all objects. Once you have named the variable, tap "`CREATE`".
-** This will make a new category, titled "`Data`", appear in the list of categories at the side. This category deals with variables and lists.
+* If you aren't already in the project's *code window*, find the project in the "`My Projects`" page and tap on its picture.
+* You will see a *list of blocks* at the left of your screen with 6 categories next to it. Tap on a category to navigate to it. You can also swipe up and down on the list to navigate.
+* To *add a block* to the code, drag it from the list of blocks into the large, dark gray area on the right of your screen.
+* To *connect two blocks together*, align them until a white line shows up in between them. This is where the block you are dragging will connect to the block that has been placed down.
+* A block that is between two other blocks *cannot be moved by itself*. If you are moving a block, you must move everything connected underneath it as well. If you want to move a specific block, you can move a stack of blocks out, then replace everything except the first block.
+* To *delete a block or a stack of blocks*, drag it into the block list.
+* *Always start a stack of blocks with a "`starting block`"* - starting blocks are the ones with a rounded top. Whenever the event written on the starting block happens, the stack of blocks underneath will execute.
+* *Some code blocks have values that can be changed.* These values include: numbers, text, etc. To change these values, tap on the box with the value and type in a new value.
+** Blocks like `... + ...` and `ask ... and wait` *require variables or text input*.
+** If *tapping on the box does nothing*, that means the box requires a block to go inside it. Blocks that go inside other blocks have rounded edges and are usually conditional statements (think of them as yes/no questions).
+*** Blocks like `if ... then` `wait until ...` *require conditional statements*. These include `... = ...` (true when the two values are equal, false when they aren't), `finger touching down?` (true when finger is touching the stage, false when it isn't), and others.
+* To *add a variable* to the project, tap the "`+ Add Variable`" button at the bottom-left of your screen. Choose "`[x] Variable`", name it, and select "`For all objects`". Sometimes for other projects, you will want variables to be "`For this object`", but in this workshop, all variables are for all objects. Once you have named the variable, tap "`CREATE`".
+** This will make a *new category, titled "`Data`"*, appear in the list of categories at the side. This category deals with variables and lists.
 
 === Add new character to the project
 
@@ -78,7 +78,7 @@ When you launch Tickle, you should see:
 The description of these activities includes a brief description of the activity, the final code, and how to test it. If you need help with the project, refer to the <<How_To_Use_Tickle>> section for instructions on how to add code or characters to the project.
 
 [[Activity_1]]
-=== Run from the Stormtroopers
+=== 1. Run from the Stormtroopers
 
 ==== Description
 
@@ -90,7 +90,7 @@ When you are done, the code for BB-8 should look like <<workshop_1_final>>.
 
 [[workshop_1_final]]
 .Activity 1 finished code
-image::images/workshop-1-final.png[height=32]
+image::images/workshop-1-final.png[height=768]
 
 ==== Try it!
 
@@ -99,7 +99,7 @@ image::images/workshop-1-final.png[height=32]
 . BB-8 should move forwards, turn right for 45 degrees, move forwards some more, turn left for 90 degrees, then move forwards some more.
 
 [[Activity_2]]
-=== Escaped!
+=== 2. Escaped!
 
 ==== Description
 
@@ -111,7 +111,7 @@ When you are done, the code for BB-8 should look like <<workshop_2_final>>.
 
 [[workshop_2_final]]
 .Activity 2 finished code
-image::images/workshop-2-final.png[]
+image::images/workshop-2-final.png[height=768]
 
 ==== Try it!
 
@@ -120,7 +120,7 @@ image::images/workshop-2-final.png[]
 , BB-8 should start spinning around and randomly moving all over the place - he gets very excited while performing his victory dance.
 
 [[Activity_3]]
-=== Remote Reconnaissance
+=== 3. Remote Reconnaissance
 
 ==== Description
 
@@ -132,7 +132,7 @@ When you are done, the code for BB-8 should look like <<workshop_3_final>>. The 
 
 [[workshop_3_final]]
 .Activity 3 finished code
-image::images/workshop-3-final.png[]
+image::images/workshop-3-final.png[height=768]
 
 ==== Try it!
 
@@ -141,7 +141,7 @@ image::images/workshop-3-final.png[]
 . Tilt your device forwards to move BB-8 forwards. Tilt your device left or right to make BB-8 turn left or right, respectively.
 
 [[Activity_4]]
-=== Exploring
+=== 4. Exploring
 
 ==== Description
 
@@ -153,16 +153,16 @@ When you are done, the code for BB-8 should look like <<workshop_4_final>>.
 
 [[workshop_4_final]]
 .Activity 4 finished code
-image::images/workshop-4-final.png[]
+image::images/workshop-4-final.png[height=768]
 
 ==== Try it!
 
-. This activity can use the same space as activity 3, <<Activity_3>>.
+. This activity can use the same space as activity <<Activity_3>>.
 . Start the project!
 . BB-8 will move around the area, and whenever he bumps into something, he will turn away from it and move somewhere else.
 
 [[Activity_5]]
-=== Speedometer
+=== 5. Speedometer
 
 ==== Description
 
@@ -174,20 +174,20 @@ When you are done, the code for BB-8 should look like <<workshop_5_final_1>> and
 
 [[workshop_5_final_1]]
 .Activity 5 finished code - part 1
-image::images/workshop-5-final-1.png[]
+image::images/workshop-5-final-1.png[height=768]
 
 [[workshop_5_final_2]]
 .Activity 5 finished code - part 2
-image::images/workshop-5-final-2.png[]
+image::images/workshop-5-final-2.png[height=768]
 
 ==== Try it!
 
-. Find a place similar to that of activity 1, <<Activity_1>> - that is, a long and possibly narrow space.
+. Find a place similar to that of activity <<Activity_1>> - that is, a long and possibly narrow space.
 . Start the project!
 . BB-8 will move back and forth four times, each time with a different speed. Depending on his speed, he will be colored, from lowest to highest speed, red, orange, yellow, or green.
 
 [[Activity_6]]
-=== Party!!!
+=== 6. Party!!!
 
 ==== Description
 
@@ -195,15 +195,15 @@ The Resistance has a party after blowing up an Imperial Stardestroyer, and BB-8 
 
 ==== Final Code
 
-When you are done, the code for BB-8 should look like <<workshop_6_final_1>> and <<workshop_6_final_2>>. There is a bit of overlap between the two images; use this to see where the first one ends and the second one starts. Also, similar to activity 3, <<Activity_3>>, "`iPad`" will be replaced with the name of your mobile device.
+When you are done, the code for BB-8 should look like <<workshop_6_final_1>> and <<workshop_6_final_2>>. There is a bit of overlap between the two images; use this to see where the first one ends and the second one starts. Also, similar to activity <<Activity_3>>, "`iPad`" will be replaced with the name of your mobile device.
 
 [[workshop_6_final_1]]
 .Activity 6 finished code - part 1
-image::images/workshop-6-final-1.png[]
+image::images/workshop-6-final-1.png[height=768]
 
 [[workshop_6_final_2]]
 .Activity 6 finished code - part 2
-image::images/workshop-6-final-2.png[]
+image::images/workshop-6-final-2.png[height=768]
 
 ==== Try it!
 
@@ -212,7 +212,7 @@ image::images/workshop-6-final-2.png[]
 . Shake your mobile device, and BB-8 will do one of 5 random actions - spin twice, vibrate and change his color, move back and forth once, randomly change colors, or nod and shake his head.
 
 [[Activity_7]]
-=== Base Infiltration
+=== 7. Base Infiltration
 
 ==== Description
 
@@ -224,11 +224,11 @@ When you are done, the code for BB-8 should look like <<workshop_7_final_1>> and
 
 [[workshop_7_final_1]]
 .Activity 7 finished code - part 1
-image::images/workshop-7-final-1.png[]
+image::images/workshop-7-final-1.png[height=768]
 
 [[workshop_7_final_2]]
 .Activity 7 finished code - part 2
-image::images/workshop-7-final-2.png[]
+image::images/workshop-7-final-2.png[height=768]
 
 ==== Try it!
 
@@ -237,7 +237,7 @@ image::images/workshop-7-final-2.png[]
 . Shake your mobile device to start the "`infiltration`". BB-8 will move around (pretend he is going into a base) and eventually stop. Once he does stop, he will wait until he is completely still before turning his lights off. From this vantage point, he will "`spy on`" the Imperial stormtroopers.
 
 [[Activity_8]]
-=== Better Control System
+=== 8. Better Control System
 
 ==== Description
 
@@ -251,15 +251,15 @@ When you are done, the code for BB-8 should look like <<workshop_8_BB-8>>, the c
 
 [[workshop_8_BB-8]]
 .Activity 8 finished code - BB-8
-image::images/workshop-8-final-BB-8.png[]
+image::images/workshop-8-final-BB-8.png[height=768]
 
 [[workshop_8_square_button]]
 .Activity 8 finished code - square button
-image::images/workshop-8-final-square-button.png[]
+image::images/workshop-8-final-square-button.png[height=768]
 
 [[workshop_8_circle_button]]
 .Activity 8 finished code - circle button
-image::images/workshop-8-final-circle-button.png[]
+image::images/workshop-8-final-circle-button.png[height=768]
 
 ==== Try it!
 
