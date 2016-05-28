@@ -4,3 +4,6 @@
 [submodule "workshops/workshop-mbot"]
 	path = workshops/workshop-mbot
 	url = https://github.com/Devoxx4KidsDE/workshop-mbot.git
+[submodule "workshops/workshop-minecraft-kano"]
+	path = workshops/workshop-minecraft-kano
+	url = https://github.com/Devoxx4KidsDE/workshop-minecraft-kano.git
