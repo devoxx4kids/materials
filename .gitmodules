@@ -1,0 +1,3 @@
+[submodule "workshops/workshop-minecraft-modding-raspberry-pi"]
+	path = workshops/workshop-minecraft-modding-raspberry-pi
+	url = git@github.com:Devoxx4KidsDE/workshop-minecraft-modding-raspberry-pi.git
