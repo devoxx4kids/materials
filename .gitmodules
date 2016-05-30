@@ -1,3 +1,6 @@
 [submodule "workshops/workshop-sonic-pi"]
 	path = workshops/workshop-sonic-pi
 	url = https://github.com/Devoxx4KidsDE/workshop-sonic-pi.git
+[submodule "workshops/workshop-jumping-sumo"]
+	path = workshops/workshop-jumping-sumo
+	url = git@github.com:Devoxx4KidsDE/workshop-jumping-sumo.git
