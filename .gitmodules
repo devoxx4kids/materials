@@ -1,6 +1,12 @@
 [submodule "workshops/workshop-sonic-pi"]
 	path = workshops/workshop-sonic-pi
 	url = https://github.com/Devoxx4KidsDE/workshop-sonic-pi.git
+[submodule "workshops/workshop-quadcopter"]
+	path = workshops/workshop-quadcopter
+	url = git@github.com:Devoxx4KidsDE/workshop-quadcopter.git
+[submodule "workshops/workshop-jumping-sumo"]
+	path = workshops/workshop-jumping-sumo
+	url = git@github.com:Devoxx4KidsDE/workshop-jumping-sumo.git
 [submodule "workshops/workshop-maze-vr"]
 	path = workshops/workshop-maze-vr
 	url = git@github.com:Devoxx4KidsDE/workshop-maze-vr.git
