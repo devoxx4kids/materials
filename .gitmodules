@@ -10,3 +10,6 @@
 [submodule "workshops/workshop-maze-vr"]
 	path = workshops/workshop-maze-vr
 	url = git@github.com:Devoxx4KidsDE/workshop-maze-vr.git
+[submodule "workshops/workshop-minecraft-modding-raspberry-pi"]
+	path = workshops/workshop-minecraft-modding-raspberry-pi
+	url = git@github.com:Devoxx4KidsDE/workshop-minecraft-modding-raspberry-pi.git
