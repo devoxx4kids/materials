@@ -17,7 +17,7 @@ toc::[]
 
 . **JDK:** Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . **NetBeans:** Download and install NetBeans from https://netbeans.org/downloads/, click the download button below the "`Java SE`" column
-. **Spigot:** Download Spigot 1.8 from http://getspigot.org/spigot18/spigot_server.jar
+. **Spigot:** Download Spigot 1.10 from https://ci.mcadmin.net/job/Spigot/lastSuccessfulBuild/artifact/spigot-1.10.jar
 
 Follow the instructions for Mac or windows as explained below.
 
@@ -48,7 +48,7 @@ Follow the instructions for Mac or windows as explained below.
 
 This step is important because it makes sure that your server is working correctly.
 
-. Open up the Minecraft 1.8.9 client
+. Open up the Minecraft 1.10 client
 . Click on the "`Multiplayer`" button
 . Click "`Add server`"
 . In the "`Server Address`" box, type in `localhost`
@@ -115,6 +115,30 @@ image::images/netbeans-project-created.png[]
 . The part on the left is your project. The text at the bottom should say "`BUILD SUCCESS`" if your project was created successfully.
 
 Your plugin is now of complete. Now, we will test it out to see if it works.
+
+== edit your pom.xml 
+With version 1.10 there is a new version of the api's
+
+[source, text]
+Change
+    <dependencies>
+        <!--Spigot API-->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.10-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--Bukkit API-->
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.10-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    
+To use the new Api version's. Rebuild your plugin.
 
 === Gameplay
 
@@ -320,7 +344,8 @@ class CatArrowsListener implements Listener {
         Player player = (Player) entity;
         ItemStack bow = player.getItemInHand();
         bow.setDurability((short) (bow.getDurability() - 1));
-        Snowball snowball = player.throwSnowball();
+        //Snowball snowball = player.throwSnowball();
+        Snowball snowball = player.launchProjectile(Snowball.class);
         Ocelot cat = player.getWorld().spawn(player.getEyeLocation(), Ocelot.class);
         cat.setVelocity(snowball.getVelocity());
         snowball.remove();
