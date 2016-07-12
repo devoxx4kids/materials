@@ -16,6 +16,7 @@ toc::[]
 == Download and Install
 . **JDK:** Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . **Spigot Build Tools:** Download the Spigot build tools from https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+. __Windows only__ **Git for Windows**: Download and install from https://git-for-windows.github.io
 . Create a `spigot` folder on your desktop.
 . Copy `BuildTools.jar` into your `spigot` folder.
 
@@ -30,7 +31,7 @@ to run and interact with the Spigot server.
 . Change to the folder: `cd spigot`
 
 === Windows
-. Open a Command Prompt as explained at http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window
+. Open the start menu and run `gitbash.exe`
 . Change folder to Desktop: `cd Desktop`
 . Change to the folder: `cd spigot`
 
