@@ -35,7 +35,7 @@ image::../../resources/images/mCore-Quiz.png[quiz, 1000, 1000, link="../../resou
 == Etape 2: Commençons à programmer le robot
 L'objectif de cette étape est de faire avancer le robot grace aux touches du clavier. Pour cela nous allons utiliser le logiciel mBlock.
 
-- Recopie le programe suivant :
+- Recopie le programme suivant :
 
 image::../../resources/images/RunForward_FR.png[RunForward, link="../../resources/images/RunForward_FR.png"] 
 
@@ -52,7 +52,7 @@ Utilise les éléments suivants pour visualiser le capteurs à ultrason.
 
 image::../../resources/images/Workshop1_Step4_FR.png[Cateur à Ultrason, link="../../resources/images/Workshop1_Step4_FR.png"] 
 
-Que peux-tu en deduire des valeurs visualisées.
+Que peux-tu en deduire des valeurs visualisées?
 
 
 == Etape 5: Son et lumières
