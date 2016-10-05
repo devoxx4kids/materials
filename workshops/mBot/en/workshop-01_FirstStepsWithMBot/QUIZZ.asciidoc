@@ -1,0 +1,12 @@
+image::../../resources/images/mCore-Quiz.png[quiz, 1000, 1000, link="../../resources/images/mCore-Quiz.png"] 
+
+. Sound buzzer
+. 2 RGB Leds
+. IR Emitter Led (InfraRed)
+. IR Receiver Led (InfraRed)
+. Light sensor
+. Push Button
+. Motor connectors
+. Power Switch
+. Ultrasonic Sensor Connector
+. Line follower Connector 
