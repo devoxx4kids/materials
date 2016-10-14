@@ -437,7 +437,7 @@ class OreShroomsListener implements Listener {
     public void makeOreBlocks(StructureGrowEvent event) {
         Material ore = Material.AIR;
         
-        if (event.getSpecies() != TreeType.BROWN_MUSHROOM && event.getSpecies() != TreeType.RED_MUSHROOM) {
+        if ((event.getSpecies() != TreeType.BROWN_MUSHROOM) && (event.getSpecies() != TreeType.RED_MUSHROOM)) {
             return;
         }
 
