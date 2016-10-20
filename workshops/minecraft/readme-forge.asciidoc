@@ -23,6 +23,9 @@ toc::[]
 Follow the instructions for Mac or Windows as explained below.
 
 === Mac
+
+Make sure all the software lised in [[Download]] is downloaded.
+
 . In Finder, go to Applications, Utilities, double click on Terminal
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
@@ -31,6 +34,9 @@ Follow the instructions for Mac or Windows as explained below.
 . Give the command `./gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
 
 === Windows
+
+Make sure all the software lised in [[Download]] is downloaded.
+
 . Open a Command Prompt as explained at http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
