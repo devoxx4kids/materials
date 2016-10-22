@@ -49,6 +49,12 @@ Example of Blocks:
 . Exercise: Place and break some blocks
 . Exercise: Build a house
 
+=== Command Cheatsheet
+
+. Change day -> night, and vice versa
+
+== Minecraft 201
+
 === Mining
 .. Strip mining
 .. Cave mining
@@ -67,9 +73,7 @@ Example of Blocks:
 .. Enemies
 .. Bosses
 
-=== Command Cheatsheet
-
-== Minecraft 201
+== Minecraft 301
 
 === Recipe
 . Brewing
