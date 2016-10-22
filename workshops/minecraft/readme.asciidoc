@@ -2,6 +2,8 @@
 
 This page explains how to do Minecraft modding with two different tools: http://files.minecraftforge.net/[Forge] and https://www.spigotmc.org/[Spigot].
 
+Don't what is Minecraft? Read https://github.com/devoxx4kids/materials/blob/master/workshops/minecraft/minecraft-intro.adoc[Introduction to Minecraft]!
+
 image::images/forge-logo.png[]
 
 Forge is for client-side modding, which only works if you have the mod installed. With Forge, you can do lots of cool things like making new blocks, items, mobs, and even biomes and dimensions.
