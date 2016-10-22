@@ -6,6 +6,8 @@ This workshop is aimed at people who want to learn about the game of Minecraft.
 
 === What is Minecraft?
 
+This section is copied from the http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge] book.
+
 Minecraft is a 3D game about breaking and placing _blocks_ to obtain _materials_. These materials can then be used to build or _craft_ new _items_
 and _tools_. These, in turn, can be used to harvest more types of blocks. The game also contains _entities_, which are dynamic moving objects in Minecraft, for example, cow, pig, and horse. Some of the entities are hostile and called as _monsters_, for example, zombie and creeper. _Bosses_ are monsters that are very hard to defeat.
 
