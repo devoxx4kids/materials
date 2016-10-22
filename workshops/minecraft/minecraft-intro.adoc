@@ -27,16 +27,16 @@ Each player has their own _inventory_, which contains their blocks, items, and a
 
 An important part to understand about Minecraft is that there is no "`finishing`" the game. The player can move between dimensions and build structures however he/she wants.
 
-==== Single player vs Multiplayer
+=== Single player vs Multiplayer
 
-==== Five modes: Survival, Creative, Hardcore, Spectator, Adventure, Story?
+=== Five modes: Survival, Creative, Hardcore, Spectator, Adventure, Story?
 
-==== Commands
+=== Commands
 
 . Exercise: Let's move around the world
 . Exercise: How to fly and jump
 
-==== Entities, Items and Blocks
+=== Entities, Items and Blocks
 
 Example of Entities:
 
