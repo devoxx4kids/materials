@@ -1,0 +1,74 @@
+= Introduction to Minecraft
+
+This workshop is aimed at people who want to learn about the game of Minecraft.
+
+== Minecraft 101
+
+=== What is Minecraft?
+
+Minecraft is a 3D game about breaking and placing _blocks_ to obtain _materials_. These materials can then be used to build or _craft_ new _items_
+and _tools_. These, in turn, can be used to harvest more types of blocks. The game also contains _entities_, which are dynamic moving objects in Minecraft, for example, cow, pig, and horse. Some of the entities are hostile and called as _monsters_, for example, zombie and creeper. _Bosses_ are monsters that are very hard to defeat.
+
+Other activities in the game include exploration, gathering resources, crafting, and combat.
+
+Player can travel to different _worlds_, or _dimensions_ in gamespeak. The game contains three dimensions:
+
+. The _Overworld_
+. The _Nether_
+. _The End_
+
+The Overworld is like a normal wilderness on Earth. It has grass, trees, villages, and other normal things. The Nether is like a big cave system, and it is covered with lava and fire. Lots of hostile mobs spawn there, which makes it that much more dangerous. The End is the final dimension, and it is like a floating island. The island is made of End Stone and has Obsidian pillars on top. This dimension contains one of Minecraft's bosses, the _Ender Dragon_.
+
+The game is played in a _map_, which is a certain arrangement of blocks that defines how the world looks like. When a world is generated, it creates a _seed_ that defines what the map looks like. The seed can also be specified during world creation. If same seed is used for two worlds, they will look exactly the same. You can also download maps made by other people and play on them.
+
+Each player has their own _inventory_, which contains their blocks, items, and armor.
+
+An important part to understand about Minecraft is that there is no "`finishing`" the game. The player can move between dimensions and build structures however he/she wants.
+
+==== Single player vs Multiplayer
+
+==== Five modes: Survival, Creative, Hardcore, Spectator, Adventure, Story?
+
+==== Commands
+
+==== Entities
+
+==== Items
+
+==== Blocks
+
+=== Controls to move around
+. How to build?
+.. Place blocks
+.. Break blocks
+.. Tools for harvesting blocks
+.. Build house
+
+=== Mining
+.. Strip mining
+.. Cave mining
+
+=== Recipe
+.. Crafting
+.. Smelting
+
+=== Combat
+.. Weapons (swords, bows, etc.)
+.. Monsters (Zombies, Skeletons, etc.)
+
+=== Dimensions
+.. Portals
+.. Resources
+.. Enemies
+.. Bosses
+
+=== Command Cheatsheet
+
+== Minecraft 201
+
+=== Recipe
+. Brewing
+
+=== Minigame
+
+
