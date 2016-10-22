@@ -33,18 +33,21 @@ An important part to understand about Minecraft is that there is no "`finishing`
 
 ==== Commands
 
-==== Entities
+. Exercise: Let's move around the world
+. Exercise: How to fly and jump
 
-==== Items
+==== Entities, Items and Blocks
 
-==== Blocks
+Example of Entities:
 
-=== Controls to move around
-. How to build?
-.. Place blocks
-.. Break blocks
-.. Tools for harvesting blocks
-.. Build house
+Example of Items:
+
+Example of Blocks:
+
+. Exercise: See all items in inventory and select items
+. Exercise: Tools for harvesting blocks
+. Exercise: Place and break some blocks
+. Exercise: Build a house
 
 === Mining
 .. Strip mining
