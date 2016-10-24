@@ -67,6 +67,8 @@ Example of Blocks:
 .. Weapons (swords, bows, etc.)
 .. Monsters (Zombies, Skeletons, etc.)
 
+=== Redstone
+
 === Dimensions
 .. Portals
 .. Resources
