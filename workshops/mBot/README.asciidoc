@@ -1,0 +1,3 @@
+= Workshops mBot
+
+image::resources/images/mBot.png[mBot]

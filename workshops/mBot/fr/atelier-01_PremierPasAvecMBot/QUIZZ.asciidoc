@@ -1,0 +1,12 @@
+image::../../resources/images/mCore-Quiz.png[quiz, 1000, 1000, link="../../resources/images/mCore-Quiz.png"] 
+
+. Buzzer pour le son
+. 2 Leds RGB
+. Led de transmission IR (InfraRouge)
+. Led de réception IR (InfraRouge)
+. Capteur de lumière
+. Bouton poussoir
+. Connecteurs pour les moteurs
+. Interrupteur "M/A"
+. Connecteur pour le capteur Ultrason
+. Connecteur pour le capteur de suivie de ligne 

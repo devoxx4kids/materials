@@ -1,0 +1,67 @@
+= Atelier 01 - Premier pas avec mBot
+
+Dans cet atelier nous allons découvrir le petit rebot mBot. 
+
+[.text-center]
+image::../../resources/images/mBot.png[mBot, 300, 300, link="../../resources/images/mBot.png"]
+
+[cols="1,4"]
+|===
+|*Niveau:*| Débutant
+|*Objectif:*| Decouvrir le robot mBot
+|*Age:*| 8 à 10ans
+|*Durée:*| 2h à 2h30
+|===
+
+== Etape 1: Un petit quiz pour commencer
+Le robot mBot est constitué de différentes parties. La partie éléctronique principale appelée carte "mCore" est une carte basée sur un microcontroleur Arduino. 
+
+Tous ensemble nous allons essayer de repérer les différents éléments sur la carte mCore.
+
+image::../../resources/images/mCore-Quiz.png[quiz, 1000, 1000, link="../../resources/images/mCore-Quiz.png"] 
+
+. Buzzer pour le son
+. 2 Leds RGB
+. Led de transmission IR (InfraRouge)
+. Led de réception IR (InfraRouge)
+. Capteur de lumière
+. Bouton poussoir
+. Connecteurs pour les moteurs
+. Interrupteur "M/A"
+. Connecteur pour le capteur Ultrason
+. Connecteur pour le capteur de suivie de ligne 
+
+
+== Etape 2: Commençons à programmer le robot
+L'objectif de cette étape est de faire avancer le robot grace aux touches du clavier. Pour cela nous allons utiliser le logiciel mBlock.
+
+- Recopie le programme suivant :
+
+image::../../resources/images/RunForward_FR.png[RunForward, link="../../resources/images/RunForward_FR.png"] 
+
+- Branche le robot et execute le programme 
+- Peux-tu expliquer les éléments du programme?
+
+== Etape 3: Faire la même chose pour les autres touches de direction.
+- Peux tu faire la même chose pour les autres flèches?
+- Essaie ton nouveau programme?
+- Que peux-tu rajouter pour le rendre plus amusant?
+
+== Etape 4: Utilisation du capteur à ultrason.
+Utilise les éléments suivants pour visualiser le capteurs à ultrason.
+
+image::../../resources/images/Workshop1_Step4_FR.png[Cateur à Ultrason, link="../../resources/images/Workshop1_Step4_FR.png"] 
+
+Que peux-tu en deduire des valeurs visualisées?
+
+
+== Etape 5: Son et lumières
+ - A l'aide du capteur ultrason et du capteur de lumière fais varier les deux leds multicolores.
+ - Ajoute des notes de musique.
+
+image::../../resources/images/Workshop1_Step5_FR.png[Son et lumiéres, link="../../resources/images/Workshop1_Step5_FR.png"] 
+
+
+== Etape 6: A toi de jouer.
+Propose un petit programme de ton imagination avec ce que tu as pu voir dans cette séance. 
+Amuse toi !

@@ -1,0 +1,151 @@
+= Running Your Own Spigot Server
+:toc:
+:toc-placement!:
+
+This workshop shows how to get started running your own Minecraft server using Spigot.
+
+toc::[]
+
+[[Requirements]]
+== Requirements
+
+* A paid Minecraft account
+* A Mac or a Windows computer
+
+[[Download]]
+== Download and Install
+. **JDK:** Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+. **Spigot Build Tools:** Download the Spigot build tools from https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+. __Windows only__ **Git for Windows**: Download and install from https://git-for-windows.github.io
+. Create a `spigot` folder on your desktop.
+. Copy `BuildTools.jar` into your `spigot` folder.
+
+[[UsingTheCommandPrompt]]
+== Using the command prompt
+The first step to running your own server is opining your computer's command prompt. You will use the command prompt
+to run and interact with the Spigot server.
+
+=== Mac
+. In Finder, go to Applications, Utilities, and double click on Terminal
+. Change folder to Desktop: `cd Desktop`
+. Change to the folder: `cd spigot`
+
+=== Windows
+. Open the start menu and run `gitbash.exe`
+. Change folder to Desktop: `cd Desktop`
+. Change to the folder: `cd spigot`
+
+[[StartTheServer]]
+== Start the server for the first time
+. Run BuildTools to download the Spigot server: `java -jar BuildTools.jar --rev 1.10`
+. Wait a few minutes
+. Start the Spigot server for the first time: `java -jar craftbukkit-1.10.jar`
+** The server will stop and you will see a message like `[15:24:34 INFO]: You need to agree to the EULA in order to run the server. Go to eula.txt for more info.`
+. Open up the "`eula.txt`" file by double-clicking on it. Change the text "`eula=false`" to "`eula=true`" and save it
+. Start the server again: `java -jar craftbukkit-1.10.jar`
+** After the server starts, you should see a line like `[23:24:49 INFO]: Done (13.469s)! For help, type "help" or "?"`.
+
+=== Verify
+This step is important because it makes sure that your server is working correctly.
+
+. Open up the Minecraft client
+** Make sure version 1.10 is selected
+. Click on the "`Multiplayer`" button
+. Click "`Add server`"
+. In the "`Server Address`" box, type in `localhost`
+** The server name can be whatever you want
+. Click "`Done`"
+. Double-click on the server to connect
+** The server should say "`A Minecraft Server`" under the server name
+
+[[Commands]]
+== Issuing Commands
+Server commands are what you use to control your Minecraft server. You can always issue server commands from
+the server command prompt. Once you give yourself Op status on your server, you can also issue commands from the
+Minecraft chat window.
+
+=== Getting Help
+If you forget how to control your server, use the `help` command to get a list of all available commands.
+
+. From the server command prompt, use the help command: `help`
+. You will see a list of all the commands your server understands
+. Use the help command to get h: `help op`
+. The help description for the Op command tells you how it is used: `[23:35:14 INFO]: Usage: /op <player>`
+
+=== Making yourself Op
+You can always issue any command from the server command prompt, but it is easier to issue commands from within the game.
+To issue server commands from within Minecraft itself, you have to give your player Op status on the server. Op is short
+for __Operator__. Any server Op can issue every server command.
+
+. From the server command prompt, use the op command: `op <player>`
+** Replace `<player>` with your player name
+
+=== Giving yourself items
+Once you have given yourself Op status, you can issue commands from withing Minecraft itself. The first command we will
+use is `/give`, to give yourself items in game.
+
+. Switch to your Minecraft client and connect to your server
+. Open the chat window by pressing the slash key: `/`
+. Give yourself a Diamond Sword: `/give <player> diamond_sword`
+. Give yourself 64 Diamonds: `/give <player> diamond 64`
+** The list of all items you can give yourself is at http://minecraft-ids.grahamedgecombe.com/
+
+=== Changing your game mode
+The `/gamemode` command is used to switch between Creative and Survival mode.
+
+. Switch your game mode to Creative: `/gamemode creative`
+. Switch your game mode back to Survival: `/gamemode survival`
+
+=== Controlling time
+The `/time` command is used to control time in the game.
+
+. Make it night time: `/time set night`
+. Make it day time: `/time set day`
+
+=== Controlling the weather
+The `/weather` command is used to control the weather in the game.
+
+. Start a thunderstorm: `/weather thunder`
+. Clear the sky: `/weather clear`
+
+=== Stop the server
+The `/stop` command is used to safely shut down the server.
+
+. Stop the server: `/stop`
+** **Never close the server console without using the `/stop` command first. You will lose work and may ruin your world.**
+
+[[InstallingPlugins]]
+== Installing Plugins
+Plugins let you add new features to your Minecraft server. You can download plugins from the Bukkit website and the
+Spigot website. To install a plugin, copy the plugin `.jar` file into your server's `plugins` folder.
+
+=== Downloading a plugin
+Plugins can be downloaded from either the Bukkit website or the Spigot website. For this exercise, we will install
+the Giant Trees plugin.
+
+. Open your web browser and go to the Giant Trees plugin page: http://dev.bukkit.org/bukkit-plugins/giant-trees/
+. Click on the `Files` link at the top of the page
+. Click the link for the latest version for your game version: `2.0.0-alpha.6`
+. The plugin `.jar` file will download to your your computer's download folder
+
+=== Installing a plugin
+To install a plugin, copy it to your server's `plugins` folder and restart the server.
+
+. Make sure your server is stopped. Use the `/stop` command if it isn't.
+. Move `GiantTrees-2.0.0-alpha.6.jar` into the server's `plugins` folder.
+** The `plugins` folder should be in the `spigot` folder on your desktop.
+. Start the server again: `java -jar craftbukkit-1.10.jar`
+. Use the plugins server command to make sure Giant Trees is installed: `plugins`
+
+=== Configure a plugin
+Many plugins you download can be customized by editing their configuration file.
+
+. Stop your server from the server command prompt: `stop`
+. Open the server's `plugins` folder
+. Open the `GiantTrees` folder
+. Open the `config.yml` file
+. Change the value for `treeGrowthPercentChance` from `0.5` to `3`
+. Save your changes and close the file
+. Start the server again: `java -jar craftbukkit-1.10.jar`
+. Log into your server
+. Walk around looking for a giant tree :)

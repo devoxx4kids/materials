@@ -1,0 +1,95 @@
+Minecraft Modding - Day 2
+
+Main File
+
+Purpose: Create a main file that will register all the mods.
+
+Steps
+
+To make this main file, first you need to make a new package. Click on the arrow next to the "Minecraft" folder in the left side of your window. Right click on "src/main/java" and select New > Package. Name it org.devoxx4kids.forge.mods.
+
+Right-click on this package and select New > Class. Name it MainMod. The middle of your screen will show its code. Replace all of the code with the code below.  
+
+package org.devoxx4kids.forge.mods;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
+public class MainMod {
+    public static final String MODID = "MyMods";
+    public static final String VERSION = "1.0";
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+    }
+} 
+
+Chat Items
+
+Purpose: To make the player receive items when he/she says a certain word or phrase in a chat message.
+ Steps
+
+In your new package, org.devoxx4kids.forge.mods, make a new file called ChatItems. Replace its code with:
+
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.ServerChatEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class ChatItems {
+
+  @SubscribeEvent
+  public void giveItems(ServerChatEvent event){
+     if (event.message.contains("potato")) {
+       event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+     }
+  }
+} 
+
+Register your mod in the main file by using the line shown:  MinecraftForge.EVENT_BUS.register(new ChatItems());  The line should go between the two brackets after the line that says init(). 
+Click on the green Play button on the Eclipse menu bar to build and run your modded Minecraft. 
+
+Gameplay
+
+Press “T” to open up the chat window
+
+Type in any message that contains the word “potato”
+
+You should receive one stack (one stack = 64 items) potatoes
+
+Change text/item
+
+Change text message and produce a different item. For example change the text to “diamond” and item produced to Diamond. Use Ctrl+Space to show the list of items.
+
+Different items
+
+Produce different items for different chat text
+
+@SubscribeEvent
+public void giveItems(ServerChatEvent event){
+  if (event.message.contains("potato")) {
+    event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+  }
+
+  if (event.message.contains("diamond")) {
+     event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
+  }
+}
+
+Multiple items
+
+Produce multiple items for chat text
+
+@SubscribeEvent
+public void giveItems(ServerChatEvent event){
+  if (event.message.contains("potato")) {
+    event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
+    event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
+  }
+}
+

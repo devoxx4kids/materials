@@ -1,0 +1,67 @@
+= Workshop 01 - Getting started with mBot
+
+In this workshop we will discover the little robot mbot.
+
+[.text-center]
+image::../../resources/images/mBot.png[mBot, 300, 300, link="../../resources/images/mBot.png"]
+
+[cols="1,4"]
+|===
+|*Level:*| Beginner
+|*Objectif:*| Discover the mBot robot
+|*Age:*| 8 to 10 years
+|*Durée:*| 2h to 2h30
+|===
+
+== Step 1: A little quiz to start
+The robot  mBot is composed of different parts. The main part called Electronic Card "mCore" is a card based on an Arduino microcontroller.
+
+Together we will try to identify the different items on the mCore card.
+
+image::../../resources/images/mCore-Quiz.png[quiz, 1000, 1000, link="../../resources/images/mCore-Quiz.png"] 
+
+. Sound buzzer
+. 2 RGB Leds
+. IR Emitter Led (InfraRed)
+. IR Receiver Led (InfraRed)
+. Light sensor
+. Push Button
+. Motor connectors
+. Power Switch
+. Ultrasonic Sensor Connector
+. Line follower Connector 
+
+
+== Step 2: Begin to program the robot
+The objective of this step is to move the robot with the keyboard. For this, we will use the mBlock software.
+
+- Copy the following program:
+
+image::../../resources/images/RunForward_EN.png[RunForward, link="../../resources/images/RunForward_EN.png"] 
+
+- Connect the robot and execute the program.
+- Can you explain the instructions of the program?
+
+== Step 3: Do the same for the other direction keys
+- Can you do the same for other direction keys?
+- Try your new program?
+- What can you add to make it more fun?
+
+== Step 4: Using the ultrasonic sensor
+Use the following elements to view the ultrasonic sensor values.
+
+image::../../resources/images/Workshop1_Step4_EN.png[Cateur à Ultrason, link="../../resources/images/Workshop1_Step4_EN.png"] 
+
+What can you deduce of the displayed values?
+
+
+== Step 5: Sound and light
+- Using the ultrasonic sensor and light sensor, vary both multi-colored LEDs.
+- Adds music notes.
+
+image::../../resources/images/Workshop1_Step5_EN.png[Son et lumiéres, link="../../resources/images/Workshop1_Step5_EN.png"] 
+
+
+== Step 6: It's your turn
+Offers a small program of your imagination with what you have seen in this session.
+Have fun !

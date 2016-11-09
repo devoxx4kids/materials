@@ -1,0 +1,101 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="137" x="195" y="38">
+    <statement name="DO">
+      <block type="variables_set" id="251" inline="true">
+        <field name="VAR">direction</field>
+        <value name="VALUE">
+          <block type="math_number" id="252">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_repeat_ext" id="253" inline="true">
+            <value name="TIMES">
+              <block type="math_number" id="254">
+                <field name="NUM">4</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="procedures_callnoreturn" id="255" inline="false">
+                <mutation name="roll">
+                  <arg name="direction"></arg>
+                </mutation>
+                <value name="ARG0">
+                  <block type="variables_get" id="256">
+                    <field name="VAR">direction</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="257" inline="true">
+                    <field name="VAR">direction</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="258">
+                        <field name="NUM">90</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="259" x="519" y="10">
+    <mutation>
+      <arg name="direction"></arg>
+    </mutation>
+    <field name="NAME">roll</field>
+    <statement name="STACK">
+      <block type="sphero_wait" id="260" inline="true">
+        <value name="TIME">
+          <block type="math_number" id="261">
+            <field name="NUM">0.5</field>
+          </block>
+        </value>
+        <next>
+          <block type="sphero_turn" id="262" inline="true">
+            <value name="DIRECTION">
+              <block type="variables_get" id="263">
+                <field name="VAR">direction</field>
+              </block>
+            </value>
+            <next>
+              <block type="sphero_wait" id="264" inline="true">
+                <value name="TIME">
+                  <block type="math_number" id="265">
+                    <field name="NUM">0.5</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="sphero_set_rgb" id="266" inline="false">
+                    <value name="COLOUR">
+                      <block type="colour_random" id="267"></block>
+                    </value>
+                    <next>
+                      <block type="sphero_rollForward" id="268">
+                        <next>
+                          <block type="sphero_wait" id="269" inline="true">
+                            <value name="TIME">
+                              <block type="math_number" id="270">
+                                <field name="NUM">0.5</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="sphero_stop" id="271"></block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

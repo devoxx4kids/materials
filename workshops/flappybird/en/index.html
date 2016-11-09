@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Flappy Bird</title>
+
+		<meta name="description" content="A workshop for creating your own Flappy Bird">
+		<meta name="author" content="Henk Jurriens, CodingStuff.org">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides" >
+        <section data-background="img/flappy_bird.jpg">
+					<h1 translate>Build your own Flappy Bird</h1>
+
+				</section>
+
+				<section data-background="img/commodore-vic-20.jpg">
+					<h1 translate>Henk</h1>
+
+
+					<aside class="notes">
+						A small introduction
+
+					</aside>
+
+				</section>
+
+				<section>
+					<h1 translate>Future lesson</h1>
+
+					<aside class="notes">
+						No history lesson, but a future lesson. What are the possibilities of technology
+
+					</aside>
+
+				</section>
+
+				<section>
+					<h2 translate>Wearables</h2>
+					<img src="img/smartwatch.jpg" />
+
+					<aside class="notes">
+
+
+					</aside>
+				</section>
+
+				<section>
+					<h2 translate>Wearables</h2>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/a2Zhor7q6b0" frameborder="0" allowfullscreen></iframe>
+
+					<aside class="notes">
+							A video about smartwatches
+
+					</aside>
+				</section>
+
+
+				<section>
+					<h2 translate>Robots</h2>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/2laujomh0JY" frameborder="0" allowfullscreen></iframe>
+
+					<aside class="notes">
+						A nice video of dancing robots
+
+					</aside>
+				</section>
+
+				<section>
+					<h2 translate>12 year old developer</h2>
+					<iframe src="https://embed-ssl.ted.com/talks/thomas_suarez_a_12_year_old_app_developer.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+					<aside class="notes">
+							A great story about a 12 year old developer.. he created an app club at school, so you can do the same
+					</aside>
+				</section>
+
+
+				<section>
+						<h2 translate>Website</h2>
+						<ul>
+							<li>HTML</li>
+							<li>CSS</li>
+							<li>Javascript</li>
+						</ul>
+
+						<aside class="notes">
+							our game is just a website. A website is build of : HTML, CSS and Javascript
+						</aside>
+				</section>
+
+
+				<section>
+						<h1>HTML</h1>
+
+						<aside class="notes">
+
+						</aside>
+				</section>
+
+				<section>
+					<h2 translate>Tags</h2>
+					<ul>
+						<li>&lt;h1&gt;</li></br>
+						<li>&lt;p&gt;</li></br>
+						<li>&lt;ul&gt;</li></br>
+						<li>&lt;li&gt;</li></br>
+					</ul>
+
+					<aside class="notes">
+						examplination of tags
+
+					</aside>
+				</section>
+
+				<section>
+					<h2 translate>Image</h2>
+					<pre><code style="font-size: 30px">
+<img src="img/mediatheek-twickel.jpg" />
+					</code></pre>
+
+					<aside class="notes">
+
+						examplination of an image
+
+					</aside>
+				</section>
+
+				<section>
+					<h2 translate>Image</h2>
+					<img src="img/mediatheek-twickel.jpg" />
+
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<h2 translate>Tools</h2>
+					<ul>
+							<li>http://www.cssdesk.com</li>
+							<li>http://www.w3schools.com</li>
+
+					</ul>
+
+					<aside class="notes">
+
+						<p>We use cssdesk.com to practice html &amp; css</p>
+						<p>W3Schools can be used to find more information about HMTL &amp; CSS</p>
+
+
+					</aside>
+
+				</section>
+
+				<section >
+					<h2 translate>Assignment 1</h2>
+					<h3 translate>Create a simple website</h3>
+					<p translate>Goto : http://www.cssdesk.com</p>
+
+					<aside class="notes">
+
+						Just practice a little with different tags
+
+					</aside>
+
+				</section>
+
+
+				<section>
+							<h1>CSS</h1>
+
+							<aside class="notes">
+
+							</aside>
+				</section>
+
+
+				<section >
+						<pre><code>
+	h1 {
+		color : red;
+	}
+						</code></pre>
+
+					<pre class="example" style="background : white">
+
+						<h1 style="color : red; margin-left : auto; margin-right : auto; width : 250px;">school</h1>
+					</pre>
+
+					<aside class="notes">
+
+					</aside>
+
+				</section>
+
+				<section >
+						<pre><code>
+		h1 {
+			color : red;
+			border : 4px solid blue;
+		}
+						</code></pre>
+
+						<pre class="example" style="background : white">
+
+							<h1 style="font-family : arial; color : red; border : 4px solid blue; width : 250px;  margin-left : auto; margin-right : auto">school</h1>
+
+						</pre>
+
+
+						<aside class="notes">
+
+						</aside>
+				</section>
+
+				<section>
+					<h2 translate>Assignment 2 </h2>
+					<h3 translate>Make your website more beautifull</h3>
+					<p translate>Goto : http://www.cssdesk.com</p>
+
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+
+        <section>
+            <h1>Javascript</h1>
+
+						<aside class="notes">
+
+						</aside>
+        </section>
+
+
+				<section>
+						<h1 translate>Programming language</h1>
+
+						<ul>
+							<li translate>speak the language of your computer</li>
+							<li translate>talk in such a way, the computer understands you</li>
+						</ul>
+
+
+						<aside class="notes">
+
+						</aside>
+				</section>
+
+				<section>
+					<h1 translate>Variables</h1>
+<pre><code style="font-size : 28px">
+	var x = 5;
+	var y = 6;
+	var z = x + y;
+
+</code></pre>
+				</section>
+
+				<section>
+					<h1 translate>Statements</h1>
+<pre><code style="font-size : 28px">
+	var age = prompt("What's your age");
+
+</code></pre>
+				</section>
+
+				<section>
+					<h1 translate>Functions</h1>
+<pre><code style="font-size : 28px">
+	function myFunction(a, b) {
+		return a * b;
+	}
+
+	var c = myFunction(2, 3);
+
+</code></pre>
+				</section>
+
+
+				<section data-background="img/flappy_bird.jpg">
+					<h1 style="color : white">Flappy Bird</h1>
+				</section>
+
+
+				<section>
+					<h1 translate>Editor</h1>
+					<h1>Brackets</h1>
+					<img src="img/brackets-ed.jpeg"/>
+				</section>
+
+				<section>
+					<h1 translate>Files</h1>
+					<ul>
+						<li>index.html</li>
+						<li>main.js</li>
+						<li>phaser.min.js</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1 translate>Library</h1>
+				</section>
+
+				<section>
+					<h2>Phaser Framework</h2>
+					<img src="img/phaser.png" style="background : white; height : 400px;">
+					<h3>www.phaser.io</h3>
+				</section>
+
+
+				<section>
+					 <h1 translate>Start</h1>
+				</section>
+
+
+				<section>
+					<pre><code style="font-size : 28px; line-height : 1.5">
+
+<p > Press the spacebar to jump </p>
+<div id="gameDiv"> </div>
+
+</code></pre>
+				</section>
+
+				<section>
+					<canvas id="canvas-1" width="500" height="500" style="background : #71c5cf">
+					</canvas>
+
+					<script>
+						var canvas = document.getElementById("canvas-1");
+						var ctx = canvas.getContext("2d");
+							ctx.fillStyle = 'yellow';
+							ctx.fillRect (200,200, 50, 50);
+					</script>
+				</section>
+
+
+				<section>
+					<h2 translate>Assignment 3</h2>
+					<h3>Download 'Flappy Bird' </h3>
+					<h3>http://www.codingstuff.org/teach</h3>
+				</section>
+
+				<section>
+					<h1 translate>The bird</h1>
+				</section>
+
+				<section>
+					<ul>
+						<li>preload()</li>
+						<li>create()</li>
+						<li>update()</li>
+						<li>jump()</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>preload()</h2>
+					<pre><code>
+// Change the background color of the game
+game.stage.backgroundColor = '#71c5cf';
+
+// Load the bird sprite
+game.load.image('bird', bird);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>create()</h2>
+					<pre><code>
+// Set the physics system
+game.physics.startSystem(Phaser.Physics.ARCADE);
+
+// Display the bird on the screen
+this.bird = this.game.add.sprite(100, 245, 'bird');
+
+// Add gravity to the bird to make it fall
+game.physics.arcade.enable(this.bird);
+this.bird.body.gravity.y = 1000;
+
+// Call the 'jump' function when the spacekey is hit
+var spaceKey = this.game.input.keyboard
+			.addKey(Phaser.Keyboard.SPACEBAR);
+spaceKey.onDown.add(this.jump, this);
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2>preload()</h2>
+					<pre><code>
+// If the bird is out of the world (too high or too low),
+// call the 'restartGame' function
+if (this.bird.inWorld == false)
+	this.restartGame();
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>jump()</h2>
+					<pre><code>
+// Add a vertical velocity to the bird
+this.bird.body.velocity.y = -350;
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h2 translate>Assignment 4</h2>
+					<h3>Open assignment 4 &amp; change the  'bird'</h3>
+				</section>
+
+				<section>
+					<h1 translate>The Pipes</h1>
+				</section>
+
+				<section>
+					<h2>Pipe</h2>
+					<pre><code>
+game.load.image('pipe', 'pipe');
+
+</code></pre>
+				</section>
+
+				<section>
+					<h2 translate>Pipes</h2>
+					<pre><code>
+
+this.pipes = game.add.group(); // Create a group
+this.pipes.enableBody = true;  // Add physics to the group
+this.pipes.createMultiple(20, 'pipe'); // Create 20 pipes
+
+</code></pre>
+				</section>
+
+
+				<section>
+					<h2 translate>Add One Pipe</h2>
+					<pre><code>
+
+addOnePipe: function(x, y) {
+// Get the first dead pipe of our group
+var pipe = this.pipes.getFirstDead();
+
+// Set the new position of the pipe
+pipe.reset(x, y);
+
+// Add velocity to the pipe to make it move left
+pipe.body.velocity.x = -200;
+
+// Kill the pipe when it's no longer visible
+pipe.checkWorldBounds = true;
+pipe.outOfBoundsKill = true;
+}
+
+
+
+</code></pre>
+
+
+				</section>
+
+				<section>
+					<h2 translate>Add more Pipes</h2>
+					<pre><code>
+
+addRowOfPipes: function() {
+    // Pick where the hole will be
+    var hole = Math.floor(Math.random() * 5) + 1;
+
+    // Add the 6 pipes
+    for (var i = 0; i < 8; i++)
+        if (i != hole && i != hole + 1)
+            this.addOnePipe(400, i * 60 + 10);
+}
+
+
+</code></pre>
+				</section>
+
+
+				<section>
+					<h2 translate>Add to the Game</h2>
+					<pre><code>
+
+this.timer = game.time.events.loop(1500, this.addRowOfPipes, this);
+
+</code></pre>
+				</section>
+
+
+				<section>
+					<h2 translate>Assignment 5</h2>
+					<h3>Open assignment 5 &amp; change the 'pipes'</h3>
+				</section>
+
+				<section>
+					<h2 translate>Scores</h2>
+				</section>
+
+				<section>
+					<h2 translate>create()</h2>
+					<pre><code>
+this.score = 0;
+this.labelScore = game.add.text(20, 20, "0",
+		{ font: "30px Arial", fill: "#ffffff" });
+
+</code></pre>
+				</section>
+
+				<section>
+					<h2 translate>addToPipes()</h2>
+					<pre><code>
+this.score += 1;
+this.labelScore.text = this.score;
+
+</code></pre>
+				</section>
+
+
+
+				<section>
+					<h2 translate>Assignment 6</h2>
+					<h3>Open assignment 6 &amp; let's play!</h3>
+				</section>
+
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

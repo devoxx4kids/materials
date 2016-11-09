@@ -1,0 +1,29 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="33" deletable="false" x="260" y="70">
+    <statement name="DO">
+      <block type="controls_repeat_ext" id="34" inline="true">
+        <value name="TIMES">
+          <block type="math_number" id="35">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="sphero_set_rgb" id="36" inline="false">
+            <value name="COLOUR">
+              <block type="colour_random" id="37"></block>
+            </value>
+            <next>
+              <block type="sphero_wait" id="38" inline="true">
+                <value name="TIME">
+                  <block type="math_number" id="39">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>

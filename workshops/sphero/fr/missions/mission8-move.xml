@@ -1,0 +1,73 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="59" deletable="false" x="112" y="40">
+    <statement name="DO">
+      <block type="sphero_calibrate" id="95" inline="true">
+        <value name="TIME">
+          <block type="math_number" id="96">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+        <next>
+          <block type="sphero_rollForward" id="60">
+            <next>
+              <block type="sphero_wait" id="61" inline="true">
+                <value name="TIME">
+                  <block type="math_number" id="62">
+                    <field name="NUM">0.5</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="sphero_stop" id="63">
+                    <next>
+                      <block type="sphero_wait" id="64" inline="true">
+                        <value name="TIME">
+                          <block type="math_number" id="65">
+                            <field name="NUM">0.5</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="sphero_turn" id="66" inline="true">
+                            <value name="DIRECTION">
+                              <block type="math_number" id="67">
+                                <field name="NUM">180</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="sphero_wait" id="68" inline="true">
+                                <value name="TIME">
+                                  <block type="math_number" id="69">
+                                    <field name="NUM">0.5</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="sphero_rollForward" id="70">
+                                    <next>
+                                      <block type="sphero_wait" id="71" inline="true">
+                                        <value name="TIME">
+                                          <block type="math_number" id="72">
+                                            <field name="NUM">0.5</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="sphero_stop" id="73"></block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

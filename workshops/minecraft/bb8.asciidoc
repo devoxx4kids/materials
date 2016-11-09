@@ -1,0 +1,19 @@
+= Minecraft and BB8
+
+This workshop shows how to control http://www.sphero.com/starwars/bb8[BB8] droid from Minecraft.
+
+The key components required for this are:
+
+. Minecraft Forge Mod
+. NodeJS + https://github.com/orbotix/sphero.js[Sphero JavaScript SDK]
+. BB8
+
+== Examples
+
+. Breaking a block in Minecraft will make BB8 shake
+... Break a block in Minecraft
+.. Mod will call a REST API
+.. REST API is implemented using NodeJS
+.. REST API method implementation will use the Sphero JavaScript SDK to control BB8
+
+

@@ -1,0 +1,67 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="18" deletable="false" x="98" y="83">
+    <statement name="DO">
+      <block type="controls_repeat_ext" id="19" inline="true">
+        <value name="TIMES">
+          <block type="math_number" id="20">
+            <field name="NUM">3</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="sphero_set_rgb" id="21" inline="false">
+            <value name="COLOUR">
+              <block type="colour_picker" id="22">
+                <field name="COLOUR">#000000</field>
+              </block>
+            </value>
+            <next>
+              <block type="sphero_wait" id="23" inline="true">
+                <value name="TIME">
+                  <block type="math_number" id="24">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="sphero_set_rgb" id="25" inline="false">
+                    <value name="COLOUR">
+                      <block type="colour_picker" id="26">
+                        <field name="COLOUR">#ffff33</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sphero_wait" id="27" inline="true">
+                        <value name="TIME">
+                          <block type="math_number" id="28">
+                            <field name="NUM">1</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="sphero_set_rgb" id="29" inline="false">
+                            <value name="COLOUR">
+                              <block type="colour_picker" id="30">
+                                <field name="COLOUR">#ff0000</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="sphero_wait" id="31" inline="true">
+                                <value name="TIME">
+                                  <block type="math_number" id="32">
+                                    <field name="NUM">1</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>

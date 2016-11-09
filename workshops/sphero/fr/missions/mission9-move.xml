@@ -1,0 +1,45 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="623" deletable="false" x="112" y="40">
+    <statement name="DO">
+      <block type="sphero_calibrate" id="624" inline="true">
+        <value name="TIME">
+          <block type="math_number" id="625">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+        <next>
+          <block type="sphero_rollForwardTimed" id="663" inline="true">
+            <value name="TIME">
+              <block type="math_number" id="664">
+                <field name="NUM">0.5</field>
+              </block>
+            </value>
+            <next>
+              <block type="sphero_turnTimed" id="708" inline="true">
+                <value name="DIRECTION">
+                  <block type="math_number" id="709">
+                    <field name="NUM">180</field>
+                  </block>
+                </value>
+                <value name="TIME">
+                  <block type="math_number" id="710">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="sphero_rollForwardTimed" id="732" inline="true">
+                    <value name="TIME">
+                      <block type="math_number" id="733">
+                        <field name="NUM">0.5</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

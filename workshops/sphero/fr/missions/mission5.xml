@@ -1,0 +1,13 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="sphero_run" id="2" deletable="false" x="98" y="83">
+    <statement name="DO">
+      <block type="sphero_set_rgb" id="3" inline="false">
+        <value name="COLOUR">
+          <block type="colour_picker" id="4">
+            <field name="COLOUR">#009900</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>
