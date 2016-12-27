@@ -16,39 +16,39 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class SkeletonWar {
 
-	@SubscribeEvent
-	public void makeWarNotPeace(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntitySkeleton)) {
-			return;
-		}
-		EntitySkeleton skeleton = (EntitySkeleton) event.getEntity();
+    @SubscribeEvent
+    public void makeWarNotPeace(EntityJoinWorldEvent event) {
+        if (!(event.getEntity() instanceof EntitySkeleton)) {
+            return;
+        }
+        EntitySkeleton skeleton = (EntitySkeleton) event.getEntity();
 
-		List<ItemArmor> helmets = Arrays.asList(Items.leather_helmet,
-				Items.chainmail_helmet, Items.golden_helmet, Items.iron_helmet,
-				Items.diamond_helmet);
-		List<ItemArmor> chestplates = Arrays.asList(Items.leather_chestplate,
-				Items.chainmail_chestplate, Items.golden_chestplate,
-				Items.iron_chestplate, Items.diamond_chestplate);
-		List<ItemArmor> leggings = Arrays.asList(Items.leather_leggings,
-				Items.chainmail_leggings, Items.golden_leggings,
-				Items.iron_leggings, Items.diamond_leggings);
-		List<ItemArmor> boots = Arrays.asList(Items.leather_boots,
-				Items.chainmail_boots, Items.golden_boots, Items.iron_boots,
-				Items.diamond_boots);
+        List<ItemArmor> helmets = Arrays.asList(Items.LEATHER_HELMET,
+                Items.CHAINMAIL_HELMET, Items.GOLDEN_HELMET, Items.IRON_HELMET,
+                Items.DIAMOND_HELMET);
+        List<ItemArmor> chestplates = Arrays.asList(Items.LEATHER_CHESTPLATE,
+                Items.CHAINMAIL_CHESTPLATE, Items.GOLDEN_CHESTPLATE,
+                Items.IRON_CHESTPLATE, Items.DIAMOND_CHESTPLATE);
+        List<ItemArmor> leggings = Arrays.asList(Items.LEATHER_LEGGINGS,
+                Items.CHAINMAIL_LEGGINGS, Items.GOLDEN_LEGGINGS,
+                Items.IRON_LEGGINGS, Items.DIAMOND_LEGGINGS);
+        List<ItemArmor> boots = Arrays.asList(Items.LEATHER_BOOTS,
+                Items.CHAINMAIL_BOOTS, Items.GOLDEN_BOOTS, Items.IRON_BOOTS,
+                Items.DIAMOND_BOOTS);
 
-		skeleton.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
-				skeleton, EntitySkeleton.class, true));
-		skeleton.canPickUpLoot();
+        skeleton.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
+                skeleton, EntitySkeleton.class, true));
+        skeleton.canPickUpLoot();
 
-		Random random = new Random();
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(
-				helmets.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(
-				chestplates.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(
-				leggings.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.FEET,
-				new ItemStack(boots.get(random.nextInt(5))));
-	}
+        Random random = new Random();
+        skeleton.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(
+                helmets.get(random.nextInt(5))));
+        skeleton.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(
+                chestplates.get(random.nextInt(5))));
+        skeleton.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(
+                leggings.get(random.nextInt(5))));
+        skeleton.setItemStackToSlot(EntityEquipmentSlot.FEET,
+                new ItemStack(boots.get(random.nextInt(5))));
+    }
 
 }

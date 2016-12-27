@@ -7,11 +7,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ChatItems {
 
-	@SubscribeEvent
-	public void giveItems(ServerChatEvent event) {
-		if (event.getMessage().contains("potato")) {
-			event.getPlayer().inventory.addItemStackToInventory(new ItemStack(
-					Items.potato, 64));
-		}
-	}
+    @SubscribeEvent
+    public void giveItems(ServerChatEvent event) {
+        if (event.getMessage().contains("potato")) {
+            event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
+        }
+    }
 }

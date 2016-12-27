@@ -12,20 +12,19 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CreeperSpawnAlert {
 
-	@SubscribeEvent
-	public void sendAlert(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntityCreeper)) {
-			return;
-		}
+    @SubscribeEvent
+    public void sendAlert(EntityJoinWorldEvent event) {
+        if (!(event.getEntity() instanceof EntityCreeper)) {
+            return;
+        }
 
-		List players = event.getEntity().worldObj.playerEntities;
+        List players = event.getEntity().worldObj.playerEntities;
 
-		for (int i = 0; i < players.size(); i++) {
-			EntityPlayer player = (EntityPlayer) players.get(i);
-			if (event.getWorld().isRemote) {
-				player.addChatComponentMessage(new TextComponentString(
-						TextFormatting.GREEN + "A creeper has spawned!"));
-			}
-		}
-	}
+        for (int i = 0; i < players.size(); i++) {
+            EntityPlayer player = (EntityPlayer) players.get(i);
+            if (event.getWorld().isRemote) {
+                player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "A creeper has spawned!"), false);
+            }
+        }
+    }
 }
