@@ -564,8 +564,7 @@ Tip: spawn a Zombie or two for the Snow Golems to shoot.
 
 === Explosive snowballs
 
-Replace `EntityArrow arrow = new EntityArrow(world);` line with the
-code shown in <<Explosive_Snowballs_Code>>.
+Replace `EntityTippedArrow arrow = new EntityTippedArrow(world);` line with the code shown in <<Explosive_Snowballs_Code>>.
 
 [[Explosive_Snowballs_Code]]
 .Explosive Snowballs code
@@ -576,6 +575,8 @@ EntityTNTPrimed arrow = new EntityTNTPrimed(world);
 arrow.setFuse(80);
 ----
 ====
+
+Make sure to fix the imports.
 
 [[OP_Golems]]
 == Overpowered Iron Golems
