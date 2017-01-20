@@ -1,0 +1,47 @@
+= Workshop 01 - The OrbitalD4K Application
+
+== 1) Installing Android Studio
+
+== 2) Create a project
+
+=== Step1: Open Android Studio
+image::resources/images/CreateNewProject_01.png[Create Project - Step 1]
+
+=== Step2: Name your new application
+image::resources/images/CreateNewProject_02.png[Create Project - Step 2]
+
+=== Step3: Choose your API version
+For this workshop you can choose lollipop (API 21)
+
+image::resources/images/CreateNewProject_03.png[Create Project - Step 3]
+
+=== Step4: Choose your activity type
+For this workshop you can choose the EmptyActivity to create a very simple application.
+
+image::resources/images/CreateNewProject_04.png[Create Project - Step 4]
+
+=== Step5: Create the main activity
+image::resources/images/CreateNewProject_05.png[Create Project - Step 5]
+
+=== Step6: Now you can start your new application ;)
+image::resources/images/CreateNewProject_06.png[Create Project - Step 6]
+
+== 3) Create your virtual device
+
+=== Step1: Create a device
+image::resources/images/CreateNewVirtualDevice_01.png[Create Virtual Device - Step 1]
+
+=== Step2: Choose a phone
+image::resources/images/CreateNewVirtualDevice_02.png[Create Virtual Device - Step 2]
+
+=== Step3: Choose your SDK version and downloading it
+image::resources/images/CreateNewVirtualDevice_03.png[Create Virtual Device - Step 3]
+
+=== Step4: Verified the configuration
+image::resources/images/CreateNewVirtualDevice_04.png[Create Virtual Device - Step 4]
+
+=== Step5: Start your new phone
+image::resources/images/CreateNewVirtualDevice_05.png[Create Virtual Device - Step 5]
+
+=== Step6: Play with it :)
+image::resources/images/CreateNewVirtualDevice_06.png[Create Virtual Device - Step 6]
