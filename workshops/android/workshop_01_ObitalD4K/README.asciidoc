@@ -46,7 +46,7 @@ image::resources/images/CreateNewVirtualDevice_05.png[Create Virtual Device - St
 === Step6: Play with it :)
 image::resources/images/CreateNewVirtualDevice_06.png[Create Virtual Device - Step 6]
 
-== 4) Posttion graphics elements
+== 4) Position and graphic elements
 
 === This is what we whant at the and of this step
-image::resources/images/EndOfTheFirstStep[Graphics elements - Step 0]
+image::resources/images/GraphicalElements_00.png[Graphic elements - Step 0]
