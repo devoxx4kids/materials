@@ -125,3 +125,25 @@ See documentation on Layout : https://developer.android.com/guide/topics/ui/decl
 
 === Step2: Show result in the preview window
 image::resources/images/GraphicalElements_02.png[Graphic elements - Step 2]
+
+== 5) Styles and Themes
+
+=== Step1: Open your style file
+image::resources/images/StylesAndThemes_01.png[Styles and Themes - Step 1]
+
+=== Step2: Copy the styles
+[source,xml]
+----
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Primary theme color of the app (sets background color of app bar) -->
+        <item name="colorPrimary">#FF9800</item>
+        <!-- Background color of buttons in the app -->
+        <item name="colorButtonNormal">#FF9800</item>
+    </style>
+</resources>
+----
+
+=== Step3: Test your application
+image::resources/images/StylesAndThemes_03.png[Styles and Themes - Step 3]
