@@ -2,10 +2,12 @@ package org.devoxx4kids.orbitad4k;
 
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -17,10 +19,16 @@ public class MainActivity extends AppCompatActivity {
     private static final double GRAVITY = 6.67 * Math.pow(10, -11);
     private static final double EARTH_MASS = 5.9736 * Math.pow(10, 24);
 
+    private ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AnimatedVectorDrawableCompat myDrawable = AnimatedVectorDrawableCompat.create(this, R.drawable.orbital_animated_vector);
+        imageView = (ImageView) findViewById(R.id.drawable);
+        imageView.setImageDrawable(myDrawable);
     }
 
     public void calculate(View view) {
@@ -33,5 +41,12 @@ public class MainActivity extends AppCompatActivity {
         String hms = String.format("%02dh %02dm %02ds", TimeUnit.SECONDS.toHours((long) period),
                 TimeUnit.SECONDS.toMinutes((long) period) % 60, (long) period % 60);
         resultView.setText(hms);
+
+
+        Drawable drawable = imageView.getDrawable();
+        if (drawable instanceof Animatable) {
+            if (!((Animatable) drawable).isRunning())
+                ((Animatable) drawable).start();
+        }
     }
 }
