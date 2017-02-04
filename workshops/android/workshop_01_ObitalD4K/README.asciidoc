@@ -330,5 +330,13 @@ public class MainActivity extends AppCompatActivity {
 
 ----
 
-=== Step9: Test it!
-image::resources/images/TheAnimation_06.png[The animation  - Step 9]
+=== Step9: Insert in the MainActivity.java file
+image::resources/images/TheAnimation_07.png[The animation  - Step 9]
+
+=== Step10: Test it!
+image::resources/images/TheAnimation_06.png[The animation  - Step 10]
+
+=== If you're any questions clik on this link
+It is the website of Android developer
+
+https://developer.android.com/index.html
