@@ -48,7 +48,7 @@ image::resources/images/CreateNewVirtualDevice_06.png[Create Virtual Device - St
 
 == 4) Position and graphic elements
 
-=== This is what we whant at the and of this step
+=== This is what we want at the end of this step
 image::resources/images/GraphicalElements_00.png[Graphic elements - Step 0]
 
 See documentation on Layout : https://developer.android.com/guide/topics/ui/declaring-layout.html
@@ -272,7 +272,7 @@ image::resources/images/TheAnimation_03.png[The animation  - Step 6]
 </animated-vector>
 ----
 
-=== Step8: Copy the folowing code in the MainActivity.java file
+=== Step8: Copy the following code in the MainActivity.java file
 [source,java]
 ----
 package org.devoxx4kids.orbitad4k;
