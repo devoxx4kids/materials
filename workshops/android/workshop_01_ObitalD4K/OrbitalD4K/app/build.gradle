@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
     defaultConfig {
-        applicationId "org.devoxx4kids.orbitad4k"
+        applicationId "org.devoxx4kids.orbitald4k"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1

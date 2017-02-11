@@ -1,4 +1,4 @@
-package org.devoxx4kids.orbitad4k;
+package org.devoxx4kids.orbitald4k;
 
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
