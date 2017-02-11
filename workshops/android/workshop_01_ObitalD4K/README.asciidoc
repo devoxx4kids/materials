@@ -1,6 +1,7 @@
 = Workshop 01 - The OrbitalD4K Application
 
 == 1) Installing Android Studio
+Follow the instructions : https://developer.android.com/studio/install.html
 
 == 2) Create a project
 
@@ -66,7 +67,7 @@ See documentation on Layout : https://developer.android.com/guide/topics/ui/decl
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="org.devoxx4kids.orbitad4k.MainActivity">
+    tools:context="org.devoxx4kids.orbitald4k.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -160,7 +161,7 @@ image::resources/images/TheCode_01.png[Intercat with the code - Step 1]
 === Step2: Copy the code in the MainActivity.java file
 [source,xml]
 ----
-package org.devoxx4kids.orbitad4k;
+package org.devoxx4kids.orbitald4k;
 
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
@@ -275,7 +276,7 @@ image::resources/images/TheAnimation_03.png[The animation  - Step 6]
 === Step8: Copy the following code in the MainActivity.java file
 [source,java]
 ----
-package org.devoxx4kids.orbitad4k;
+package org.devoxx4kids.orbitald4k;
 
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
@@ -336,7 +337,13 @@ image::resources/images/TheAnimation_07.png[The animation  - Step 9]
 === Step10: Test it!
 image::resources/images/TheAnimation_06.png[The animation  - Step 10]
 
-=== If you're any questions clik on this link
-It is the website of Android developer
-
-https://developer.android.com/index.html
+=== Some useful resources
+- Android developpement:
+* The Android developer website: https://developer.android.com/index.html
+* Online Android course: https://www.udacity.com/course/android-development-for-beginners--ud837
+* The workshop source code: https://github.com/devoxx4kids/materials/tree/master/workshops/android/workshop_01_ObitalD4K/OrbitalD4K/[Github : Android Workshop 01]
+- Android Studio:
+* Using Android Studio: https://developer.android.com/studio/intro/index.html
+* Android Studio Instalation : https://developer.android.com/studio/install.html
+- Or ask on author twitter account
+* Laorine : https://twitter.com/laostreet[@laostreet]
