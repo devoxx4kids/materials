@@ -6,51 +6,51 @@ Follow the instructions : https://developer.android.com/studio/install.html
 == 2) Create a project
 
 === Step1: Open Android Studio
-image::resources/images/CreateNewProject_01.png[Create Project - Step 1]
+image::../resources/images/CreateNewProject_01.png[Create Project - Step 1]
 
 === Step2: Name your new application
-image::resources/images/CreateNewProject_02.png[Create Project - Step 2]
+image::../resources/images/CreateNewProject_02.png[Create Project - Step 2]
 
 === Step3: Choose your API version
 For this workshop you can choose lollipop (API 21)
 
-image::resources/images/CreateNewProject_03.png[Create Project - Step 3]
+image::../resources/images/CreateNewProject_03.png[Create Project - Step 3]
 
 === Step4: Choose your activity type
 For this workshop you can choose the EmptyActivity to create a very simple application.
 
-image::resources/images/CreateNewProject_04.png[Create Project - Step 4]
+image::../resources/images/CreateNewProject_04.png[Create Project - Step 4]
 
 === Step5: Create the main activity
-image::resources/images/CreateNewProject_05.png[Create Project - Step 5]
+image::../resources/images/CreateNewProject_05.png[Create Project - Step 5]
 
 === Step6: Now you can start your new application ;)
-image::resources/images/CreateNewProject_06.png[Create Project - Step 6]
+image::../resources/images/CreateNewProject_06.png[Create Project - Step 6]
 
 == 3) Create your virtual device
 
 === Step1: Create a device
-image::resources/images/CreateNewVirtualDevice_01.png[Create Virtual Device - Step 1]
+image::../resources/images/CreateNewVirtualDevice_01.png[Create Virtual Device - Step 1]
 
 === Step2: Choose a phone
-image::resources/images/CreateNewVirtualDevice_02.png[Create Virtual Device - Step 2]
+image::../resources/images/CreateNewVirtualDevice_02.png[Create Virtual Device - Step 2]
 
 === Step3: Choose your SDK version and downloading it
-image::resources/images/CreateNewVirtualDevice_03.png[Create Virtual Device - Step 3]
+image::../resources/images/CreateNewVirtualDevice_03.png[Create Virtual Device - Step 3]
 
 === Step4: Verified the configuration
-image::resources/images/CreateNewVirtualDevice_04.png[Create Virtual Device - Step 4]
+image::../resources/images/CreateNewVirtualDevice_04.png[Create Virtual Device - Step 4]
 
 === Step5: Start your new phone
-image::resources/images/CreateNewVirtualDevice_05.png[Create Virtual Device - Step 5]
+image::../resources/images/CreateNewVirtualDevice_05.png[Create Virtual Device - Step 5]
 
 === Step6: Play with it :)
-image::resources/images/CreateNewVirtualDevice_06.png[Create Virtual Device - Step 6]
+image::../resources/images/CreateNewVirtualDevice_06.png[Create Virtual Device - Step 6]
 
 == 4) Position and graphic elements
 
 === This is what we want at the end of this step
-image::resources/images/GraphicalElements_00.png[Graphic elements - Step 0]
+image::../resources/images/GraphicalElements_00.png[Graphic elements - Step 0]
 
 See documentation on Layout : https://developer.android.com/guide/topics/ui/declaring-layout.html
 
@@ -125,12 +125,12 @@ See documentation on Layout : https://developer.android.com/guide/topics/ui/decl
 ----
 
 === Step2: Show result in the preview window
-image::resources/images/GraphicalElements_02.png[Graphic elements - Step 2]
+image::../resources/images/GraphicalElements_02.png[Graphic elements - Step 2]
 
 == 5) Styles and Themes
 
 === Step1: Open your style file
-image::resources/images/StylesAndThemes_01.png[Styles and Themes - Step 1]
+image::../resources/images/StylesAndThemes_01.png[Styles and Themes - Step 1]
 
 === Step2: Copy the styles
 [source,xml]
@@ -147,7 +147,7 @@ image::resources/images/StylesAndThemes_01.png[Styles and Themes - Step 1]
 ----
 
 === Step3: Test your application
-image::resources/images/StylesAndThemes_03.png[Styles and Themes - Step 3]
+image::../resources/images/StylesAndThemes_03.png[Styles and Themes - Step 3]
 
 == 6) Interact with the code
 
@@ -156,7 +156,7 @@ image::resources/images/StylesAndThemes_03.png[Styles and Themes - Step 3]
 ----
 android:onClick="calculate"
 ----
-image::resources/images/TheCode_01.png[Intercat with the code - Step 1]
+image::../resources/images/TheCode_01.png[Intercat with the code - Step 1]
 
 === Step2: Copy the code in the MainActivity.java file
 [source,xml]
@@ -203,8 +203,8 @@ public class MainActivity extends AppCompatActivity {
 == 7) The animation
 
 === Step1: Create drawable file
-image::resources/images/TheAnimation_01.png[The animation  - Step 1]
-image::resources/images/TheAnimation_02.png[The animation  - Step 1]
+image::../resources/images/TheAnimation_01.png[The animation  - Step 1]
+image::../resources/images/TheAnimation_02.png[The animation  - Step 1]
 
 === Step2: The drawable code
 [source,xml]
@@ -238,10 +238,10 @@ image::resources/images/TheAnimation_02.png[The animation  - Step 1]
 ----
 
 === Step3: Create the animator folder
-image::resources/images/TheAnimation_04.png[The animator  - Step 3]
+image::../resources/images/TheAnimation_04.png[The animator  - Step 3]
 
 === Step4: Create the animator file
-image::resources/images/TheAnimation_05.png[The animator  - Step 4]
+image::../resources/images/TheAnimation_05.png[The animator  - Step 4]
 
 === Step5: Copy the animator
 [source,xml]
@@ -258,7 +258,7 @@ image::resources/images/TheAnimation_05.png[The animator  - Step 4]
 ----
 
 === Step6: Create the animated file
-image::resources/images/TheAnimation_03.png[The animation  - Step 6]
+image::../resources/images/TheAnimation_03.png[The animation  - Step 6]
 
 === Step7: Copy the animated_vector code
 [source,xml]
@@ -332,10 +332,10 @@ public class MainActivity extends AppCompatActivity {
 ----
 
 === Step9: Insert in the MainActivity.java file
-image::resources/images/TheAnimation_07.png[The animation  - Step 9]
+image::../resources/images/TheAnimation_07.png[The animation  - Step 9]
 
 === Step10: Test it!
-image::resources/images/TheAnimation_06.png[The animation  - Step 10]
+image::../resources/images/TheAnimation_06.png[The animation  - Step 10]
 
 === Some useful resources
 - Android developpement:
