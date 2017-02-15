@@ -1,0 +1,349 @@
+= Atelier 01 - L'application orbitalD4K
+
+== 1) Installer Android Studio
+Suivre les instructions : https://developer.android.com/studio/install.html
+
+== 2) Créer un projet
+
+=== Etape1: Ouvrir Android Studio
+image::../resources/images/CreateNewProject_01.png[Cration du projet- Etape 1]
+
+=== Etape2: Nommer sa nouvelle application
+image::../resources/images/CreateNewProject_02.png[Cration du projet- Etape 2]
+
+=== Etape3: Choisir sa version de l'API
+Pour cet atelier tu peux choisir lollipop (API 21)
+
+image::../resources/images/CreateNewProject_03.png[Cration du projet- Etape 3]
+
+=== Etape4: Choisir son type d'activité
+Pour cet atelier tu peux choisir le EmptyActivity pour créer une application très simple.
+
+image::../resources/images/CreateNewProject_04.png[Cration du projet- Etape 4]
+
+=== Etape5: Créer une activité principale (main activity)
+image::../resources/images/CreateNewProject_05.png[Cration du projet- Etape 5]
+
+=== Etape6: Maintenant tu peux démarrer ta nouvelle application ;)
+image::../resources/images/CreateNewProject_06.png[Cration du projet- Etape 6]
+
+== 3) Créer son téléphone virtuel
+
+=== Etape1: Créer un téléphone
+image::../resources/images/CreateNewVirtualDevice_01.png[Cration d'un téléphone virtuel - Etape 1]
+
+=== Etape2: Choisir un téléphone
+image::../resources/images/CreateNewVirtualDevice_02.png[Cration d'un téléphone virtuel - Etape 2]
+
+=== Etape3: Choisir une version du SDK et la télécharger
+image::../resources/images/CreateNewVirtualDevice_03.png[Cration d'un téléphone virtuel - Etape 3]
+
+=== Etape4: Vérifier la configuration
+image::../resources/images/CreateNewVirtualDevice_04.png[Cration d'un téléphone virtuel - Etape 4]
+
+=== Etape5: Démarrer son nouveau téléphone
+image::../resources/images/CreateNewVirtualDevice_05.png[Cration d'un téléphone virtuel - Etape 5]
+
+=== Etape6: Joue avec :)
+image::../resources/images/CreateNewVirtualDevice_06.png[Cration d'un téléphone virtuel - Etape 6]
+
+== 4) Position et éléments graphiques
+
+=== Voilà ce que l'on veut à la fin de cette étape
+image::../resources/images/GraphicalElements_00.png[Elements graphiques - Etape 0]
+
+Regarder la documentation sur les "Layout" : https://developer.android.com/guide/topics/ui/declaring-layout.html
+
+=== Etape1: Copier le code dans ton "activity_main.xml"
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.devoxx4kids.orbitald4k.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="36000"
+                android:inputType="numberDecimal" />
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GO"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#616161"
+                android:textSize="48sp"
+                android:textStyle="normal|bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+----
+
+=== Etape2: Voir le reslutat dans la fenêtre du "preview"
+image::../resources/images/GraphicalElements_02.png[Elements graphiques - Etape 2]
+
+== 5) Styles et Thèmes
+
+=== Etape1: Ouvrir le fichier de style
+image::../resources/images/StylesAndThemes_01.png[Styles et Themes - Etape 1]
+
+=== Etape2: Copier le style
+[source,xml]
+----
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Primary theme color of the app (sets background color of app bar) -->
+        <item name="colorPrimary">#FF9800</item>
+        <!-- Background color of buttons in the app -->
+        <item name="colorButtonNormal">#FF9800</item>
+    </style>
+</resources>
+----
+
+=== Etape3: Tester son application
+image::../resources/images/StylesAndThemes_03.png[Styles et Themes - Etape 3]
+
+== 6) Intéragir avec le code
+
+=== Etape1: Ajouter la variable dans son "activity_main.xml"
+[source,xml]
+----
+android:onClick="calculate"
+----
+image::../resources/images/TheCode_01.png[Intercat with the code - Etape 1]
+
+=== Etape2: Copier le code dans le document "MainActivity.java"
+[source,xml]
+----
+package org.devoxx4kids.orbitald4k;
+
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
+import java.util.concurrent.TimeUnit;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final double RADIUS = 6_378.14;
+    private static final double GRAVITY = 6.67 * Math.pow(10, -11);
+    private static final double EARTH_MASS = 5.9736 * Math.pow(10, 24);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void calculate(View view) {
+        EditText editView = (EditText)findViewById(R.id.editText);
+        Integer distance = Integer.valueOf(editView.getText().toString());
+
+        double period = Math.sqrt(4 * Math.pow(Math.PI, 2) * Math.pow((distance + RADIUS) * 1000, 3) / (GRAVITY * EARTH_MASS));
+
+        TextView resultView = (TextView) findViewById(R.id.textView);
+        String hms = String.format("%02dh %02dm %02ds", TimeUnit.SECONDS.toHours((long) period),
+                TimeUnit.SECONDS.toMinutes((long) period) % 60, (long) period % 60);
+        resultView.setText(hms);
+    }
+}
+----
+
+== 7) L'animation
+
+=== Etape1: Créer un fichier "drawable"
+image::../resources/images/TheAnimation_01.png[L'animation  - Etape 1]
+image::../resources/images/TheAnimation_02.png[L'animation  - Etape 1]
+
+=== Etape2: Le code du "drawable"
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="256dp"
+    android:width="256dp"
+    android:viewportWidth="640"
+    android:viewportHeight="640">
+    <group
+        android:name="orbital"
+        android:rotation="0"
+        android:translateX="320"
+        android:translateY="320">
+        <path
+            android:name="earth"
+            android:fillColor="#9FBF3B"
+            android:pathData="m -25 0 a 25,25 0 1,0 50,0 a 25,25 0 1,0 -50,0" />
+        <group
+            android:name="satellite"
+            android:rotation="0"
+            android:translateX="120">
+            <path
+                android:name="satellite"
+                android:fillColor="#9FBF3B"
+                android:pathData="m -5 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0" />
+        </group>
+    </group>
+</vector>
+----
+
+=== Etape3: Créer le dossier "animation"
+image::../resources/images/TheAnimation_04.png[L'animation  - Etape 3]
+
+=== Etape4: Créer le fichier d'animation
+image::../resources/images/TheAnimation_05.png[L'animation  - Etape 4]
+
+=== Etape5: Copier l'animation
+[source,xml]
+----
+<objectAnimator
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:propertyName="rotation"
+    android:valueFrom="0.0"
+    android:valueTo="360.0"
+    android:startOffset="0"
+    android:duration="5000"
+    android:repeatCount="infinite"
+    android:interpolator="@android:anim/decelerate_interpolator"/>
+----
+
+=== Etape6: Créer le dossier "animated"
+image::../resources/images/TheAnimation_03.png[L'animation  - Etape 6]
+
+=== Etape7: Copier le code "animated_vector"
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/orbital">
+    <target
+        android:name="orbital"
+        android:animation="@animator/orbital_animator" />
+
+</animated-vector>
+----
+
+=== Etape8: Copier le code dans le dossier "MainActivity.java"
+[source,java]
+----
+package org.devoxx4kids.orbitald4k;
+
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
+import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
+import java.util.concurrent.TimeUnit;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final double RADIUS = 6_378.14;
+    private static final double GRAVITY = 6.67 * Math.pow(10, -11);
+    private static final double EARTH_MASS = 5.9736 * Math.pow(10, 24);
+
+    private ImageView imageView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        AnimatedVectorDrawableCompat myDrawable = AnimatedVectorDrawableCompat.create(this, R.drawable.orbital_animated_vector);
+        imageView = (ImageView) findViewById(R.id.drawable);
+        imageView.setImageDrawable(myDrawable);
+    }
+
+    public void calculate(View view) {
+        EditText editView = (EditText)findViewById(R.id.editText);
+        Integer distance = Integer.valueOf(editView.getText().toString());
+
+        double period = Math.sqrt(4 * Math.pow(Math.PI, 2) * Math.pow((distance + RADIUS) * 1000, 3) / (GRAVITY * EARTH_MASS));
+
+        TextView resultView = (TextView) findViewById(R.id.textView);
+        String hms = String.format("%02dh %02dm %02ds", TimeUnit.SECONDS.toHours((long) period),
+                TimeUnit.SECONDS.toMinutes((long) period) % 60, (long) period % 60);
+        resultView.setText(hms);
+
+
+        Drawable drawable = imageView.getDrawable();
+        if (drawable instanceof Animatable) {
+            if (!((Animatable) drawable).isRunning())
+                ((Animatable) drawable).start();
+        }
+    }
+}
+
+----
+
+=== Etape9: Insérer dans le dossier "MainActivity.java"
+image::../resources/images/TheAnimation_07.png[L'animation  - Etape 9]
+
+=== Etape10: Essaie le!
+image::../resources/images/TheAnimation_06.png[L'animation  - Etape 10]
+
+=== Voici quelques liens utiles
+- Android developpement:
+* Le site du "Android developer": https://developer.android.com/index.html
+* Cours Android en ligne : https://www.udacity.com/course/android-development-for-beginners--ud837
+* Le code de cet atelier: https://github.com/devoxx4kids/materials/tree/master/workshops/android/workshop_01_ObitalD4K/OrbitalD4K/[Github : Android Workshop 01]
+- Android Studio:
+* Utiliser Android Studio: https://developer.android.com/studio/intro/index.html
+* Android Studio Instalation : https://developer.android.com/studio/install.html
+- Ou poser votre question au twitter de l'auteur
+* Laorine : https://twitter.com/laostreet[@laostreet]

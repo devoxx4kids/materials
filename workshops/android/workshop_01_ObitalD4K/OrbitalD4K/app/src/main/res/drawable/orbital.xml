@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="256dp"
+    android:width="256dp"
+    android:viewportWidth="640"
+    android:viewportHeight="640">
+    <group
+        android:name="orbital"
+        android:rotation="0"
+        android:translateX="320"
+        android:translateY="320">
+        <path
+            android:name="earth"
+            android:fillColor="#9FBF3B"
+            android:pathData="m -25 0 a 25,25 0 1,0 50,0 a 25,25 0 1,0 -50,0" />
+        <group
+            android:name="satellite"
+            android:rotation="0"
+            android:translateX="120">
+            <path
+                android:name="satellite"
+                android:fillColor="#9FBF3B"
+                android:pathData="m -5 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0" />
+        </group>
+    </group>
+</vector>
