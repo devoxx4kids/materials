@@ -22,6 +22,8 @@ http://www.threepullpa.com/463787-pokemon-pikachu-wallpaper.html
 http://www.iconarchive.com/search?q=pokemon&page=1
 http://www.iconspedia.com/icon/poke-ball-icon-27095.html
 
-As far as I know they are free to use in events like Devoxx4Kids, but you can check licenses for yourself in the links above. 'file://' protocol can't be used to access these images so they have to be hosted on some public server with 'Access-Control-Allow-Origin' header set properly. You can use my hosting, images are currently here http://d4k.wwilk.com/images. Let me know before so that I don't take down the website during the time when you need it. 
+As far as I know they are free to use in events like Devoxx4Kids, but you can check licenses for yourself in the links above. 'file://' protocol can't be used to access these images so they have to be hosted on some public server with 'Access-Control-Allow-Origin' header set properly. You can use my hosting, images are currently here http://d4k.wwilk.com/assets. Let me know before so that I don't take down the website during the time when you need it. 
+
+There are 2 different background images, 5 Pokemon and 2 pokeballs, so participants can play around with them.
 
 Feel free me to contact at wilk.wojtek at gmail.com if you have any questions or need any help.
