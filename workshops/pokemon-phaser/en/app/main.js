@@ -13,9 +13,7 @@ var mainState = {
     preload: function() {
     	game.load.crossOrigin = 'anonymous';
       	
-      	// Load all needed images
-      	game.load.image('background', 'http://d4k.wwilk.com/assets/background.jpg');
-      	game.load.image('pokemon', 'http://d4k.wwilk.com/assets/pikachu.png');
+	loadImages(game);
     },
 
     create: function() {
@@ -44,7 +42,7 @@ function createPokemon() {
  	var verticalPosition = 0;
 
     // Display the Pokemon on the screen
-    var pokemon = game.add.sprite(horizontalPosition, verticalPosition, 'pokemon');
+    var pokemon = game.add.sprite(horizontalPosition, verticalPosition, 'kyogre');
 
 	// Enables all kind of input actions on this image (click, etc)
     pokemon.inputEnabled = true;
@@ -53,7 +51,14 @@ function createPokemon() {
       	caughtPokemons++;
       	text.text = 'Congratulations, you caught ' + caughtPokemons + ' Pokemon';
       	pokemon.destroy();
-    }, this);
+    }, this)
+
+//	pokemon.body.onMoveComplete.add(function(){
+//		pokemon.body.x++;
+//	}, this);
+
+  //  pokemon.body.movementCallback = function(this.movementCallbackContext, this, this.velocity, percent) {
+  //  };
 
     // Add gravity to the pokemon to make it fall
     game.physics.arcade.enable(pokemon);
