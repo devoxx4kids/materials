@@ -1,0 +1,93 @@
+//intro slides for the calliope workshop
+// 10.2017 theOpenbit (tob at schoenesnetz de)
+:revealjsdir: ../resources/reveal.js
+:revealjs_theme: simple
+:revealjs_progress: true
+:revealjs_slideNumber: true
+:customcss: ../resources/overwrite.css
+
+== !
+
+image:../resources/mini_board.png[calliope mini,416,280, link="https://calliope.cc"]
+
+[.float-group]
+image:../resources/DevoxxWithoutBrackets_PNG_1000px.png[devoxx4kids_logo,360,130,align="left", link="http://www.devoxx4kids.de/"]
+image:../resources/cropped-KIDS4IT-logo-wow-150x150.png[kids4it_logo,150,150,align="left", link="https://www.kids4it.de/"]
+image:../resources/HanseMerkur_Versicherungsgruppe_logo.svg[HanseMerkur_logo, 330,130,align="right", link="https://www.hansemerkur.de/"] 
+
+
+[transition="zoom"]
+== Programmieren??
+
+image:../resources/headscratcher.svg[notebook,207,233,,align="right",float="right"]
+
+* Computer sagen was er tun soll 
+* Programme sind wie Kochrezepte
+
+image:../resources/Anonymous-notebook.svg[notebook,420,310,align="center"]
+
+[transition="zoom"]
+== Was ist der image:../resources/calliope_logo.png[calliope,196,60, link="https://calliope.cc"] ?
+
+* Ist ein Lerncomputer, den wir programmieren können
+* Wir können damit
+** Texte ausgeben
+** Temperatur messen
+** Töne ausgeben und Geräusche aufnehmen
+** Bewegung und die  Himmelsrichtung messen
+** ...
+
+[%notitle, transition="zoom"]
+== Pinout
+
+[.center]
+image:../resources/calliope_mini_10_pinout_fin.png[pinout,656,588,align="center"] 
+
+(C)cc-by-sa https://calliope.cc
+
+[transition="zoom"]
+== Wie wird programmiert?
+* es gibt viele verschiedene Anwendungen dafür
+** http://calliope.cc/editor
+* meistens programmiert man mit grafischen Anweisungsblöcke
+* die Anweisungsblöcke werden mit der Maus aneinander gesetzt
+* das fertige Programm wird übersetzt
+* anschließend wird es auf den Calliope kopiert
+
+
+[transition="zoom"]
+== ein erstes Programm
+image:../resources/firstProgram.png[firstProgram,716,555,align="center"] 
+
+[transition="zoom"]
+== Programm auf Calliope laden
+image:../resources/downloadProgram1.png[firstProgram,716,555,align="center"] 
+
+[transition="zoom"]
+== Programm auf Calliope laden
+image:../resources/downloadProgram2.png[firstProgram,716,555,align="center"] 
+
+[transition="zoom"]
+== Programm auf Calliope laden
+* im Download-Ordner steht nun eine Datei mit der Endung ```hex```
+* den Calliope mit dem USB-Kabel an den Computer anschließend
+* die heruntergeladene Datei auf das Laufwerk ```MINI``` kopieren
+
+fertig!
+
+
+[%notitle, transition="zoom"]
+== los geht's
+--
+image:../resources/mini_board.png[calliope mini,416,280, link="https://calliope.cc",align="center"]
+[.stackimage]
+image:../resources/stamp.png[stamp,600,500]
+
+image:../resources/DevoxxWithoutBrackets_PNG_1000px.png[devoxx4kids_logo,360,130,align="left", link="http://www.devoxx4kids.de/"]
+image:../resources/cropped-KIDS4IT-logo-wow-150x150.png[devoxx4kids_logo,150,150,align="left", link="https://www.kids4it.de/"]
+image:../resources/HanseMerkur_Versicherungsgruppe_logo.svg[HanseMerkur_logo, 330,130,align="right", link="https://www.hansemerkur.de/"]
+--
+
+
+
+
