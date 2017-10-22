@@ -1,75 +1,74 @@
-= Introduction to Minecraft
+= Introducción a Minecraft
 
-This workshop is aimed at people who want to learn about the game of Minecraft.
+Este workshop es para quien quiera aprender acerca del juego Minecraft.
 
 == Minecraft 101
 
-=== What is Minecraft?
+=== Que es Minecraft?
 
-This section is copied from the http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge] book.
+Esta seccion ha sido traducida desde el libro http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge], en paréntesis se han dejado los términos en Inglés para permitir su fácil identificación al momento del juego.
 
-Minecraft is a 3D game about breaking and placing _blocks_ to obtain _materials_. These materials can then be used to build or _craft_ new _items_
-and _tools_. These, in turn, can be used to harvest more types of blocks. The game also contains _entities_, which are dynamic moving objects in Minecraft, for example, cow, pig, and horse. Some of the entities are hostile and called as _monsters_, for example, zombie and creeper. _Bosses_ are monsters that are very hard to defeat.
+Minecraft es un juego 3D acerca de romper y mover _bloques_ (_blocks_) para obtener _materiales_ (_materials_). Estos materiales puede ser usados para construir o crear (_craft_) nuevos _elementos_ (_items_) y _herramientas_ (_tools_). Estos, a su vez, puede ser utilizados para obtener nuevos tipos de bloques. El juego también contiene _seres_(_entities_), los cuales son objectos dinámicos en Minecraft, por ejemplo, vacas, cerdos, y caballos. Algunas de estas entidades son hostiles y son llamados _mostruos_ (_monsters_), por ejemplo zombies y creepers. _Bosses_ son mostruos que son dificiles de vencer.
 
-Other activities in the game include exploration, gathering resources, crafting, and combat.
+Otras actividades en el juego incluye exploracion, recoleccion de recursos, construccion (crafting), y combates.
 
-Player can travel to different _worlds_, or _dimensions_ in gamespeak. The game contains three dimensions:
+Los jugadores puedes viajar a diferentes _mundos_ (_worlds_), o _dimensiones_ (_dimensions_) en el juego. El juego contiene tres dimensiones:
 
-. The _Overworld_
-. The _Nether_
-. _The End_
+. El _Supramundo_ (_Overworld_)
+. El _Inframundo_ _Nether_
+. El _Fin_ (_The End_)
 
-The Overworld is like a normal wilderness on Earth. It has grass, trees, villages, and other normal things. The Nether is like a big cave system, and it is covered with lava and fire. Lots of hostile mobs spawn there, which makes it that much more dangerous. The End is the final dimension, and it is like a floating island. The island is made of End Stone and has Obsidian pillars on top. This dimension contains one of Minecraft's bosses, the _Ender Dragon_.
+El supramundo is igual a las áreas agrícolas de la tierra. Tiene pastos, arboles, villas, y otras cosas normales. El inframundo es como un gran sistema de cuevas, esta cubierta con lava y fuego. Muchos de los mobs hostiles tienen sus crias ahí, lo cual lo hace mucho más peligroso. El fin es la dimensión final, es como una isla flotante. La isla esta hecha con piedra del fin (End Stone) y tiene pilares de roca volcánica (Obsidian). Esta dimension contiene uno de los mostruos de Minecraft, el _Dragon Ender_ (_Ender Dragon_).
 
-The game is played in a _map_, which is a certain arrangement of blocks that defines how the world looks like. When a world is generated, it creates a _seed_ that defines what the map looks like. The seed can also be specified during world creation. If same seed is used for two worlds, they will look exactly the same. You can also download maps made by other people and play on them.
+El juego es jugado en un _mapa_ (_map_), el cual esta conformado por bloques que definen como el mundo se ve. Cuendo un mundo es generado, crea una _semilla_ (_seed_) que define como el mapa se ve. La semilla puede tambien ser especificada durante la creacion del mundo. Si la misma semilla es usada para dow mundos, estos se veran exactamente iguales. Usted puede también descargar mapas hechos por otras personas y jugar en ellos.
 
-Each player has their own _inventory_, which contains their blocks, items, and armor.
+Cada jugador tiene sus propios _inventarios_ (_inventory_), los cuales contienen sus bloques, elementos y armaduras.
 
-An important part to understand about Minecraft is that there is no "`finishing`" the game. The player can move between dimensions and build structures however he/she wants.
+Una parte importante para entender acerca de Minecraft es que no hay una "`finalizacion` (`finishing`)" del juego. El jugador puede moverse entre dimensiones y construir estructuras como el/ella quiera.
 
-=== Single player vs Multiplayer
+=== Un jugador vs Multijugadores (Single player vs Multiplayer)
 
-=== Five modes: Survival, Creative, Hardcore, Spectator, Adventure, Story?
+=== Cinco modos: Survival, Creative, Hardcore, Spectator, Adventure, Story?
 
-=== Commands
+=== Comandos
 
-. Exercise: Let's move around the world
-. Exercise: How to fly and jump
+. Ejercicio: Let's move around the world
+. Ejercicio: How to fly and jump
 
-=== Entities, Items and Blocks
+=== Entidades, Elementos y bloques (Entities, Items and Blocks)
 
-Example of Entities:
+Ejemplos de entidades:
 
-Example of Items:
+Ejemplos de elementos:
 
-Example of Blocks:
+Ejemplos de bloques:
 
-. Exercise: See all items in inventory and select items
-. Exercise: Tools for harvesting blocks
-. Exercise: Place and break some blocks
-. Exercise: Build a house
+. Ejercicio: See all items in inventory and select items
+. Ejercicio: Tools for harvesting blocks
+. Ejercicio: Place and break some blocks
+. Ejercicio: Build a house
 
 === Command Cheatsheet
 
-. Change day -> night, and vice versa
+. Cambiar de día a noche y viceversa
 
 == Minecraft 201
 
-=== Mining
-.. Strip mining
-.. Cave mining
+=== Minería (Mining)
+.. Mineria a cielo abierto (Strip mining)
+.. Mineria en cuevas (Cave mining)
 
 === Recipe
 .. Crafting
 .. Smelting
 
-=== Combat
-.. Weapons (swords, bows, etc.)
-.. Monsters (Zombies, Skeletons, etc.)
+=== Combates
+.. Armas (swords, bows, etc.)
+.. Mostruos (Zombies, Skeletons, etc.)
 
 === Redstone
 
-=== Dimensions
+=== Dimensiones
 .. Portals
 .. Resources
 .. Enemies
@@ -80,6 +79,6 @@ Example of Blocks:
 === Recipe
 . Brewing
 
-=== Minigame
+=== Minijuego
 
 
