@@ -1,0 +1,21 @@
+= Minecraft Modding
+
+This page explains how to do Minecraft modding with two different tools: http://files.minecraftforge.net/[Forge] and https://www.spigotmc.org/[Spigot].
+
+Don't what is Minecraft? Read https://github.com/devoxx4kids/materials/blob/master/workshops/minecraft/minecraft-intro.adoc[Introduction to Minecraft]!
+
+image::images/forge-logo.png[]
+
+Forge is for client-side modding, which only works if you have the mod installed. With Forge, you can do lots of cool things like making new blocks, items, mobs, and even biomes and dimensions.
+
+link:readme-forge.asciidoc[Minecraft Modding with Forge Workshop]
+
+http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge Book]
+
+http://www.infiniteskills.com/training/minecraft-modding-with-forge.html?network=coverqr[Minecraft Modding with Forge Video Tutorial]
+
+image::images/spigot-logo.png[]
+
+Spigot is for server-side modding, and anyone who connects to the server can enjoy the mods installed. Most big servers, like Mineplex and Hypixel, are Spigot servers.
+
+link:readme-spigot.asciidoc[Minecraft Modding with Spigot Workshop]
