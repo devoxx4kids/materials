@@ -1,0 +1,23 @@
+= Modificando Minecraft / Minecraft Modding
+
+Que es Modding? Algunas veces escrito como Mods, es cualquier cosa que cambie el contenido de Minecraft desde su versión original.
+
+Esta página explica como usar Minecraft modding con dos diferentes herramientas: http://files.minecraftforge.net/[Forge] y https://www.spigotmc.org/[Spigot].
+
+No sabe que es Minecraft? Lea https://github.com/devoxx4kids/materials/blob/master/workshops/minecraft/minecraft-intro.adoc[Introduction to Minecraft]!
+
+image::../images/forge-logo.png[]
+
+Forge es para modding client-side, client-side significa que debe tener instalado mod en su equipo para que pueda utilizar los mods. Con Forge, usted puede crear increibles cosas como nuevos bloques, elementos, mobs (seres móviles), y hasta biomes (regiones) y dimensiones.
+
+link:../readme-forge.asciidoc[Workshop Minecraft Modding con Forge]
+
+http://shop.oreilly.com/product/0636920036562.do[Libro Minecraft Modding con Forge]
+
+http://www.infiniteskills.com/training/minecraft-modding-with-forge.html?network=coverqr[Video tutorial Minecraft Modding con Forge]
+
+image::../images/spigot-logo.png[]
+
+Spigot es para modding server-side, serve-side significa que debe tener conexión a un servidor para poder utilizar los mods instalados. La mayoría de los más grandes servidores, como Mineplex y Hypixel, son servidores Spigot.
+
+link:../readme-spigot.asciidoc[Minecraft Modding with Spigot Workshop]
