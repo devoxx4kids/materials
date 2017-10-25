@@ -4,7 +4,7 @@ Que es Modding? Algunas veces escrito como Mods, es cualquier cosa que cambie el
 
 Esta página explica como usar Minecraft modding con dos diferentes herramientas: http://files.minecraftforge.net/[Forge] y https://www.spigotmc.org/[Spigot].
 
-No sabe que es Minecraft? Lea https://github.com/devoxx4kids/materials/blob/master/workshops/minecraft/minecraft-intro.adoc[Introduction to Minecraft]!
+No sabe que es Minecraft? Lea https://github.com/devoxx4kids/materials/blob/master/workshops/minecraft/es/minecraft-intro.adoc[Introducción a Minecraft]!
 
 image::../images/forge-logo.png[]
 
