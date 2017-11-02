@@ -14,10 +14,10 @@ In the project directory type:
 
 [source,bash]
 ---
-#bundle
+#bundle install
 ---
 
-Compile the sorurces by following command:
+Compile the sources by following command:
 
 [source,bash]
 ---
@@ -27,3 +27,11 @@ Compile the sorurces by following command:
 ---
 
 If you want to export the slides to pdf simply add ``?print-pdf`` to the end of the slide-url in your browser
+
+Complie the worshop handouts using following command:
+
+[source, bash]
+---
+#cd de
+# bundle exec asciidoctor-pdf -r asciidoctor-diagram aufgaben.adoc
+---
