@@ -81,7 +81,7 @@ fertig!
 --
 image:../resources/mini_board.png[calliope mini,416,280, link="https://calliope.cc",align="center"]
 [.stackimage]
-image:../resources/stamp.png[stamp,600,500]
+image:../resources/stamp.png[stamp,600,500,align="center"]
 
 image:../resources/DevoxxWithoutBrackets_PNG_1000px.png[devoxx4kids_logo,360,130,align="left", link="http://www.devoxx4kids.de/"]
 image:../resources/cropped-KIDS4IT-logo-wow-150x150.png[devoxx4kids_logo,150,150,align="left", link="https://www.kids4it.de/"]
