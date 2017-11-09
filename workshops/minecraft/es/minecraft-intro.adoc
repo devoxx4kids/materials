@@ -1,0 +1,84 @@
+= Introducción a Minecraft
+
+Este workshop es para quien quiera aprender acerca del juego Minecraft.
+
+== Minecraft 101
+
+=== Que es Minecraft?
+
+Esta seccion ha sido traducida desde el libro http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge], en paréntesis se han dejado los términos en Inglés para permitir su fácil identificación al momento del juego.
+
+Minecraft es un juego 3D acerca de romper y mover _bloques_ (_blocks_) para obtener _materiales_ (_materials_). Estos materiales puede ser usados para construir o crear (_craft_) nuevos _elementos_ (_items_) y _herramientas_ (_tools_). Estos, a su vez, puede ser utilizados para obtener nuevos tipos de bloques. El juego también contiene _seres_(_entities_), los cuales son objectos dinámicos en Minecraft, por ejemplo, vacas, cerdos, y caballos. Algunas de estas entidades son hostiles y son llamados _mostruos_ (_monsters_), por ejemplo zombies y creepers. _Bosses_ son mostruos que son dificiles de vencer.
+
+Otras actividades en el juego incluye exploracion, recoleccion de recursos, construccion (crafting), y combates.
+
+Los jugadores puedes viajar a diferentes _mundos_ (_worlds_), o _dimensiones_ (_dimensions_) en el juego. El juego contiene tres dimensiones:
+
+. El _Supramundo_ (_Overworld_)
+. El _Inframundo_ _Nether_
+. El _Fin_ (_The End_)
+
+El supramundo is igual a las áreas agrícolas de la tierra. Tiene pastos, arboles, villas, y otras cosas normales. El inframundo es como un gran sistema de cuevas, esta cubierta con lava y fuego. Muchos de los mobs hostiles tienen sus crias ahí, lo cual lo hace mucho más peligroso. El fin es la dimensión final, es como una isla flotante. La isla esta hecha con piedra del fin (End Stone) y tiene pilares de roca volcánica (Obsidian). Esta dimension contiene uno de los mostruos de Minecraft, el _Dragon Ender_ (_Ender Dragon_).
+
+El juego es jugado en un _mapa_ (_map_), el cual esta conformado por bloques que definen como el mundo se ve. Cuendo un mundo es generado, crea una _semilla_ (_seed_) que define como el mapa se ve. La semilla puede tambien ser especificada durante la creacion del mundo. Si la misma semilla es usada para dow mundos, estos se veran exactamente iguales. Usted puede también descargar mapas hechos por otras personas y jugar en ellos.
+
+Cada jugador tiene sus propios _inventarios_ (_inventory_), los cuales contienen sus bloques, elementos y armaduras.
+
+Una parte importante para entender acerca de Minecraft es que no hay una "`finalizacion` (`finishing`)" del juego. El jugador puede moverse entre dimensiones y construir estructuras como el/ella quiera.
+
+=== Un jugador vs Multijugadores (Single player vs Multiplayer)
+
+=== Cinco modos: Survival, Creative, Hardcore, Spectator, Adventure, Story?
+
+=== Comandos
+
+. Ejercicio: Let's move around the world
+. Ejercicio: How to fly and jump
+
+=== Entidades, Elementos y bloques (Entities, Items and Blocks)
+
+Ejemplos de entidades:
+
+Ejemplos de elementos:
+
+Ejemplos de bloques:
+
+. Ejercicio: See all items in inventory and select items
+. Ejercicio: Tools for harvesting blocks
+. Ejercicio: Place and break some blocks
+. Ejercicio: Build a house
+
+=== Command Cheatsheet
+
+. Cambiar de día a noche y viceversa
+
+== Minecraft 201
+
+=== Minería (Mining)
+.. Mineria a cielo abierto (Strip mining)
+.. Mineria en cuevas (Cave mining)
+
+=== Recipe
+.. Crafting
+.. Smelting
+
+=== Combates
+.. Armas (swords, bows, etc.)
+.. Mostruos (Zombies, Skeletons, etc.)
+
+=== Redstone
+
+=== Dimensiones
+.. Portals
+.. Resources
+.. Enemies
+.. Bosses
+
+== Minecraft 301
+
+=== Recipe
+. Brewing
+
+=== Minijuego
+
+

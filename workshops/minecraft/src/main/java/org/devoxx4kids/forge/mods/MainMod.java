@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 @Mod(modid = MainMod.MODID, version = MainMod.VERSION)
 public class MainMod {
-	public static final String MODID = "MyMods";
+	public static final String MODID = "mymods";
 	public static final String VERSION = "1.0";
 	
 	public static final Enchantment haste = new EnchantmentArrowFast();

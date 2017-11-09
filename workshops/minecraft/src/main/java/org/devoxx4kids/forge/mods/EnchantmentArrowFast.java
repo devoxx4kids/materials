@@ -9,58 +9,58 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EnchantmentArrowFast extends Enchantment {
-	public EnchantmentArrowFast() {
-		super(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.BOW,
-				new EntityEquipmentSlot[] { EntityEquipmentSlot.MAINHAND,
-						EntityEquipmentSlot.OFFHAND });
-		this.setName("arrowFast");
-	}
 
-	/**
-	 * Returns the minimal value of enchantability needed on the enchantment
-	 * level passed.
-	 */
-	public int getMinEnchantability(int enchantmentLevel) {
-		return 12 + (enchantmentLevel - 1) * 20;
-	}
+    public EnchantmentArrowFast() {
+        super(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.BOW,
+                new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND,
+                    EntityEquipmentSlot.OFFHAND});
+        this.setName("arrowFast");
+    }
 
-	/**
-	 * Returns the maximum value of enchantability nedded on the enchantment
-	 * level passed.
-	 */
-	public int getMaxEnchantability(int enchantmentLevel) {
-		return this.getMinEnchantability(enchantmentLevel) + 25;
-	}
+    /**
+     * Returns the minimal value of enchantability needed on the enchantment
+     * level passed.
+     */
+    public int getMinEnchantability(int enchantmentLevel) {
+        return 12 + (enchantmentLevel - 1) * 20;
+    }
 
-	/**
-	 * Returns the maximum level that the enchantment can have.
-	 */
-	public int getMaxLevel() {
-		return 2;
-	}
+    /**
+     * Returns the maximum value of enchantability nedded on the enchantment
+     * level passed.
+     */
+    public int getMaxEnchantability(int enchantmentLevel) {
+        return this.getMinEnchantability(enchantmentLevel) + 25;
+    }
 
-	@SubscribeEvent
-	public void decreaseBowUseDuration(LivingEntityUseItemEvent.Tick event) {
-		if (event.getItem() == null) {
-			return;
-		}
+    /**
+     * Returns the maximum level that the enchantment can have.
+     */
+    public int getMaxLevel() {
+        return 2;
+    }
 
-		if (event.getItem().getItem() != Items.bow) {
-			return;
-		}
+    @SubscribeEvent
+    public void decreaseBowUseDuration(LivingEntityUseItemEvent.Tick event) {
+        if (event.getItem() == null) {
+            return;
+        }
 
-		int level = EnchantmentHelper.getEnchantmentLevel(MainMod.haste,
-				event.getItem());
+        if (event.getItem().getItem() != Items.BOW) {
+            return;
+        }
 
-		switch (level) {
-		case 1:
-			event.setDuration(event.getDuration() - 1);
-			break;
-		case 2:
-			event.setDuration(event.getDuration() - 2);
-			break;
-		default:
-			break;
-		}
-	}
+        int level = EnchantmentHelper.getEnchantmentLevel(MainMod.haste, event.getItem());
+
+        switch (level) {
+            case 1:
+                event.setDuration(event.getDuration() - 1);
+                break;
+            case 2:
+                event.setDuration(event.getDuration() - 2);
+                break;
+            default:
+                break;
+        }
+    }
 }
