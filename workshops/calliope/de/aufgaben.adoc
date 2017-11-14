@@ -14,17 +14,17 @@ Folgende Aufgaben sollen dir helfen den Calliope näher kennenzulernen.
 == Aufgabe 1 - Ausgaben
 Der Calliope hat viele Möglichkeiten Dinge auszugeben, dies wollen wir nun kennenlernen:
 
-. Gebe auf dem Calliope einen Text aus.
+. Gib auf dem Calliope einen Text aus.
 . Lasse die LED in einer Farbe leuchten.
-. Gebe einen Ton auf den Calliope aus.
+. Gib einen Ton auf den Calliope aus.
 
 
 == Aufgabe 2 - Eingaben und Verzeigungen
 Der Calliope kann auch Eingaben verarbeiten und Entscheidungen treffen, das probieren wir jetzt aus:
 
-. Gebe auf dem Calliope einen Text aus, wenn du Taste `A` drückst.
-. Gebe einen anderen Text aus, wenn du Taste `B` drückst.
-. Gebe die aktuelle Temperatur aus.
+. Gib auf dem Calliope einen Text aus, wenn du Taste `A` drückst.
+. Gib einen anderen Text aus, wenn du Taste `B` drückst.
+. Gib die aktuelle Temperatur aus.
 
 
 == Aufgabe 3 - Schleifen
@@ -33,7 +33,7 @@ Manchmal sollen Dinge häufiger gemacht werden und das wollen wir jetzt kennenle
 . Erzeuge eine Vairable/einen Platzhalter `zaehler`.
 . Setze den Zähler auf den Wert 0.
 . Erzeuge eine Schleife in der du den Zähler immer um 1 erhöhst.
-. Gebe den Wert des Zählers nach jeder Erhöhung aus.
+. Gib den Wert des Zählers nach jeder Erhöhung aus.
 
 <<<
 == Aufgabe4 - freies Programmieren
