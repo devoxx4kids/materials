@@ -30,10 +30,12 @@ Der Calliope kann auch Eingaben verarbeiten und Entscheidungen treffen, das prob
 == Aufgabe 3 - Schleifen
 Manchmal sollen Dinge häufiger gemacht werden und das wollen wir jetzt kennenlernen:
 
-. Erzeuge eine Vairable/einen Platzhalter `zaehler`.
+. Erzeuge eine Variable/einen Platzhalter `zaehler`.
 . Setze den Zähler auf den Wert 0.
-. Erzeuge eine Schleife in der du den Zähler immer um 1 erhöhst.
-. Gib den Wert des Zählers nach jeder Erhöhung aus.
+. Erzeuge eine Schleife in der du
+.. den Zähler immer um 1 erhöhst.
+.. Gib den Wert des Zählers nach jeder Erhöhung aus.
+.. etwas 'pausierst'
 
 <<<
 == Aufgabe4 - freies Programmieren
