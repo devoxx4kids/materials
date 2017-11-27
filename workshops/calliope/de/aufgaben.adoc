@@ -19,7 +19,7 @@ Der Calliope hat viele Möglichkeiten Dinge auszugeben, dies wollen wir nun kenn
 . Gib einen Ton auf den Calliope aus.
 
 
-== Aufgabe 2 - Eingaben und Verzeigungen
+== Aufgabe 2 - Eingaben und Verzweigungen
 Der Calliope kann auch Eingaben verarbeiten und Entscheidungen treffen, das probieren wir jetzt aus:
 
 . Gib auf dem Calliope einen Text aus, wenn du Taste `A` drückst.
