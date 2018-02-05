@@ -21,8 +21,8 @@ Download the following software
 
 . **JDK:** Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . **Eclipse:** Download Eclipse from http://www.eclipse.org/downloads/eclipse-packages/, pick "`Eclipse IDE for Java Developers`" and unzip.
-. **Forge:** Download Forge 1.11 from
-  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.11-13.19.1.2189/forge-1.11-13.19.1.2189-mdk.zip
+. **Forge:** Download Forge 1.12 from
+  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.1.2555/forge-1.12.2-14.23.1.2555-mdk.zip
 
 === Mac or Windows
 
@@ -36,7 +36,7 @@ Make sure all the software lised in <<Download>> is downloaded.
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
 . Change to the directory `cd forge`
-. Unzip the downloaded Forge 1.11 zip file as `unzip ~/Downloads/forge-1.11-13.19.1.2189-mdk.zip`
+. Unzip the downloaded Forge 1.12 zip file as `unzip ~/Downloads/forge-1.12.2-14.23.1.2555-mdk.zip`
 . Give the command `./gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
 
 ==== Windows
@@ -47,7 +47,7 @@ Make sure all the software lised in <<Download>> is downloaded.
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
 . Change to the directory `cd forge`
-. In File Explorer, double click on the Forge 1.11 zip file downloaded earlier and extract all the contents in this newly created directory.
+. In File Explorer, double click on the Forge 1.12 zip file downloaded earlier and extract all the contents in this newly created directory.
 . In Command Prompt, give the command `gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
 
 A detailed video with complete installation steps on Mac is given below:
@@ -170,20 +170,23 @@ public class MainMod {
 	}
 }
 ----
-Once you've finished editing the files, click the green 'Run Client'
-button on the Eclipse menu bar to build and run your modded Minecraft.
-
 ====
+
+Once you've finished editing the files, click the green "`Run Client`" button on the Eclipse menu bar to build and run your modded Minecraft.
+
 
 **Gameplay:**
 
-. Press ``T'' to open up the chat window
-. Type in any message that contains the word ``potato''
+. Create a new "`Creative`" world
+. Press "`T`" to open up the chat window
+. Type in any message that contains the word "`potato`"
 . You should receive one stack (one stack = 64 items) of potatoes
 
 === Change text/item
 
-Change text message and produce a different item. For example change the text to ``diamond'' and item produced to `Diamond`. Use Ctrl+Space to show the list of items.
+Change text message and produce a different item. For example change the text to `diamond` and item produced to `Diamond`. Use `Ctrl`+`Space` to show the list of items.
+
+Close Minecraft window and restart it by clicking on the "`Run Client`" button on the Eclipse menu bar.
 
 === Different Items
 
@@ -256,7 +259,7 @@ public class DragonSpawner {
 			EntityDragon dragon = new EntityDragon(event.getWorld());
 			dragon.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
 			dragon.getPhaseManager().setPhase(PhaseList.TAKEOFF);
-			event.getWorld().spawnEntityInWorld(dragon);
+			event.getWorld().spawnEntity(dragon);
 		}
 	}
 }
@@ -276,8 +279,9 @@ MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 
 **Gameplay:**
 
-. Use the command "/give <your player name> dragon_egg" to give yourself a dragon egg
-. Place down the dragon egg, and an Ender Dragon should spawn
+. Use the command "`/give <your player name> dragon_egg`" to give yourself a dragon egg
+. Select the slot in which the dragon egg is placed
+. Double click in the world to place down the dragon egg, and an Ender Dragon should spawn
 
 The player name will not be your normal player name, it will be a Forge-generated player name. Check your chat window to see what your player name is.
 
@@ -295,12 +299,12 @@ if (event.getPlacedBlock() == Blocks.SPONGE.getBlockState().getBaseState()) {
 	event.getWorld().setBlockToAir(new BlockPos(event.getPos().getX(), event.getPos().getY(),event.getPos().getZ()));
 	EntitySquid squid = new EntitySquid(event.getWorld());
 	squid.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
-	event.getWorld().spawnEntityInWorld(squid);
+	event.getWorld().spawnEntity(squid);
 }
 ----
 ====
 
-After doing this, press Control + Shift + O on a Windows computer or Cmd + Shift + O on a Mac computer to import certain classes and fix some errors. When you test out this mod, place down a Wet Sponge, not a Sponge.
+After doing this, press `Control` + `Shift` + `O` on a Windows computer or `Cmd` + `Shift` + `O` on a Mac computer to import one class and fix the error. When you test out this mod, place down a Wet Sponge, not a Sponge.
 
 === Change offset of entities
 
@@ -351,7 +355,7 @@ public class CreeperSpawnAlert {
 		for (int i = 0; i < players.size(); i++) {
 			EntityPlayer player = (EntityPlayer) players.get(i);
 			if (event.getWorld().isRemote) {
-				player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "A creeper has spawned!"), false);
+				player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "A creeper has spawned!"), false);
 			}
 		}
 	}
@@ -373,9 +377,9 @@ MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
 **Gameplay:**
 
 . Make sure you are not on peaceful mode.
-. Set the time to night time ("/time set night") 
+. Set the time to night time `/time set night` 
 
-You should get a bunch of messages saying "A creeper has spawned!" in light green letters. One of these messages is sent to you every time a creeper spawns.
+You should get a bunch of messages saying "`A creeper has spawned!`" in light green letters. One of these messages is sent to you every time a creeper spawns.
 
 === Change color/format of message
 
@@ -385,7 +389,7 @@ You should get a bunch of messages saying "A creeper has spawned!" in light gree
 ====
 [source,java]
 ----
-player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "A creeper has spawned!"), false);
+player.sendStatusMessage(new TextComponentString(TextFormatting.RED + "A creeper has spawned!"), false);
 ----
 ====
 
@@ -397,7 +401,7 @@ Try different colors by code completion after `EnumChatFormatting`.
 ====
 [source,java]
 ----
-player.addChatComponentMessage(new TextComponentString(TextFormatting.ITALIC + "A creeper has spawned!"));
+player.sendStatusMessage(new TextComponentString(TextFormatting.ITALIC + "A creeper has spawned!"));
 ----
 ====
 
@@ -409,7 +413,7 @@ Try different styles by code completion after `EnumChatFormatting`.
 ====
 [source,java]
 ----
-player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "Run away, a creeper has spawned!"));
+player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "Run away, a creeper has spawned!"));
 ----
 ====
 
@@ -466,7 +470,7 @@ public void sendAlert(EntityJoinWorldEvent event) {
 	for (int i = 0; i < players.size(); i++) {
 		EntityPlayer player = (EntityPlayer) players.get(i);
 		if (event.getWorld().isRemote) {
-			player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + message), false);
+			player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + message), false);
 		}
 	}
 }
