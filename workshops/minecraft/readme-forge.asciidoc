@@ -835,7 +835,7 @@ You'll find that Eclipse flags a missing import for FMLCommonHandler so make sur
 . Hold Shift to stop moving up or down
 
 [[Shotgun]]
-== Arrow Shotgun
+== Arrow Shotgun (NOT WORKING)
 
 **Purpose:** To make all bows fire 20 flaming arrows instead of one arrow.
 
@@ -992,7 +992,7 @@ MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 . The skeletons should have assorted pieces of armor; they should also be shooting each other
 
 [[Fast_Bows]]
-== Fast Bows
+== Fast Bows (NOT WORKING)
 
 **Purpose:** To add an enchantment which reduces the time needed to nock an arrow on a bow and pull it back all the way.
 
@@ -1080,8 +1080,6 @@ Then, you will need to add some extra lines of code besides just the registering
 ----
 public static final Enchantment haste = new EnchantmentArrowFast();
 ----
-
-Don't forget to add the appropriate imports for Enchantment and ResourceLocation.
 ====
 
 After that, put the code from <<Fast_Arrow_Registering>> in your `init()` method to register the mod.
@@ -1092,10 +1090,12 @@ After that, put the code from <<Fast_Arrow_Registering>> in your `init()` method
 [source, java]
 ----
 MinecraftForge.EVENT_BUS.register(haste);
-Enchantment.enchantmentRegistry.register(100, new ResourceLocation("arrowFast"), haste);
+Enchantment.REGISTRY.register(100, new ResourceLocation("arrowFast"), haste);
 ====
 
-Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("Haste" instead of "enchantment.arrowFast"). If you close the "src/main/java" folder in which all of your files are located, you should see a folder labeled "src/main/resources" directly underneath. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
+Don't forget to fix the imports using `Cmd` + `Shift` + `O` on `Mac` and `Ctrl` + `Shift` + `O` on Windows.
+
+Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("`Haste`" instead of "`enchantment.arrowFast`"). There is a folder with the name "src/main/resources" directly underneath the "src/main/java" folder. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
 
 [[Fast_Bows_Lang_File]]
 .Fast Bows .lang file
