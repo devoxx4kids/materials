@@ -21,8 +21,8 @@ Download the following software
 
 . **JDK:** Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . **Eclipse:** Download Eclipse from http://www.eclipse.org/downloads/eclipse-packages/, pick "`Eclipse IDE for Java Developers`" and unzip.
-. **Forge:** Download Forge 1.11 from
-  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.11-13.19.1.2189/forge-1.11-13.19.1.2189-mdk.zip
+. **Forge:** Download Forge 1.12 from
+  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.1.2555/forge-1.12.2-14.23.1.2555-mdk.zip
 
 === Mac or Windows
 
@@ -36,7 +36,7 @@ Make sure all the software lised in <<Download>> is downloaded.
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
 . Change to the directory `cd forge`
-. Unzip the downloaded Forge 1.11 zip file as `unzip ~/Downloads/forge-1.11-13.19.1.2189-mdk.zip`
+. Unzip the downloaded Forge 1.12 zip file as `unzip ~/Downloads/forge-1.12.2-14.23.1.2555-mdk.zip`
 . Give the command `./gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
 
 ==== Windows
@@ -47,7 +47,7 @@ Make sure all the software lised in <<Download>> is downloaded.
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
 . Change to the directory `cd forge`
-. In File Explorer, double click on the Forge 1.11 zip file downloaded earlier and extract all the contents in this newly created directory.
+. In File Explorer, double click on the Forge 1.12 zip file downloaded earlier and extract all the contents in this newly created directory.
 . In Command Prompt, give the command `gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
 
 A detailed video with complete installation steps on Mac is given below:
@@ -170,20 +170,23 @@ public class MainMod {
 	}
 }
 ----
-Once you've finished editing the files, click the green 'Run Client'
-button on the Eclipse menu bar to build and run your modded Minecraft.
-
 ====
+
+Once you've finished editing the files, click the green "`Run Client`" button on the Eclipse menu bar to build and run your modded Minecraft.
+
 
 **Gameplay:**
 
-. Press ``T'' to open up the chat window
-. Type in any message that contains the word ``potato''
+. Create a new "`Creative`" world
+. Press "`T`" to open up the chat window
+. Type in any message that contains the word "`potato`"
 . You should receive one stack (one stack = 64 items) of potatoes
 
 === Change text/item
 
-Change text message and produce a different item. For example change the text to ``diamond'' and item produced to `Diamond`. Use Ctrl+Space to show the list of items.
+Change text message and produce a different item. For example change the text to `diamond` and item produced to `Diamond`. Use `Ctrl`+`Space` to show the list of items.
+
+Close Minecraft window and restart it by clicking on the "`Run Client`" button on the Eclipse menu bar.
 
 === Different Items
 
@@ -256,7 +259,7 @@ public class DragonSpawner {
 			EntityDragon dragon = new EntityDragon(event.getWorld());
 			dragon.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
 			dragon.getPhaseManager().setPhase(PhaseList.TAKEOFF);
-			event.getWorld().spawnEntityInWorld(dragon);
+			event.getWorld().spawnEntity(dragon);
 		}
 	}
 }
@@ -276,8 +279,9 @@ MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 
 **Gameplay:**
 
-. Use the command "/give <your player name> dragon_egg" to give yourself a dragon egg
-. Place down the dragon egg, and an Ender Dragon should spawn
+. Use the command "`/give <your player name> dragon_egg`" to give yourself a dragon egg
+. Select the slot in which the dragon egg is placed
+. Double click in the world to place down the dragon egg, and an Ender Dragon should spawn
 
 The player name will not be your normal player name, it will be a Forge-generated player name. Check your chat window to see what your player name is.
 
@@ -295,12 +299,12 @@ if (event.getPlacedBlock() == Blocks.SPONGE.getBlockState().getBaseState()) {
 	event.getWorld().setBlockToAir(new BlockPos(event.getPos().getX(), event.getPos().getY(),event.getPos().getZ()));
 	EntitySquid squid = new EntitySquid(event.getWorld());
 	squid.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
-	event.getWorld().spawnEntityInWorld(squid);
+	event.getWorld().spawnEntity(squid);
 }
 ----
 ====
 
-After doing this, press Control + Shift + O on a Windows computer or Cmd + Shift + O on a Mac computer to import certain classes and fix some errors. When you test out this mod, place down a Wet Sponge, not a Sponge.
+After doing this, press `Control` + `Shift` + `O` on a Windows computer or `Cmd` + `Shift` + `O` on a Mac computer to import one class and fix the error. When you test out this mod, place down a Wet Sponge, not a Sponge.
 
 === Change offset of entities
 
@@ -346,12 +350,12 @@ public class CreeperSpawnAlert {
 			return;
 		}
 
-		List players = event.getEntity().worldObj.playerEntities;
+		List players = event.getEntity().world.playerEntities;
 
 		for (int i = 0; i < players.size(); i++) {
 			EntityPlayer player = (EntityPlayer) players.get(i);
 			if (event.getWorld().isRemote) {
-				player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "A creeper has spawned!"), false);
+				player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "A creeper has spawned!"), false);
 			}
 		}
 	}
@@ -373,9 +377,9 @@ MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
 **Gameplay:**
 
 . Make sure you are not on peaceful mode.
-. Set the time to night time ("/time set night") 
+. Set the time to night time `/time set night` 
 
-You should get a bunch of messages saying "A creeper has spawned!" in light green letters. One of these messages is sent to you every time a creeper spawns.
+You should get a bunch of messages saying "`A creeper has spawned!`" in light green letters. One of these messages is sent to you every time a creeper spawns.
 
 === Change color/format of message
 
@@ -385,7 +389,7 @@ You should get a bunch of messages saying "A creeper has spawned!" in light gree
 ====
 [source,java]
 ----
-player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "A creeper has spawned!"), false);
+player.sendStatusMessage(new TextComponentString(TextFormatting.RED + "A creeper has spawned!"), false);
 ----
 ====
 
@@ -397,7 +401,7 @@ Try different colors by code completion after `EnumChatFormatting`.
 ====
 [source,java]
 ----
-player.addChatComponentMessage(new TextComponentString(TextFormatting.ITALIC + "A creeper has spawned!"));
+player.sendStatusMessage(new TextComponentString(TextFormatting.ITALIC + "A creeper has spawned!"));
 ----
 ====
 
@@ -409,7 +413,7 @@ Try different styles by code completion after `EnumChatFormatting`.
 ====
 [source,java]
 ----
-player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "Run away, a creeper has spawned!"));
+player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "Run away, a creeper has spawned!"));
 ----
 ====
 
@@ -466,7 +470,7 @@ public void sendAlert(EntityJoinWorldEvent event) {
 	for (int i = 0; i < players.size(); i++) {
 		EntityPlayer player = (EntityPlayer) players.get(i);
 		if (event.getWorld().isRemote) {
-			player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + message), false);
+			player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + message), false);
 		}
 	}
 }
@@ -513,7 +517,7 @@ public class SharpSnowballs {
 	@SubscribeEvent
 	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
 		Entity snowball = event.getEntity();
-		World world = snowball.worldObj;
+		World world = snowball.world;
 
 		if (!(snowball instanceof EntitySnowball)) {
 			return;
@@ -533,7 +537,7 @@ public class SharpSnowballs {
 			arrow.posY += arrow.motionY;
 			arrow.posZ += arrow.motionZ;
 
-			world.spawnEntityInWorld(arrow);
+			world.spawnEntity(arrow);
 			snowball.setDead();
 		}
 	}
@@ -576,7 +580,7 @@ arrow.setFuse(80);
 ----
 ====
 
-Make sure to fix the imports.
+Make sure to fix the imports using `Cmd` + `Shift` + `0` on Mac and `Ctrl` + `Shift` + `O` on Windows.
 
 [[OP_Golems]]
 == Overpowered Iron Golems
@@ -631,7 +635,7 @@ MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 
 **Gameplay:**
 
-. Spawn an Iron Golem by using the command "/summon villager_golem".
+. Spawn an Iron Golem by using the command `/summon villager_golem`.
 . Spawn some hostile mobs near the Iron Golem
 
 The golem should move towards them to kill them. Normally, Iron Golems move slowly, but with the speed effect from the mod, they should move very fast.
@@ -662,7 +666,7 @@ public class RainWater {
 	@SubscribeEvent
 	public void makeWater(LivingUpdateEvent event) {
 		Entity entity = event.getEntity();
-		World world = entity.worldObj;
+		World world = entity.world;
 		int x = (int) Math.floor(entity.posX);
 		int y = (int) Math.floor(entity.posY);
 		int z = (int) Math.floor(entity.posZ);
@@ -700,7 +704,7 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 
 **Gameplay:**
 
-. Use the command "/weather rain" to make the weather rainy
+. Use the command `/weather rain` to make the weather rainy
 . Start moving, and water should be placed wherever you or any other entity go, but it will disappear quickly
 
 === TNT Thunder
@@ -717,12 +721,12 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 @SubscribeEvent
 public void makeWater(LivingUpdateEvent event) {
 	Entity entity = event.getEntity();
-	World world = entity.worldObj;
+	World world = entity.world;
 	int x = (int) Math.floor(entity.posX);
 	int y = (int) Math.floor(entity.posY);
 	int z = (int) Math.floor(entity.posZ);
 
-	if (!entity.worldObj.isThundering()) {
+	if (!entity.world.isThundering()) {
 		return;
 	}
 
@@ -745,7 +749,7 @@ public void makeWater(LivingUpdateEvent event) {
 	EntityTNTPrimed tnt = new EntityTNTPrimed(world);
 	tnt.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, 0, 0);
 	tnt.setFuse(80);
-	world.spawnEntityInWorld(tnt);
+	world.spawnEntity(tnt);
 }
 ----
 ====
@@ -754,11 +758,11 @@ Fix the imports.
 
 **Gameplay:**
 
-. Use the command "/weather thunder" to make the weather stormy
+. Use the command `/weather thunder` to make the weather stormy
 . Watch for TNT to be placed wherever you walk around. The TNT will blow up after 1-4 seconds.
 
 [[Wall_Climber]]
-== Wall Climber
+== Wall Climber (NOT WORKING)
 
 **Purpose:** To allow players to climb up straight walls without any blocks or other help.
 
@@ -819,9 +823,9 @@ Then, register it using the line shown in <<Climber_Registering>>.
 FMLCommonHandler.instance().bus().register(new WallClimber());
 MinecraftForge.EVENT_BUS.register(new WallClimber());
 ----
+====
 
 You'll find that Eclipse flags a missing import for FMLCommonHandler so make sure to add it as we did earlier. 
-====
 
 **Gameplay:**
 
@@ -831,7 +835,7 @@ You'll find that Eclipse flags a missing import for FMLCommonHandler so make sur
 . Hold Shift to stop moving up or down
 
 [[Shotgun]]
-== Arrow Shotgun
+== Arrow Shotgun (NOT WORKING)
 
 **Purpose:** To make all bows fire 20 flaming arrows instead of one arrow.
 
@@ -869,11 +873,11 @@ public class ArrowShotgun {
 
 		for (int i = 0; i < arrows; i++) {
 			EntityArrow arrow = new EntityTippedArrow(world, player);
-			arrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, ItemBow.getArrowVelocity(event.getCharge()) * 3.0F, 12.0F);
+			arrow.setLocationAndAngles(0.0F, ItemBow.getArrowVelocity(event.getCharge()) * 3.0F, 12.0F, player.rotationYaw, player.rotationPitch);
 			arrow.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
 			arrow.setFire(10000);
 			if (!world.isRemote) {
-				world.spawnEntityInWorld(arrow);
+				world.spawnEntity(arrow);
 			}
 		}
 
@@ -988,7 +992,7 @@ MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 . The skeletons should have assorted pieces of armor; they should also be shooting each other
 
 [[Fast_Bows]]
-== Fast Bows
+== Fast Bows (NOT WORKING)
 
 **Purpose:** To add an enchantment which reduces the time needed to nock an arrow on a bow and pull it back all the way.
 
@@ -1076,8 +1080,6 @@ Then, you will need to add some extra lines of code besides just the registering
 ----
 public static final Enchantment haste = new EnchantmentArrowFast();
 ----
-
-Don't forget to add the appropriate imports for Enchantment and ResourceLocation.
 ====
 
 After that, put the code from <<Fast_Arrow_Registering>> in your `init()` method to register the mod.
@@ -1088,10 +1090,12 @@ After that, put the code from <<Fast_Arrow_Registering>> in your `init()` method
 [source, java]
 ----
 MinecraftForge.EVENT_BUS.register(haste);
-Enchantment.enchantmentRegistry.register(100, new ResourceLocation("arrowFast"), haste);
+Enchantment.REGISTRY.register(100, new ResourceLocation("arrowFast"), haste);
 ====
 
-Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("Haste" instead of "enchantment.arrowFast"). If you close the "src/main/java" folder in which all of your files are located, you should see a folder labeled "src/main/resources" directly underneath. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
+Don't forget to fix the imports using `Cmd` + `Shift` + `O` on `Mac` and `Ctrl` + `Shift` + `O` on Windows.
+
+Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("`Haste`" instead of "`enchantment.arrowFast`"). There is a folder with the name "src/main/resources" directly underneath the "src/main/java" folder. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
 
 [[Fast_Bows_Lang_File]]
 .Fast Bows .lang file
