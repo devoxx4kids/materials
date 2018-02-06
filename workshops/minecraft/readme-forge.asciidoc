@@ -350,7 +350,7 @@ public class CreeperSpawnAlert {
 			return;
 		}
 
-		List players = event.getEntity().worldObj.playerEntities;
+		List players = event.getEntity().world.playerEntities;
 
 		for (int i = 0; i < players.size(); i++) {
 			EntityPlayer player = (EntityPlayer) players.get(i);
@@ -517,7 +517,7 @@ public class SharpSnowballs {
 	@SubscribeEvent
 	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
 		Entity snowball = event.getEntity();
-		World world = snowball.worldObj;
+		World world = snowball.world;
 
 		if (!(snowball instanceof EntitySnowball)) {
 			return;
@@ -537,7 +537,7 @@ public class SharpSnowballs {
 			arrow.posY += arrow.motionY;
 			arrow.posZ += arrow.motionZ;
 
-			world.spawnEntityInWorld(arrow);
+			world.spawnEntity(arrow);
 			snowball.setDead();
 		}
 	}
@@ -580,7 +580,7 @@ arrow.setFuse(80);
 ----
 ====
 
-Make sure to fix the imports.
+Make sure to fix the imports using `Cmd` + `Shift` + `0` on Mac and `Ctrl` + `Shift` + `O` on Windows.
 
 [[OP_Golems]]
 == Overpowered Iron Golems
@@ -635,7 +635,7 @@ MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 
 **Gameplay:**
 
-. Spawn an Iron Golem by using the command "/summon villager_golem".
+. Spawn an Iron Golem by using the command `/summon villager_golem`.
 . Spawn some hostile mobs near the Iron Golem
 
 The golem should move towards them to kill them. Normally, Iron Golems move slowly, but with the speed effect from the mod, they should move very fast.
@@ -666,7 +666,7 @@ public class RainWater {
 	@SubscribeEvent
 	public void makeWater(LivingUpdateEvent event) {
 		Entity entity = event.getEntity();
-		World world = entity.worldObj;
+		World world = entity.world;
 		int x = (int) Math.floor(entity.posX);
 		int y = (int) Math.floor(entity.posY);
 		int z = (int) Math.floor(entity.posZ);
@@ -704,7 +704,7 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 
 **Gameplay:**
 
-. Use the command "/weather rain" to make the weather rainy
+. Use the command `/weather rain` to make the weather rainy
 . Start moving, and water should be placed wherever you or any other entity go, but it will disappear quickly
 
 === TNT Thunder
@@ -721,12 +721,12 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 @SubscribeEvent
 public void makeWater(LivingUpdateEvent event) {
 	Entity entity = event.getEntity();
-	World world = entity.worldObj;
+	World world = entity.world;
 	int x = (int) Math.floor(entity.posX);
 	int y = (int) Math.floor(entity.posY);
 	int z = (int) Math.floor(entity.posZ);
 
-	if (!entity.worldObj.isThundering()) {
+	if (!entity.world.isThundering()) {
 		return;
 	}
 
@@ -749,7 +749,7 @@ public void makeWater(LivingUpdateEvent event) {
 	EntityTNTPrimed tnt = new EntityTNTPrimed(world);
 	tnt.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, 0, 0);
 	tnt.setFuse(80);
-	world.spawnEntityInWorld(tnt);
+	world.spawnEntity(tnt);
 }
 ----
 ====
@@ -758,11 +758,11 @@ Fix the imports.
 
 **Gameplay:**
 
-. Use the command "/weather thunder" to make the weather stormy
+. Use the command `/weather thunder` to make the weather stormy
 . Watch for TNT to be placed wherever you walk around. The TNT will blow up after 1-4 seconds.
 
 [[Wall_Climber]]
-== Wall Climber
+== Wall Climber (NOT WORKING)
 
 **Purpose:** To allow players to climb up straight walls without any blocks or other help.
 
@@ -823,9 +823,9 @@ Then, register it using the line shown in <<Climber_Registering>>.
 FMLCommonHandler.instance().bus().register(new WallClimber());
 MinecraftForge.EVENT_BUS.register(new WallClimber());
 ----
+====
 
 You'll find that Eclipse flags a missing import for FMLCommonHandler so make sure to add it as we did earlier. 
-====
 
 **Gameplay:**
 
@@ -873,11 +873,11 @@ public class ArrowShotgun {
 
 		for (int i = 0; i < arrows; i++) {
 			EntityArrow arrow = new EntityTippedArrow(world, player);
-			arrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, ItemBow.getArrowVelocity(event.getCharge()) * 3.0F, 12.0F);
+			arrow.setLocationAndAngles(0.0F, ItemBow.getArrowVelocity(event.getCharge()) * 3.0F, 12.0F, player.rotationYaw, player.rotationPitch);
 			arrow.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
 			arrow.setFire(10000);
 			if (!world.isRemote) {
-				world.spawnEntityInWorld(arrow);
+				world.spawnEntity(arrow);
 			}
 		}
 
