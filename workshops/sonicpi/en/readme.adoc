@@ -1,0 +1,3 @@
+= Sonic Pi Workshop
+
+The instructions are available at https://github.com/Devoxx4KidsDE/workshop-sonic-pi.

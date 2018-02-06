@@ -1,0 +1,3 @@
+= SonicPi
+
+http://sonic-pi.net/[Sonic Pi] allows to create music while learning to code. The workshops is available in different languages. Pick a folder of your choice to proceed.
