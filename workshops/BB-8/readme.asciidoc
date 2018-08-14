@@ -9,73 +9,28 @@ toc::[]
 [[Requirements]]
 == Requirements
 
-* A mobile device made by Apple (iPhone, iPad, etc.)
-** No laptops or Android devices (app only available on mobile Apple devices)
-* https://tickleapp.com/[Tickle app] (download on mobile device)
+* A mobile device (iOS or Android will work)
+* https://edu.sphero.com/[Sphero Edu app] (download on mobile device)
 
-[[How_To_Use_Tickle]]
-== How to use Tickle
+[[How_To_Make_Program]]
+== How to make a new program
 
-When you launch Tickle, you should see:
+When you launch Sphero Edu, you wil see four tabs at the bottom. Go to the "`Programs`" tab to create and edit programs.
 
-* A screen titled "`My Projects`". This is where you will be able to see all of your Tickle projects once you make them. 
-* A button in the top-right corner that says "`+ New Project`".
-* Some demo projects - don't worry about these.
+To make a new program:
 
-=== Make a new project
-
-. Click on the "`+ New Project`" button. 
-. A screen titled "`Choose a Template`" will show up; tap on "`BB-8`". 
-. You will see some sample code - drag the block at the top (it says "`When starting to play`") into the blocks at the left to delete it.
-. At the top-left corner, you will see a blue button that looks like three lines stacked on top of each other. Click on this button to go to the "`My Projects`" page.
-. At the bottom of the rectangle for your project, you will see an orange button that looks like "`...`". Click on this, and the project will flip over to show some options.
-. Click "`RENAME`" and type in the name of your project. Once you are done, click on the blue check mark.
-. Press the "`X`" at the bottom of the project to un-flip the project.
-. Tap on the project picture (a wavy background by default) to go inside the project.
-
-=== Add code to a project
-
-* If you aren't already in the project's *code window*, find the project in the "`My Projects`" page and tap on its picture.
-* You will see a *list of blocks* at the left of your screen with 6 categories next to it. Tap on a category to navigate to it. You can also swipe up and down on the list to navigate.
-* To *add a block* to the code, drag it from the list of blocks into the large, dark gray area on the right of your screen.
-* To *connect two blocks together*, align them until a white line shows up in between them. This is where the block you are dragging will connect to the block that has been placed down.
-* A block that is between two other blocks *cannot be moved by itself*. If you are moving a block, you must move everything connected underneath it as well. If you want to move a specific block, you can move a stack of blocks out, then replace everything except the first block.
-* To *delete a block or a stack of blocks*, drag it into the block list.
-* *Always start a stack of blocks with a "`starting block`"* - starting blocks are the ones with a rounded top. Whenever the event written on the starting block happens, the stack of blocks underneath will execute.
-* *Some code blocks have values that can be changed.* These values include: numbers, text, etc. To change these values, tap on the box with the value and type in a new value.
-** Blocks like `... + ...` and `ask ... and wait` *require variables or text input*.
-** If *tapping on the box does nothing*, that means the box requires a block to go inside it. Blocks that go inside other blocks have rounded edges and are usually conditional statements (think of them as yes/no questions).
-*** Blocks like `if ... then` `wait until ...` *require conditional statements*. These include `... = ...` (true when the two values are equal, false when they aren't), `finger touching down?` (true when finger is touching the stage, false when it isn't), and others.
-* To *add a variable* to the project, tap the "`+ Add Variable`" button at the bottom-left of your screen. Choose "`[x] Variable`", name it, and select "`For all objects`". Sometimes for other projects, you will want variables to be "`For this object`", but in this workshop, all variables are for all objects. Once you have named the variable, tap "`CREATE`".
-** This will make a *new category, titled "`Data`"*, appear in the list of categories at the side. This category deals with variables and lists.
-
-=== Add new character to the project
-
-. Tap the button that has a "`+`" symbol with the word "`Add`" written underneath it (located at the top-right of your screen).
-. A window will pop up with two categories: devices and characters. Devices is useful if you want to add more physical electronics to the project, but you want to add a character into the project. Browse through the "`All Characters`" section and find one you like.
-. When you find one you like, tap it and it will be added to the project. At the top, where the BB-8 icon is shown, your new character should also be shown. Tap on character and device icons to go to that character/device's code. 
-. Tap on a character/device's
-
-=== Before testing a project
-
-. Look at the top middle of your screen. You should see a BB-8 icon. If it has a red question mark next to it, continue with these steps; otherwise, try out the project.
-. If you are not in the BB-8's code window (i.e. you are in a different character's window), tap on the BB-8 icon once to go to the BB-8's code window. Tap on the BB-8 icon (again if you just navigated to the code window; for the first time if you didn't) - a window will show up that has a radar thing at the bottom. This will search for BB-8's nearby and connect to them. Place the BB-8 robot near the mobile device.
-. Once a BB-8 is found, a BB-8 icon will show up in place of the radar, with a name underneath it. Click on the icon to connect to the BB-8.
-. After the BB-8 has been connected to, it should light up with a blue color.
-
-=== Testing a project
-
-. Follow the instructions in the "`Try it!`" section of the activity.
-.. To start the project, tap on the green "`play`" button near the top-left of your screen. This will start the project and make BB-8 move and act accordingly.
-
-=== Other notes
-
-. Before testing a project, you will want to aim him towards you. Tap on BB-8's icon to go to his code view. At the bottom-right corner of your screen, you should see a Sphero icon with arrows going around it. This button is used to aim BB-8. Hold down your finger on that button, and a circle should appear. Move your finger around the circle, and you should see a blue light in BB-8 move around as well. Manipulate the circle until the blue light is facing towards you. This is very important because BB-8 bases all of his directions off of how he is aimed.
-. If anything is still confusing to you, there is a help window built into Tickle. Tap the button that looks like a question mark in a circle (at the top-left of your screen) to access this help window.
+. Click on the "+`" button at the bottom-right corner. 
+. In the popup window that appears, enter a program name, select "`Blocks`" as the program type, and serlect "`BB-8`" in the "`Choose Compatible Robots`" section.
++
+[[create_project]]
+.Program creation popup
+image::images/create-program.png[width=40%]
++
+. Click "`Create`" to create the program.
 
 == Activities
 
-The description of these activities includes a brief description of the activity, the final code, and how to test it. If you need help with the project, refer to the <<How_To_Use_Tickle>> section for instructions on how to add code or characters to the project.
+The description of these activities includes a brief description of the activity, the final code, and how to test it. If you need help creating a program, refer to the <<How_To_Make_Program>> section.
 
 [[Activity_1]]
 === 1. Run from the Stormtroopers
@@ -86,17 +41,17 @@ The stormtroopers are trying to capture BB-8! He has to go fast and use evasive 
 
 ==== Final Code
 
-When you are done, the code for BB-8 should look like <<workshop_1_final>>.
+When you are done, the code for BB-8 should look like <<program_1>>.
 
-[[workshop_1_final]]
+[[program_1]]
 .Activity 1 finished code
-image::images/workshop-1-final.png[width=50%]
+image::images/program-1.png[]
 
 ==== Try it!
 
 . Find a long space with lots of room for BB-8 to go forwards - this activity involves a lot of movement (for BB-8).
 . Start the project!
-. BB-8 should move forwards, turn right for 45 degrees, move forwards some more, turn left for 90 degrees, then move forwards some more.
+. BB-8 should move forwards, then move diagonally to the right, then move diagonally to the left.
 
 [[Activity_2]]
 === 2. Escaped!
@@ -107,57 +62,57 @@ BB-8 has escaped the pursuing stormtroopers, and he is very happy, so he is doin
 
 ==== Final Code
 
-When you are done, the code for BB-8 should look like <<workshop_2_final>>.
+When you are done, the code for BB-8 should look like <<program_2>>.
 
-[[workshop_2_final]]
+[[program_2]]
 .Activity 2 finished code
-image::images/workshop-2-final.png[width=50%]
+image::images/program-2.png[]
 
 ==== Try it!
 
 . This activity does not require a very large space, but you do need some space for BB-8 to move around in. Find a reasonable amount of space.
 . Start the project!
-, BB-8 should start spinning around and randomly moving all over the place - he gets very excited while performing his victory dance.
+. BB-8 should start spinning around really fast.
 
 [[Activity_3]]
-=== 3. Remote Reconnaissance
+=== 3. Base Infiltration
 
 ==== Description
 
-Even though BB-8 has escaped the stormtroopers, he is stuck on an unknown planet. He is letting you take control for a bit to do some exploring.
+BB-8 is waiting outside an enemy base. When he gets the signal, he will infiltrate the base and find a good spot to spy from. He will need to be completely still, and he will also turn off his bright lights.
 
 ==== Final Code
 
-When you are done, the code for BB-8 should look like <<workshop_3_final>>. The word "`iPad`" will be replaced with the name of your mobile device (unless it is an iPad, in which case it will stay as "`iPad`").
+When you are done, the code for BB-8 should look like <<program_3>>.
 
-[[workshop_3_final]]
+[[program_3]]
 .Activity 3 finished code
-image::images/workshop-3-final.png[width=50%]
+image::images/program-3.png[]
 
 ==== Try it!
 
 . Find a place with some obstacles to maneuver around.
 . Start the project!
-. Tilt your device forwards to move BB-8 forwards. Tilt your device left or right to make BB-8 turn left or right, respectively.
+. BB-8 will move forward (pretend he is going into a base) and eventually stop. Once he does stop, he will wait until he is completely still before turning his lights off. From this vantage point, he will “spy on” the Imperial stormtroopers.
 
 [[Activity_4]]
 === 4. Exploring
 
 ==== Description
 
-BB-8 is doing some more exploring, but this time, he is doing it by himself.
+BB-8 is doing some exploring to map out the area.
 
 ==== Final Code
 
-When you are done, the code for BB-8 should look like <<workshop_4_final>>.
+When you are done, the code for BB-8 should look like <<program_4>>.
 
-[[workshop_4_final]]
+[[program_4]]
 .Activity 4 finished code
-image::images/workshop-4-final.png[width=50%]
+image::images/program-4.png[]
 
 ==== Try it!
 
-. This activity can use the same space as activity <<Activity_3>>.
+. Find an area with lots of walls and objects to collide into.
 . Start the project!
 . BB-8 will move around the area, and whenever he bumps into something, he will turn away from it and move somewhere else.
 
@@ -170,21 +125,17 @@ The Resistance is testing out a new, color-coded speedometer in BB-8.
 
 ==== Final Code
 
-When you are done, the code for BB-8 should look like <<workshop_5_final_1>> and <<workshop_5_final_2>>. There is a bit of overlap between the two images; use this to see where the first one ends and the second one starts.
+When you are done, the code for BB-8 should look like <<program_5>>.
 
-[[workshop_5_final_1]]
-.Activity 5 finished code - part 1
-image::images/workshop-5-final-1.png[width=50%]
-
-[[workshop_5_final_2]]
-.Activity 5 finished code - part 2
-image::images/workshop-5-final-2.png[width=50%]
+[[program_5]]
+.Activity 5 finished code
+image::images/program-5.png[]
 
 ==== Try it!
 
 . Find a place similar to that of activity <<Activity_1>> - that is, a long and possibly narrow space.
 . Start the project!
-. BB-8 will move back and forth four times, each time with a different speed. Depending on his speed, he will be colored, from lowest to highest speed, red, orange, yellow, or green.
+. BB-8 will move forward five times, each time with a different speed. Depending on his speed, he will be colored from green to red, with green being lower speed and red being higher speed.
 
 [[Activity_6]]
 === 6. Party!!!
@@ -195,75 +146,15 @@ The Resistance has a party after blowing up an Imperial Stardestroyer, and BB-8 
 
 ==== Final Code
 
-When you are done, the code for BB-8 should look like <<workshop_6_final_1>> and <<workshop_6_final_2>>. There is a bit of overlap between the two images; use this to see where the first one ends and the second one starts. Also, similar to activity <<Activity_3>>, "`iPad`" will be replaced with the name of your mobile device.
+When you are done, the code for BB-8 should look like <<program_6>>.
 
-[[workshop_6_final_1]]
-.Activity 6 finished code - part 1
-image::images/workshop-6-final-1.png[width=50%]
-
-[[workshop_6_final_2]]
-.Activity 6 finished code - part 2
-image::images/workshop-6-final-2.png[width=50%]
+[[program_6]]
+.Activity 6 finished code
+image::images/program-6.png[]
 
 ==== Try it!
 
 . Find any reasonably large area for this project.
+. Make sure your mobile device's volume is on.
 . Start the project!
-. Shake your mobile device, and BB-8 will do one of 5 random actions - spin twice, vibrate and change his color, move back and forth once, randomly change colors, or nod and shake his head.
-
-[[Activity_7]]
-=== 7. Base Infiltration
-
-==== Description
-
-BB-8 is waiting outside an enemy base. When he gets the signal, he will infiltrate the base and find a good spot to spy from. He will need to be completely still, and he will also turn off his bright lights.
-
-==== Final Code
-
-When you are done, the code for BB-8 should look like <<workshop_7_final_1>> and <<workshop_7_final_2>>. There is a bit of overlap between the two images; use this to see where the first one ends and the second one starts.
-
-[[workshop_7_final_1]]
-.Activity 7 finished code - part 1
-image::images/workshop-7-final-1.png[width=50%]
-
-[[workshop_7_final_2]]
-.Activity 7 finished code - part 2
-image::images/workshop-7-final-2.png[width=50%]
-
-==== Try it!
-
-. Find a large, empty space for this project.
-. Start the project!
-. Shake your mobile device to start the "`infiltration`". BB-8 will move around (pretend he is going into a base) and eventually stop. Once he does stop, he will wait until he is completely still before turning his lights off. From this vantage point, he will "`spy on`" the Imperial stormtroopers.
-
-[[Activity_8]]
-=== 8. Better Control System
-
-==== Description
-
-BB-8 can connect to a mobile device for control in more than the four cardinal directions. He is using this to help the Resistance gain data about Starkiller Base.
-
-==== Final Code
-
-This project contains three different characters/devices - BB-8, a square button, and a circle button.
-
-When you are done, the code for BB-8 should look like <<workshop_8_BB-8>>, the code for the square button should look like <<workshop_8_square_button>>, and the code for the circle button should look like <<workshop_8_circle_button>>.
-
-[[workshop_8_BB-8]]
-.Activity 8 finished code - BB-8
-image::images/workshop-8-final-BB-8.png[width=50%]
-
-[[workshop_8_square_button]]
-.Activity 8 finished code - square button
-image::images/workshop-8-final-square-button.png[width=50%]
-
-[[workshop_8_circle_button]]
-.Activity 8 finished code - circle button
-image::images/workshop-8-final-circle-button.png[width=50%]
-
-==== Try it!
-
-. Any space will do for this project.
-. Start the project!
-. If it isn't open already, open up the stage. Next to the start/stop button, there is a gray button with three lines stacked on top of each other. Tap this button to open up the stage. You can tap on the button with the two arrows to make the stage go fullscreen.
-. Drag the button in the direction you want BB-8 to go, and he will go that way.
+. BB-8 will start performing random actions from a list of: spinning, doing an animation and changing to a random color, saying "it's party time", or moving randomly.
