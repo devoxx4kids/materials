@@ -24,7 +24,7 @@ To make a new program:
 +
 [[create_project]]
 .Program creation popup
-image::images/create-program.png[width=40%]
+image::images/create_program.png[width=40%]
 +
 . Click "`Create`" to create the program.
 
@@ -45,7 +45,7 @@ When you are done, the code for BB-8 should look like <<program_1>>.
 
 [[program_1]]
 .Activity 1 finished code
-image::images/program-1.png[]
+image::images/program_1.png[]
 
 ==== Try it!
 
@@ -66,7 +66,7 @@ When you are done, the code for BB-8 should look like <<program_2>>.
 
 [[program_2]]
 .Activity 2 finished code
-image::images/program-2.png[]
+image::images/program_2.png[]
 
 ==== Try it!
 
@@ -87,7 +87,7 @@ When you are done, the code for BB-8 should look like <<program_3>>.
 
 [[program_3]]
 .Activity 3 finished code
-image::images/program-3.png[]
+image::images/program_3.png[]
 
 ==== Try it!
 
@@ -108,7 +108,7 @@ When you are done, the code for BB-8 should look like <<program_4>>.
 
 [[program_4]]
 .Activity 4 finished code
-image::images/program-4.png[]
+image::images/program_4.png[]
 
 ==== Try it!
 
@@ -129,7 +129,7 @@ When you are done, the code for BB-8 should look like <<program_5>>.
 
 [[program_5]]
 .Activity 5 finished code
-image::images/program-5.png[]
+image::images/program_5.png[]
 
 ==== Try it!
 
@@ -142,7 +142,7 @@ image::images/program-5.png[]
 
 ==== Description
 
-The Resistance has a party after blowing up an Imperial Stardestroyer, and BB-8 is showing off his dance moves.
+The Resistance has a party after blowing up an Imperial Star Destroyer, and BB-8 is showing off his dance moves.
 
 ==== Final Code
 
@@ -150,7 +150,7 @@ When you are done, the code for BB-8 should look like <<program_6>>.
 
 [[program_6]]
 .Activity 6 finished code
-image::images/program-6.png[]
+image::images/program_6.png[]
 
 ==== Try it!
 
