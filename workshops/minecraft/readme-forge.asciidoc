@@ -22,7 +22,7 @@ Download the following software
 . **JDK:** Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . **Eclipse:** Download Eclipse from http://www.eclipse.org/downloads/eclipse-packages/, pick "`Eclipse IDE for Java Developers`" and unzip.
 . **Forge:** Download Forge 1.12 from
-  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.1.2555/forge-1.12.2-14.23.1.2555-mdk.zip
+  https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2768/forge-1.12.2-14.23.5.2768-mdk.zip
 
 === Mac or Windows
 
@@ -59,7 +59,7 @@ image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=
 This is a very important step as this will confirm that you can actually start modding.
 
 . Open up Eclipse
-. In the "`Eclipse Launcer`" window, click on `Browse...`, choose the location of `eclipse` directory in the unzipped forge directory
+. In the "`Eclipse Launcher`" window, click on `Browse...`, choose the location of `eclipse` directory in the unzipped forge directory
 . Click on "`OK`"
 . In the Eclipse window, you should see a "`MDKExample`" folder and be able to expand it. There should be no red exclamation marks next to it.
 
