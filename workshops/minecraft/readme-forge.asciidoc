@@ -71,9 +71,9 @@ This is a very important step as this will confirm that you can actually start m
 [[Main_File]]
 == The Main File
 
-To start modding, we need a main file. This file will register all of our mods so that they actually function in the game. To make this main file, first you need to make a new package. Click on the arrow next to the "`MDKExample`" folder in the left side of your window. Then, right click on "`src/main/java`" and select `New` > `Package`. Name it `org.devoxx4kids.forge.mods`.
+To start modding, we need a main file. This file will register all of our mods so that they actually function in the game. To make this main file, first you need to make a new package. Click on the arrow next to the "`MDKExample`" folder in the left side of your window. Then, right click on "`src/main/java`" and select `New` > `Package`. Name it `org.devoxx4kids.forge.mods` and click on the Finish Button.
 
-We need to create a new class in this package. To do this, right click on the new package you created and select New > Class. Name it `MainMod`. The middle of your screen will show its code. Replace all of the code with the code in <<Setting_Up_The_Main_File>>.
+We need to create a new class in this package. To do this, right click on the new package you created and select `New` > `Class`. Name it `MainMod` and click on the Finish Button. The middle of your screen will show its code. Replace all of the code with the code in <<Setting_Up_The_Main_File>>.
 
 [[Setting_Up_The_Main_File]]
 .Set up the main file
@@ -107,7 +107,7 @@ Your main file is now ready to go.
 
 **Purpose:** To make the player receive items when he/she says a certain word or phrase in a chat message.
 
-**Instructions:** In your new package, `org.devoxx4kids.forge.mods`, make a new file called `ChatItems`. Replace its code with <<Chat_Items_Code>>.
+**Instructions:** In your new package, `org.devoxx4kids.forge.mods`, make a new class called `ChatItems`. To do this, right click on the package `org.devoxx4kids.forge.mods` and select `New` > `Class` then fill the name property with `ChatItems` and clico on the Finish Button. Replace its code with <<Chat_Items_Code>>. 
 
 [[Chat_Items_Code]]
 .Chat Items code
@@ -134,7 +134,7 @@ public class ChatItems {
 ----
 ====
 
-Register your mod in the main file by using the line shown in <<Chat_Items_Registering>>. The line should go between the two brackets after the line that says `init()`.
+Register your mod in the main file by using the line shown in <<Chat_Items_Registering>>. The line should go between the two brackets after the line that says `public void init(FMLInitializationEvent event)`.
 
 [[Chat_Items_Registering]]
 .Chat Items registering
