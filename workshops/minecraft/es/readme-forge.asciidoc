@@ -1,0 +1,603 @@
+= Minecraft Modding usando Forge
+:toc:
+:toc-placement!:
+
+Este workshop muestra como how iniciar con Minecraft Modding usando Forge.
+
+toc::[]
+
+[[Requerimientos]]
+== Requerimientos
+
+* Un computador Mac o Windows
+* NO es necesario tener usuario en Minecraft
+
+[[Download]]
+== Descargar e Instalar
+
+==== Descargar
+
+Descarga el siguiente software
+
+. **JDK:** Descargar en instalar JDK desde http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+. **Eclipse:** Descargar Eclipse desde http://www.eclipse.org/downloads/eclipse-packages/, seleccione "`Eclipse IDE for Java Developers`",  cuando la descarga este completa descomprir el archivo.
+. **Forge:** Descargar Forge 1.12 desde
+  https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2768/forge-1.12.2-14.23.5.2768-mdk.zip
+
+=== Windows ó Mac
+
+Sigue las instrucciones para computadoras Windows ó Mac o que se muestran a continuación.
+
+Un video (En Inglés) con los pasos de la instalacción se encuentra en el siguiente enlace:
+
+image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
+
+==== Windows
+
+Verifica que todo el software requerido y relacionado en <<Download>> esté completamente descargado.
+
+. Abra la consola de comando como se explica en  http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window
+. Digite `cd Desktop`  para dirigirse al directorio Desktop
+. Cree un nuevo directorio utilizando el siguiente comando  `mkdir forge`
+. Cambie de directorio digitando `cd forge`
+. En el Explorador de Archivos, haga doble clic en ek archivo Forge 1.12 descargado y seleccione descomprimir todo.
+. Finalmente, En la consola de comandos, digite el siguiente comando para completar la configuración de Forge `gradlew setupDecompWorkspace eclipse`. Espere hasta que salga el mensaje `BUILD SUCCESSFUL`.
+
+
+==== Mac
+
+Verifica que todo el software requerido y relacionado en <<Download>> esté completamente descargado.
+
+. En Finder, seleccione Applicaciones, Utilidades, y luego doble clic en Terminal
+. Digite `cd Desktop`  para dirigirse al directorio Desktop
+. Cree un nuevo directorio utilizando el siguiente comando `mkdir forge`
+. Cambie de directorio digitando `cd forge`
+. Descomprima el archivo descargado  Forge 1.12 zip digitando `unzip ~/Downloads/forge-1.12.2-14.23.1.2555-mdk.zip`
+. Finalmente digite el siguiente comando para completar la configuración de Forge `./gradlew setupDecompWorkspace eclipse`. Espere hasta que salga el mensane `BUILD SUCCESSFUL`.
+
+
+=== Verificar
+
+Este es un paso muy importante para confirmar que todo Minecraft modding se encuentra funcionando correctamente.
+
+. Abre Eclipse
+. En la ventana de "`Eclipse Launcher`", de clic en `Browse...`, seleccione el directorio `eclipse` ubicado en el directorio donde se descomprimió forge
+. Clic en "`OK`"
+. En la ventana de Eclipse, encontrará la carpeta "`MDKExample`". No deben hacer marcas en color rojo, si las hay es porque algo falló en la instalación.
+
+=== Solución de problemas
+
+. Si por alguna razón seleccionó "`Cancel`"" o un directorio en el `Eclipse Launcher`, clic en "`File`", "`Switch Workspace`", "`Other...`", y seleccione el directorio correcto.
+. Si no se ve la carpeta MDKExample, puede haberse presentado algunos errores al ejeuctar el comando `gradlew`. Ejecute el comando `gradlew` otra vez.
+
+[[Main_File]]
+== El archivo Main
+
+Para iniciar Minecraft modding, necesitamos un archivo main. En este archivo se registrarán todos los mods que vamos a crear para que puedan ser usados en el juego. Para crear el archivo main, primero necesita crear un paquete. De Clic en la flecha ubicada a la izquierda de la carpeta "`MDKExample`". Luego, de clic derecho sobre "`src/main/java`" y seleccione `New` > `Package` para crear un paquete, en el campo Name (Name es nombre en Inglés) digite `org.devoxx4kids.forge.mods` y luego de clic en Finish (Finish es finalizar en Inglés).
+
+Ahora necesitamos crear una nueva clase dentro del paquete creado. Para hacerlo, de clic derecho sobre el paquete creado y seleccione `New` > `Class`. en el campo Name (Name es nombre en Inglés) digite `MainMod` y luego de clic en Finish (Finish es finalizar en Inglés). En la ventana del medio encontrará el código de la clase creada. Reemplace el contenido de la clase con el código en <<Setting_Up_The_Main_File>>.
+
+[[Setting_Up_The_Main_File]]
+.Definición del archivo Main
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
+public class MainMod {
+	public static final String MODID = "mymods";
+	public static final String VERSION = "1.0";
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+
+	}
+}
+----
+====
+
+El archivo Main ahora está listo para iniciar la adición de Mods.
+
+[[Chat_Items]]
+== Chat para adicionar Items
+
+**Propósito:** Pemitir que el jugador reciba nuevos items cuando escriba alguna palabra o frase en el chat.
+
+**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods`, crea una nueva clase con el nombre `ChatItems`. Para hacerlo, de clic derecho sobre el `org.devoxx4kids.forge.mods` y seleccione  `New` > `Class`. en el campo Name (Name es nombre en Inglés) digite `ChatItems` y luego de clic en Finish (Finish es finalizar en Inglés). Reemplace el contenido de la clase con el código en <<Chat_Items_Code>>.
+
+[[Chat_Items_Code]]
+.Código para el Chat de Items
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.ServerChatEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class ChatItems {
+
+	@SubscribeEvent
+	public void giveItems(ServerChatEvent event) {
+		if (event.getMessage().contains("potato")) {
+			event.getPlayer().inventory.addItemStackToInventory(new ItemStack(
+					Items.POTATO, 64));
+		}
+	}
+}
+----
+====
+
+Para que el mod este disponible en el juego es necesario registrarlo en el archivo Main usando la linea que se muestra en <<Chat_Items_Registering>>. Esa linea debe copiarse adentro de las llaves `{}` que se encuentran después de la linea que tiene el texto  `public void init(FMLInitializationEvent event)`.
+
+[[Chat_Items_Registering]]
+.Código para el registro del Chat de Items 
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new ChatItems());
+----
+====
+
+El archivo Main debe paracerse a <<Main_File_After_Register>>.
+
+[[Main_File_After_Register]]
+.Archivo Main después del registro del Chat de Items 
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+
+@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
+public class MainMod {
+	public static final String MODID = "mymods";
+	public static final String VERSION = "1.0";
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new ChatItems());
+	}
+}
+----
+====
+
+Luego de finalizar la edición de los archivos, estamos listos para probar el juego, da clic en el ícono de la flecha verde "`Run Client`" ubicado en la barra de menú para construir y ejecutar tu modded Minecraft.
+
+**Como jugar (Gameplay):**
+
+. Crea un nuevo mundo dando clic en el botón "`Create a new world`"
+. Presione la tecla "`T`" para abrir la ventana del chat
+. Escriba cualquier mensaje que contenga la palabra "`potato`"
+. Vas a recibir una pila de potatoes (cada pila tiene = 64 items)
+
+=== Nuevos Items para el chat
+
+Cierra Minecraft y regresa a Eclipse. Abre la clase `ChatItems` para agregar el código para que nuevos items puedan ser adicionados el juego por medio del chat. 
+
+Para esto por copia el siguiente código dentro del método `public void giveItems(ServerChatEvent event)`
+	if (event.getMessage().contains("<<TEXTO>>")) {
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.<<TIPO>>, <<CANTIDAD>>));
+	}
+
+Luego reemplazas las palabras `<<TEXTO>>`, `<<TIPO>>` y `<<CANTIDAD>>` asi: TEXTO es la palabra que se digitará en el chat , TIPO corresponde al tipo del Item y CANTIDAD al número que se darán al jugador cuando digite el texto en el chat.
+
+
+[[Different_Chat_Items_Code]]
+.Código que adiciona Items.DIAMOND y Items.SNOWBALL para el Chat
+====
+[source, java]
+----
+@SubscribeEvent
+public void giveItems(ServerChatEvent event){
+	if (event.getMessage().contains("potato")) {
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
+	}
+
+	if (event.getMessage().contains("diamond")) {
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, 20));
+	}
+	
+	if (event.getMessage().contains("snowball")) {
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.SNOWBALL, 10));
+	}
+}
+----
+====
+
+Luego de finalizar la edición de los archivos, estamos listos para probar el juego, da clic en el ícono de la flecha verde "`Run Client`" ubicado en la barra de menú para construir y ejecutar tu modded Minecraft.
+
+**Como jugar (Gameplay):**
+
+. Crea un nuevo mundo dando clic en el botón "`Create a new world`" 
+. Presione la tecla "`T`" para abrir la ventana del chat
+. Escriba cualquier mensaje que contenga la palabra "`diamond`" o  "`snowball`"
+. Vas a recibir una pila de diamantes o bolas de nieves
+
+
+=== Múltiple Items
+
+Utilizando un código como el siguiente se puede adicionar mas de un item por medio del chat
+
+[[Multiple_Chat_Items_Code]]
+.Código para adicionar varios elementos con una sola palabra en el chat 
+====
+[source, java]
+----
+	if (event.getMessage().contains("food")) {
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 10));
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.APPLE, 10));
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.CARROT, 10));
+		
+	}
+----
+====
+
+[[Dragon_Spawner]]
+== Ender Dragon Spawner
+
+**Propósito:** Crear un Dragón Ender cada vez que un jugador seleccione un huevo de Dragón.
+
+**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods`, crea una nueva clase con el nombre  `DragonSpawner`  y reemplace el contenido de la clase con el código en <<Dragon_Spawner_Code>>.
+
+[[Dragon_Spawner_Code]]
+.Código para crear un Dragón
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.dragon.phase.PhaseList;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class DragonSpawner {
+
+	@SubscribeEvent
+	public void spawnDragon(PlaceEvent event) {
+		if (event.getPlacedBlock() == Blocks.DRAGON_EGG.getBlockState().getBaseState()) {
+			event.getWorld().setBlockToAir(new BlockPos(event.getPos().getX(), event.getPos().getY(),event.getPos().getZ()));
+			EntityDragon dragon = new EntityDragon(event.getWorld());
+			dragon.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
+			dragon.getPhaseManager().setPhase(PhaseList.TAKEOFF);
+			event.getWorld().spawnEntity(dragon);
+		}
+	}
+}
+----
+====
+
+A continuación, registre el Dragón Spawner en el archivo Main utilizando la línea de código que se muestra en <<Dragon_Spawner_Registering>>.
+
+[[Dragon_Spawner_Registering]]
+.Registro del Dragón Spawner
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new DragonSpawner());
+----
+====
+
+**Como jugar (Gameplay):**
+
+. Usa el comando "`/give <tu nombre de jugador> dragon_egg`" para sacar un huevo de dragón
+. Seleccione el recuadro para ubicar el huevo de dragón
+. Doble clic en el mundo de Minecraft para colocar el huevo de dragón, y el Dragón Ender nacerá
+
+Para ver tu nombre de jugador abre la ventana de chat  digitando la letra `T`.
+
+NOTE: Si se genera el error "`You don't have permissions to perform the command`", es porque no tienes permiso para ejecutar el comando para habilitar trampas en el mundo. Esto se debe a que cuando creaste el mundo de Minecraft seleccionaste el modo "`Survival`", debes crear un nuevo mundo seleccionando el modo "`Creative`".
+
+[[Sharp_Snowballs]]
+== Bolas de nieve explosivas
+
+**Propósito:** Convertir las bolas de nieve en explosivos para poder destruir cosas.
+
+**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods` crea una nueva clase con el nombre `SharpSnowballs`. Reemplace el contenido de la clase con el código en <<Snowballs_Code>>.
+
+[[Snowballs_Code]]
+.Código para convertir bolas de nieve en explosivos
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.entity.projectile.EntityTippedArrow;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class SharpSnowballs {
+
+	@SubscribeEvent
+	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
+		Entity snowball = event.getEntity();
+		World world = snowball.world;
+
+		if (!(snowball instanceof EntitySnowball)) {
+			return;
+		}
+
+		if (!world.isRemote) {
+			EntityTNTPrimed arrow = new EntityTNTPrimed(world);
+            arrow.setFuse(80);
+			arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ, 0, 0);
+			arrow.motionX = snowball.motionX;
+			arrow.motionY = snowball.motionY;
+			arrow.motionZ = snowball.motionZ;
+
+			// gets arrow out of player's head
+			// gets the angle of arrow right, in the direction of motion
+			arrow.posX += arrow.motionX;
+			arrow.posY += arrow.motionY;
+			arrow.posZ += arrow.motionZ;
+
+			world.spawnEntity(arrow);
+			snowball.setDead();
+		}
+	}
+}
+----
+====
+
+Registra la nueva clase en el archivo Main utilizando la linea en  <<Snowballs_Registering>>.
+
+[[Snowballs_Registering]]
+.Registro del código para convertir bolas de nieve en explosivos
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
+----
+====
+
+**Gameplay:**
+
+. Toma una bola de nieve desde tu inventario
+. Da clic derecho para tirarla
+. La bola de nieve se convierte en un caja de TNT
+
+
+[[OP_Golems]]
+== Overpowered Golems de hierro (Iron Golems)
+
+**Propósito:** Adicionar potion effects a los Golems de hierro cuando sean spawn en el mundo.
+
+**Instrucciones:**
+
+En el paquete `org.devoxx4kids.forge.mods`, crea una  nueva clase llamada `OverpoweredIronGolems` y reemplaza el contenido de la clase con el código en <<Iron_Golems_Code>>.
+
+[[Iron_Golems_Code]]
+.Código para Overpowered Iron Golems
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class OverpoweredIronGolems {
+
+	@SubscribeEvent
+	public void golemMagic(EntityJoinWorldEvent event) {
+		if (!(event.getEntity() instanceof EntityIronGolem)) {
+			return;
+		}
+
+		EntityLiving entity = (EntityLiving) event.getEntity();
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(5), 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 1000000, 5));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 1000000, 5));
+	}
+}
+----
+====
+
+Registra la nueva clase en el archivo Main utilizando la línea en  <<Iron_Golems_Register>>.
+
+[[Iron_Golems_Register]]
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
+----
+====
+
+**Gameplay:**
+
+. Spawn an Iron Golem usando el comando `/summon villager_golem`.
+. Spawn mobs hostiles cerca del Iron Golem
+
+El golem empezará a moverse cerca de los mobs para pelear con ellos. Normalmente los Iron Golems se mueven despacio, pero con el efecto que le agregamos ellos deberán moverse muy rápido.
+
+[[Rain_Water]]
+== Lluvia de agua (Rain Water)
+
+**Propósito:** Colocar agua en los pies de las entities cuando este lloviendo.
+
+**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods` `RainWater` y reemplaza el contenido de la clase con el código en <<Rain_Code>>.
+
+[[Rain_Code]]
+.Codigo de Lluvia de agua (Rain Water)
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class RainWater {
+
+	@SubscribeEvent
+	public void makeWater(LivingUpdateEvent event) {
+		Entity entity = event.getEntity();
+		World world = entity.world;
+		int x = (int) Math.floor(entity.posX);
+		int y = (int) Math.floor(entity.posY);
+		int z = (int) Math.floor(entity.posZ);
+
+		if (!world.isRaining()) {
+			return;
+		}
+
+		for (int i = y; i < 256; i++) {
+			if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.AIR.getBlockState().getBaseState()) {
+				return;
+			}
+		}
+
+		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).isFullCube()) {
+			return;
+		}
+
+		world.setBlockState(new BlockPos(x, y, z), Blocks.WATER.getBlockState().getBaseState());
+	}
+}
+----
+====
+
+Registra la nueva clase en el archivo Main utilizando la línea en  <<Rain_Registering>>.
+
+[[Rain_Registering]]
+.Registro de Lluvia de agua (Rain Water)
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new RainWater());
+----
+====
+
+**Gameplay:**
+
+. Usa el comando `/weather rain` para hacer que llueva
+. Empieza a moverte, al agua empezara a caer por donde usted o otra entity vaya, pero esta desaparecerá rapidamente
+
+
+[[Skeleton_War]]
+== Guerra de esqueletos (Skeleton War)
+
+**Propósito:** Hacer que los esqueletos peleen entre ellos y reciban armaduras cuando sean engendrados.
+
+**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods` `SkeletonWar` y reemplaza el contenido de la clase con el código en <<War_Code>>.
+
+[[War_Code]]
+.Código de Skeleton War
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class SkeletonWar {
+
+	@SubscribeEvent
+	public void makeWarNotPeace(EntityJoinWorldEvent event) {
+		if (!(event.getEntity() instanceof EntitySkeleton)) {
+			return;
+		}
+		EntitySkeleton skeleton = (EntitySkeleton) event.getEntity();
+
+		List<ItemArmor> helmets = Arrays.asList(Items.LEATHER_HELMET,
+				Items.CHAINMAIL_HELMET, Items.GOLDEN_HELMET, Items.IRON_HELMET,
+				Items.DIAMOND_HELMET);
+		List<ItemArmor> chestplates = Arrays.asList(Items.LEATHER_CHESTPLATE,
+				Items.CHAINMAIL_CHESTPLATE, Items.GOLDEN_CHESTPLATE,
+				Items.IRON_CHESTPLATE, Items.DIAMOND_CHESTPLATE);
+		List<ItemArmor> leggings = Arrays.asList(Items.LEATHER_LEGGINGS,
+				Items.CHAINMAIL_LEGGINGS, Items.GOLDEN_LEGGINGS,
+				Items.IRON_LEGGINGS, Items.DIAMOND_LEGGINGS);
+		List<ItemArmor> boots = Arrays.asList(Items.LEATHER_BOOTS,
+				Items.CHAINMAIL_BOOTS, Items.GOLDEN_BOOTS, Items.IRON_BOOTS,
+				Items.DIAMOND_BOOTS);
+
+		skeleton.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
+				skeleton, EntitySkeleton.class, true));
+		skeleton.canPickUpLoot();
+
+		Random random = new Random();
+		skeleton.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(
+				helmets.get(random.nextInt(5))));
+		skeleton.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(
+				chestplates.get(random.nextInt(5))));
+		skeleton.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(
+				leggings.get(random.nextInt(5))));
+		skeleton.setItemStackToSlot(EntityEquipmentSlot.FEET,
+				new ItemStack(boots.get(random.nextInt(5))));
+	}
+
+}
+----
+====
+
+Registra la nueva clase en el archivo Main utilizando la línea en  <<War_Registering>>.
+
+[[War_Registering]]
+.Registro de Skeleton War
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new SkeletonWar());
+----
+====
+
+**Gameplay:**
+
+. Toma un Spawn Skeleton desde tu inventario
+. haz clic derecho sobre el suelo 2 veces para spawn 2 skeletons
+. Los skeletons tendrán armaduras; ellos intentarán atacarse entre ellos
+
+[[Sharing]]
+== Comparte tus Mods
+
+Abre una consola de comando. Busca la carpeta Forge, digita el comando `gradlew build`. Cuando el proceso finalice ve a la carpeta "build" y luego a la carpeta "libs". En la carpeta "libs" encontrarás un archivo .jar con el nombre de `modid-1.0.jar`. Ese archivo contiene todos tus mods.
+
+Para instalar tus mod en Minecraft , sigue las instruciones que encontrarás en http://www.minecraftforge.net/wiki/Installation/Universal.
+
+[[Libro]]
+== Libro de Minecraft Modding en O'Reilly
+
+Estás interesado en crear nuevos items, nuevos bloques, nuevas recetas, nuevas texturas, y muchos otros divertidos mods? Entonces revisa el siguiente libro  http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge] en O'Reilly.
+
+image::images/minecraft-modding-book-cover.png[link="http://shop.oreilly.com/product/0636920036562.do"]
