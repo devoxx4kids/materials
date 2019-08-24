@@ -30,7 +30,7 @@ Sigue las instrucciones para computadoras Windows ó Mac o que se muestran a con
 
 Un video (En Inglés) con los pasos de la instalación se encuentra en el siguiente enlace:
 
-image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
+image::../images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
 
 ==== Windows
 
