@@ -580,4 +580,4 @@ Para instalar tus mod en Minecraft , sigue las instruciones que encontrarás en 
 
 Estás interesado en crear nuevos items, nuevos bloques, nuevas recetas, nuevas texturas, y muchos otros divertidos mods? Entonces revisa el siguiente libro  http://shop.oreilly.com/product/0636920036562.do[Minecraft Modding with Forge] en O'Reilly.
 
-image::images/minecraft-modding-book-cover.png[link="http://shop.oreilly.com/product/0636920036562.do"]
+image::../images/minecraft-modding-book-cover.png[link="http://shop.oreilly.com/product/0636920036562.do"]
