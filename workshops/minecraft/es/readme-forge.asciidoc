@@ -1,8 +1,8 @@
-= Minecraft Modding usando Forge
+=  Minecraft Modding con Forge
 :toc:
 :toc-placement!:
 
-Este workshop muestra como how iniciar con Minecraft Modding usando Forge.
+Este workshop muestra como hacer modificaciones en Minecraft Modding usando Forge.
 
 toc::[]
 
@@ -15,26 +15,26 @@ toc::[]
 [[Download]]
 == Descargar e Instalar
 
-==== Descargar
+==== Descargas
 
 Descarga el siguiente software
 
-. **JDK:** Descargar en instalar JDK desde http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+. **JDK:** Descargar e instalar JDK desde http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 . **Eclipse:** Descargar Eclipse desde http://www.eclipse.org/downloads/eclipse-packages/, seleccione "`Eclipse IDE for Java Developers`",  cuando la descarga este completa descomprir el archivo.
 . **Forge:** Descargar Forge 1.12 desde
   https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2768/forge-1.12.2-14.23.5.2768-mdk.zip
 
-=== Windows ó Mac
+=== Instalación
 
 Sigue las instrucciones para computadoras Windows ó Mac o que se muestran a continuación.
 
-Un video (En Inglés) con los pasos de la instalacción se encuentra en el siguiente enlace:
+Un video (En Inglés) con los pasos de la instalación se encuentra en el siguiente enlace:
 
 image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
 
 ==== Windows
 
-Verifica que todo el software requerido y relacionado en <<Download>> esté completamente descargado.
+Verifica que todo el software requerido y relacionado en <<Descargas>> esté completamente descargado.
 
 . Abra la consola de comando como se explica en  http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window
 . Digite `cd Desktop`  para dirigirse al directorio Desktop
@@ -56,7 +56,7 @@ Verifica que todo el software requerido y relacionado en <<Download>> esté comp
 . Finalmente digite el siguiente comando para completar la configuración de Forge `./gradlew setupDecompWorkspace eclipse`. Espere hasta que salga el mensane `BUILD SUCCESSFUL`.
 
 
-=== Verificar
+=== Verificación
 
 Este es un paso muy importante para confirmar que todo Minecraft modding se encuentra funcionando correctamente.
 
@@ -73,9 +73,9 @@ Este es un paso muy importante para confirmar que todo Minecraft modding se encu
 [[Main_File]]
 == El archivo Main
 
-Para iniciar Minecraft modding, necesitamos un archivo main. En este archivo se registrarán todos los mods que vamos a crear para que puedan ser usados en el juego. Para crear el archivo main, primero necesita crear un paquete. De Clic en la flecha ubicada a la izquierda de la carpeta "`MDKExample`". Luego, de clic derecho sobre "`src/main/java`" y seleccione `New` > `Package` para crear un paquete, en el campo Name (Name es nombre en Inglés) digite `org.devoxx4kids.forge.mods` y luego de clic en Finish (Finish es finalizar en Inglés).
+Para iniciar Minecraft modding, necesitamos un archivo Main. En este archivo se registrarán todos los mods que vamos a crear para que puedan ser usados en el juego. Para crear el archivo Main, primero necesitamos crear un paquete. Da Clic en la flecha ubicada a la izquierda de la carpeta "`MDKExample`". Luego, clic derecho sobre "`src/main/java`" y selecciona `New` > `Package` para crear un paquete, en el campo Name (Name es nombre en Inglés) digita `org.devoxx4kids.forge.mods` y luego clic en Finish (Finish es finalizar en Inglés).
 
-Ahora necesitamos crear una nueva clase dentro del paquete creado. Para hacerlo, de clic derecho sobre el paquete creado y seleccione `New` > `Class`. en el campo Name (Name es nombre en Inglés) digite `MainMod` y luego de clic en Finish (Finish es finalizar en Inglés). En la ventana del medio encontrará el código de la clase creada. Reemplace el contenido de la clase con el código en <<Setting_Up_The_Main_File>>.
+Ahora necesitamos crear una nueva clase dentro del paquete creado. Para hacerlo, da clic derecho sobre el paquete creado y seleccione `New` > `Class`. en el campo Name (Name es nombre en Inglés) digita `MainMod` y luego clic en Finish (Finish es finalizar en Inglés). En la ventana del medio encontrarás el código de la clase creada. Reemplaza el contenido de la clase con el código que encontrarás a en: <<Setting_Up_The_Main_File>>.
 
 [[Setting_Up_The_Main_File]]
 .Definición del archivo Main
@@ -105,14 +105,14 @@ public class MainMod {
 El archivo Main ahora está listo para iniciar la adición de Mods.
 
 [[Chat_Items]]
-== Chat para adicionar Items
+== Chat para recibir productos, herramientas, bloques, etc.
 
-**Propósito:** Pemitir que el jugador reciba nuevos items cuando escriba alguna palabra o frase en el chat.
+**Propósito:** Pemitir que el jugador reciba productos, herramientas, bloques, etc., cuando escriba alguna palabra o frase en el chat.
 
-**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods`, crea una nueva clase con el nombre `ChatItems`. Para hacerlo, de clic derecho sobre el `org.devoxx4kids.forge.mods` y seleccione  `New` > `Class`. en el campo Name (Name es nombre en Inglés) digite `ChatItems` y luego de clic en Finish (Finish es finalizar en Inglés). Reemplace el contenido de la clase con el código en <<Chat_Items_Code>>.
+**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods`, crea una nueva clase con el nombre `ChatItems`. Para hacerlo, da clic derecho sobre el paquete `org.devoxx4kids.forge.mods` y selecciona  `New` > `Class`. en el campo Name (Name es nombre en Inglés) digite `ChatItems` y luego clic en Finish (Finish es finalizar en Inglés). Reemplaza el contenido de la clase con el código en <<Chat_Items_Code>>.
 
 [[Chat_Items_Code]]
-.Código para el Chat de Items
+.Código para el Chat para recibir productos, herramientas, bloques, etc.
 ====
 [source, java]
 ----
@@ -139,7 +139,7 @@ public class ChatItems {
 Para que el mod este disponible en el juego es necesario registrarlo en el archivo Main usando la linea que se muestra en <<Chat_Items_Registering>>. Esa linea debe copiarse adentro de las llaves `{}` que se encuentran después de la linea que tiene el texto  `public void init(FMLInitializationEvent event)`.
 
 [[Chat_Items_Registering]]
-.Código para el registro del Chat de Items 
+.Código para el registro del Chat para recibir productos, herramientas, bloques, etc.
 ====
 [source, java]
 ----
@@ -147,10 +147,10 @@ MinecraftForge.EVENT_BUS.register(new ChatItems());
 ----
 ====
 
-El archivo Main debe paracerse a <<Main_File_After_Register>>.
+El archivo Main debe parecerse a <<Main_File_After_Register>>.
 
 [[Main_File_After_Register]]
-.Archivo Main después del registro del Chat de Items 
+.Archivo Main después del registro del Chat para recibir productos, herramientas, bloques, etc.
 ====
 [source, java]
 ----
@@ -174,29 +174,29 @@ public class MainMod {
 ----
 ====
 
-Luego de finalizar la edición de los archivos, estamos listos para probar el juego, da clic en el ícono de la flecha verde "`Run Client`" ubicado en la barra de menú para construir y ejecutar tu modded Minecraft.
+Luego de finalizar la edición de los archivos, estamos listos para probar el juego, da clic en el ícono de la flecha verde "`Run Client`" ubicado en la barra de menú para construir y ejecutar Minecraft.
 
 **Como jugar (Gameplay):**
 
-. Crea un nuevo mundo dando clic en el botón "`Create a new world`"
+. Crea un nuevo mundo dando clic en el botón "`Create a new world`" 
 . Presione la tecla "`T`" para abrir la ventana del chat
 . Escriba cualquier mensaje que contenga la palabra "`potato`"
 . Vas a recibir una pila de potatoes (cada pila tiene = 64 items)
 
-=== Nuevos Items para el chat
+=== Adicionando nuevos elementos para el Chat
 
-Cierra Minecraft y regresa a Eclipse. Abre la clase `ChatItems` para agregar el código para que nuevos items puedan ser adicionados el juego por medio del chat. 
+Cierra Minecraft y regresa a Eclipse. Abre la clase `ChatItems` para agregar el código para que nuevos elementos puedan ser adicionados al juego por medio del chat. 
 
 Para esto por copia el siguiente código dentro del método `public void giveItems(ServerChatEvent event)`
 	if (event.getMessage().contains("<<TEXTO>>")) {
 		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.<<TIPO>>, <<CANTIDAD>>));
 	}
 
-Luego reemplazas las palabras `<<TEXTO>>`, `<<TIPO>>` y `<<CANTIDAD>>` asi: TEXTO es la palabra que se digitará en el chat , TIPO corresponde al tipo del Item y CANTIDAD al número que se darán al jugador cuando digite el texto en el chat.
+Luego reemplazas las palabras `<<TEXTO>>`, `<<TIPO>>` y `<<CANTIDAD>>` así: TEXTO es la palabra que se digitará en el chat , TIPO corresponde al tipo del Item y CANTIDAD al número que se darán al jugador cuando digite el texto en el chat.
 
 
 [[Different_Chat_Items_Code]]
-.Código que adiciona Items.DIAMOND y Items.SNOWBALL para el Chat
+.Código que adiciona Items.FISH (Pescados) y Items.STONE_AXE (Hacha) para el Chat
 ====
 [source, java]
 ----
@@ -206,12 +206,12 @@ public void giveItems(ServerChatEvent event){
 		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
 	}
 
-	if (event.getMessage().contains("diamond")) {
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, 20));
+	if (event.getMessage().contains("fish")) {
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.FISH, 5));
 	}
 	
-	if (event.getMessage().contains("snowball")) {
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.SNOWBALL, 10));
+	if (event.getMessage().contains("hacha")) {
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.STONE_AXE, 5));
 	}
 }
 ----
@@ -223,26 +223,10 @@ Luego de finalizar la edición de los archivos, estamos listos para probar el ju
 
 . Crea un nuevo mundo dando clic en el botón "`Create a new world`" 
 . Presione la tecla "`T`" para abrir la ventana del chat
-. Escriba cualquier mensaje que contenga la palabra "`diamond`" o  "`snowball`"
-. Vas a recibir una pila de diamantes o bolas de nieves
+. Escriba cualquier mensaje que contenga algunas de las palabras "`fish`" o  "`hacha`"
+. Vas a recibir una pila pescados o de hachas
 
 
-=== Múltiple Items
-
-Utilizando un código como el siguiente se puede adicionar mas de un item por medio del chat
-
-[[Multiple_Chat_Items_Code]]
-.Código para adicionar varios elementos con una sola palabra en el chat 
-====
-[source, java]
-----
-	if (event.getMessage().contains("food")) {
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 10));
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.APPLE, 10));
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.CARROT, 10));
-		
-	}
-----
 ====
 
 [[Dragon_Spawner]]
