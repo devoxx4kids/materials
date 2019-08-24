@@ -227,17 +227,15 @@ Luego de finalizar la edición de los archivos, estamos listos para probar el ju
 . Vas a recibir una pila pescados o de hachas
 
 
-====
-
 [[Dragon_Spawner]]
-== Ender Dragon Spawner
+== Engendrar un Dragón Ender 
 
-**Propósito:** Crear un Dragón Ender cada vez que un jugador seleccione un huevo de Dragón.
+**Propósito:** Engendrar un Dragón Ender cada vez que un jugador seleccione un huevo de Dragón.
 
-**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods`, crea una nueva clase con el nombre  `DragonSpawner`  y reemplace el contenido de la clase con el código en <<Dragon_Spawner_Code>>.
+**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods`, crea una nueva clase con el nombre  `DragonSpawner`  y reemplaza el contenido de la clase con el código en <<Dragon_Spawner_Code>>.
 
 [[Dragon_Spawner_Code]]
-.Código para crear un Dragón
+.Código para Engendrar un Dragón
 ====
 [source, java]
 ----
@@ -266,10 +264,10 @@ public class DragonSpawner {
 ----
 ====
 
-A continuación, registre el Dragón Spawner en el archivo Main utilizando la línea de código que se muestra en <<Dragon_Spawner_Registering>>.
+A continuación, registra el DragonSpawner en el archivo Main utilizando la línea de código que se muestra en <<Dragon_Spawner_Registering>>.
 
 [[Dragon_Spawner_Registering]]
-.Registro del Dragón Spawner
+.Registro del DragnSpawner
 ====
 [source, java]
 ----
@@ -279,20 +277,18 @@ MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 
 **Como jugar (Gameplay):**
 
-. Usa el comando "`/give <tu nombre de jugador> dragon_egg`" para sacar un huevo de dragón
-. Seleccione el recuadro para ubicar el huevo de dragón
-. Doble clic en el mundo de Minecraft para colocar el huevo de dragón, y el Dragón Ender nacerá
+. Usa el comando "`/give <tu nombre de jugador> dragon_egg`" para colocar un huevo de dragón
+. Selecciona el recuadro para ubicar el huevo de dragón
+. Doble clic en donde quieres colocar el huevo de dragón, y el Dragón Ender nacerá
 
 Para ver tu nombre de jugador abre la ventana de chat  digitando la letra `T`.
-
-NOTE: Si se genera el error "`You don't have permissions to perform the command`", es porque no tienes permiso para ejecutar el comando para habilitar trampas en el mundo. Esto se debe a que cuando creaste el mundo de Minecraft seleccionaste el modo "`Survival`", debes crear un nuevo mundo seleccionando el modo "`Creative`".
 
 [[Sharp_Snowballs]]
 == Bolas de nieve explosivas
 
 **Propósito:** Convertir las bolas de nieve en explosivos para poder destruir cosas.
 
-**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods` crea una nueva clase con el nombre `SharpSnowballs`. Reemplace el contenido de la clase con el código en <<Snowballs_Code>>.
+**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods` crea una nueva clase con el nombre `SharpSnowballs`. Reemplaza el contenido de la clase con el código en <<Snowballs_Code>>.
 
 [[Snowballs_Code]]
 .Código para convertir bolas de nieve en explosivos
@@ -361,16 +357,16 @@ MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
 
 
 [[OP_Golems]]
-== Overpowered Golems de hierro (Iron Golems)
+== Dar poderes a los Golems de hierro (Iron Golems)
 
-**Propósito:** Adicionar potion effects a los Golems de hierro cuando sean spawn en el mundo.
+**Propósito:** Adicionar poderes los Golems de hierro cuando sean puestos en el juego.
 
 **Instrucciones:**
 
 En el paquete `org.devoxx4kids.forge.mods`, crea una  nueva clase llamada `OverpoweredIronGolems` y reemplaza el contenido de la clase con el código en <<Iron_Golems_Code>>.
 
 [[Iron_Golems_Code]]
-.Código para Overpowered Iron Golems
+.Código para dar poderes a los Golems de hierro (Iron Golems)
 ====
 [source, java]
 ----
@@ -413,15 +409,15 @@ MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 
 **Gameplay:**
 
-. Spawn an Iron Golem usando el comando `/summon villager_golem`.
-. Spawn mobs hostiles cerca del Iron Golem
+. Pon un Golem de hierro (Iron Golem) usando el comando `/summon villager_golem`.
+. Pon mobs hostiles cerca del Iron Golem
 
 El golem empezará a moverse cerca de los mobs para pelear con ellos. Normalmente los Iron Golems se mueven despacio, pero con el efecto que le agregamos ellos deberán moverse muy rápido.
 
 [[Rain_Water]]
 == Lluvia de agua (Rain Water)
 
-**Propósito:** Colocar agua en los pies de las entities cuando este lloviendo.
+**Propósito:** Colocar agua en los pies de las entidades o objetos que se mueven en el mundo de minecraft cuando este lloviendo.
 
 **Instrucciones:** En el paquete `org.devoxx4kids.forge.mods` `RainWater` y reemplaza el contenido de la clase con el código en <<Rain_Code>>.
 
@@ -483,7 +479,7 @@ MinecraftForge.EVENT_BUS.register(new RainWater());
 **Gameplay:**
 
 . Usa el comando `/weather rain` para hacer que llueva
-. Empieza a moverte, al agua empezara a caer por donde usted o otra entity vaya, pero esta desaparecerá rapidamente
+. Empieza a moverte, al agua empezara a caer por donde usted o otra entidad camine, pero esta desaparecerá rapidamente
 
 
 [[Skeleton_War]]
@@ -568,8 +564,8 @@ MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 
 **Gameplay:**
 
-. Toma un Spawn Skeleton desde tu inventario
-. haz clic derecho sobre el suelo 2 veces para spawn 2 skeletons
+. Toma un Skeleton desde tu inventario
+. Haz clic derecho sobre el suelo 2 veces para engendrar 2 skeletons
 . Los skeletons tendrán armaduras; ellos intentarán atacarse entre ellos
 
 [[Sharing]]
