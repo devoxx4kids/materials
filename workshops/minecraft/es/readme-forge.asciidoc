@@ -414,73 +414,6 @@ MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 
 El golem empezará a moverse cerca de los mobs para pelear con ellos. Normalmente los Iron Golems se mueven despacio, pero con el efecto que le agregamos ellos deberán moverse muy rápido.
 
-[[Rain_Water]]
-== Lluvia de agua (Rain Water)
-
-**Propósito:** Colocar agua en los pies de las entidades o objetos que se mueven en el mundo de minecraft cuando este lloviendo.
-
-**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods` `RainWater` y reemplaza el contenido de la clase con el código en <<Rain_Code>>.
-
-[[Rain_Code]]
-.Codigo de Lluvia de agua (Rain Water)
-====
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class RainWater {
-
-	@SubscribeEvent
-	public void makeWater(LivingUpdateEvent event) {
-		Entity entity = event.getEntity();
-		World world = entity.world;
-		int x = (int) Math.floor(entity.posX);
-		int y = (int) Math.floor(entity.posY);
-		int z = (int) Math.floor(entity.posZ);
-
-		if (!world.isRaining()) {
-			return;
-		}
-
-		for (int i = y; i < 256; i++) {
-			if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.AIR.getBlockState().getBaseState()) {
-				return;
-			}
-		}
-
-		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).isFullCube()) {
-			return;
-		}
-
-		world.setBlockState(new BlockPos(x, y, z), Blocks.WATER.getBlockState().getBaseState());
-	}
-}
-----
-====
-
-Registra la nueva clase en el archivo Main utilizando la línea en  <<Rain_Registering>>.
-
-[[Rain_Registering]]
-.Registro de Lluvia de agua (Rain Water)
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new RainWater());
-----
-====
-
-**Gameplay:**
-
-. Usa el comando `/weather rain` para hacer que llueva
-. Empieza a moverte, al agua empezara a caer por donde usted o otra entidad camine, pero esta desaparecerá rapidamente
-
 
 [[Skeleton_War]]
 == Guerra de esqueletos (Skeleton War)
@@ -567,6 +500,73 @@ MinecraftForge.EVENT_BUS.register(new SkeletonWar());
 . Toma un Skeleton desde tu inventario
 . Haz clic derecho sobre el suelo 2 veces para engendrar 2 skeletons
 . Los skeletons tendrán armaduras; ellos intentarán atacarse entre ellos
+
+[[Rain_Water]]
+== Lluvia de agua (Rain Water)
+
+**Propósito:** Colocar agua en los pies de las entidades o objetos que se mueven en el mundo de minecraft cuando este lloviendo.
+
+**Instrucciones:** En el paquete `org.devoxx4kids.forge.mods` `RainWater` y reemplaza el contenido de la clase con el código en <<Rain_Code>>.
+
+[[Rain_Code]]
+.Codigo de Lluvia de agua (Rain Water)
+====
+[source, java]
+----
+package org.devoxx4kids.forge.mods;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class RainWater {
+
+	@SubscribeEvent
+	public void makeWater(LivingUpdateEvent event) {
+		Entity entity = event.getEntity();
+		World world = entity.world;
+		int x = (int) Math.floor(entity.posX);
+		int y = (int) Math.floor(entity.posY);
+		int z = (int) Math.floor(entity.posZ);
+
+		if (!world.isRaining()) {
+			return;
+		}
+
+		for (int i = y; i < 256; i++) {
+			if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.AIR.getBlockState().getBaseState()) {
+				return;
+			}
+		}
+
+		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).isFullCube()) {
+			return;
+		}
+
+		world.setBlockState(new BlockPos(x, y, z), Blocks.WATER.getBlockState().getBaseState());
+	}
+}
+----
+====
+
+Registra la nueva clase en el archivo Main utilizando la línea en  <<Rain_Registering>>.
+
+[[Rain_Registering]]
+.Registro de Lluvia de agua (Rain Water)
+====
+[source, java]
+----
+MinecraftForge.EVENT_BUS.register(new RainWater());
+----
+====
+
+**Gameplay:**
+
+. Usa el comando `/weather rain` para hacer que llueva
+. Empieza a moverte, al agua empezara a caer por donde usted o otra entidad camine, pero esta desaparecerá rapidamente
 
 [[Sharing]]
 == Comparte tus Mods
