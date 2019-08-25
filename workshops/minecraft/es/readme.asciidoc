@@ -10,7 +10,7 @@ image::../images/forge-logo.png[]
 
 Forge es para modding client-side, client-side significa que debe tener instalado mod en su equipo para que pueda utilizar los mods. Con Forge, usted puede crear increibles cosas como nuevos bloques, elementos, mobs (seres móviles), y hasta biomes (regiones) y dimensiones.
 
-link:../readme-forge.asciidoc[Workshop Minecraft Modding con Forge]
+link:readme-forge.asciidoc[Workshop Minecraft Modding con Forge]
 
 http://shop.oreilly.com/product/0636920036562.do[Libro Minecraft Modding con Forge]
 
