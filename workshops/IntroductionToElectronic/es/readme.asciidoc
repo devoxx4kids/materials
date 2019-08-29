@@ -1,5 +1,4 @@
 =  Introducción a la electrónica
-
 :toc:
 :toc-placement!:
 
@@ -13,15 +12,15 @@ toc::[]
 
 Para realizar necesitamos los siguientes elementos
 
-1 Protoboard
-1 Batería
-2 Resistencias de 220 Ω 
-1 Resistencia de 1 kΩ
-1 Potenciómetro de 100 kΩ
-1 Capacitor de 100 µF
-1 NE555
-2 Leds
-Cables de conexión
+  1 Protoboard
+  1 Batería
+  2 Resistencias de 220 Ω 
+  1 Resistencia de 1 kΩ
+  1 Potenciómetro de 100 kΩ
+  1 Capacitor de 100 µF
+  1 NE555
+  2 Leds
+  Cables de conexión
 
 
 [[Conceptos]]
@@ -29,13 +28,13 @@ Cables de conexión
 
 Algunos de los conceptos presentados en este taller son:
 
-Voltaje
-Corriente
-Resistencia
-Fuente de alimentación
-Protoboard
-LED
-NE555
+=== Voltaje
+=== Corriente
+=== Resistencia
+=== Fuente de alimentación
+=== Protoboard
+=== LED
+=== NE555
 
 
 
