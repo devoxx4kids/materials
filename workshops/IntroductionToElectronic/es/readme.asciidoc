@@ -3,7 +3,6 @@
 :toc:
 :toc-placement!:
 
-Este workshop muestra como hacer modificaciones en Minecraft Modding usando Forge.
 Este taller muestra conceptos de electrónica los cuales serán aplicados para construir un circuito electrónico.
 
 
