@@ -36,5 +36,6 @@ Algunos de los conceptos presentados en este taller son:
 === LED
 === NE555
 
+Slides del taller se encuentran disponibles en: link:Taller_introduccion_electronica.pdf[Taller_introduccion_electronica.pdf]
 
 
