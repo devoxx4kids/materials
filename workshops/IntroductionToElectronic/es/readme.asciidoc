@@ -1,9 +1,10 @@
 =  Introducción a la electrónica
-
 :toc:
 :toc-placement!:
 
 Este taller muestra conceptos de electrónica los cuales serán aplicados para construir un circuito electrónico.
+
+image::Circuito_Electronico.png[]
 
 toc::[]
 
