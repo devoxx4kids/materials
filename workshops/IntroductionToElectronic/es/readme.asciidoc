@@ -4,6 +4,7 @@
 
 Este taller muestra conceptos de electrónica los cuales serán aplicados para construir un circuito electrónico.
 
+video::Video_Circuito.mp4[]
 
 toc::[]
 
