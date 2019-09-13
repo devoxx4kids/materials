@@ -1,0 +1,55 @@
+=  Introducción a la electrónica
+:toc:
+:toc-placement!:
+
+Este taller muestra conceptos de electrónica los cuales serán aplicados para construir un circuito electrónico.
+
+image::Circuito_Electronico.png[]
+
+toc::[]
+
+[[Materiales]]
+== Materiales
+
+Para realizar necesitamos los siguientes elementos
+
+  1 Protoboard
+  1 Batería
+  2 Resistencias de 220 Ω 
+  1 Resistencia de 1 kΩ
+  1 Potenciómetro de 100 kΩ
+  1 Capacitor de 100 µF
+  1 NE555
+  2 Leds
+  Cables de conexión
+
+
+[[Conceptos]]
+== Conceptos
+
+Algunos de los conceptos presentados en este taller son:
+
+=== Voltaje
+El voltaje se encarga de acelerar los electrones libres generando un flujo de corriente que atraviesa un material conductor. Es una magnitud física que cuantifica la posibilidad de llevar electrones de un punto a otro.  A mayor voltaje mayor cantidad de electrones podrán desplazarse entre los dos puntos.
+
+=== Corriente
+Es el flujo de carga por unidad de tiempo que recorre un material. Se debe a un movimiento de los electrones en el interior del material.
+
+=== Resistencia
+Oposición que presenta un cuerpo al paso de una corriente eléctrica que circula a través de él.
+
+=== Fuente de alimentación
+La fuente de alimentación es el dispositivo que que alimenta un circuito electrónico, en este taller se utiliza una pila o bateria
+
+=== Protoboard
+Los protoboard son pequeñas tablas con perforaciones en toda su área, en las cuales se colocan diversos componentes electrónicos, se distinguen por tener filas y columnas con lo que se puede saber en que ubicación posicionar cada pieza, también cuentan con 2 rieles a los lados, los cuales se usaran como las líneas Positivas y Negativas de nuestro circuito.
+
+=== LED
+Un diodo es un componente electrónico de dos terminales que permite la circulación de la corriente eléctrica a través de él en un solo sentido
+
+=== NE555
+Es un circuito integrado (o chip) que puede generar pulsos y esto es lo que hace que los leds alumbren intermitentes, ya que cuando uno está en alto el otro está en bajo.
+
+Slides del taller se encuentran disponibles en: link:Taller_introduccion_electronica.pdf[Taller_introduccion_electronica.pdf]
+
+
