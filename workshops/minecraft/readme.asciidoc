@@ -2,7 +2,7 @@
 
 This page explains how to do Minecraft modding with two different tools: http://files.minecraftforge.net/[Forge] and https://www.spigotmc.org/[Spigot].
 
-Don't know what is Minecraft? Read https://github.com/devoxx4kids/materials/blob/master/workshops/minecraft/minecraft-intro.adoc[Introduction to Minecraft]!
+Don't know what Minecraft is? Read https://github.com/devoxx4kids/materials/blob/master/workshops/minecraft/minecraft-intro.adoc[Introduction to Minecraft]!
 
 image::images/forge-logo.png[]
 
