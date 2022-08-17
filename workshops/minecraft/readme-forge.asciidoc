@@ -19,10 +19,10 @@ toc::[]
 
 Download the following software
 
-. **JDK:** Download and install JDK from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+. **JDK:** Download and install JDK from https://www.oracle.com/java/technologies/downloads/
 . **Eclipse:** Download Eclipse from http://www.eclipse.org/downloads/eclipse-packages/, pick "`Eclipse IDE for Java Developers`" and unzip.
-. **Forge:** Download Forge 1.12 from
-  https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2768/forge-1.12.2-14.23.5.2768-mdk.zip
+. **Forge:** Download Forge 1.19 from
+  https://maven.minecraftforge.net/net/minecraftforge/forge/1.19-41.1.0/forge-1.19-41.1.0-mdk.zip
 
 === Mac or Windows
 
@@ -47,10 +47,9 @@ Make sure all the software lised in <<Download>> is downloaded.
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
 . Change to the directory `cd forge`
-. In File Explorer, double click on the Forge 1.12 zip file downloaded earlier and extract all the contents in this newly created directory.
-. In Command Prompt, give the command `gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
-
-A detailed video with complete installation steps on Mac is given below:
+. In File Explorer, double click on the Forge 1.19 zip file downloaded earlier and extract all the contents.
+. Copy the contents from this extracted folder to `forge` directory using the command `cp -r ~/Downloads/forge-1.19-41.1.0-mdk/* .`.
+. At Command Prompt, give the command `./gradlew genEclipseRuns`. The output should show `BUILD SUCCESSFUL`.
 
 image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
 
