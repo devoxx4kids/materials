@@ -1,40 +1,55 @@
 package org.devoxx4kids.forge.mods;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.entity.projectile.EntityTippedArrow;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.projectile.Snowball;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = MainMod.MODID)
 public class SharpSnowballs {
+    @SubscribeEvent
+    public static void replaceSnowballWithArrow(EntityJoinLevelEvent event) {
+        Entity snowball = event.getEntity();
+        Level level = event.getLevel();
 
-	@SubscribeEvent
-	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
-		Entity snowball = event.getEntity();
-		World world = snowball.worldObj;
+        if (!(snowball instanceof Snowball)) {
+            return;
+        }
 
-		if (!(snowball instanceof EntitySnowball)) {
-			return;
-		}
+        if (!level.isClientSide) {
+            Arrow arrow = EntityType.ARROW.create(level);
+            arrow.moveTo(snowball.position());
+            arrow.setDeltaMovement(snowball.getDeltaMovement());
+            level.addFreshEntity(arrow);
+        }
 
-		if (!world.isRemote) {
-			EntityTippedArrow arrow = new EntityTippedArrow(world);
-			arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ,
-					0, 0);
-			arrow.motionX = snowball.motionX;
-			arrow.motionY = snowball.motionY;
-			arrow.motionZ = snowball.motionZ;
+        event.setCanceled(true);
+    }
 
-			// gets arrow out of player's head
-			// gets the angle of arrow right, in the direction of motion
-			arrow.posX += arrow.motionX;
-			arrow.posY += arrow.motionY;
-			arrow.posZ += arrow.motionZ;
+    // explosive snowballs
+    // ================================
 
-			world.spawnEntityInWorld(arrow);
-			snowball.setDead();
-		}
-	}
+    // @SubscribeEvent
+    // public static void replaceSnowballWithArrow(EntityJoinLevelEvent event) {
+    //     Entity snowball = event.getEntity();
+    //     Level level = event.getLevel();
+    //
+    //     if (!(snowball instanceof Snowball)) {
+    //         return;
+    //     }
+    //
+    //     if (!level.isClientSide) {
+    //         PrimedTnt tnt = EntityType.TNT.create(level);
+    //         tnt.setFuse(80);
+    //         tnt.moveTo(snowball.position());
+    //         tnt.setDeltaMovement(snowball.getDeltaMovement());
+    //         level.addFreshEntity(tnt);
+    //     }
+    //
+    //     event.setCanceled(true);
+    // }
 }

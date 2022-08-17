@@ -1,16 +1,32 @@
 package org.devoxx4kids.forge.mods;
 
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = MainMod.MODID)
 public class ChatItems {
-
     @SubscribeEvent
-    public void giveItems(ServerChatEvent event) {
+    public static void giveItems(ServerChatEvent event) {
         if (event.getMessage().contains("potato")) {
-            event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
+            event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
+        }
+
+        if (event.getMessage().contains("diamond")) {
+            event.getPlayer().getInventory().add(new ItemStack(Items.DIAMOND, 64));
         }
     }
+
+    // multiple items
+    // ================================
+
+    // @SubscribeEvent
+    // public static void giveItems(ServerChatEvent event) {
+    //     if (event.getMessage().contains("potato")) {
+    //         event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
+    //         event.getPlayer().getInventory().add(new ItemStack(Items.DIAMOND, 64));
+    //     }
+    // }
 }

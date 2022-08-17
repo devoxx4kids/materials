@@ -1,30 +1,30 @@
 package org.devoxx4kids.forge.mods;
 
-import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+@Mod.EventBusSubscriber(modid = MainMod.MODID)
 public class CreeperSpawnAlert {
-
     @SubscribeEvent
-    public void sendAlert(EntityJoinWorldEvent event) {
-        if (!(event.getEntity() instanceof EntityCreeper)) {
+    public static void sendAlert(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof Creeper)) {
             return;
         }
 
-        List players = event.getEntity().worldObj.playerEntities;
+        if (!event.getLevel().isClientSide) {
+            return;
+        }
 
-        for (int i = 0; i < players.size(); i++) {
-            EntityPlayer player = (EntityPlayer) players.get(i);
-            if (event.getWorld().isRemote) {
-                player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "A creeper has spawned!"), false);
-            }
+        for (Player player : event.getLevel().players()) {
+            player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "A creeper has spawned!"));
         }
     }
+
+    // variations are pretty simple
+    // EntityCreeper becomes Creeper, EntityZombie becomes Zombie, etc.
 }

@@ -1,24 +1,24 @@
 package org.devoxx4kids.forge.mods;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = MainMod.MODID)
 public class OverpoweredIronGolems {
+    @SubscribeEvent
+    public static void applyPotionEffectsToGolem(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof IronGolem)) {
+            return;
+        }
 
-	@SubscribeEvent
-	public void golemMagic(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntityIronGolem)) {
-			return;
-		}
-
-		EntityLiving entity = (EntityLiving) event.getEntity();
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(5), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 1000000, 5));
-	}
+        IronGolem golem = (IronGolem) event.getEntity();
+        golem.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1000000, 5));
+    }
 }
