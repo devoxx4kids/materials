@@ -36,8 +36,8 @@ Make sure all the software lised in <<Download>> is downloaded.
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
 . Change to the directory `cd forge`
-. Unzip the downloaded Forge 1.12 zip file as `unzip ~/Downloads/forge-1.12.2-14.23.1.2555-mdk.zip`
-. Give the command `./gradlew setupDecompWorkspace eclipse`. The output should show `BUILD SUCCESSFUL`.
+. Unzip the downloaded Forge 1.19 zip file as `unzip ~/Downloads/forge-1.19-41.1.0-mdk.zip`
+. Give the command `./gradlew genEclipseRuns`. The output should show `BUILD SUCCESSFUL`.
 
 ==== Windows
 
@@ -47,9 +47,8 @@ Make sure all the software lised in <<Download>> is downloaded.
 . Change directory to Desktop as `cd Desktop`
 . Make a new directory by giving the command `mkdir forge`
 . Change to the directory `cd forge`
-. In File Explorer, double click on the Forge 1.19 zip file downloaded earlier and extract all the contents.
-. Copy the contents from this extracted folder to `forge` directory using the command `cp -r ~/Downloads/forge-1.19-41.1.0-mdk/* .`.
-. At Command Prompt, give the command `./gradlew genEclipseRuns`. The output should show `BUILD SUCCESSFUL`.
+. In File Explorer, double click on the Forge 1.19 zip file downloaded earlier and extract all the contents in the `forge` directory.
+. At Command Prompt, give the command `gradlew genEclipseRuns`. The output should show `BUILD SUCCESSFUL`.
 
 image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
 
