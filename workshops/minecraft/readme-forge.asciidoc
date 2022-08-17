@@ -50,8 +50,6 @@ Make sure all the software lised in <<Download>> is downloaded.
 . In File Explorer, double click on the Forge 1.19 zip file downloaded earlier and extract all the contents in the `forge` directory.
 . At Command Prompt, give the command `gradlew genEclipseRuns`. The output should show `BUILD SUCCESSFUL`.
 
-image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
-
 === Verify
 
 This is a very important step as this will confirm that you can actually start modding.
