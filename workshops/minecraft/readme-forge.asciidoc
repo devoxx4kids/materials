@@ -55,9 +55,11 @@ Make sure all the software lised in <<Download>> is downloaded.
 This is a very important step as this will confirm that you can actually start modding.
 
 . Open up Eclipse
-. In the "`Eclipse Launcher`" window, click on `Browse...`, choose the location of `eclipse` directory in the unzipped forge directory
-. Click on "`OK`"
-. In the Eclipse window, you should see a "`MDKExample`" folder and be able to expand it. There should be no red exclamation marks next to it.
+. In the "`Eclipse IDE Launcher`" window, click on `Launch`.
+. In the Eclipse window, chose menu `File`, `Import...`, select `Gradle`, `Existing Gradle Project`, click `Next >` button two times, choose the location of `forge` directory, and click on `Finish`.
+. The Eclipse window should look like as shown:
+
+image::images/eclipse-forge-install.png[]
 
 === Troubleshooting
 
