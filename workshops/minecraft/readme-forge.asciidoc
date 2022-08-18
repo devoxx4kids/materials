@@ -166,58 +166,46 @@ public void giveItems(ServerChatEvent event){
 [[Dragon_Spawner]]
 == Ender Dragon Spawner
 
-**Purpose:** To spawn an Ender Dragon every time a player places a Dragon Egg block.
+**Purpose:** This mod will spawn an Ender Dragon every time a player places a Dragon Egg block.
 
-**Instructions:** In the package `org.devoxx4kids.forge.mods`, make a new class called `DragonSpawner` and replace its code with the code shown in <<Dragon_Spawner_Code>>.
+**Instructions:** In the package `com.example.examplemod`, make a new class called `DragonSpawner` and replace its code with the code shown in <<Dragon_Spawner_Code>>.
 
 [[Dragon_Spawner_Code]]
 .Dragon Spawner code
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.dragon.phase.PhaseList;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.boss.enderdragon.phases.EnderDragonPhase;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class DragonSpawner {
-
-	@SubscribeEvent
-	public void spawnDragon(PlaceEvent event) {
-		if (event.getPlacedBlock() == Blocks.DRAGON_EGG.getBlockState().getBaseState()) {
-			event.getWorld().setBlockToAir(new BlockPos(event.getPos().getX(), event.getPos().getY(),event.getPos().getZ()));
-			EntityDragon dragon = new EntityDragon(event.getWorld());
-			dragon.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
-			dragon.getPhaseManager().setPhase(PhaseList.TAKEOFF);
-			event.getWorld().spawnEntity(dragon);
-		}
-	}
+    @SubscribeEvent
+    public static void spawnDragon(BlockEvent.EntityPlaceEvent event) {
+        if (event.getPlacedBlock().getBlock() == Blocks.DRAGON_EGG) {
+            event.getLevel().removeBlock(event.getPos(), false); // false = no flags
+            EnderDragon dragon = EntityType.ENDER_DRAGON.create(event.getEntity().getLevel());
+            dragon.moveTo(event.getPos(), 0, 0);
+            dragon.getPhaseManager().setPhase(EnderDragonPhase.TAKEOFF);
+            event.getLevel().addFreshEntity(dragon);
+        }
+    }
 }
-----
-====
-
-Then, register it like you did with Chat Items, but use the line of code shown in <<Dragon_Spawner_Registering>>.
-
-[[Dragon_Spawner_Registering]]
-.Dragon Spawner registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 ----
 ====
 
 **Gameplay:**
 
-. Use the command "`/give <your player name> dragon_egg`" to give yourself a dragon egg
-. Select the slot in which the dragon egg is placed
-. Double click in the world to place down the dragon egg, and an Ender Dragon should spawn
-
-The player name will not be your normal player name, it will be a Forge-generated player name. Check your chat window to see what your player name is.
+. Use the command "`/give Dev minecraft:dragon_egg`" to give yourself a dragon egg
+. Select slot from the inventory?? in which the dragon egg is placed
+. Double click in the world to place down the dragon egg, and this will spawn an Ender Dragon
 
 NOTE: You may get the error "`You don't have permissions to perform the command`". The reason it says that you don't have permission to run the command is because you don't have cheats enabled in your world. When you are creating a world, there will be a box that says you are in "`Survival`" mode. Click on the box until it says "`Creative`" mode, which will automatically enable cheats. Then, create the rest of the world normally. You will need to create a new world for this.
 
@@ -229,26 +217,29 @@ Change block that triggers spawning and spawn a different item. For example chan
 ====
 [source, java]
 ----
-if (event.getPlacedBlock() == Blocks.SPONGE.getBlockState().getBaseState()) {
-	event.getWorld().setBlockToAir(new BlockPos(event.getPos().getX(), event.getPos().getY(),event.getPos().getZ()));
-	EntitySquid squid = new EntitySquid(event.getWorld());
-	squid.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
-	event.getWorld().spawnEntity(squid);
+@SubscribeEvent
+public static void spawnSquid(BlockEvent.EntityPlaceEvent event) {
+    if (event.getPlacedBlock() == Blocks.SPONGE.defaultBlockState()) {
+         event.getLevel().removeBlock(event.getPos(), false); // false = no flags
+         Squid squid = EntityType.SQUID.create(event.getEntity().level);
+         squid.moveTo(event.getPos(), 0, 0);
+         event.getLevel().addFreshEntity(squid);
+     }
 }
 ----
 ====
 
-After doing this, press `Control` + `Shift` + `O` on a Windows computer or `Cmd` + `Shift` + `O` on a Mac computer to import one class and fix the error. When you test out this mod, place down a Wet Sponge, not a Sponge.
+After doing this, press `Control` + `Shift` + `O` on a Windows computer or `Cmd` + `Shift` + `O` on a Mac computer to import one class and fix the error. In the minecraft game window, give yourself a sponge using the command  `/give Dev minecraft:sponge`. Select slot from the inventory?? in which the sponge is placed, double click in the world to place down the sponge, and this will spawn a Squid.
 
 === Change offset of entities
 
-Change `event.pos.getX()`, `event.pos.getY()`, `event.pos.getZ()` and add or subtract 5 to spawn entities at an offset.
+Spawn ender dragon 2 blocks above the location where the dragon egg is placed.
 
 .Spawn offset
 ====
 [source, java]
 ----
-dragon.setLocationAndAngles(event.getPos().getX() + 5, event.getPos().getY(), event.getPos().getZ(), 0, 0);
+dragon.moveTo(event.getPos().above(2), 0, 0);
 ----
 ====
 
