@@ -67,117 +67,46 @@ image::images/forge-eclipse-expanded-view.png[]
 +
 image::images/forge-minecraft-first-run.png[]
 
-
-=== Troubleshooting
-
-. If you either selected "`Cancel`"" or selected a different directory in `Eclipse Launcher`, click on "`File`", "`Switch Workspace`", "`Other...`", and select the correct directory.
-. If you don't see the MDKExample folder, the `gradlew` command might have shown some errors. Try running it again.
-
-[[Main_File]]
-== The Main File
-
-To start modding, we need a main file. This file will register all of our mods so that they actually function in the game. To make this main file, first you need to make a new package. Click on the arrow next to the "`MDKExample`" folder in the left side of your window. Then, right click on "`src/main/java`" and select `New` > `Package`. Name it `org.devoxx4kids.forge.mods` and click on the Finish Button.
-
-We need to create a new class in this package. To do this, right click on the new package you created and select `New` > `Class`. Name it `MainMod` and click on the Finish Button. The middle of your screen will show its code. Replace all of the code with the code in <<Setting_Up_The_Main_File>>.
-
-[[Setting_Up_The_Main_File]]
-.Set up the main file
-====
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-	public static final String MODID = "mymods";
-	public static final String VERSION = "1.0";
-
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-
-	}
-}
-----
-====
-
-Your main file is now ready to go.
+Let's start modding!
 
 [[Chat_Items]]
 == Chat Items
 
-**Purpose:** To make the player receive items when he/she says a certain word or phrase in a chat message.
+**Purpose:** The first mod wil add items to player's inventor when a certain word or phrase is spelled in a chat message.
 
-**Instructions:** In your new package, `org.devoxx4kids.forge.mods`, make a new class called `ChatItems`. To do this, right click on the package `org.devoxx4kids.forge.mods` and select `New` > `Class` then fill the name property with `ChatItems` and click on the Finish Button. Replace its code with <<Chat_Items_Code>>. 
+**Instructions:** THe `ssrc/main/java` folder already has a `com.example.examplemod` package. We need to make a new class called `ChatItems`. To do this, right click on the package `com.example.examplemod` and select `New` > `Class` then fill the name property with `ChatItems` and click on the `Finish` Button. Replace its code with <<Chat_Items_Code>>. 
 
 [[Chat_Items_Code]]
 .Chat Items code
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class ChatItems {
-
-	@SubscribeEvent
-	public void giveItems(ServerChatEvent event) {
-		if (event.getMessage().contains("potato")) {
-			event.getPlayer().inventory.addItemStackToInventory(new ItemStack(
-					Items.POTATO, 64));
-		}
-	}
-}
-----
-====
-
-Register your mod in the main file by using the line shown in <<Chat_Items_Registering>>. The line should go between the two brackets after the line that says `public void init(FMLInitializationEvent event)`.
-
-[[Chat_Items_Registering]]
-.Chat Items registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new ChatItems());
-----
-====
-
-Your main file should now look like <<Main_File_After_Register>>.
-
-[[Main_File_After_Register]]
-.Main file after registering Chat Items
-====
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-	public static final String MODID = "mymods";
-	public static final String VERSION = "1.0";
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
+public class ChatItems {
+    @SubscribeEvent
+    public static void giveItems(ServerChatEvent event) {
+        if (event.getMessage().contains("potato")) {
+            event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
+        }
 
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(new ChatItems());
-	}
+        if (event.getMessage().contains("diamond")) {
+            event.getPlayer().getInventory().add(new ItemStack(Items.DIAMOND, 64));
+        }
+    }
 }
 ----
 ====
 
-Once you've finished editing the files, click the green "`Run Client`" button on the Eclipse menu bar to build and run your modded Minecraft.
+
+Once you've finished editing the files, click the green `Run Client` button on the Eclipse menu bar to build and run your modded Minecraft.
 
 
 **Gameplay:**
@@ -189,13 +118,13 @@ Once you've finished editing the files, click the green "`Run Client`" button on
 
 === Change text/item
 
-Change text message and produce a different item. For example change the text to `diamond` and item produced to `Diamond`. Use `Ctrl`+`Space` to show the list of items.
+This mod will produce a different item for a different text message. For example change the text to `diamond` and the item produced to `Diamond`. Use `Ctrl`+`Space` to show the list of items.
 
-Close Minecraft window and restart it by clicking on the "`Run Client`" button on the Eclipse menu bar.
+Close Minecraft game window and restart it by clicking on the "`Run Client`" button on the Eclipse menu bar.
 
 === Different Items
 
-Produce different items for different chat text
+This item produces different items for different chat text. For example, `potato` chat text will yield a potato in the inventory and `diamond` chat text will yield a diamond in the inventory.
 
 [[Different_Chat_Items_Code]]
 .Different Chat Items code
@@ -217,7 +146,7 @@ public void giveItems(ServerChatEvent event){
 
 === Multiple Items
 
-Produce multiple items for chat text
+This mod will produce multiple items for a chat text. Instead of only producing potato and diamond at one time, it can product potato and diamond, both at the same time, on the same text.
 
 [[Multiple_Chat_Items_Code]]
 .Multiple Chat Items code
