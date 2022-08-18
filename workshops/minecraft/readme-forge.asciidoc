@@ -60,10 +60,10 @@ This is a very important step as this will confirm that you can actually start m
 . The Eclipse window should look like as shown:
 +
 image::images/eclipse-forge-install.png[]
-. Double click on `forge` folder in `Package Explorer` on the left side. This is where all the source code exists and we'll modify it later. Double clic on `forge` folder in `Gradle Task` on the right side, double click on `forgegradle runs`, and select `runClient`.
+. Double click on `forge` folder in `Package Explorer` on the left side. This is where all the source code exists and we'll modify it later. Double click on `forge` folder in `Gradle Task` on the right side, double click on `forgegradle runs`, and select `runClient`.
 +
 image::images/forge-eclipse-expanded-view.png[]
-. Double click on `runClient` starts Minecraft launcher and looks like as shown:
+. Double click on `runClient` to start the Minecraft launcher. It looks like as shown:
 +
 image::images/forge-minecraft-first-run.png[]
 
@@ -72,7 +72,7 @@ Let's start modding!
 [[Chat_Items]]
 == Chat Items
 
-**Purpose:** The first mod wil add items to player's inventor when a certain word or phrase is spelled in a chat message.
+**Purpose:** This mod wil add items to player's inventory?? when a certain word or phrase is spelled in a chat message.
 
 **Instructions:** THe `ssrc/main/java` folder already has a `com.example.examplemod` package. We need to make a new class called `ChatItems`. To do this, right click on the package `com.example.examplemod` and select `New` > `Class` then fill the name property with `ChatItems` and click on the `Finish` Button. Replace its code with <<Chat_Items_Code>>. 
 
