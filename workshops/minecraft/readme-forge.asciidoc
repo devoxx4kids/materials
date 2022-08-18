@@ -59,15 +59,15 @@ This is a very important step as this will confirm that you can actually start m
 . In the Eclipse window, chose menu `File`, `Import...`, select `Gradle`, `Existing Gradle Project`, click `Next >` button two times, choose the location of `forge` directory, and click on `Finish`.
 . The Eclipse window should look like as shown:
 
-image::images/eclipse-forge-install.png[]
+  image::images/eclipse-forge-install.png[]
 
-. Double click on `forge` folder in `Package Explorer` on the left side. This is where all the source code exists and we'll modify it later. Double clic on `forge` folder in `Gradle Task`, double click on `forgegradle runs`, and select `runClient`.
+. Double click on `forge` folder in `Package Explorer` on the left side. This is where all the source code exists and we'll modify it later. Double clic on `forge` folder in `Gradle Task` on the right side, double click on `forgegradle runs`, and select `runClient`.
 
-image::images/forge-eclipse-expanded-view.png[]
+  image::images/forge-eclipse-expanded-view.png[]
 
 . Double click on `runClient` starts Minecraft launcher and looks like as shown:
 
-image::images/forge-minecraft-first-run.png[]
+  image::images/forge-minecraft-first-run.png[]
 
 
 === Troubleshooting
