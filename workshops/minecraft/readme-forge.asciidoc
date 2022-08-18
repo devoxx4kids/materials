@@ -74,7 +74,7 @@ Let's start modding!
 
 **Purpose:** This mod wil add items to player's inventory?? when a certain word or phrase is spelled in a chat message.
 
-**Instructions:** Create a new Java class called `ChatItems`. To do this, right click on the package `com.example.examplemod` and select `New` > `Class`, fill the name property with `ChatItems` and click on the `Finish` Button. Replace its code with <<Chat_Items_Code>>. 
+**Instructions:** Create a new Java class called `ChatItems`. To do this, expand the folder `src/main/java`, right click on the package `com.example.examplemod` and select `New` > `Class`, fill the name property with `ChatItems` and click on the `Finish` Button. Replace its code with <<Chat_Items_Code>>. 
 
 [[Chat_Items_Code]]
 .Chat Items code
@@ -101,24 +101,27 @@ public class ChatItems {
 ----
 ====
 
-Once you've finished editing the files, click the green `Run Client` button on the Eclipse menu bar to build and run your modded Minecraft.
+Once you've finished editing the files, click the green play button on the Eclipse menu bar to build and run your modded Minecraft. Eclipse will ask you to save the file. Go ahead and click on the `Save` button. This will start the Minecraft launcher.
+
+image::images/forge-eclipse-play-button.png[]
+
 
 **Gameplay:**
 
-. Create a new "Creative" world
+. Create a new `Creative` world
 . Press `T` to open up the chat window
-. Type in any message that contains the word "potato"
+. Type in any message that contains the word `potato`
 . You should receive one stack (one stack = 64 items) of potatoes
 
 === Change text/item
 
 This mod will produce a different item for a different text message. For example change the text to `diamond` and the item produced to `Diamond`. Use `Ctrl`+`Space` to show the list of items.
 
-Close Minecraft game window and restart it by clicking on the "`Run Client`" button on the Eclipse menu bar.
+Close Minecraft game window and restart it by clicking on the play button on the Eclipse menu bar.
 
 === Different Items
 
-This item produces different items for different chat text. For example, `potato` chat text will yield a potato in the inventory and `diamond` chat text will yield a diamond in the inventory.
+This mod variation produces different items for different chat text. For example, `potato` chat text will yield a potato in the inventory?? and `diamond` chat text will yield a diamond in the inventory.
 
 [[Different_Chat_Items_Code]]
 .Different Chat Items code
@@ -140,7 +143,7 @@ public void giveItems(ServerChatEvent event){
 
 === Multiple Items
 
-This mod will produce multiple items for a chat text. Instead of only producing potato and diamond at one time, it can product potato and diamond, both at the same time, on the same text.
+This mod will produce multiple items for a chat text. Instead of only producing potato and diamond one at one time, it can product potato and diamond, both at the same time, on a same text.
 
 [[Multiple_Chat_Items_Code]]
 .Multiple Chat Items code
@@ -197,15 +200,15 @@ public class DragonSpawner {
 
 **Gameplay:**
 
-. Use the command "`/give Dev minecraft:dragon_egg`" to give yourself a dragon egg
+. Use the command `/give Dev minecraft:dragon_egg` to give yourself a dragon egg
 . Select slot from the inventory?? in which the dragon egg is placed
 . Double click in the world to place down the dragon egg, and this will spawn an Ender Dragon
 
-NOTE: You may get the error "`You don't have permissions to perform the command`". The reason it says that you don't have permission to run the command is because you don't have cheats enabled in your world. When you are creating a world, there will be a box that says you are in "`Survival`" mode. Click on the box until it says "`Creative`" mode, which will automatically enable cheats. Then, create the rest of the world normally. You will need to create a new world for this.
+NOTE: You may get the error `You don't have permissions to perform the command`. The reason it says that you don't have permission to run the command is because you don't have cheats enabled in your world. When you are creating a world, there will be a box that says you are in `Survival` mode. Click on the box until it says "`Creative`" mode, which will automatically enable cheats. Then, create the rest of the world normally. You will need to create a new world for this.
 
 === Change block/entity
 
-Change block that triggers spawning and spawn a different item. For example change the block to `sponge` and entity to `EntitySquid`. Use Ctrl+Space to show the list of items.
+This mod will change the block that triggers spawning and spawn a different item. For example change the block to `sponge` and entity to `EntitySquid`. Use Ctrl+Space to show the list of items.
 
 .Spawn squid
 ====
@@ -223,11 +226,15 @@ public static void spawnSquid(BlockEvent.EntityPlaceEvent event) {
 ----
 ====
 
-After doing this, press `Control` + `Shift` + `O` on a Windows computer or `Cmd` + `Shift` + `O` on a Mac computer to import one class and fix the error. In the minecraft game window, give yourself a sponge using the command  `/give Dev minecraft:sponge`. Select slot from the inventory?? in which the sponge is placed, double click in the world to place down the sponge, and this will spawn a Squid.
+After doing this, press `Cmd` + `Shift` + `O` on a Mac computer or `Control` + `Shift` + `O` on a Windows computer to import one class and fix the error. In the minecraft game window, give yourself a sponge using the command  `/give Dev minecraft:sponge`. Select slot from the inventory?? in which the sponge is placed, double click in the world to place down the sponge, and this will spawn a Squid.
+
+Run the minecraft game and enjoy the new mod.
 
 === Change offset of entities
 
-Spawn ender dragon 2 blocks above the location where the dragon egg is placed.
+This mod will spawn ender dragon 2 blocks above the location where the dragon egg is placed.
+
+Change one line in the `spawnDragon` method to the one below:
 
 .Spawn offset
 ====
@@ -236,6 +243,8 @@ Spawn ender dragon 2 blocks above the location where the dragon egg is placed.
 dragon.moveTo(event.getPos().above(2), 0, 0);
 ----
 ====
+
+Run the minecraft game and enjoy the new mod.
 
 [[Creeper_Alert]]
 == Creeper Spawn Alert
