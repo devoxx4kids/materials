@@ -74,7 +74,7 @@ Let's start modding!
 
 **Purpose:** This mod wil add items to player's inventory?? when a certain word or phrase is spelled in a chat message.
 
-**Instructions:** THe `ssrc/main/java` folder already has a `com.example.examplemod` package. We need to make a new class called `ChatItems`. To do this, right click on the package `com.example.examplemod` and select `New` > `Class` then fill the name property with `ChatItems` and click on the `Finish` Button. Replace its code with <<Chat_Items_Code>>. 
+**Instructions:** Create a new Java class called `ChatItems`. To do this, right click on the package `com.example.examplemod` and select `New` > `Class`, fill the name property with `ChatItems` and click on the `Finish` Button. Replace its code with <<Chat_Items_Code>>. 
 
 [[Chat_Items_Code]]
 .Chat Items code
@@ -96,24 +96,18 @@ public class ChatItems {
         if (event.getMessage().contains("potato")) {
             event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
         }
-
-        if (event.getMessage().contains("diamond")) {
-            event.getPlayer().getInventory().add(new ItemStack(Items.DIAMOND, 64));
-        }
     }
 }
 ----
 ====
 
-
 Once you've finished editing the files, click the green `Run Client` button on the Eclipse menu bar to build and run your modded Minecraft.
-
 
 **Gameplay:**
 
-. Create a new "`Creative`" world
-. Press "`T`" to open up the chat window
-. Type in any message that contains the word "`potato`"
+. Create a new "Creative" world
+. Press `T` to open up the chat window
+. Type in any message that contains the word "potato"
 . You should receive one stack (one stack = 64 items) of potatoes
 
 === Change text/item
