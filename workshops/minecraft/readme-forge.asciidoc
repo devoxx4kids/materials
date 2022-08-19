@@ -249,9 +249,9 @@ Run the minecraft game and enjoy the new mod.
 [[Creeper_Alert]]
 == Creeper Spawn Alert
 
-**Purpose:** To alert all players when a creeper spawns.
+**Purpose:** This mod will alert all players when a creeper spawns.
 
-**Instructions:** In your package, make a new class called `CreeperSpawnAlert`. Replace its contents with <<Creeper_Spawn_Code>>.
+**Instructions:** Make a new Java class called `CreeperSpawnAlert`. Replace its contents with <<Creeper_Spawn_Code>>.
 
 [[Creeper_Spawn_Code]]
 .Creeper Spawn Alert code
@@ -260,45 +260,25 @@ Run the minecraft game and enjoy the new mod.
 ----
 package org.devoxx4kids.forge.mods;
 
-import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+@Mod.EventBusSubscriber(modid = MainMod.MODID)
 public class CreeperSpawnAlert {
-
-	@SubscribeEvent
-	public void sendAlert(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntityCreeper)) {
-			return;
-		}
-
-		List players = event.getEntity().world.playerEntities;
-
-		for (int i = 0; i < players.size(); i++) {
-			EntityPlayer player = (EntityPlayer) players.get(i);
-			if (event.getWorld().isRemote) {
-				player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "A creeper has spawned!"), false);
-			}
-		}
-	}
+    @SubscribeEvent
+    public static void sendAlert(EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof Creeper && event.getLevel().isClientSide) {
+            for (Player player : event.getLevel().players()) {
+                player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "A creeper has spawned!"));
+            }
+        }
+    }
 }
-----
-====
-
-Register it using the line in <<Creeper_Spawn_Registering>>.
-
-[[Creeper_Spawn_Registering]]
-.Creeper Spawn Alert registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
 ----
 ====
 
@@ -307,117 +287,54 @@ MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
 . Make sure you are not on peaceful mode.
 . Set the time to night time `/time set night` 
 
-You should get a bunch of messages saying "`A creeper has spawned!`" in light green letters. One of these messages is sent to you every time a creeper spawns.
+You should get a bunch of messages saying "`A creeper has spawned!`" in green color. One of these messages is sent to you every time a creeper spawns.
 
 === Change color/format of message
 
 ==== Change color to red
 
+This mod will change color of the message.
+
 .Color of message
 ====
 [source,java]
 ----
-player.sendStatusMessage(new TextComponentString(TextFormatting.RED + "A creeper has spawned!"), false);
+player.sendSystemMessage(Component.literal(ChatFormatting.RED + "A creeper has spawned!"));
 ----
 ====
 
-Try different colors by code completion after `EnumChatFormatting`.
-
-==== Change style to italics
-
-.Style of message
-====
-[source,java]
-----
-player.sendStatusMessage(new TextComponentString(TextFormatting.ITALIC + "A creeper has spawned!"));
-----
-====
-
-Try different styles by code completion after `EnumChatFormatting`.
+Try different colors by code completion after `ChatFormatting`.
 
 === Change text of message
 
+This mod will change the message printed.
+
 .Style of message
 ====
 [source,java]
 ----
-player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "Run away, a creeper has spawned!"));
+player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Run away, a creeper has spawned!"));
 ----
 ====
 
 Talk about text within quotes.
 
-=== Print same message for different mobs
+=== Print a different message for another mob
 
-.Same message for differet mobs using AND
+This mod will print a different message for another mob.
+
+.Different message for another mob
 ====
 [source, java]
 ----
-if (!(event.getEntity() instanceof EntityCreeper && event.getEntity() instanceof EntityZombie)) {
-	return;
+if (event.getEntity() instanceof Zombie && event.getLevel().isClientSide) {
+    for (Player player : event.getLevel().players()) {
+	player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "A zombie has spawned!"));
+    }
 }
 ----
 ====
 
-OR
-
-.Same message for differet mobs using OR
-====
-[source, java]
-----
-if (!(event.getEntity() instanceof EntityCreeper) || !(event.getEntity() instanceof EntityZombie)) {
-	return;
-}
-----
-====
-
-Explain AND and OR
-
-=== Print different message for different mobs
-
-.Different message for different mobs
-====
-[source, java]
-----
-@SubscribeEvent
-public void sendAlert(EntityJoinWorldEvent event) {
-	if (!(event.getEntity() instanceof EntityCreeper || event.getEntity() instanceof EntityZombie)) {
-		return;
-	}
-	
-	String message;
-	
-	if (event.getEntity() instanceof EntityCreeper) {
-		message = "A creeper has spawned";
-	} else {
-		message = "A zombie has spawned";
-	}
-
-	List players = event.getEntity().worldObj.playerEntities;
-
-	for (int i = 0; i < players.size(); i++) {
-		EntityPlayer player = (EntityPlayer) players.get(i);
-		if (event.getWorld().isRemote) {
-			player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + message), false);
-		}
-	}
-}
-----
-====
-
-=== Print message for all mobs
-
-.Message for all mobs
-====
-[source, java]
-----
-if (!(event.getEntity() instanceof EntityMob)) {
-	return;
-}
-----
-====
-
-Explain how to reach `EntityMob`.
 
 [[Sharp_Snowballs]]
 == Sharp Snowballs
