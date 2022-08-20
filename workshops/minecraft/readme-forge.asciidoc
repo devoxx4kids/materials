@@ -258,7 +258,7 @@ Run the minecraft game and enjoy the new mod.
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -348,7 +348,7 @@ if (event.getEntity() instanceof Zombie && event.getLevel().isClientSide) {
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -414,57 +414,47 @@ Make sure to fix the imports using `Cmd` + `Shift` + `0` on Mac and `Ctrl` + `Sh
 [[OP_Golems]]
 == Overpowered Iron Golems
 
-**Purpose:** To add helpful potion effects to Iron Golems when they spawn in the world.
+**Purpose:** This mod will add helpful potion effects to Iron Golems when they are spawned in the world.
 
 **Instructions:**
 
-In your package, make a new class called `OverpoweredIronGolems` and replace its contents with <<Iron_Golems_Code>>.
+Create a new Java class called `OverpoweredIronGolems` and replace its contents with <<Iron_Golems_Code>>.
 
 [[Iron_Golems_Code]]
 .Overpowered Iron Golems code
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class OverpoweredIronGolems {
+    @SubscribeEvent
+    public static void applyPotionEffectsToGolem(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof IronGolem)) {
+            return;
+        }
 
-	@SubscribeEvent
-	public void golemMagic(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntityIronGolem)) {
-			return;
-		}
-
-		EntityLiving entity = (EntityLiving) event.getEntity();
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(5), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 1000000, 5));
-	}
+        IronGolem golem = (IronGolem) event.getEntity();
+        golem.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1000000, 5));
+    }
 }
-----
-====
-
-Then, register the class using the line shown in <<Iron_Golems_Register>>.
-
-[[Iron_Golems_Register]]
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 ----
 ====
 
 **Gameplay:**
 
-. Spawn an Iron Golem by using the command `/summon villager_golem`.
+. Spawn an Iron Golem by using the command `/summon minecraft:iron_golem`.
 . Spawn some hostile mobs near the Iron Golem
 
 The golem should move towards them to kill them. Normally, Iron Golems move slowly, but with the speed effect from the mod, they should move very fast.
