@@ -462,9 +462,9 @@ The golem should move towards them to kill them. Normally, Iron Golems move slow
 [[Rain_Water]]
 == Rain Water
 
-**Purpose:** To place water at the feet of entities when it is raining.
+**Purpose:** Normally, there is no water on the ground when it rains. This mod places water at the feet of entities when it is raining.
 
-**Instructions:** In your package, create a new class called `RainWater` and replace its contents with <<Rain_Code>>.
+**Instructions:** Create a new Java class called `RainWater` and replace its contents with <<Rain_Code>>.
 
 [[Rain_Code]]
 .Rain Water code
@@ -510,66 +510,56 @@ public class RainWater {
 ----
 ====
 
-Then, register it using the line shown in <<Rain_Registering>>.
-
-[[Rain_Registering]]
-.Rain Water registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new RainWater());
-----
-====
-
 **Gameplay:**
 
-. Use the command `/weather rain` to make the weather rainy
+. Use the command `/weather rain` to start rain
 . Start moving, and water should be placed wherever you or any other entity go, but it will disappear quickly
 
 === TNT Thunder
 
 **Purpose**: Spawn a TNT with fuse at a random duration wherever an entity is walking
 
-**Instructions**: Replace the `makeWater` method in `RainWater` class:
+**Instructions**: Replace the `makeWater` method in `RainWater` class with the code in <<TNT_Thunder>>
 
 [[TNT_Thunder]]
 .TNT Thunder Code
 ====
 [source, java]
 ----
-@SubscribeEvent
-public void makeWater(LivingUpdateEvent event) {
-	Entity entity = event.getEntity();
-	World world = entity.world;
-	int x = (int) Math.floor(entity.posX);
-	int y = (int) Math.floor(entity.posY);
-	int z = (int) Math.floor(entity.posZ);
+ @SubscribeEvent
+ public static void spawnTnt(LivingEvent.LivingTickEvent event) {
+     Entity entity = event.getEntity();
+     Level level = entity.level;
+     BlockPos entityPos = entity.blockPosition();
 
-	if (!entity.world.isThundering()) {
-		return;
-	}
+     if (level.isClientSide) {
+         return;
+     }
 
-	for (int i = y; i < 256; i++) {
-		if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.AIR.getBlockState().getBaseState()) {
-			return;
-		}
-	}
+     if (!level.isThundering() || level.getBiome(entityPos).get().getPrecipitation() != Biome.Precipitation.RAIN) {
+         return;
+     }
 
-	if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).isFullCube()) {
-		return;
-	}
+     for (int i = entityPos.getY(); i < 320; i++) {
+         if (level.getBlockState(entityPos.atY(i)).getBlock() != Blocks.AIR) {
+             return;
+         }
+     }
 
-	Random random = new Random();
+     BlockPos posBelow = entityPos.below(1);
+     if (!level.getBlockState(posBelow).isCollisionShapeFullBlock(level, posBelow)) {
+         return;
+     }
 
-	if (random.nextInt(40) != 1) {
-		return;
-	}
+     if (level.random.nextInt(40) != 1) {
+         return;
+     }
 
-	EntityTNTPrimed tnt = new EntityTNTPrimed(world);
-	tnt.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, 0, 0);
-	tnt.setFuse(80);
-	world.spawnEntity(tnt);
-}
+     PrimedTnt tnt = EntityType.TNT.create(level);
+     tnt.setFuse(80);
+     tnt.moveTo(entityPos, 0, 0);
+     level.addFreshEntity(tnt);
+ }
 ----
 ====
 
