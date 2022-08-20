@@ -1,4 +1,4 @@
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Arrays;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = MainMod.MODID)
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class SkeletonWar {
     static List<Item> helmets = Arrays.asList(Items.LEATHER_HELMET,
             Items.CHAINMAIL_HELMET, Items.GOLDEN_HELMET, Items.IRON_HELMET,

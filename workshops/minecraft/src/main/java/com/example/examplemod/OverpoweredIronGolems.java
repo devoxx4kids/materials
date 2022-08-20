@@ -1,4 +1,4 @@
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -7,7 +7,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = MainMod.MODID)
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class OverpoweredIronGolems {
     @SubscribeEvent
     public static void applyPotionEffectsToGolem(EntityJoinLevelEvent event) {
