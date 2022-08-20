@@ -339,9 +339,9 @@ if (event.getEntity() instanceof Zombie && event.getLevel().isClientSide) {
 [[Sharp_Snowballs]]
 == Sharp Snowballs
 
-**Purpose:** To turn all snowballs into arrows so that they can hurt entities.
+**Purpose:** This mod turn all snowballs into arrows so that they can hurt entities.
 
-**Instructions:** In your package, create a new class called `SharpSnowballs`. Replace its code with <<Snowballs_Code>>.
+**Instructions:** Create a new Java class called `SharpSnowballs`. Replace its code with <<Snowballs_Code>>.
 
 [[Snowballs_Code]]
 .Sharp Snowballs code
@@ -350,78 +350,62 @@ if (event.getEntity() instanceof Zombie && event.getLevel().isClientSide) {
 ----
 package org.devoxx4kids.forge.mods;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.entity.projectile.EntityTippedArrow;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.projectile.Snowball;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = MainMod.MODID)
 public class SharpSnowballs {
+    @SubscribeEvent
+    public static void replaceSnowballWithArrow(EntityJoinLevelEvent event) {
+        Entity snowball = event.getEntity();
+        Level level = event.getLevel();
 
-	@SubscribeEvent
-	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
-		Entity snowball = event.getEntity();
-		World world = snowball.world;
+        if (!(snowball instanceof Snowball)) {
+            return;
+        }
 
-		if (!(snowball instanceof EntitySnowball)) {
-			return;
-		}
+        if (!level.isClientSide) {
+            Arrow arrow = EntityType.ARROW.create(level);
+            arrow.moveTo(snowball.position());
+            arrow.setDeltaMovement(snowball.getDeltaMovement());
+            level.addFreshEntity(arrow);
+        }
 
-		if (!world.isRemote) {
-			EntityTippedArrow arrow = new EntityTippedArrow(world);
-			arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ,
-					0, 0);
-			arrow.motionX = snowball.motionX;
-			arrow.motionY = snowball.motionY;
-			arrow.motionZ = snowball.motionZ;
-
-			// gets arrow out of player's head
-			// gets the angle of arrow right, in the direction of motion
-			arrow.posX += arrow.motionX;
-			arrow.posY += arrow.motionY;
-			arrow.posZ += arrow.motionZ;
-
-			world.spawnEntity(arrow);
-			snowball.setDead();
-		}
-	}
+        event.setCanceled(true);
+    }
 }
-----
-====
-
-Register the new class using the line in <<Snowballs_Registering>>.
-
-[[Snowballs_Registering]]
-.Sharp Snowballs registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
 ----
 ====
 
 **Gameplay:**
 
-. Get a Snowball item from your inventory
-. Right click with it to throw it
+. Press `E` to bring inventory window, click on the top-right panel to search items, type `snowball`, drag snowball to the hotbar in inventory window
+. Select the snowball in hotbar, right click with it to throw it
 . It should turn into an arrow
 
-You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Snow blocks. The Snow Golem will act as a turret, shooting out snowballs that turn into arrows.
+You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Snow blocks. The Snow Golem will act as a turret, shooting out snowballs at hostile mobs that turn into arrows.
 
-Tip: spawn a Zombie or two for the Snow Golems to shoot.
+Tip: Spawn a Zombie or two for the Snow Golems to shoot.
 
 === Explosive snowballs
 
-Replace `EntityTippedArrow arrow = new EntityTippedArrow(world);` line with the code shown in <<Explosive_Snowballs_Code>>.
+This mod will convert snowballs into TNT.
+
+Replace `Arrow arrow = EntityType.ARROW.create(level);` line with the code shown in <<Explosive_Snowballs_Code>>.
 
 [[Explosive_Snowballs_Code]]
 .Explosive Snowballs code
 ====
 [source, java]
 ----
-EntityTNTPrimed arrow = new EntityTNTPrimed(world);
-arrow.setFuse(80);
+PrimedTnt tnt = EntityType.TNT.create(level);
+tnt.setFuse(80);
 ----
 ====
 
