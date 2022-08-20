@@ -915,7 +915,16 @@ enchantment.arrowFast=Haste
 [[Sharing]]
 == Sharing Your Mods
 
-Open up your computer's command prompt. Navigate to your Forge folder. Then, type the command `gradlew build`. On a Mac it may be `./gradlew build`. After the process completes, navigate to the "build" folder, then the "libs" folder inside that. In that folder, there should be a .jar file called `modid-1.0.jar`. This .jar file is all of your mods. 
+=== Create your mod .jar file
+
+. On Mac, open Terminal. On Window, open Command Prompt
+. Go to forge folder using the command `cd ~/Desktop/forge`
+. On Mac, type the command `./gradlew build`. On Windows, it will be `gradlew build`
+. Your mods are available in `build/libs/modid-1.0.jar` 
+
+=== Run a server and test the mods
+
+. 
 
 To install your mod on your Minecraft launcher, follow the instructions at http://www.minecraftforge.net/wiki/Installation/Universal.
 
