@@ -922,11 +922,12 @@ enchantment.arrowFast=Haste
 . On Mac, type the command `./gradlew build`. On Windows, it will be `gradlew build`
 . Your mods are available in `build/libs/modid-1.0.jar` 
 
-=== Run a server and test the mods
+=== Run a server and test the mods (NOT WORKING)
 
-. 
-
-To install your mod on your Minecraft launcher, follow the instructions at http://www.minecraftforge.net/wiki/Installation/Universal.
+. Run server using `./gradlew runServer` command. During the first run, the server starts and immediately shuts down.
+. On Mac, edit EULA using the command `sed 's/false/true/g' run/eula.txt > tmp; mv tmp run/eula.txt`. On Windows, edit `run/eula.txt` file using notepad, edit last line to replace word `false` with `true`, and save the file.
+. Copy the generated mod file to the server mods directory using the command `cp build/libs/modid-1.0.jar run/mods`.
+. Start server again using the command `./gradlew runServer`.
 
 [[Book]]
 == Minecraft Modding Book from O'Reilly
