@@ -60,142 +60,68 @@ This is a very important step as this will confirm that you can actually start m
 . The Eclipse window should look like as shown:
 +
 image::images/eclipse-forge-install.png[]
-. Double click on `forge` folder in `Package Explorer` on the left side. This is where all the source code exists and we'll modify it later. Double clic on `forge` folder in `Gradle Task` on the right side, double click on `forgegradle runs`, and select `runClient`.
+. Double click on `forge` folder in `Package Explorer` on the left side. This is where all the source code exists and we'll modify it later. Double click on `forge` folder in `Gradle Task` on the right side, double click on `forgegradle runs`, and select `runClient`.
 +
 image::images/forge-eclipse-expanded-view.png[]
-. Double click on `runClient` starts Minecraft launcher and looks like as shown:
+. Double click on `runClient` to start the Minecraft launcher. It looks like as shown:
 +
 image::images/forge-minecraft-first-run.png[]
 
-
-=== Troubleshooting
-
-. If you either selected "`Cancel`"" or selected a different directory in `Eclipse Launcher`, click on "`File`", "`Switch Workspace`", "`Other...`", and select the correct directory.
-. If you don't see the MDKExample folder, the `gradlew` command might have shown some errors. Try running it again.
-
-[[Main_File]]
-== The Main File
-
-To start modding, we need a main file. This file will register all of our mods so that they actually function in the game. To make this main file, first you need to make a new package. Click on the arrow next to the "`MDKExample`" folder in the left side of your window. Then, right click on "`src/main/java`" and select `New` > `Package`. Name it `org.devoxx4kids.forge.mods` and click on the Finish Button.
-
-We need to create a new class in this package. To do this, right click on the new package you created and select `New` > `Class`. Name it `MainMod` and click on the Finish Button. The middle of your screen will show its code. Replace all of the code with the code in <<Setting_Up_The_Main_File>>.
-
-[[Setting_Up_The_Main_File]]
-.Set up the main file
-====
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-	public static final String MODID = "mymods";
-	public static final String VERSION = "1.0";
-
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-
-	}
-}
-----
-====
-
-Your main file is now ready to go.
+Let's start modding!
 
 [[Chat_Items]]
 == Chat Items
 
-**Purpose:** To make the player receive items when he/she says a certain word or phrase in a chat message.
+**Purpose:** This mod wil add items to player's inventory?? when a certain word or phrase is spelled in a chat message.
 
-**Instructions:** In your new package, `org.devoxx4kids.forge.mods`, make a new class called `ChatItems`. To do this, right click on the package `org.devoxx4kids.forge.mods` and select `New` > `Class` then fill the name property with `ChatItems` and click on the Finish Button. Replace its code with <<Chat_Items_Code>>. 
+**Instructions:** Create a new Java class called `ChatItems`. To do this, expand the folder `src/main/java`, right click on the package `com.example.examplemod` and select `New` > `Class`, fill the name property with `ChatItems` and click on the `Finish` Button. Replace its code with <<Chat_Items_Code>>. 
 
 [[Chat_Items_Code]]
 .Chat Items code
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class ChatItems {
-
-	@SubscribeEvent
-	public void giveItems(ServerChatEvent event) {
-		if (event.getMessage().contains("potato")) {
-			event.getPlayer().inventory.addItemStackToInventory(new ItemStack(
-					Items.POTATO, 64));
-		}
-	}
-}
-----
-====
-
-Register your mod in the main file by using the line shown in <<Chat_Items_Registering>>. The line should go between the two brackets after the line that says `public void init(FMLInitializationEvent event)`.
-
-[[Chat_Items_Registering]]
-.Chat Items registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new ChatItems());
-----
-====
-
-Your main file should now look like <<Main_File_After_Register>>.
-
-[[Main_File_After_Register]]
-.Main file after registering Chat Items
-====
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-	public static final String MODID = "mymods";
-	public static final String VERSION = "1.0";
-
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(new ChatItems());
-	}
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
+public class ChatItems {
+    @SubscribeEvent
+    public static void giveItems(ServerChatEvent event) {
+        if (event.getMessage().contains("potato")) {
+            event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
+        }
+    }
 }
 ----
 ====
 
-Once you've finished editing the files, click the green "`Run Client`" button on the Eclipse menu bar to build and run your modded Minecraft.
+Once you've finished editing the files, click the green play button on the Eclipse menu bar to build and run your modded Minecraft. Eclipse will ask you to save the file. Go ahead and click on the `Save` button. This will start the Minecraft launcher.
+
+image::images/forge-eclipse-play-button.png[]
 
 
 **Gameplay:**
 
-. Create a new "`Creative`" world
-. Press "`T`" to open up the chat window
-. Type in any message that contains the word "`potato`"
+. Create a new `Creative` world
+. Press `T` to open up the chat window
+. Type in any message that contains the word `potato`
 . You should receive one stack (one stack = 64 items) of potatoes
 
 === Change text/item
 
-Change text message and produce a different item. For example change the text to `diamond` and item produced to `Diamond`. Use `Ctrl`+`Space` to show the list of items.
+This mod will produce a different item for a different text message. For example change the text to `diamond` and the item produced to `Diamond`. Use `Ctrl`+`Space` to show the list of items.
 
-Close Minecraft window and restart it by clicking on the "`Run Client`" button on the Eclipse menu bar.
+Close Minecraft game window and restart it by clicking on the play button on the Eclipse menu bar.
 
 === Different Items
 
-Produce different items for different chat text
+This mod variation produces different items for different chat text. For example, `potato` chat text will yield a potato in the inventory?? and `diamond` chat text will yield a diamond in the inventory.
 
 [[Different_Chat_Items_Code]]
 .Different Chat Items code
@@ -217,7 +143,7 @@ public void giveItems(ServerChatEvent event){
 
 === Multiple Items
 
-Produce multiple items for chat text
+This mod will produce multiple items for a chat text. Instead of only producing potato and diamond one at one time, it can product potato and diamond, both at the same time, on a same text.
 
 [[Multiple_Chat_Items_Code]]
 .Multiple Chat Items code
@@ -237,145 +163,122 @@ public void giveItems(ServerChatEvent event){
 [[Dragon_Spawner]]
 == Ender Dragon Spawner
 
-**Purpose:** To spawn an Ender Dragon every time a player places a Dragon Egg block.
+**Purpose:** This mod will spawn an Ender Dragon every time a player places a Dragon Egg block.
 
-**Instructions:** In the package `org.devoxx4kids.forge.mods`, make a new class called `DragonSpawner` and replace its code with the code shown in <<Dragon_Spawner_Code>>.
+**Instructions:** In the package `com.example.examplemod`, make a new class called `DragonSpawner` and replace its code with the code shown in <<Dragon_Spawner_Code>>.
 
 [[Dragon_Spawner_Code]]
 .Dragon Spawner code
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.dragon.phase.PhaseList;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.boss.enderdragon.phases.EnderDragonPhase;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class DragonSpawner {
-
-	@SubscribeEvent
-	public void spawnDragon(PlaceEvent event) {
-		if (event.getPlacedBlock() == Blocks.DRAGON_EGG.getBlockState().getBaseState()) {
-			event.getWorld().setBlockToAir(new BlockPos(event.getPos().getX(), event.getPos().getY(),event.getPos().getZ()));
-			EntityDragon dragon = new EntityDragon(event.getWorld());
-			dragon.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
-			dragon.getPhaseManager().setPhase(PhaseList.TAKEOFF);
-			event.getWorld().spawnEntity(dragon);
-		}
-	}
+    @SubscribeEvent
+    public static void spawnDragon(BlockEvent.EntityPlaceEvent event) {
+        if (event.getPlacedBlock().getBlock() == Blocks.DRAGON_EGG) {
+            event.getLevel().removeBlock(event.getPos(), false); // false = no flags
+            EnderDragon dragon = EntityType.ENDER_DRAGON.create(event.getEntity().getLevel());
+            dragon.moveTo(event.getPos(), 0, 0);
+            dragon.getPhaseManager().setPhase(EnderDragonPhase.TAKEOFF);
+            event.getLevel().addFreshEntity(dragon);
+        }
+    }
 }
-----
-====
-
-Then, register it like you did with Chat Items, but use the line of code shown in <<Dragon_Spawner_Registering>>.
-
-[[Dragon_Spawner_Registering]]
-.Dragon Spawner registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new DragonSpawner());
 ----
 ====
 
 **Gameplay:**
 
-. Use the command "`/give <your player name> dragon_egg`" to give yourself a dragon egg
-. Select the slot in which the dragon egg is placed
-. Double click in the world to place down the dragon egg, and an Ender Dragon should spawn
+. Use the command `/give Dev minecraft:dragon_egg` to give yourself a dragon egg
+. Select slot from the inventory?? in which the dragon egg is placed
+. Double click in the world to place down the dragon egg, and this will spawn an Ender Dragon
 
-The player name will not be your normal player name, it will be a Forge-generated player name. Check your chat window to see what your player name is.
-
-NOTE: You may get the error "`You don't have permissions to perform the command`". The reason it says that you don't have permission to run the command is because you don't have cheats enabled in your world. When you are creating a world, there will be a box that says you are in "`Survival`" mode. Click on the box until it says "`Creative`" mode, which will automatically enable cheats. Then, create the rest of the world normally. You will need to create a new world for this.
+NOTE: You may get the error `You don't have permissions to perform the command`. The reason it says that you don't have permission to run the command is because you don't have cheats enabled in your world. When you are creating a world, there will be a box that says you are in `Survival` mode. Click on the box until it says "`Creative`" mode, which will automatically enable cheats. Then, create the rest of the world normally. You will need to create a new world for this.
 
 === Change block/entity
 
-Change block that triggers spawning and spawn a different item. For example change the block to `sponge` and entity to `EntitySquid`. Use Ctrl+Space to show the list of items.
+This mod will change the block that triggers spawning and spawn a different item. For example change the block to `sponge` and entity to `EntitySquid`. Use Ctrl+Space to show the list of items.
 
 .Spawn squid
 ====
 [source, java]
 ----
-if (event.getPlacedBlock() == Blocks.SPONGE.getBlockState().getBaseState()) {
-	event.getWorld().setBlockToAir(new BlockPos(event.getPos().getX(), event.getPos().getY(),event.getPos().getZ()));
-	EntitySquid squid = new EntitySquid(event.getWorld());
-	squid.setLocationAndAngles(event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), 0, 0);
-	event.getWorld().spawnEntity(squid);
+@SubscribeEvent
+public static void spawnSquid(BlockEvent.EntityPlaceEvent event) {
+    if (event.getPlacedBlock() == Blocks.SPONGE.defaultBlockState()) {
+         event.getLevel().removeBlock(event.getPos(), false); // false = no flags
+         Squid squid = EntityType.SQUID.create(event.getEntity().level);
+         squid.moveTo(event.getPos(), 0, 0);
+         event.getLevel().addFreshEntity(squid);
+     }
 }
 ----
 ====
 
-After doing this, press `Control` + `Shift` + `O` on a Windows computer or `Cmd` + `Shift` + `O` on a Mac computer to import one class and fix the error. When you test out this mod, place down a Wet Sponge, not a Sponge.
+After doing this, press `Cmd` + `Shift` + `O` on a Mac computer or `Control` + `Shift` + `O` on a Windows computer to import one class and fix the error. In the minecraft game window, give yourself a sponge using the command  `/give Dev minecraft:sponge`. Select slot from the inventory?? in which the sponge is placed, double click in the world to place down the sponge, and this will spawn a Squid.
+
+Run the minecraft game and enjoy the new mod.
 
 === Change offset of entities
 
-Change `event.pos.getX()`, `event.pos.getY()`, `event.pos.getZ()` and add or subtract 5 to spawn entities at an offset.
+This mod will spawn ender dragon 2 blocks above the location where the dragon egg is placed.
+
+Change one line in the `spawnDragon` method to the one below:
 
 .Spawn offset
 ====
 [source, java]
 ----
-dragon.setLocationAndAngles(event.getPos().getX() + 5, event.getPos().getY(), event.getPos().getZ(), 0, 0);
+dragon.moveTo(event.getPos().above(2), 0, 0);
 ----
 ====
+
+Run the minecraft game and enjoy the new mod.
 
 [[Creeper_Alert]]
 == Creeper Spawn Alert
 
-**Purpose:** To alert all players when a creeper spawns.
+**Purpose:** This mod will alert all players when a creeper spawns.
 
-**Instructions:** In your package, make a new class called `CreeperSpawnAlert`. Replace its contents with <<Creeper_Spawn_Code>>.
+**Instructions:** Make a new Java class called `CreeperSpawnAlert`. Replace its contents with <<Creeper_Spawn_Code>>.
 
 [[Creeper_Spawn_Code]]
 .Creeper Spawn Alert code
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+@Mod.EventBusSubscriber(modid = MainMod.MODID)
 public class CreeperSpawnAlert {
-
-	@SubscribeEvent
-	public void sendAlert(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntityCreeper)) {
-			return;
-		}
-
-		List players = event.getEntity().world.playerEntities;
-
-		for (int i = 0; i < players.size(); i++) {
-			EntityPlayer player = (EntityPlayer) players.get(i);
-			if (event.getWorld().isRemote) {
-				player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "A creeper has spawned!"), false);
-			}
-		}
-	}
+    @SubscribeEvent
+    public static void sendAlert(EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof Creeper && event.getLevel().isClientSide) {
+            for (Player player : event.getLevel().players()) {
+                player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "A creeper has spawned!"));
+            }
+        }
+    }
 }
-----
-====
-
-Register it using the line in <<Creeper_Spawn_Registering>>.
-
-[[Creeper_Spawn_Registering]]
-.Creeper Spawn Alert registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
 ----
 ====
 
@@ -384,204 +287,125 @@ MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
 . Make sure you are not on peaceful mode.
 . Set the time to night time `/time set night` 
 
-You should get a bunch of messages saying "`A creeper has spawned!`" in light green letters. One of these messages is sent to you every time a creeper spawns.
+You should get a bunch of messages saying "`A creeper has spawned!`" in green color. One of these messages is sent to you every time a creeper spawns.
 
 === Change color/format of message
 
 ==== Change color to red
 
+This mod will change color of the message.
+
 .Color of message
 ====
 [source,java]
 ----
-player.sendStatusMessage(new TextComponentString(TextFormatting.RED + "A creeper has spawned!"), false);
+player.sendSystemMessage(Component.literal(ChatFormatting.RED + "A creeper has spawned!"));
 ----
 ====
 
-Try different colors by code completion after `EnumChatFormatting`.
-
-==== Change style to italics
-
-.Style of message
-====
-[source,java]
-----
-player.sendStatusMessage(new TextComponentString(TextFormatting.ITALIC + "A creeper has spawned!"));
-----
-====
-
-Try different styles by code completion after `EnumChatFormatting`.
+Try different colors by code completion after `ChatFormatting`.
 
 === Change text of message
 
+This mod will change the message printed.
+
 .Style of message
 ====
 [source,java]
 ----
-player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "Run away, a creeper has spawned!"));
+player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Run away, a creeper has spawned!"));
 ----
 ====
 
 Talk about text within quotes.
 
-=== Print same message for different mobs
+=== Print a different message for another mob
 
-.Same message for differet mobs using AND
+This mod will print a different message for another mob.
+
+.Different message for another mob
 ====
 [source, java]
 ----
-if (!(event.getEntity() instanceof EntityCreeper && event.getEntity() instanceof EntityZombie)) {
-	return;
+if (event.getEntity() instanceof Zombie && event.getLevel().isClientSide) {
+    for (Player player : event.getLevel().players()) {
+	player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "A zombie has spawned!"));
+    }
 }
 ----
 ====
 
-OR
-
-.Same message for differet mobs using OR
-====
-[source, java]
-----
-if (!(event.getEntity() instanceof EntityCreeper) || !(event.getEntity() instanceof EntityZombie)) {
-	return;
-}
-----
-====
-
-Explain AND and OR
-
-=== Print different message for different mobs
-
-.Different message for different mobs
-====
-[source, java]
-----
-@SubscribeEvent
-public void sendAlert(EntityJoinWorldEvent event) {
-	if (!(event.getEntity() instanceof EntityCreeper || event.getEntity() instanceof EntityZombie)) {
-		return;
-	}
-	
-	String message;
-	
-	if (event.getEntity() instanceof EntityCreeper) {
-		message = "A creeper has spawned";
-	} else {
-		message = "A zombie has spawned";
-	}
-
-	List players = event.getEntity().worldObj.playerEntities;
-
-	for (int i = 0; i < players.size(); i++) {
-		EntityPlayer player = (EntityPlayer) players.get(i);
-		if (event.getWorld().isRemote) {
-			player.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + message), false);
-		}
-	}
-}
-----
-====
-
-=== Print message for all mobs
-
-.Message for all mobs
-====
-[source, java]
-----
-if (!(event.getEntity() instanceof EntityMob)) {
-	return;
-}
-----
-====
-
-Explain how to reach `EntityMob`.
 
 [[Sharp_Snowballs]]
 == Sharp Snowballs
 
-**Purpose:** To turn all snowballs into arrows so that they can hurt entities.
+**Purpose:** This mod turn all snowballs into arrows so that they can hurt entities.
 
-**Instructions:** In your package, create a new class called `SharpSnowballs`. Replace its code with <<Snowballs_Code>>.
+**Instructions:** Create a new Java class called `SharpSnowballs`. Replace its code with <<Snowballs_Code>>.
 
 [[Snowballs_Code]]
 .Sharp Snowballs code
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.entity.projectile.EntityTippedArrow;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.projectile.Snowball;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = MainMod.MODID)
 public class SharpSnowballs {
+    @SubscribeEvent
+    public static void replaceSnowballWithArrow(EntityJoinLevelEvent event) {
+        Entity snowball = event.getEntity();
+        Level level = event.getLevel();
 
-	@SubscribeEvent
-	public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
-		Entity snowball = event.getEntity();
-		World world = snowball.world;
+        if (!(snowball instanceof Snowball)) {
+            return;
+        }
 
-		if (!(snowball instanceof EntitySnowball)) {
-			return;
-		}
+        if (!level.isClientSide) {
+            Arrow arrow = EntityType.ARROW.create(level);
+            arrow.moveTo(snowball.position());
+            arrow.setDeltaMovement(snowball.getDeltaMovement());
+            level.addFreshEntity(arrow);
+        }
 
-		if (!world.isRemote) {
-			EntityTippedArrow arrow = new EntityTippedArrow(world);
-			arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ,
-					0, 0);
-			arrow.motionX = snowball.motionX;
-			arrow.motionY = snowball.motionY;
-			arrow.motionZ = snowball.motionZ;
-
-			// gets arrow out of player's head
-			// gets the angle of arrow right, in the direction of motion
-			arrow.posX += arrow.motionX;
-			arrow.posY += arrow.motionY;
-			arrow.posZ += arrow.motionZ;
-
-			world.spawnEntity(arrow);
-			snowball.setDead();
-		}
-	}
+        event.setCanceled(true);
+    }
 }
-----
-====
-
-Register the new class using the line in <<Snowballs_Registering>>.
-
-[[Snowballs_Registering]]
-.Sharp Snowballs registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
 ----
 ====
 
 **Gameplay:**
 
-. Get a Snowball item from your inventory
-. Right click with it to throw it
+. Press `E` to bring inventory window, click on the top-right panel to search items, type `snowball`, drag snowball to the hotbar in inventory window
+. Select the snowball in hotbar, right click to throw it
 . It should turn into an arrow
 
-You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Snow blocks. The Snow Golem will act as a turret, shooting out snowballs that turn into arrows.
+You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Snow blocks. The Snow Golem will act as a turret, shooting out snowballs at hostile mobs that turn into arrows.
 
-Tip: spawn a Zombie or two for the Snow Golems to shoot.
+Tip: Spawn a Zombie or two for the Snow Golems to shoot.
 
 === Explosive snowballs
 
-Replace `EntityTippedArrow arrow = new EntityTippedArrow(world);` line with the code shown in <<Explosive_Snowballs_Code>>.
+This mod will convert snowballs into TNT.
+
+Replace `Arrow arrow = EntityType.ARROW.create(level);` line with the code shown in <<Explosive_Snowballs_Code>>.
 
 [[Explosive_Snowballs_Code]]
 .Explosive Snowballs code
 ====
 [source, java]
 ----
-EntityTNTPrimed arrow = new EntityTNTPrimed(world);
-arrow.setFuse(80);
+PrimedTnt tnt = EntityType.TNT.create(level);
+tnt.setFuse(80);
 ----
 ====
 
@@ -590,57 +414,47 @@ Make sure to fix the imports using `Cmd` + `Shift` + `0` on Mac and `Ctrl` + `Sh
 [[OP_Golems]]
 == Overpowered Iron Golems
 
-**Purpose:** To add helpful potion effects to Iron Golems when they spawn in the world.
+**Purpose:** This mod will add helpful potion effects to Iron Golems when they are spawned in the world.
 
 **Instructions:**
 
-In your package, make a new class called `OverpoweredIronGolems` and replace its contents with <<Iron_Golems_Code>>.
+Create a new Java class called `OverpoweredIronGolems` and replace its contents with <<Iron_Golems_Code>>.
 
 [[Iron_Golems_Code]]
 .Overpowered Iron Golems code
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class OverpoweredIronGolems {
+    @SubscribeEvent
+    public static void applyPotionEffectsToGolem(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof IronGolem)) {
+            return;
+        }
 
-	@SubscribeEvent
-	public void golemMagic(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntityIronGolem)) {
-			return;
-		}
-
-		EntityLiving entity = (EntityLiving) event.getEntity();
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(5), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 1000000, 5));
-		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 1000000, 5));
-	}
+        IronGolem golem = (IronGolem) event.getEntity();
+        golem.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1000000, 5));
+    }
 }
-----
-====
-
-Then, register the class using the line shown in <<Iron_Golems_Register>>.
-
-[[Iron_Golems_Register]]
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
 ----
 ====
 
 **Gameplay:**
 
-. Spawn an Iron Golem by using the command `/summon villager_golem`.
+. Spawn an Iron Golem by using the command `/summon minecraft:iron_golem`.
 . Spawn some hostile mobs near the Iron Golem
 
 The golem should move towards them to kill them. Normally, Iron Golems move slowly, but with the speed effect from the mod, they should move very fast.
@@ -648,9 +462,9 @@ The golem should move towards them to kill them. Normally, Iron Golems move slow
 [[Rain_Water]]
 == Rain Water
 
-**Purpose:** To place water at the feet of entities when it is raining.
+**Purpose:** Normally, there is no water on the ground when it rains. This mod places water at the feet of entities when it is raining.
 
-**Instructions:** In your package, create a new class called `RainWater` and replace its contents with <<Rain_Code>>.
+**Instructions:** Create a new Java class called `RainWater` and replace its contents with <<Rain_Code>>.
 
 [[Rain_Code]]
 .Rain Water code
@@ -696,66 +510,56 @@ public class RainWater {
 ----
 ====
 
-Then, register it using the line shown in <<Rain_Registering>>.
-
-[[Rain_Registering]]
-.Rain Water registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new RainWater());
-----
-====
-
 **Gameplay:**
 
-. Use the command `/weather rain` to make the weather rainy
+. Use the command `/weather rain` to start rain
 . Start moving, and water should be placed wherever you or any other entity go, but it will disappear quickly
 
 === TNT Thunder
 
 **Purpose**: Spawn a TNT with fuse at a random duration wherever an entity is walking
 
-**Instructions**: Replace the `makeWater` method in `RainWater` class:
+**Instructions**: Replace the `makeWater` method in `RainWater` class with the code in <<TNT_Thunder>>
 
 [[TNT_Thunder]]
 .TNT Thunder Code
 ====
 [source, java]
 ----
-@SubscribeEvent
-public void makeWater(LivingUpdateEvent event) {
-	Entity entity = event.getEntity();
-	World world = entity.world;
-	int x = (int) Math.floor(entity.posX);
-	int y = (int) Math.floor(entity.posY);
-	int z = (int) Math.floor(entity.posZ);
+ @SubscribeEvent
+ public static void spawnTnt(LivingEvent.LivingTickEvent event) {
+     Entity entity = event.getEntity();
+     Level level = entity.level;
+     BlockPos entityPos = entity.blockPosition();
 
-	if (!entity.world.isThundering()) {
-		return;
-	}
+     if (level.isClientSide) {
+         return;
+     }
 
-	for (int i = y; i < 256; i++) {
-		if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.AIR.getBlockState().getBaseState()) {
-			return;
-		}
-	}
+     if (!level.isThundering() || level.getBiome(entityPos).get().getPrecipitation() != Biome.Precipitation.RAIN) {
+         return;
+     }
 
-	if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).isFullCube()) {
-		return;
-	}
+     for (int i = entityPos.getY(); i < 320; i++) {
+         if (level.getBlockState(entityPos.atY(i)).getBlock() != Blocks.AIR) {
+             return;
+         }
+     }
 
-	Random random = new Random();
+     BlockPos posBelow = entityPos.below(1);
+     if (!level.getBlockState(posBelow).isCollisionShapeFullBlock(level, posBelow)) {
+         return;
+     }
 
-	if (random.nextInt(40) != 1) {
-		return;
-	}
+     if (level.random.nextInt(40) != 1) {
+         return;
+     }
 
-	EntityTNTPrimed tnt = new EntityTNTPrimed(world);
-	tnt.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, 0, 0);
-	tnt.setFuse(80);
-	world.spawnEntity(tnt);
-}
+     PrimedTnt tnt = EntityType.TNT.create(level);
+     tnt.setFuse(80);
+     tnt.moveTo(entityPos, 0, 0);
+     level.addFreshEntity(tnt);
+ }
 ----
 ====
 
@@ -765,6 +569,80 @@ Fix the imports.
 
 . Use the command `/weather thunder` to make the weather stormy
 . Watch for TNT to be placed wherever you walk around. The TNT will blow up after 1-4 seconds.
+
+[[Skeleton_War]]
+== Skeleton War
+
+**Purpose:** This mod gives armon to all skeletons and make them try to kill each other.
+
+**Instructions:** Create a new Java class called `SkeletonWar` and replace its contents with <<War_Code>>.
+
+[[War_Code]]
+.Skeleton War code
+====
+[source, java]
+----
+package com.example.examplemod;
+
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+import java.util.Arrays;
+import java.util.List;
+
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
+public class SkeletonWar {
+    static List<Item> helmets = Arrays.asList(Items.LEATHER_HELMET,
+            Items.CHAINMAIL_HELMET, Items.GOLDEN_HELMET, Items.IRON_HELMET,
+            Items.DIAMOND_HELMET, Items.NETHERITE_HELMET, Items.TURTLE_HELMET);
+    static List<Item> chestplates = Arrays.asList(Items.LEATHER_CHESTPLATE,
+            Items.CHAINMAIL_CHESTPLATE, Items.GOLDEN_CHESTPLATE, Items.IRON_CHESTPLATE,
+            Items.DIAMOND_CHESTPLATE, Items.NETHERITE_CHESTPLATE);
+    static List<Item> leggings = Arrays.asList(Items.LEATHER_LEGGINGS,
+            Items.CHAINMAIL_LEGGINGS, Items.GOLDEN_LEGGINGS, Items.IRON_LEGGINGS,
+            Items.DIAMOND_LEGGINGS, Items.NETHERITE_LEGGINGS);
+    static List<Item> boots = Arrays.asList(Items.LEATHER_BOOTS,
+            Items.CHAINMAIL_BOOTS, Items.GOLDEN_BOOTS, Items.IRON_BOOTS,
+            Items.DIAMOND_BOOTS, Items.NETHERITE_BOOTS);
+
+    @SubscribeEvent
+    public static void makeWarNotPeace(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof AbstractSkeleton skeleton)) {
+            return;
+        }
+
+        skeleton.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(skeleton, AbstractSkeleton.class, true));
+
+        RandomSource random = skeleton.level.random;
+        skeleton.setItemSlot(EquipmentSlot.HEAD, new ItemStack(helmets.get(random.nextInt(6))));
+        skeleton.setItemSlot(EquipmentSlot.CHEST, new ItemStack(chestplates.get(random.nextInt(5))));
+        skeleton.setItemSlot(EquipmentSlot.LEGS, new ItemStack(leggings.get(random.nextInt(5))));
+        skeleton.setItemSlot(EquipmentSlot.FEET, new ItemStack(boots.get(random.nextInt(5))));
+    }
+
+    // variations can include:
+    // - changing the items in the lists (e.g. adding pumpkins to helmets list)
+    // - changing target mob
+    // - changing priority of goal (player is priority 2, iron golems and turtles are priority 3)
+}
+----
+====
+
+**Gameplay:**
+
+. Press `E` to bring inventory window, click on the top-right panel to search items, type `skeleton spawn`, drag the first egg from inventory to the hotbar in inventory window
+. Select the skeleton spawn egg in hotbar and right click on the ground multiple times to spawn skeletons
+. The skeletons will have assorted pieces of armor; they will also be shooting at each other
+
+Another variation is where you can create an enclosed arena, spwan a bunch of skeletons there and wage a skeleton war.
 
 [[Wall_Climber]]
 == Wall Climber (NOT WORKING)
@@ -910,91 +788,6 @@ MinecraftForge.EVENT_BUS.register(new ArrowShotgun());
 . Release right click when the bow begins shaking
 . 20 flaming arrows should be fired out
 
-[[Skeleton_War]]
-== Skeleton War
-
-**Purpose:** To make all skeletons try to kill each other and also receive armor on spawning.
-
-**Instructions:** In your package, create a new class called `SkeletonWar` and replace its contents with <<War_Code>>.
-
-[[War_Code]]
-.Skeleton War code
-====
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class SkeletonWar {
-
-	@SubscribeEvent
-	public void makeWarNotPeace(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntitySkeleton)) {
-			return;
-		}
-		EntitySkeleton skeleton = (EntitySkeleton) event.getEntity();
-
-		List<ItemArmor> helmets = Arrays.asList(Items.LEATHER_HELMET,
-				Items.CHAINMAIL_HELMET, Items.GOLDEN_HELMET, Items.IRON_HELMET,
-				Items.DIAMOND_HELMET);
-		List<ItemArmor> chestplates = Arrays.asList(Items.LEATHER_CHESTPLATE,
-				Items.CHAINMAIL_CHESTPLATE, Items.GOLDEN_CHESTPLATE,
-				Items.IRON_CHESTPLATE, Items.DIAMOND_CHESTPLATE);
-		List<ItemArmor> leggings = Arrays.asList(Items.LEATHER_LEGGINGS,
-				Items.CHAINMAIL_LEGGINGS, Items.GOLDEN_LEGGINGS,
-				Items.IRON_LEGGINGS, Items.DIAMOND_LEGGINGS);
-		List<ItemArmor> boots = Arrays.asList(Items.LEATHER_BOOTS,
-				Items.CHAINMAIL_BOOTS, Items.GOLDEN_BOOTS, Items.IRON_BOOTS,
-				Items.DIAMOND_BOOTS);
-
-		skeleton.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
-				skeleton, EntitySkeleton.class, true));
-		skeleton.canPickUpLoot();
-
-		Random random = new Random();
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(
-				helmets.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(
-				chestplates.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(
-				leggings.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.FEET,
-				new ItemStack(boots.get(random.nextInt(5))));
-	}
-
-}
-----
-====
-
-Then, register it using the line shown in <<War_Registering>>.
-
-[[War_Registering]]
-.Skeleton War registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new SkeletonWar());
-----
-====
-
-**Gameplay:**
-
-. Get a Spawn Skeleton item from your inventory
-. Right click on the ground two times to spawn two skeletons
-. The skeletons should have assorted pieces of armor; they should also be shooting each other
 
 [[Fast_Bows]]
 == Fast Bows (NOT WORKING)
@@ -1122,9 +915,19 @@ enchantment.arrowFast=Haste
 [[Sharing]]
 == Sharing Your Mods
 
-Open up your computer's command prompt. Navigate to your Forge folder. Then, type the command `gradlew build`. On a Mac it may be `./gradlew build`. After the process completes, navigate to the "build" folder, then the "libs" folder inside that. In that folder, there should be a .jar file called `modid-1.0.jar`. This .jar file is all of your mods. 
+=== Create your mod .jar file
 
-To install your mod on your Minecraft launcher, follow the instructions at http://www.minecraftforge.net/wiki/Installation/Universal.
+. On Mac, open Terminal. On Window, open Command Prompt
+. Go to forge folder using the command `cd ~/Desktop/forge`
+. On Mac, type the command `./gradlew build`. On Windows, it will be `gradlew build`
+. Your mods are available in `build/libs/modid-1.0.jar` 
+
+=== Run a server and test the mods (NOT WORKING)
+
+. Run server using `./gradlew runServer` command. During the first run, the server starts and immediately shuts down.
+. On Mac, edit EULA using the command `sed 's/false/true/g' run/eula.txt > tmp; mv tmp run/eula.txt`. On Windows, edit `run/eula.txt` file using notepad, edit last line to replace word `false` with `true`, and save the file.
+. Copy the generated mod file to the server mods directory using the command `cp build/libs/modid-1.0.jar run/mods`.
+. Start server again using the command `./gradlew runServer`.
 
 [[Book]]
 == Minecraft Modding Book from O'Reilly
