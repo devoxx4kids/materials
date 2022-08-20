@@ -386,7 +386,7 @@ public class SharpSnowballs {
 **Gameplay:**
 
 . Press `E` to bring inventory window, click on the top-right panel to search items, type `snowball`, drag snowball to the hotbar in inventory window
-. Select the snowball in hotbar, right click with it to throw it
+. Select the snowball in hotbar, right click to throw it
 . It should turn into an arrow
 
 You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Snow blocks. The Snow Golem will act as a turret, shooting out snowballs at hostile mobs that turn into arrows.
@@ -570,6 +570,80 @@ Fix the imports.
 . Use the command `/weather thunder` to make the weather stormy
 . Watch for TNT to be placed wherever you walk around. The TNT will blow up after 1-4 seconds.
 
+[[Skeleton_War]]
+== Skeleton War
+
+**Purpose:** This mod gives armon to all skeletons and make them try to kill each other.
+
+**Instructions:** Create a new Java class called `SkeletonWar` and replace its contents with <<War_Code>>.
+
+[[War_Code]]
+.Skeleton War code
+====
+[source, java]
+----
+package com.example.examplemod;
+
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+import java.util.Arrays;
+import java.util.List;
+
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
+public class SkeletonWar {
+    static List<Item> helmets = Arrays.asList(Items.LEATHER_HELMET,
+            Items.CHAINMAIL_HELMET, Items.GOLDEN_HELMET, Items.IRON_HELMET,
+            Items.DIAMOND_HELMET, Items.NETHERITE_HELMET, Items.TURTLE_HELMET);
+    static List<Item> chestplates = Arrays.asList(Items.LEATHER_CHESTPLATE,
+            Items.CHAINMAIL_CHESTPLATE, Items.GOLDEN_CHESTPLATE, Items.IRON_CHESTPLATE,
+            Items.DIAMOND_CHESTPLATE, Items.NETHERITE_CHESTPLATE);
+    static List<Item> leggings = Arrays.asList(Items.LEATHER_LEGGINGS,
+            Items.CHAINMAIL_LEGGINGS, Items.GOLDEN_LEGGINGS, Items.IRON_LEGGINGS,
+            Items.DIAMOND_LEGGINGS, Items.NETHERITE_LEGGINGS);
+    static List<Item> boots = Arrays.asList(Items.LEATHER_BOOTS,
+            Items.CHAINMAIL_BOOTS, Items.GOLDEN_BOOTS, Items.IRON_BOOTS,
+            Items.DIAMOND_BOOTS, Items.NETHERITE_BOOTS);
+
+    @SubscribeEvent
+    public static void makeWarNotPeace(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof AbstractSkeleton skeleton)) {
+            return;
+        }
+
+        skeleton.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(skeleton, AbstractSkeleton.class, true));
+
+        RandomSource random = skeleton.level.random;
+        skeleton.setItemSlot(EquipmentSlot.HEAD, new ItemStack(helmets.get(random.nextInt(6))));
+        skeleton.setItemSlot(EquipmentSlot.CHEST, new ItemStack(chestplates.get(random.nextInt(5))));
+        skeleton.setItemSlot(EquipmentSlot.LEGS, new ItemStack(leggings.get(random.nextInt(5))));
+        skeleton.setItemSlot(EquipmentSlot.FEET, new ItemStack(boots.get(random.nextInt(5))));
+    }
+
+    // variations can include:
+    // - changing the items in the lists (e.g. adding pumpkins to helmets list)
+    // - changing target mob
+    // - changing priority of goal (player is priority 2, iron golems and turtles are priority 3)
+}
+----
+====
+
+**Gameplay:**
+
+. Press `E` to bring inventory window, click on the top-right panel to search items, type `skeleton spawn`, drag the first egg from inventory to the hotbar in inventory window
+. Select the skeleton spawn egg in hotbar and right click on the ground multiple times to spawn skeletons
+. The skeletons will have assorted pieces of armor; they will also be shooting at each other
+
+Another variation is where you can create an enclosed arena, spwan a bunch of skeletons there and wage a skeleton war.
+
 [[Wall_Climber]]
 == Wall Climber (NOT WORKING)
 
@@ -714,91 +788,6 @@ MinecraftForge.EVENT_BUS.register(new ArrowShotgun());
 . Release right click when the bow begins shaking
 . 20 flaming arrows should be fired out
 
-[[Skeleton_War]]
-== Skeleton War
-
-**Purpose:** To make all skeletons try to kill each other and also receive armor on spawning.
-
-**Instructions:** In your package, create a new class called `SkeletonWar` and replace its contents with <<War_Code>>.
-
-[[War_Code]]
-.Skeleton War code
-====
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class SkeletonWar {
-
-	@SubscribeEvent
-	public void makeWarNotPeace(EntityJoinWorldEvent event) {
-		if (!(event.getEntity() instanceof EntitySkeleton)) {
-			return;
-		}
-		EntitySkeleton skeleton = (EntitySkeleton) event.getEntity();
-
-		List<ItemArmor> helmets = Arrays.asList(Items.LEATHER_HELMET,
-				Items.CHAINMAIL_HELMET, Items.GOLDEN_HELMET, Items.IRON_HELMET,
-				Items.DIAMOND_HELMET);
-		List<ItemArmor> chestplates = Arrays.asList(Items.LEATHER_CHESTPLATE,
-				Items.CHAINMAIL_CHESTPLATE, Items.GOLDEN_CHESTPLATE,
-				Items.IRON_CHESTPLATE, Items.DIAMOND_CHESTPLATE);
-		List<ItemArmor> leggings = Arrays.asList(Items.LEATHER_LEGGINGS,
-				Items.CHAINMAIL_LEGGINGS, Items.GOLDEN_LEGGINGS,
-				Items.IRON_LEGGINGS, Items.DIAMOND_LEGGINGS);
-		List<ItemArmor> boots = Arrays.asList(Items.LEATHER_BOOTS,
-				Items.CHAINMAIL_BOOTS, Items.GOLDEN_BOOTS, Items.IRON_BOOTS,
-				Items.DIAMOND_BOOTS);
-
-		skeleton.targetTasks.addTask(3, new EntityAINearestAttackableTarget(
-				skeleton, EntitySkeleton.class, true));
-		skeleton.canPickUpLoot();
-
-		Random random = new Random();
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(
-				helmets.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(
-				chestplates.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(
-				leggings.get(random.nextInt(5))));
-		skeleton.setItemStackToSlot(EntityEquipmentSlot.FEET,
-				new ItemStack(boots.get(random.nextInt(5))));
-	}
-
-}
-----
-====
-
-Then, register it using the line shown in <<War_Registering>>.
-
-[[War_Registering]]
-.Skeleton War registering
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new SkeletonWar());
-----
-====
-
-**Gameplay:**
-
-. Get a Spawn Skeleton item from your inventory
-. Right click on the ground two times to spawn two skeletons
-. The skeletons should have assorted pieces of armor; they should also be shooting each other
 
 [[Fast_Bows]]
 == Fast Bows (NOT WORKING)
