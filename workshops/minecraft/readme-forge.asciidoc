@@ -129,13 +129,13 @@ This mod variation produces different items for different chat text. For example
 [source, java]
 ----
 @SubscribeEvent
-public void giveItems(ServerChatEvent event){
+public static void giveItems(ServerChatEvent event){
 	if (event.getMessage().contains("potato")) {
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
+		event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
 	}
-	
+
 	if (event.getMessage().contains("diamond")) {
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, 64));
+		event.getPlayer().getInventory().add(new ItemStack(Items.DIAMOND, 64));
 	}
 }
 ----
