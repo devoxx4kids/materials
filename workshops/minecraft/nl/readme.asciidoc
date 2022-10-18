@@ -1,11 +1,16 @@
 = Minecraft aanpassen met behulp van Forge
 
-== Downloaden en installeren
+== Downloaden
 
-. Download en installeer JDK van http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-. Download en installeer Eclipse van http://www.eclipse.org/downloads/, kies "Eclipse IDE for Java Developers"
-. Download en unzip (= bestand uitpakken)  Forge 1.8 van
-  http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.1.1341/forge-1.8-11.14.1.1341-src.zip
+. Download en installeer JDK van https://www.oracle.com/java/technologies/downloads/
+. Download en installeer Eclipse van http://www.eclipse.org/downloads/eclipse-packages/, kies "Eclipse IDE for Java Developers"
+. Download en unzip (= bestand uitpakken)  Forge 1.19 van
+  https://maven.minecraftforge.net/net/minecraftforge/forge/1.19-41.1.0/forge-1.19-41.1.0-mdk.zip
+  
+== Installeren
+Zorg dat alle software genoemd in <<Downloaden>> is gedownload.
+
+. Open de Command Prompt ( Win + R, typ: cmd, druk op Enter)
 . Ga naar de uitgepakte forge directory, geef het commando `./gradlew
                                                         setupDecompWorkspace eclipse` voor Mac of `gradlew
                                                         setupDecompWorkspace eclipse` voor Windows. +
@@ -13,7 +18,7 @@ De melding na het bouwen zou moeten zijn: `BUILD SUCCESSFUL`. De complete meldin
 
 Een gedetailleerde video met volledige installatiestappen op Mac wordt hieronder gegeven:
 
-image::images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
+image::../images/forge-install-video-pic.png[link="https://www.youtube.com/watch?v=0F7Bhswtd_w"]
 
 video::1S1aL9Vn5eI[youtube]
 
@@ -24,79 +29,39 @@ Meer details zijn ook te vinden op http://www.minecraftforge.net/wiki/Installati
 Dit is een zeer belangrijke stap, omdat dit je laat zien dat je écht kunt beginnen met het aanpassen van Minecraft.
 
 . Start Eclipse
-. In het `Select a workspace` venster, kies je de locatie van `eclipse` directory in de uitgepakte forge directory als de workspace
-. Klik op `OK`
-. In het venster Eclipse, moet je nu een `folder Minecraft` zien en kunnen openen. Er mogen geen rode uitroeptekens zichtbaar zijn.
-
-=== Problemen oplossen
-
-. Als je een andere map hebt geselecteerd, klikt je op `Bestand`, `Wijzig Workspace`, en selecteer de juiste directory.
-. Als je de Minecraft map niet ziet, zou de `gradlew` opdracht een aantal fouten kunnen laten zien. Probeer het commando opnieuw.
-
-<<<
-
-= Belangrijke informatie:
+. In het `Eclipse IDE Launcher` venster, klik je op `Launch`
+. In het Eclipse scherm, klik op `File`, `Import...`, selecteer `Gradle`, `Existing Gradle Project`, clik 2 keer op `Next >`, selecteer de locatie van de `forge` directory, en klik op `Finish`.
 
 == Eclipse
-
 Eclipse is het programma dat we gebruiken om aanpassingen te maken in Minecraft.
 
-image::images/eclipse.png[]
+. Het Eclipse venster zou er nu als volgt uit moeten zien:
+image::../images/eclipse-forge-install.png[]
+
+. Dubbelklik op de `forge` map in `Package Explorer` aan de linker kant. Dit is waar alle broncode staat die we straks gaan aanpassen.
 
 == Spel starten
+. Dubbelklik op de `forge` map in `Gradle Task` aan de rechter kant, dubbelklik op `forgegradle runs`, en selecteer `runClient`.
 
-Om Minecraft te starten, moet je in Eclipse de `Client` starten. Boven in het scherm van Eclipse zie je als het goed is de onderstaande knoppen.
-Klik op het groene knopje met het witte driehoekje om Minecraft te starten. Je kan ook op het kleine zwarte driehoekje klikken en daarna op `Client` om Minecraft te starten.
+image::../images/forge-eclipse-expanded-view.png[]
+. Dubbelklik op `runClient` om Minecraft te starten. Het ziet er zo uit:
 
-image::images/start-client.png[]
+image::../images/forge-minecraft-first-run.png[]
 
 == Spel stoppen
 
-Om Minecraft te stoppen, moet je in Eclipse de `Client` stoppen. Onder in het scherm van Eclipse zie je als het goed is de `Console` view. Hierin zie je alle logging (= een soort logboek) die de `Client` laat zien. In de menubalk van deze console zie je een rode stopknop. Als je daar op klikt zal de `Client` stoppen.
+Om Minecraft te stoppen, druk je op de `Esc` toets en klik je daarna op het kruisje rechts bovenin het venster.
 
-image::images/stop-client.png[]
+Laten we gaan modden!
 
 == Ctrl + spatie commando
 
 We gebruiken Eclipse om onze aanpassingen in te maken. Eclipse is heel handig en je kan er snel mee werken. Vooral als je gaat werken met sneltoetsen. Sneltoesten zijn toetsenbord combinaties waarvoor je anders je muis zou gebruiken. Eentje die we veel gebruiken in de workshop is `Ctrl+Spatie`, voor een lijst met mogelijke opties. Zoals je kunt zien in het plaatje hieronder.
 Om de lijst te laten zien moet je de cursor na de `.` van een klasse plaatsen. Vervolgens klik je de toesten `Ctrl + spatie` om de lijst te tonen.
 
-image::images/ctrlspace.png[]
+image::../images/ctrlspace.png[]
 
 *LET OP: Wanneer je wijzigingen in de code van Minecraft maakt, is het belangrijk dat je de `Client` opnieuw opstart. Doe je dit niet, dan doen je aanpassingen het niet.*
-
-<<<
-
-== Het Main bestand (= start van het progamma Minecraft)
-
-Om te beginnen met aanpassingen aan Minecraft, hebben we een hoofdbestand nodig. Dit bestand zal al onze mods (= aanpassingen) registreren zodat ze daadwerkelijk gaan doen wat ze moeten doen in het spel. Om dit hoofdbestand te maken, moet je eerst een nieuwe package (= mappen structuur) aanmaken. Klik op de pijl naast de map "Minecraft" in de linker kant van je venster. Klik vervolgens rechts op "src/main/java" en selecteer New > Package. Noem het `org.devoxx4kids.forge.mods`.
-
-In dit package gaan we nu een nieuwe klasse aanmaken (= een soort van bouwtekening voor nieuwe mogelijkheden voor Minecraft) met de naam `MainMod.java`. Om dit te doen, klik met de rechtermuisknop op het nieuwe pakket dat je net hebt gemaakt en selecteer New> Class. Noem het `MainMod`. Het midden van je scherm zal de code tonen. Vervang de hele code door de code in <<Setting_Up_The_Main_File>>.
-
-[[Setting_Up_The_Main_File]]
-.Setup van hoofdbestand
-[source, java, indent=1]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-    public static final String MODID = "MyMods";
-    public static final String VERSION = "1.0";
-
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-       // Hier zullen we onze aanpassingen gaan plaatsen.
-    }
-}
-----
-
-Je hoofd bestand is nu klaar voor gebruik.
 
 <<<
 
@@ -106,10 +71,15 @@ Je hoofd bestand is nu klaar voor gebruik.
 
 **Doel:** De speler items (= voorwerpen) laten ontvangen wanneer hij / zij een bepaald woord (bijvoorbeeld het woord `aardappel`) in een chatbericht schrijft.
 
-**Instructies:** Maak in je nieuwe package, `org.devoxx4kids.forge.mods`, een nieuw bestand aan met de naam `ChatItems.java`. Vervang de code met <<Chat_Items_Code>>.
+**Instructies:** Maak een nieuw bestand aan met de naam `ChatItems.java`.
+. Doe dit door de map `src/main/java` te openen. 
+. Rechtsklik dan op het pakket `com.example.examplemod` en selecteer `New` > `Class`.
+. Voer dan als naam `ChatItems` in en druk op de `Finish` knop.
+Vervang dan de code met <<Chat_Items_Code>>.
 
 [[Chat_Items_Code]]
 .Chat Items code
+====
 [source, java]
 ----
 package org.devoxx4kids.forge.mods;
@@ -124,50 +94,14 @@ public class ChatItems {
   @SubscribeEvent
   public void giveItems(ServerChatEvent event){
     if (event.message.contains("aardappel")) {
-      event.player.inventory
-        .addItemStackToInventory(new ItemStack(Items.potato, 64));
+    	event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
     }
   }
 }
 ----
-
-Registreer je mod (= aanpassing) in `MainMod.java` (= het hoofdbestand) met behulp van de regel in <<Registreren_Chat_Voorwerpen>>. De regel moet worden geplaatst tussen de twee accolades (= `{ }`) achter de lijn die zegt `init()`.
-
-[[Registreren_Chat_Voorwerpen]]
-.Registreren van Chat Items
-====
-[source, java]
-----
-MinecraftForge.EVENT_BUS.register(new ChatItems());
-----
 ====
 
-<<<
-
-Je hoofd bestand ziet er nu uit als in <<Main_File_After_Register>>.
-
-[[Main_File_After_Register]]
-.Hoofdbestand na registreren van Chat voorwerpen
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-    public static final String MODID = "MyMods";
-    public static final String VERSION = "1.0";
-
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ChatItems());
-    }
-}
-----
+Als je klaar bent met het aanpassen van de files druk je op de groene play knop op de Eclipse menu bar om je gemodde Minecraft te starten. Als Eclipse vraagt of je het bestand wilt opslaan, druk dan op de `Save`knop.
 
 **Spel spelen:**
 
@@ -182,43 +116,40 @@ public class MainMod {
 . Schrijf een chatbericht waarin het woord `aardappel` voorkomt.
 . Je moet een stapel aardappelen ontvangen (een stapel = 64 artikelen).
 
-<<<
-
 === Tekst/voorwerp wijzigen
 
 Instructies: Ga terug naar Eclipse. (Gebruik de 'esc' toets om Minecraft te verlaten.) Verander het woord in het tekstbericht en maak een ander item. Bijvoorbeeld: Verander de tekst `aardappel` in `diamant` en het gemaakte voorwerp `Items.potato` in `Items.diamond`. Gebruik Ctrl + spatie om de lijst met items weer te geven. (Zie `Belangrijke informatie` hoe je dat moet doen.)
 
 **Spel spelen:**
 
-. Stop de `Client` vanuit Eclipse. (Zie `Belangrijke informatie` hoe je dat moet doen.)
+. Stop Minecraft. (Zie `Belangrijke informatie` hoe je dat moet doen.)
 . Start de `Client` vanuit Eclipse. (Zie `Belangrijke informatie` hoe je dat moet doen.)
 . Selecteer je wereld.
 . Druk op 'T' om het chatvenster te openen.
 . Schrijf een chatbericht waarin het woord `diamant` voorkomt.
 . Je moet een stapel diamanten ontvangen.
 
-<<<
-
-=== Verschillende voorwerpen
+=== Andere voorwerpen
 
 Instructies: Ga terug naar Eclipse. Maak de code voor het aanmaken van verschillende voorwerpen voor verschillende chat-teksten.
 
 [[Different_Chat_Items_Code]]
 .Code voor Verschillende Chat Items
+====
 [source, java]
 ----
 @SubscribeEvent
-public void giveItems(ServerChatEvent event){
- if (event.message.contains("aardappel")) {
-   event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
- }
+public static void giveItems(ServerChatEvent event){
+	if (event.getMessage().contains("potato")) {
+		event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
+	}
 
- if (event.message.contains("diamant")) {
-   event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
- }
+	if (event.getMessage().contains("diamond")) {
+		event.getPlayer().getInventory().add(new ItemStack(Items.DIAMOND, 64));
+	}
 }
-
 ----
+====
 
 **Spel spelen:**
 
@@ -237,16 +168,19 @@ Instructies: Ga terug naar Eclipse. Maak de code om verschillende voorwerpen te 
 
 [[Multiple_Chat_Items_Code]]
 .Code Meerdere Chat Voorwerpen
+====
 [source, java]
 ----
 @SubscribeEvent
+@SubscribeEvent
 public void giveItems(ServerChatEvent event){
- if (event.message.contains("aardappel")) {
-   event.player.inventory.addItemStackToInventory(new ItemStack(Items.potato, 64));
-   event.player.inventory.addItemStackToInventory(new ItemStack(Items.diamond, 64));
- }
+	if (event.getMessage().contains("potato")) {
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
+		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, 64));
+	}
 }
 ----
+====
 
 **Spel spelen:**
 
@@ -257,8 +191,7 @@ public void giveItems(ServerChatEvent event){
 . Schrijf een chatbericht waarin het woord `aardappel` voorkomt.
 . Je krijgt een stapel van 64 aardappelen en 64 diamanten.
 
-<<<
-
+[[Dragon_Spawner]]
 = Ender Dragon tot leven wekken
 
 **Doel:** Elke keer als een speler een Dragon Egg plaatst een Ender Dragon tot leven laten komen.
@@ -267,59 +200,34 @@ public void giveItems(ServerChatEvent event){
 
 [[Dragon_Spawner_Code]]
 .Code Dragon Spawner
+====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class DragonSpawner {
-	
-@SubscribeEvent
-  public void spawnDragon(PlaceEvent event) {
-    if (event.placedBlock == Blocks.dragon_egg.getBlockState().getBaseState()) {
-      event.world.setBlockToAir(
-        new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
-      EntityDragon dragon = new EntityDragon(event.world);
-      dragon.setLocationAndAngles(
-        event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
-      event.world.spawnEntityInWorld(dragon);
-    }
-  }
-}
-----
-
-<<<
-
-Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Dragon_Spawner_Registering>>.
-
-[[Dragon_Spawner_Registering]]
-.Registreren van Dragon Spawner code
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.boss.enderdragon.phases.EnderDragonPhase;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-    public static final String MODID = "MyMods";
-    public static final String VERSION = "1.0";
-
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ChatItems());
-        MinecraftForge.EVENT_BUS.register(new DragonSpawner());
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
+public class DragonSpawner {
+    @SubscribeEvent
+    public static void spawnDragon(BlockEvent.EntityPlaceEvent event) {
+        if (event.getPlacedBlock().getBlock() == Blocks.DRAGON_EGG) {
+            event.getLevel().removeBlock(event.getPos(), false); // false = no flags
+            EnderDragon dragon = EntityType.ENDER_DRAGON.create(event.getEntity().getLevel());
+            dragon.moveTo(event.getPos(), 0, 0);
+            dragon.getPhaseManager().setPhase(EnderDragonPhase.TAKEOFF);
+            event.getLevel().addFreshEntity(dragon);
+        }
     }
 }
 ----
+====
 
 **Spel spelen:**
 
@@ -339,17 +247,20 @@ public class MainMod {
 **Instructies:** Wijzig de code die ervoor zorgt dat voorwerpen tot leven komen en laat een andere voorwerp tot leven komen. Met de onderstaande code laat je een `Squid` tot leven komen wanneer je een `sponge` block plaatst. Gebruik Ctrl + spatie om de lijst met voorwerpen weer te geven. (zie `Belangrijke informatie`)
 
 .Spawn Squid Code
+====
 [source, java]
 ----
-if (event.placedBlock == Blocks.sponge.getBlockState().getBaseState()) {
-    event.world.setBlockToAir(
-      new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
-    EntitySquid squid = new EntitySquid(event.world);
-    squid.setLocationAndAngles(
-      event.pos.getX(), event.pos.getY(), event.pos.getZ(), 0, 0);
-    event.world.spawnEntityInWorld(squid);
+@SubscribeEvent
+public static void spawnSquid(BlockEvent.EntityPlaceEvent event) {
+    if (event.getPlacedBlock() == Blocks.SPONGE.defaultBlockState()) {
+         event.getLevel().removeBlock(event.getPos(), false); // false = no flags
+         Squid squid = EntityType.SQUID.create(event.getEntity().level);
+         squid.moveTo(event.getPos(), 0, 0);
+         event.getLevel().addFreshEntity(squid);
+     }
 }
 ----
+====
 
 Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer of Cmd + Shift + O op een Mac-computer om bepaalde klasses te importeren en een aantal fouten te repareren.
 
@@ -371,8 +282,7 @@ Nadat je dit hebt gedaan, drukt je op Ctrl + Shift + O op een Windows-computer o
 .Afstand tussen nieuwe voorwerpen
 [source, java]
 ----
-dragon.setLocationAndAngles(
-   event.pos.getX() + 5, event.pos.getY(), event.pos.getZ(), 0, 0);
+dragon.moveTo(event.getPos().above(2), 0, 0);
 ----
 
 **Spel spelen:**
@@ -393,67 +303,33 @@ dragon.setLocationAndAngles(
 **Instructies:**  Maak een nieuwe klasse in de package met de naam `CreeperSpawnAlert`. Vervang de code in het bestand met de <<Creeper_Spawn_Code>>.
 
 [[Creeper_Spawn_Code]]
-.Code Nieuwe Creeper Span Alert
+.Code Nieuwe Creeper Spawn Alert
+====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import java.util.List;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class CreeperSpawnAlert {
-
-    @SubscribeEvent
-    public void sendAlert(EntityJoinWorldEvent event) {
-        if (!(event.entity instanceof EntityCreeper)) {
-            return;
-        }
-
-        List players = event.entity.worldObj.playerEntities;
-
-        for (int i = 0; i < players.size(); i++) {
-            EntityPlayer player = (EntityPlayer) players.get(i);
-            player.addChatMessage(new ChatComponentText(
-                EnumChatFormatting.GREEN + "Een creeper is tot leven gekomen!"));
-        }
-    }
-
-}
-----
-
-<<<
-
-Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Creeper_Spawn_Registering>>.
-
-[[Creeper_Spawn_Registering]]
-.Code Registreren Nieuwe Creeper spawn alert
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-    public static final String MODID = "MyMods";
-    public static final String VERSION = "1.0";
-
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ChatItems());
-        MinecraftForge.EVENT_BUS.register(new DragonSpawner());
-        MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
+public class CreeperSpawnAlert {
+    @SubscribeEvent
+    public static void sendAlert(EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof Creeper && event.getLevel().isClientSide) {
+            for (Player player : event.getLevel().players()) {
+                player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Een creeper is verschenen!"));
+            }
+        }
     }
 }
 ----
+====
 
 **Spel spelen:**
 
@@ -465,8 +341,6 @@ public class MainMod {
 
 Je moet een heleboel berichten te zien krijgen met de tekst: "Een creeper is tot leven gekomen!" in lichtgroene letters. Dit bericht wordt elke keer naar jou gestuurd wanneer een creeper tot leven komt.
 
-<<<
-
 === Verander kleur/formaat van het bericht
 
 ==== Verander de kleur naar rood
@@ -474,46 +348,48 @@ Je moet een heleboel berichten te zien krijgen met de tekst: "Een creeper is tot
 **Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
 
 .Kleur van bericht
+====
 [source,java]
 ----
-player.addChatMessage(new ChatComponentText(
-    EnumChatFormatting.RED + "Een creeper is tot leven gekomen!"));
+player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Een Creeper is tot leven gekomen!"));
 ----
+====
 
 Probeer verschillende kleuren op de plek in de code na `EnumChatFormatting`. (Gebruik `Ctrl + Spatie`, zie `Belangrijke informatie`)
 Vergeet niet je `Client` opnieuw te starten wanneer je je aanpassing gaat testen.
 
-==== Stijl wijzigen in cursief
-
-**Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
-
-.Stijl van berichten
-[source,java]
-----
-player.addChatMessage(new ChatComponentText(
-    EnumChatFormatting.ITALIC + "Een creeper is tot leven gekomen!"));
-----
-
-Probeer verschillende stijlen in de code achter `EnumChatFormatting`. (Gebruik `Ctrl + Spatie`, zie `Belangrijke informatie`)
-Vergeet niet je `Client` opnieuw te starten wanneer je je aanpassing gaat testen.
-
-=== Wijzig tekst van het bericht
-
-**Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
-
-.Stijl van berichten
-[source,java]
-----
-player.addChatMessage(new ChatComponentText(
-    EnumChatFormatting.GREEN + "Wegrennen, een creeper is tot leven gekomen!"));
-----
+==== Verander de tekst van het bericht
 
 Je kan zelf bepalen welke tekst er getoond wordt door de tekst tussen de aanhalingstekens te wijzigen.
 Vergeet niet je `Client` opnieuw te starten wanneer je je aanpassing gaat testen.
 
-<<<
+**Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
 
-=== Print dezelfde boodschap voor verschillende voorwerpen
+.Stijl van berichten
+====
+[source,java]
+----
+player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Ren weg, een Creeper is tot leven gekomen!"));
+----
+====
+
+=== Toon een ander bericht voor een ander monster
+
+Deze code print een ander bericht voor een ander monster.
+
+.Andere boodschap voor ander monster
+====
+[source, java]
+----
+if (event.getEntity() instanceof Zombie && event.getLevel().isClientSide) {
+    for (Player player : event.getLevel().players()) {
+	player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "Een zombie is verschenen!"));
+    }
+}
+----
+====
+
+=== Uitdaging! Print dezelfde boodschap voor verschillende voorwerpen
 
 **Instructie:** Pas de code aan om het bericht voor de creeper ook voor zombies te gebruiken. Dit kan op twee manieren.
 
@@ -541,168 +417,98 @@ if (!(event.entity instanceof EntityCreeper) || !(event.entity instanceof Entity
 }
 ----
 
-<<<
-
-=== Print een andere boodschap voor verschillende aanpassingen
+=== Print een andere boodschap voor verschillende monsters
 
 **Instructie:** Maak voor elke voorwerp een ander bericht. Pas hiervoor de code van `CreeperSpawnAlert.java` aan zoals hieronder.
 
-.Print een andere boodschap voor verschillende mods
+.Toon een andere boodschap voor verschillende mobs
 [source, java]
 ----
-public void sendAlert(EntityJoinWorldEvent event) {
-    if (!(event.entity instanceof EntityCreeper && event.entity instanceof EntityZombie)) {
-        return;
-    }
-	
-    String message;
+package com.example.examplemod;
 
-    // Als het voorwerp een creeper is,
-    // dan tonen we `Een creeper is tot leven gekomen!`
-    // en anders `Een zombie is tot leven gekomen!`
-    if (event.entity instanceof EntityCreeper) {
-        message = "Een creeper is tot leven gekomen!";
-    } else {
-        message = "Een zombie is tot leven gekomen!";
-    }
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-    List players = event.entity.worldObj.playerEntities;
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
+public class CreeperSpawnAlert {
+	@SubscribeEvent
+	public static void sendAlert(EntityJoinLevelEvent event) {
+		if (!(event.getEntity() instanceof Creeper || event.getEntity() instanceof Zombie)) {
+			return;
+		}
 
-    for (int i = 0; i < players.size(); i++) {
-        EntityPlayer player = (EntityPlayer) players.get(i);
-        if (event.world.isRemote) {
-            player.addChatMessage(new ChatComponentText(
-               EnumChatFormatting.GREEN + message));
-        }
-    }
+		String message;
+
+		// Als het een creeper is,
+		// dan tonen we `Een creeper is tot leven gekomen!`
+		// en anders `Een zombie is tot leven gekomen!`
+		if (event.getEntity() instanceof Creeper) {
+			message = "Een creeper is tot leven gekomen!";
+		} else {
+			message = "Een zombie is tot leven gekomen!";
+		}
+
+		for (Player player : event.getLevel().players()) {
+			player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + message));
+
+		}
+	}
 }
 ----
 
 Vergeet niet je `Client` opnieuw te starten wanneer je je aanpassing gaat testen.
 
-<<<
+[[Sharp_Snowballs]]
+== Scherpe sneeuwballen
+**Doel:** Alle sneeuwballen omzetten in pijlen zodat ze schade kunnen toebrengen.
 
-=== Bericht tonen bij het tot leven komen van een voorwerp
+**Instructies:** Maak in je package een nieuwe klasse met de naam `SharpSnowballs` aan. Vervang de code met <<Sharp_Snowballs_Code>>.
 
-**Doel:** Bericht tonen wanneer een voorwerp tot leven komt. Het maakt niet uit welk soort voorwerp.
-
-**Instructie:** Pas de code aan zoals je hieronder.
-
-.Bericht tonen bij het tot leven komen van een voorwerp
+[[Sharp_Snowballs_Code]]
+.Code Scherpe sneeuwballen
+====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import java.util.List;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.projectile.Snowball;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class CreeperSpawnAlert {
-
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
+public class SharpSnowballs {
     @SubscribeEvent
-    public void sendAlert(EntityJoinWorldEvent event) {
-        if (!(event.entity instanceof EntityMob)) {
+    public static void replaceSnowballWithArrow(EntityJoinLevelEvent event) {
+        Entity snowball = event.getEntity();
+        Level level = event.getLevel();
+
+        if (!(snowball instanceof Snowball)) {
             return;
         }
 
-        List players = event.entity.worldObj.playerEntities;
-
-        for (int i = 0; i < players.size(); i++) {
-            EntityPlayer player = (EntityPlayer) players.get(i);
-            player.addChatMessage(new ChatComponentText(
-               EnumChatFormatting.GREEN + "Een creeper is tot leven gekomen!"));
+        if (!level.isClientSide) {
+            Arrow arrow = EntityType.ARROW.create(level);
+            arrow.moveTo(snowball.position());
+            arrow.setDeltaMovement(snowball.getDeltaMovement());
+            level.addFreshEntity(arrow);
         }
-    }
 
-}
-----
-
-Elk voorwerp in de Minecraft code stamt af van een `EntityMob`. Met deze aanpassing laten we een bericht zien wanneer elk type voorwerp tot leven komt.
-
-<<<
-
-== Scherpe sneeuwballen
-**Doel:** Alle sneeuwballen omzetten in pijlen zodat ze voorwerpen kunnen beschadigen.
-
-**Instructies:** Maak in je package een nieuwe klasse met de naam `SharpSnowballs` aan. Vervang de code met de  <<Sharp_Snowballs_Code>>.
-[[Sharp_Snowballs_Code]]
-.Code Scherpe sneeuwballen
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class SharpSnowballs {
-
-    @SubscribeEvent
-    public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
-        Entity snowball = event.entity;
-        World world = snowball.worldObj;
-        if (!(snowball instanceof EntitySnowball)) {
-           return;
-        }
-        if (!world.isRemote) {
-            EntityArrow arrow = new EntityArrow(world);
-            arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ, 0, 0);
-            arrow.motionX = snowball.motionX;
-            arrow.motionY = snowball.motionY;
-            arrow.motionZ = snowball.motionZ;
-
-            // gets arrow out of player`s head
-            // gets the angle of arrow right, in the direction of motion
-            arrow.posX += arrow.motionX;
-            arrow.posY += arrow.motionY;
-            arrow.posZ += arrow.motionZ;
-
-            world.spawnEntityInWorld(arrow);
-            snowball.setDead();
-        }
+        event.setCanceled(true);
     }
 }
 ----
-
-<<<
-
-Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Snowballs_Registering>>.
-
-[[Snowballs_Registering]]
-.Registreren Scherpe Sneeuwballen
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-    public static final String MODID = "MyMods";
-    public static final String VERSION = "1.0";
-
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ChatItems());
-        MinecraftForge.EVENT_BUS.register(new DragonSpawner());
-        MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
-        MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
-    }
-}
-----
-
-<<<
+====
 
 **Spel spelen:**
 
@@ -715,7 +521,7 @@ public class MainMod {
 . Als je nu een sneeuwbal gooit met behulp van de rechtermuis toets. Dan zullen de sneeuwballen veranderen in pijlen!! Schiet maar hoog in de lucht.
 . *TIP* Je kan ook een Sneeuwgolem maken door 2 sneeuwblokken en 1 pompoen op elkaar te plaatsen. De Sneeuwgolem zal een torentje worden dat sneeuwballen schiet die veranderen in pijlen.
 
-image::images/inventory_snowball.png[]
+image::../images/inventory_snowball.png[]
 
 <<<
 
@@ -723,51 +529,19 @@ image::images/inventory_snowball.png[]
 
 **Doel:** Sneeuwballen veranderen in TNT pakketjes die ontploffen nadat je ze hebt gegooid.
 
-**Instructie:** Pas de code aan zoals in het voorbeeld hieronder.
+**Instructie:** Vervang de `Arrow arrow = EntityType.ARROW.create(level);` regel met de code in <<Explosive_Snowballs_Code>>.
 
-[[Snowballs_Code]]
+[[Explosive_Snowballs_Code]]
 .Code Explosieve Sneeuwballen
+====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntitySnowball;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class SharpSnowballs {
-
-    @SubscribeEvent
-    public void replaceSnowballWithArrow(EntityJoinWorldEvent event) {
-      Entity snowball = event.entity;
-      World world = snowball.worldObj;
-      if (!(snowball instanceof EntitySnowball)) {
-        return;
-      }
-      if (!world.isRemote) {
-        // Hier moet je de code aanpassen.
-        EntityTNTPrimed arrow = new EntityTNTPrimed(world);
-        arrow.fuse = 80;
-
-        arrow.setLocationAndAngles(snowball.posX, snowball.posY, snowball.posZ, 0, 0);
-        arrow.motionX = snowball.motionX;
-        arrow.motionY = snowball.motionY;
-        arrow.motionZ = snowball.motionZ;
-
-        arrow.posX += arrow.motionX;
-        arrow.posY += arrow.motionY;
-        arrow.posZ += arrow.motionZ;
-        world.spawnEntityInWorld(arrow);
-        snowball.setDead();
-      }
-    }
-}
+PrimedTnt tnt = EntityType.TNT.create(level);
+tnt.setFuse(80);
 ----
+====
 
-<<<
+Zorg dat je de import problemen oplost met `Cmd` + `Shift` + `0` op Mac and `Ctrl` + `Shift` + `O` op Windows.
 
 == Iron Golems Met Super Krachten
 
@@ -779,153 +553,96 @@ Maak in je package een nieuwe klasse genaamd `OverpoweredIronGolems`. Vervang de
 
 [[Iron_Golems_Code]]
 .Code Iron Golems Met Superkrachten
+====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-public class OverpoweredIronGolems {
-	
-    @SubscribeEvent
-    public void golemMagic(EntityJoinWorldEvent event) {
-        if (!(event.entity instanceof EntityIronGolem)) {
-           return;
-        }
-		
-        EntityLiving entity = (EntityLiving) event.entity;
-        entity.addPotionEffect(new PotionEffect(1, 1000000, 5));
-        entity.addPotionEffect(new PotionEffect(5, 1000000, 5));
-        entity.addPotionEffect(new PotionEffect(10, 1000000, 5));
-        entity.addPotionEffect(new PotionEffect(11, 1000000, 5));
-    }
-}
-----
-
-<<<
-
-Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Iron_Golems_Register>>.
-
-[[Iron_Golems_Register]]
-.Code Registreren Iron Golems Met Super Krachten
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-    public static final String MODID = "MyMods";
-    public static final String VERSION = "1.0";
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
+public class OverpoweredIronGolems {
+    @SubscribeEvent
+    public static void applyPotionEffectsToGolem(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof IronGolem)) {
+            return;
+        }
 
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ChatItems());
-        MinecraftForge.EVENT_BUS.register(new DragonSpawner());
-        MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
-        MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
-        MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
+        IronGolem golem = (IronGolem) event.getEntity();
+        golem.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 1000000, 5));
+        golem.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1000000, 5));
     }
 }
 ----
+====
 
 **Spel spelen:**
 
 . Stop de `Client` vanuit Eclipse. (Zie `Belangrijke informatie` hoe je dat moet doen.)
 . Start de `Client` vanuit Eclipse. (Zie `Belangrijke informatie` hoe je dat moet doen.)
 . Selecteer je wereld.
-. Laat een Iron golem tot leven komen. (Type 'T' en dan type je `/summon VillagerGolem` ).
-. Laat een paar vijandige karakters tot leven komen in de buurt van de Iron Golem
+. Laat een Iron golem tot leven komen. (Type 'T' en dan type je `/summon minecraft:iron_golem` ).
+. Laat een paar creepers tot leven komen in de buurt van de Iron Golem (Type 'T' en dan type je `/summon minecraft:creeper` ).
 
 De golem zal zich naar hen toe verplaatsen om hen te doden. Normaal gesproken bewegen Iron Golems langzaam, maar met de snelheidsinstelling van de aanpassing, zullen ze heel snel bewegen.
 
-<<<
 
 == Regenwater
 
-**Doel:** Wanneer het regent water plaatsen aan de voeten van entities.
+**Doel:** Normaal ontstaat er geen water wanneer het regent. Wanneer het regent plaatsen we hiermee water aan de voeten van entities.
 
 **Instructies:** Maak in je package een nieuwe klasse met de naam `RainWater`. Vervang de code ervan met <<Rain_Code>>.
 
 [[Rain_Code]]
 .Code Regen Water
+====
 [source, java]
 ----
 package org.devoxx4kids.forge.mods;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class RainWater {
 
-  @SubscribeEvent
-  public void makeWater(LivingUpdateEvent event) {
-    Entity entity = event.entity;
-    World world = entity.worldObj;
-    int x = (int) Math.floor(entity.posX);
-    int y = (int) Math.floor(entity.posY);
-    int z = (int) Math.floor(entity.posZ);
-    if (!entity.worldObj.isRaining()) {
-      return;
-    }
-    for (int i = y; i < 256; i++) {
-      if (world.getBlockState(
-        new BlockPos(x, i, z)) != Blocks.air.getBlockState().getBaseState()) {
-          return;
-      }
-    }
-    if (world.isRemote || !world.getBlockState(
-      new BlockPos(x, y - 1, z)).getBlock().isNormalCube()) {
-        return;
-    }
-    world.setBlockState(new BlockPos(x, y, z), Blocks.water.getBlockState().getBaseState());
-  }
+	@SubscribeEvent
+	public void makeWater(LivingUpdateEvent event) {
+		Entity entity = event.getEntity();
+		World world = entity.world;
+		int x = (int) Math.floor(entity.posX);
+		int y = (int) Math.floor(entity.posY);
+		int z = (int) Math.floor(entity.posZ);
+	
+		if (!world.isRaining()) {
+			return;
+		}
+	
+		for (int i = y; i < 256; i++) {
+			if (world.getBlockState(new BlockPos(x, i, z)) != Blocks.AIR.getBlockState().getBaseState()) {
+				return;
+			}
+		}
+	
+		if (world.isRemote || !world.getBlockState(new BlockPos(x, y - 1, z)).isFullCube()) {
+			return;
+		}
+	
+		world.setBlockState(new BlockPos(x, y, z), Blocks.WATER.getBlockState().getBaseState());
+	}
 }
 ----
-
-<<<
-
-Registreer vervolgens deze klasse zoals je deed met Chat items, je hoofdbestand zal er nu uitzien zoals wordt getoond in <<Rain_Registering>>.
-
-[[Rain_Registering]]
-.Registreren Regen Water
-[source, java]
-----
-package org.devoxx4kids.forge.mods;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-@Mod(modid = MainMod.MODID, version = MainMod.VERSION)
-public class MainMod {
-    public static final String MODID = "MyMods";
-    public static final String VERSION = "1.0";
-
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ChatItems());
-        MinecraftForge.EVENT_BUS.register(new DragonSpawner());
-        MinecraftForge.EVENT_BUS.register(new CreeperSpawnAlert());
-        MinecraftForge.EVENT_BUS.register(new SharpSnowballs());
-        MinecraftForge.EVENT_BUS.register(new OverpoweredIronGolems());
-        MinecraftForge.EVENT_BUS.register(new RainWater());
-    }
-}
-----
+====
 
 **Spel spelen:**
 
@@ -935,7 +652,6 @@ public class MainMod {
 . Type 'T' en dan type je `/weather rain` om het weer regenachtig maken.
 . Begin te bewegen. Waar je ook gaat zal er water verschijnen, maar zodra je stilstaat zal het snel verdwijnen.
 
-<<<
 
 *De volgende opdrachten hoef je niet tijdens de workshop uit te voeren, maar kan je doen als je nog tijd over hebt of thuis nog verder gaat met aanpassingen maken van Minecraft.*
 
