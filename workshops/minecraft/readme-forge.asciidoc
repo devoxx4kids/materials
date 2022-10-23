@@ -512,6 +512,7 @@ public class RainWater {
 
 **Gameplay:**
 
+. Go to a biome where it rains. For example, plains, forest, swamp, and jungle. There are biomes where rain does not happen, for example, desert, savannah, or snowy biome. Make sure you're not in those biomes.
 . Use the command `/weather rain` to start rain
 . Start moving, and water should be placed wherever you or any other entity go, but it will disappear quickly
 
