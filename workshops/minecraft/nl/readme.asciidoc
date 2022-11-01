@@ -36,6 +36,7 @@ Dit is een zeer belangrijke stap, omdat dit je laat zien dat je écht kunt begin
 Eclipse is het programma dat we gebruiken om aanpassingen te maken in Minecraft.
 
 . Het Eclipse venster zou er nu als volgt uit moeten zien:
+
 image::../images/eclipse-forge-install.png[]
 
 . Dubbelklik op de `forge` map in `Package Explorer` aan de linker kant. Dit is waar alle broncode staat die we straks gaan aanpassen.
