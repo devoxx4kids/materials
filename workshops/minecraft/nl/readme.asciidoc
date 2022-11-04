@@ -90,6 +90,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class ChatItems {
 	
   @SubscribeEvent
@@ -615,6 +616,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class RainWater {
 
 	@SubscribeEvent
