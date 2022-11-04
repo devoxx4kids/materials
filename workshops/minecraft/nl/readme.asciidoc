@@ -174,7 +174,6 @@ Instructies: Ga terug naar Eclipse. Maak de code om verschillende voorwerpen te 
 [source, java]
 ----
 @SubscribeEvent
-@SubscribeEvent
 public void giveItems(ServerChatEvent event){
 	if (event.getMessage().contains("potato")) {
 		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
