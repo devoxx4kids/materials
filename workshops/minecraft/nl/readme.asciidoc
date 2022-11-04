@@ -174,7 +174,6 @@ Instructies: Ga terug naar Eclipse. Maak de code om verschillende voorwerpen te 
 [source, java]
 ----
 @SubscribeEvent
-@SubscribeEvent
 public void giveItems(ServerChatEvent event){
 	if (event.getMessage().contains("potato")) {
 		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
@@ -616,6 +615,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class RainWater {
 
 	@SubscribeEvent
