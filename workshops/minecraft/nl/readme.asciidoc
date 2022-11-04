@@ -83,21 +83,22 @@ Vervang dan de code met <<Chat_Items_Code>>.
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class ChatItems {
-	
-  @SubscribeEvent
-  public void giveItems(ServerChatEvent event){
-    if (event.message.contains("aardappel")) {
-    	event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
+    @SubscribeEvent
+    public static void giveItems(ServerChatEvent event) {
+        if (event.getMessage().contains("aardappel")) {
+            event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
+        }
     }
-  }
 }
 ----
 ====
