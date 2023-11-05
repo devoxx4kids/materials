@@ -471,21 +471,23 @@ The golem should move towards them to kill them. Normally, Iron Golems move slow
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class RainWater {
 
     @SubscribeEvent
     public static void makeWater(LivingEvent.LivingTickEvent event) {
-        Entity entity = event.getEntity();
+        LivingEntity entity = event.getEntity();
         Level level = entity.level;
         BlockPos entityPos = entity.blockPosition();
 
