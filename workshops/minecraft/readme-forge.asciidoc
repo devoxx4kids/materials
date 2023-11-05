@@ -535,7 +535,7 @@ public class RainWater {
 ----
  @SubscribeEvent
  public static void spawnTnt(LivingEvent.LivingTickEvent event) {
-     Entity entity = event.getEntity();
+     LivingEntity entity = event.getEntity();
      Level level = entity.level;
      BlockPos entityPos = entity.blockPosition();
 
@@ -570,7 +570,7 @@ public class RainWater {
 ----
 ====
 
-Fix the imports.
+Make sure to fix the imports using `Cmd` + `Shift` + `0` on Mac and `Ctrl` + `Shift` + `O` on Windows.
 
 **Gameplay:**
 
