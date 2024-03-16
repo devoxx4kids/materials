@@ -129,23 +129,23 @@ When Eclipse asks you to save the file, click on the "`Save`" button. This will 
 
 **Gameplay:**
 
-. Create a new Creative mode world
-. Press `T` to open up the chat window
-. Type in any message that contains the word `potato`
-. You should receive one stack (64 items) of potatoes
+. Create a new Creative mode world.
+. Press `T` to open the chat window.
+. Type in any message that contains the word `potato`.
+. You should receive one stack (64 items) of potatoes.
 
-=== Change Text/Item
+=== Change text/item
 
-This mod will produce a different item for a different text message. For example change the text from `"potato"` to `"diamond"` and the item produced from `Items.POTATO` to `Items.DIAMOND`. To see more possibilities, use `Ctrl`+`Space` with your cursor just after `Items.` to show the list of items.
+This variation produces a different item for a different text message. For example change the text from `"potato"` to `"diamond"` and the item produced from `Items.POTATO` to `Items.DIAMOND`. To see more possibilities, use `Ctrl`+`Space` with your cursor just after `Items.` to show the list of items.
 
 To see the changes you've made, close Minecraft and restart it by clicking on the play button in Eclipse.
 
-=== Different Items
+=== Different items
 
-This mod variation produces different items for different chat text. For example, typing `potato` will yield potatoes while typing `diamond` will yield diamonds.
+This variation produces different items for different chat text. For example, typing `potato` will yield potatoes while typing `diamond` will yield diamonds.
 
 [[Different_Chat_Items_Code]]
-.Different Items code
+.Different items
 ====
 [source, java]
 ----
@@ -162,12 +162,12 @@ public static void giveItems(ServerChatEvent event){
 ----
 ====
 
-=== Multiple Items
+=== Multiple items
 
-This mod will produce multiple items for a chat text. Instead of only producing potato and diamond one at one time, it can product potato and diamond, both at the same time, on a same text.
+This variation yields multiple items for a single message. Instead of producing potatoes and diamonds separately, the player gets both items at once from a single trigger word.
 
 [[Multiple_Chat_Items_Code]]
-.Multiple Items code
+.Multiple items
 ====
 [source, java]
 ----
@@ -184,12 +184,12 @@ public void giveItems(ServerChatEvent event){
 [[Dragon_Spawner]]
 == Ender Dragon Spawner
 
-**Purpose:** This mod will spawn an Ender Dragon every time a player places a Dragon Egg block.
+**Purpose:** This mod will spawn an ender dragon every time a player places a dragon egg block.
 
 **Instructions:** In the package `com.example.examplemod`, make a new class called `DragonSpawner` and replace its code with the code shown in <<Dragon_Spawner_Code>>.
 
 [[Dragon_Spawner_Code]]
-.Dragon Spawner code
+.Ender Dragon Spawner code
 ====
 [source, java]
 ----
@@ -221,17 +221,17 @@ public class DragonSpawner {
 
 **Gameplay:**
 
-. Use the command `/give Dev minecraft:dragon_egg` to give yourself a dragon egg
-. Select slot from the inventory?? in which the dragon egg is placed
-. Double click in the world to place down the dragon egg, and this will spawn an Ender Dragon
+. Use the command `/give Dev minecraft:dragon_egg` to give yourself a dragon egg.
+. Select the hotbar slot containing the dragon egg.
+. Right click in the world to place down the dragon egg, which will spawn an ender dragon.
 
-NOTE: You may get the error `You don't have permissions to perform the command`. The reason it says that you don't have permission to run the command is because you don't have cheats enabled in your world. When you are creating a world, there will be a box that says you are in `Survival` mode. Click on the box until it says "`Creative`" mode, which will automatically enable cheats. Then, create the rest of the world normally. You will need to create a new world for this.
+NOTE: When running the `/give` command, you may get the error `You don't have permissions to perform the command`. The reason for this is that you don't have cheats enabled in your world. When you are creating a world, there will be a box that says you are in "`Survival`"" mode. Click on the box until it says "`Creative`" mode, which will automatically enable cheats. Then, create the the world normally. You will need to create a new world for this.
 
 === Change block/entity
 
-This mod will change the block that triggers spawning and spawn a different item. For example change the block to `sponge` and entity to `EntitySquid`. Use Ctrl+Space to show the list of items.
+This variation changes the block that triggers spawning as well as the entity spawned. For example, you can change the block to `Blocks.SPONGE` and the entity to `EntitySquid`. Like with <<Chat_Items>>, use `Ctrl`+`Space` to show the list of possible items or entities.
 
-.Spawn squid
+.Squid spawner
 ====
 [source, java]
 ----
@@ -247,25 +247,21 @@ public static void spawnSquid(BlockEvent.EntityPlaceEvent event) {
 ----
 ====
 
-After doing this, press `Cmd` + `Shift` + `O` on a Mac computer or `Control` + `Shift` + `O` on a Windows computer to import one class and fix the error. In the minecraft game window, give yourself a sponge using the command  `/give Dev minecraft:sponge`. Select slot from the inventory?? in which the sponge is placed, double click in the world to place down the sponge, and this will spawn a Squid.
+After doing this, press `Control` + `Shift` + `O` on a Windows computer or `Cmd` + `Shift` + `O` on a Mac computer to update the imports and fix the error. After launching the game, in the Minecraft game window, give yourself a sponge using the command `/give Dev minecraft:sponge`, or grab a sponge from the creative inventory. Place the sponge in the world to spawn a squid.
 
-Run the minecraft game and enjoy the new mod.
+=== Change spawn position
 
-=== Change offset of entities
+This variation makes the ender dragon 2 blocks above the location where the dragon egg is placed.
 
-This mod will spawn ender dragon 2 blocks above the location where the dragon egg is placed.
+Change the line `dragon.moveTo(event.getPos(), 0, 0);` to the following:
 
-Change one line in the `spawnDragon` method to the one below:
-
-.Spawn offset
+.Spawn position offset
 ====
 [source, java]
 ----
 dragon.moveTo(event.getPos().above(2), 0, 0);
 ----
 ====
-
-Run the minecraft game and enjoy the new mod.
 
 [[Creeper_Alert]]
 == Creeper Spawn Alert
@@ -306,17 +302,17 @@ public class CreeperSpawnAlert {
 **Gameplay:**
 
 . Make sure you are not on peaceful mode.
-. Set the time to night time `/time set night` 
+. Set the time to night time using the command `/time set night`
 
-You should get a bunch of messages saying "`A creeper has spawned!`" in green color. One of these messages is sent to you every time a creeper spawns.
+You should get a bunch of messages saying "`A creeper has spawned!`". One of these messages is sent to you every time a creeper spawns.
 
 === Change color/format of message
 
 ==== Change color to red
 
-This mod will change color of the message.
+This variation changes the color of the message.
 
-.Color of message
+.Red message
 ====
 [source,java]
 ----
@@ -324,13 +320,13 @@ player.sendSystemMessage(Component.literal(ChatFormatting.RED + "A creeper has s
 ----
 ====
 
-Try different colors by code completion after `ChatFormatting`.
+Try out different colors by using `Ctrl`+`Space` after `ChatFormatting`.
 
 === Change text of message
 
-This mod will change the message printed.
+This variation changes the message printed.
 
-.Style of message
+.Different message text
 ====
 [source,java]
 ----
@@ -338,13 +334,11 @@ player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Run away, a cre
 ----
 ====
 
-Talk about text within quotes.
-
 === Print a different message for another mob
 
-This mod will print a different message for another mob.
+This variation prints messages for zombies instead of creepers.
 
-.Different message for another mob
+.Different mob
 ====
 [source, java]
 ----
@@ -356,11 +350,10 @@ if (event.getEntity() instanceof Zombie && event.getLevel().isClientSide) {
 ----
 ====
 
-
 [[Sharp_Snowballs]]
 == Sharp Snowballs
 
-**Purpose:** This mod turn all snowballs into arrows so that they can hurt entities.
+**Purpose:** This mod turns all snowballs into arrows so that they can hurt entities.
 
 **Instructions:** Create a new Java class called `SharpSnowballs`. Replace its code with <<Snowballs_Code>>.
 
@@ -406,36 +399,36 @@ public class SharpSnowballs {
 
 **Gameplay:**
 
-. Press `E` to bring inventory window, click on the top-right panel to search items, type `snowball`, drag snowball to the hotbar in inventory window
-. Select the snowball in hotbar, right click to throw it
-. It should turn into an arrow
+. Give yourself a snowball using the command `/give Dev minecraft:snowball`, or grab a snowball from the creative inventory.
+. Select the snowball in your hotbar and right click to throw it.
+. The snowball should turn into an arrow.
 
-You can also spawn Snow Golems by placing a pumpkin on top of a tower of two Snow blocks. The Snow Golem will act as a turret, shooting out snowballs at hostile mobs that turn into arrows.
+You can also spawn snow golems by placing a pumpkin on top of a tower of two snow blocks. The snow golem will act as a turret, shooting out snowballs that turn into arrows at hostile mobs.
 
-Tip: Spawn a Zombie or two for the Snow Golems to shoot.
+Tip: Spawn a zombie or two for the snow golems to shoot.
 
 === Explosive snowballs
 
-This mod will convert snowballs into TNT.
+This variation convert snowballs into lit TNT.
 
-Replace `Arrow arrow = EntityType.ARROW.create(level);` line with the code shown in <<Explosive_Snowballs_Code>>.
+Replace the line `Arrow arrow = EntityType.ARROW.create(level);` with the code shown in <<Explosive_Snowballs_Code>>.
 
 [[Explosive_Snowballs_Code]]
 .Explosive Snowballs code
 ====
 [source, java]
 ----
-PrimedTnt tnt = EntityType.TNT.create(level);
-tnt.setFuse(80);
+PrimedTnt arrow = EntityType.TNT.create(level);
+arrow.setFuse(80);
 ----
 ====
 
-Make sure to fix the imports using `Cmd` + `Shift` + `0` on Mac and `Ctrl` + `Shift` + `O` on Windows.
+Make sure to fix the imports using `Ctrl` + `Shift` + `O` on Windows or `Cmd` + `Shift` + `O` on Mac.
 
 [[OP_Golems]]
 == Overpowered Iron Golems
 
-**Purpose:** This mod will add helpful potion effects to Iron Golems when they are spawned in the world.
+**Purpose:** This mod adds helpful potion effects to iron golems when they are spawned in the world.
 
 **Instructions:**
 
@@ -475,10 +468,11 @@ public class OverpoweredIronGolems {
 
 **Gameplay:**
 
-. Spawn an Iron Golem by using the command `/summon minecraft:iron_golem`.
-. Spawn some hostile mobs near the Iron Golem
+. Spawn an iron golem by using the command `/summon minecraft:iron_golem`
+. Spawn some hostile mobs (zombies, skeletons, etc.) near the iron golem. For example, use the command `/summon minecraft:zombie`.
+. The golem should move towards the hostile mobs to kill them.
 
-The golem should move towards them to kill them. Normally, Iron Golems move slowly, but with the speed effect from the mod, they should move very fast.
+Normally, iron golems move slowly, but with the speed effect from the mod, they should move very fast.
 
 [[Rain_Water]]
 == Rain Water
@@ -599,7 +593,7 @@ Fix the imports.
 [[Skeleton_War]]
 == Skeleton War
 
-**Purpose:** This mod gives armon to all skeletons and make them try to kill each other.
+**Purpose:** This mod gives armor to all skeletons and make them try to kill each other.
 
 **Instructions:** Create a new Java class called `SkeletonWar` and replace its contents with <<War_Code>>.
 
@@ -668,7 +662,7 @@ public class SkeletonWar {
 . Select the skeleton spawn egg in hotbar and right click on the ground multiple times to spawn skeletons
 . The skeletons will have assorted pieces of armor; they will also be shooting at each other
 
-Another variation is where you can create an enclosed arena, spwan a bunch of skeletons there and wage a skeleton war.
+Another variation is where you can create an enclosed arena, spawn a bunch of skeletons there, and watch them wage a skeleton war.
 
 [[Wall_Climber]]
 == Wall Climber (NOT WORKING)
@@ -917,7 +911,7 @@ MinecraftForge.EVENT_BUS.register(haste);
 Enchantment.REGISTRY.register(100, new ResourceLocation("arrowFast"), haste);
 ====
 
-Don't forget to fix the imports using `Cmd` + `Shift` + `O` on `Mac` and `Ctrl` + `Shift` + `O` on Windows.
+Don't forget to fix the imports using `Ctrl` + `Shift` + `O` on Windows or `Cmd` + `Shift` + `O` on `Mac`.
 
 Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("`Haste`" instead of "`enchantment.arrowFast`"). There is a folder with the name "src/main/resources" directly underneath the "src/main/java" folder. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
 
@@ -943,9 +937,9 @@ enchantment.arrowFast=Haste
 
 === Create your mod .jar file
 
-. On Mac, open Terminal. On Window, open Command Prompt
+. On Windows, open Command Prompt. On Mac, open Terminal.
 . Go to forge folder using the command `cd ~/Desktop/forge`
-. On Mac, type the command `./gradlew build`. On Windows, it will be `gradlew build`
+. On Windows, type the command `gradlew build`. On Mac, use `gradlew build`
 . Your mods are available in `build/libs/modid-1.0.jar` 
 
 === Run a server and test the mods (NOT WORKING)
