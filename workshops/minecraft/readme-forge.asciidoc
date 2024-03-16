@@ -409,7 +409,7 @@ Tip: Spawn a zombie or two for the snow golems to shoot.
 
 === Explosive snowballs
 
-This variation convert snowballs into lit TNT.
+This variation converts snowballs into lit TNT.
 
 Replace the line `Arrow arrow = EntityType.ARROW.create(level);` with the code shown in <<Explosive_Snowballs_Code>>.
 
@@ -477,7 +477,7 @@ Normally, iron golems move slowly, but with the speed effect from the mod, they 
 [[Rain_Water]]
 == Rain Water
 
-**Purpose:** Normally, there is no water on the ground when it rains. This mod places water at the feet of entities when it is raining.
+**Purpose:** Normally, rain does not create water on the terrain. This mod places water at the feet of entities when it is raining.
 
 **Instructions:** Create a new Java class called `RainWater` and replace its contents with <<Rain_Code>>.
 
@@ -486,18 +486,19 @@ Normally, iron golems move slowly, but with the speed effect from the mod, they 
 ====
 [source, java]
 ----
-package org.devoxx4kids.forge.mods;
+package com.example.examplemod;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = ExampleMod.MODID)
 public class RainWater {
-
     @SubscribeEvent
     public static void makeWater(LivingEvent.LivingTickEvent event) {
         Entity entity = event.getEntity();
@@ -531,69 +532,67 @@ public class RainWater {
 
 **Gameplay:**
 
-. Go to a biome where it rains. For example, plains, forest, swamp, and jungle. There are biomes where rain does not happen, for example, desert, savannah, or snowy biome. Make sure you're not in those biomes.
-. Use the command `/weather rain` to start rain
-. Start moving, and water should be placed wherever you or any other entity go, but it will disappear quickly
+. Go to a biome where it rains, such as plains, forest, swamp, or jungle. Make sure you're not in a biome where rain doesn't happen, such as desert, savanna, or taiga.
+. Use the command `/weather rain` to start the rain.
+. Start walking on the ground, and water should be placed at the feet of you and all other entities in the rain.
+.. If water is not spawning, make sure you're not standing in a transparent block such as tall grass or a flower.
 
 === TNT Thunder
 
-**Purpose**: Spawn a TNT with fuse at a random duration wherever an entity is walking
+This variation spawns TNT during thunderstorms instead of placing water during rain.
 
-**Instructions**: Replace the `makeWater` method in `RainWater` class with the code in <<TNT_Thunder>>
+Replace the `makeWater()` method in the `RainWater` class with the code in <<TNT_Thunder>>.
 
 [[TNT_Thunder]]
 .TNT Thunder Code
 ====
 [source, java]
 ----
- @SubscribeEvent
- public static void spawnTnt(LivingEvent.LivingTickEvent event) {
-     Entity entity = event.getEntity();
-     Level level = entity.level;
-     BlockPos entityPos = entity.blockPosition();
+@SubscribeEvent
+public static void spawnTnt(LivingEvent.LivingTickEvent event) {
+    Entity entity = event.getEntity();
+    Level level = entity.level;
+    BlockPos entityPos = entity.blockPosition();
 
-     if (level.isClientSide) {
-         return;
-     }
+    if (level.isClientSide) {
+        return;
+    }
 
-     if (!level.isThundering() || level.getBiome(entityPos).get().getPrecipitation() != Biome.Precipitation.RAIN) {
-         return;
-     }
+    if (!level.isThundering() || level.getBiome(entityPos).get().getPrecipitation() != Biome.Precipitation.RAIN) {
+        return;
+    }
 
-     for (int i = entityPos.getY(); i < 320; i++) {
-         if (level.getBlockState(entityPos.atY(i)).getBlock() != Blocks.AIR) {
-             return;
-         }
-     }
+    for (int i = entityPos.getY(); i < 320; i++) {
+        if (level.getBlockState(entityPos.atY(i)).getBlock() != Blocks.AIR) {
+            return;
+        }
+    }
 
-     BlockPos posBelow = entityPos.below(1);
-     if (!level.getBlockState(posBelow).isCollisionShapeFullBlock(level, posBelow)) {
-         return;
-     }
+    BlockPos posBelow = entityPos.below(1);
+    if (!level.getBlockState(posBelow).isCollisionShapeFullBlock(level, posBelow)) {
+        return;
+    }
 
-     if (level.random.nextInt(40) != 1) {
-         return;
-     }
+    if (level.random.nextInt(40) != 1) {
+        return;
+    }
 
-     PrimedTnt tnt = EntityType.TNT.create(level);
-     tnt.setFuse(80);
-     tnt.moveTo(entityPos, 0, 0);
-     level.addFreshEntity(tnt);
- }
+    PrimedTnt tnt = EntityType.TNT.create(level);
+    tnt.setFuse(80);
+    tnt.moveTo(entityPos, 0, 0);
+    level.addFreshEntity(tnt);
+}
 ----
 ====
 
-Fix the imports.
+Don't forget to fix the imports using `Ctrl` + `Shift` + `O` on Windows or `Cmd` + `Shift` + `O` on Mac.
 
-**Gameplay:**
-
-. Use the command `/weather thunder` to make the weather stormy
-. Watch for TNT to be placed wherever you walk around. The TNT will blow up after 1-4 seconds.
+To test this variation, travel to a rainy biome and use the command `/weather thunder` to make the weather stormy. Then, watch for TNT to be placed wherever you walk around. The TNT should explode after 4 seconds.
 
 [[Skeleton_War]]
 == Skeleton War
 
-**Purpose:** This mod gives armor to all skeletons and make them try to kill each other.
+**Purpose:** This mod gives armor to all skeletons and makes them attack each other.
 
 **Instructions:** Create a new Java class called `SkeletonWar` and replace its contents with <<War_Code>>.
 
@@ -647,23 +646,18 @@ public class SkeletonWar {
         skeleton.setItemSlot(EquipmentSlot.LEGS, new ItemStack(leggings.get(random.nextInt(5))));
         skeleton.setItemSlot(EquipmentSlot.FEET, new ItemStack(boots.get(random.nextInt(5))));
     }
-
-    // variations can include:
-    // - changing the items in the lists (e.g. adding pumpkins to helmets list)
-    // - changing target mob
-    // - changing priority of goal (player is priority 2, iron golems and turtles are priority 3)
 }
 ----
 ====
 
 **Gameplay:**
 
-. Press `E` to bring inventory window, click on the top-right panel to search items, type `skeleton spawn`, drag the first egg from inventory to the hotbar in inventory window
-. Select the skeleton spawn egg in hotbar and right click on the ground multiple times to spawn skeletons
-. The skeletons will have assorted pieces of armor; they will also be shooting at each other
+. Spawn a skeleton by using the command `/summon minecraft:skeleton` or by using a skeleton spawn egg.
+. Spawn more skeletons and watch them fight.
 
-Another variation is where you can create an enclosed arena, spawn a bunch of skeletons there, and watch them wage a skeleton war.
+You can also create an enclosed arena to spawn skeletons in. Try adding some traps or lava!
 
+////
 [[Wall_Climber]]
 == Wall Climber (NOT WORKING)
 
@@ -911,7 +905,7 @@ MinecraftForge.EVENT_BUS.register(haste);
 Enchantment.REGISTRY.register(100, new ResourceLocation("arrowFast"), haste);
 ====
 
-Don't forget to fix the imports using `Ctrl` + `Shift` + `O` on Windows or `Cmd` + `Shift` + `O` on `Mac`.
+Don't forget to fix the imports using `Ctrl` + `Shift` + `O` on Windows or `Cmd` + `Shift` + `O` on Mac.
 
 Lastly, you will have to make a new file to make sure the name of the enchantment shows up correctly ("`Haste`" instead of "`enchantment.arrowFast`"). There is a folder with the name "src/main/resources" directly underneath the "src/main/java" folder. Right click on that folder, and select New > Package. Name your new package `assets.mymods.lang`. Then, right click on your new package and select New > File. When you are asked for the name of the new file, enter the name `en_US.lang`. In the new file, add in the text shown in <<Fast_Bows_Lang_File>>.
 
@@ -930,24 +924,27 @@ enchantment.arrowFast=Haste
 . Get an Enchanted Book that has the enchantment "Haste I" or "Haste II" on it from your inventory
 . Use an anvil to combine the two items you got
 . Get out another bow from your inventory, but don't enchant it
-. Compare the shooting speeds of the two bows - the ones with Haste should be significantly faster than the one without any enchantmeents
+. Compare the shooting speeds of the two bows - the ones with Haste should be significantly faster than the one without any enchantments
+////
 
 [[Sharing]]
 == Sharing Your Mods
 
 === Create your mod .jar file
 
-. On Windows, open Command Prompt. On Mac, open Terminal.
+. Open Command Prompt (Windows) or Terminal (Mac).
 . Go to forge folder using the command `cd ~/Desktop/forge`
-. On Windows, type the command `gradlew build`. On Mac, use `gradlew build`
-. Your mods are available in `build/libs/modid-1.0.jar` 
+. Type the command `gradlew build` (Windows) or `./gradlew build` (Mac).
+. Your mods will be available in `build/libs/modid-1.0.jar`
 
+////
 === Run a server and test the mods (NOT WORKING)
 
 . Run server using `./gradlew runServer` command. During the first run, the server starts and immediately shuts down.
 . On Mac, edit EULA using the command `sed 's/false/true/g' run/eula.txt > tmp; mv tmp run/eula.txt`. On Windows, edit `run/eula.txt` file using notepad, edit last line to replace word `false` with `true`, and save the file.
 . Copy the generated mod file to the server mods directory using the command `cp build/libs/modid-1.0.jar run/mods`.
 . Start server again using the command `./gradlew runServer`.
+////
 
 [[Book]]
 == Minecraft Modding Book from O'Reilly
@@ -962,9 +959,3 @@ image::images/minecraft-modding-book-cover.png[link="http://shop.oreilly.com/pro
 Are you interested in following these instructions and learning a bit of Java in the process as well? Then check out http://www.infiniteskills.com/training/minecraft-modding-with-forge.html?network=coverqr[Minecraft Modding with Forge Training Video] from O'Reilly or scan the QR code from your phone.
 
 image::images/minecraft-modding-oreilly-video-course.jpg[link="http://www.infiniteskills.com/training/minecraft-modding-with-forge.html?network=coverqr"]
-
-[[Tips]]
-== Tips
-
-* When changing an item or block, delete the current item/block and press `Ctrl + Space` to pull up a list of items and blocks that are availible.
-
