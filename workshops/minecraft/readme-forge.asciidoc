@@ -9,7 +9,7 @@ toc::[]
 [[Requirements]]
 == Requirements
 
-* A Mac or Windows computer
+* A Windows or Mac computer
 * A Minecraft account is not required
 
 [[Download]]
@@ -19,55 +19,65 @@ toc::[]
 
 Download the following software
 
-. **JDK:** Download and install JDK from https://www.oracle.com/java/technologies/downloads/
+. **Java Development Kit (JDK):** Download and install JDK from https://www.oracle.com/java/technologies/downloads/
 . **Eclipse:** Download Eclipse from http://www.eclipse.org/downloads/eclipse-packages/, pick "`Eclipse IDE for Java Developers`" and unzip.
 . **Forge:** Download Forge 1.19 from
   https://maven.minecraftforge.net/net/minecraftforge/forge/1.19-41.1.0/forge-1.19-41.1.0-mdk.zip
 
-=== Mac or Windows
+=== Windows or Mac
 
-Follow the instructions for Mac or Windows as explained below.
-
-==== Mac
-
-Make sure all the software lised in <<Download>> is downloaded.
-
-. In Finder, go to Applications, Utilities, double click on Terminal
-. Change directory to Desktop as `cd Desktop`
-. Make a new directory by giving the command `mkdir forge`
-. Change to the directory `cd forge`
-. Unzip the downloaded Forge 1.19 zip file as `unzip ~/Downloads/forge-1.19-41.1.0-mdk.zip`
-. Give the command `./gradlew genEclipseRuns`. The output should show `BUILD SUCCESSFUL`.
+Follow the instructions as explained below.
 
 ==== Windows
 
-Make sure all the software lised in <<Download>> is downloaded.
+Make sure all the software listed in <<Download>> is downloaded.
 
 . Open a Command Prompt as explained at http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window
-. Change directory to Desktop as `cd Desktop`
-. Make a new directory by giving the command `mkdir forge`
-. Change to the directory `cd forge`
-. In File Explorer, double click on the Forge 1.19 zip file downloaded earlier and extract all the contents in the `forge` directory.
-. At Command Prompt, give the command `gradlew genEclipseRuns`. The output should show `BUILD SUCCESSFUL`.
+. Change directory to "`Desktop`" using the command `cd Desktop`
+. Make a new directory using `mkdir forge`
+. Change to the directory using `cd forge`
+. In File Explorer, right-click on the Forge 1.19 zip file downloaded earlier, select "`Extract All...`", and extract the contents into the newly created `forge` directory.
+. In Command Prompt, run the command `gradlew genEclipseRuns`. The output should show `BUILD SUCCESSFUL`.
+
+==== Mac
+
+Make sure all the software listed in <<Download>> is downloaded.
+
+. In Finder, go to "`Applications`", then "`Utilities`", then double click on "`Terminal`".
+. Change directory to Desktop using the command `cd Desktop`
+. Make a new directory using `mkdir forge`
+. Change to the directory using `cd forge`
+. Unzip the downloaded Forge 1.19 zip file using the command `unzip ~/Downloads/forge-1.19-41.1.0-mdk.zip`
+. Run the command `./gradlew genEclipseRuns`. The output should show `BUILD SUCCESSFUL`.
 
 === Verify
 
 This is a very important step as this will confirm that you can actually start modding.
 
-. Open up Eclipse
-. In the "`Eclipse IDE Launcher`" window, click on `Launch`.
-. In the Eclipse window, chose menu `File`, `Import...`, select `Gradle`, `Existing Gradle Project`, click `Next >` button two times, choose the location of `forge` directory, and click on `Finish`.
-. The Eclipse window should look like as shown:
+. Open up Eclipse.
+. In the "`Eclipse IDE Launcher`" window, click on "`Launch`".
+. In the Eclipse window, chose menu "`File`", "`Import...`".
+.. Click the arrow next to "`Gradle`".
+.. Select "`Existing Gradle Project`" and click "`Next >`" .
+.. In the box that says "`Project root directory`", choose the location of the `forge` directory.
+.. Click "`Finish`".
+. The Eclipse window should look like the following:
 +
-image::images/eclipse-forge-install.png[]
-. Double click on `forge` folder in `Package Explorer` on the left side. This is where all the source code exists and we'll modify it later. Double click on `forge` folder in `Gradle Task` on the right side, double click on `forgegradle runs`, and select `runClient`.
+image::images/new/eclipse_startup.png[]
+. Click the "`Restore`" button at the top left:
 +
-image::images/forge-eclipse-expanded-view.png[]
-. Double click on `runClient` to start the Minecraft launcher. It looks like as shown:
+image::images/new/eclipse_restore.png[]
+. Now, your window should look like the following:
 +
-image::images/forge-minecraft-first-run.png[]
+image::images/new/eclipse_after_restore.png[]
+. On the left is the "`Package Explorer`", which is where the game's source code lives. We'll come back to it later. For now, in the "`Gradle Tasks`" window on the right side, double click on the `forge` folder. Then, double click on `forgegradle runs` and select `runClient`.
++
+image::images/new/eclipse_runClient.png[]
+. Double click on `runClient` to start the Minecraft launcher. It should look like the following:
++
+image::images/new/first_run.png[]
 
-Let's start modding!
+If you're able to launch Minecraft in this way, your setup is good to go. Let's start modding!
 
 [[Chat_Items]]
 == Chat Items
@@ -130,13 +140,13 @@ This mod variation produces different items for different chat text. For example
 ----
 @SubscribeEvent
 public static void giveItems(ServerChatEvent event){
-	if (event.getMessage().contains("potato")) {
-		event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
-	}
+    if (event.getMessage().contains("potato")) {
+        event.getPlayer().getInventory().add(new ItemStack(Items.POTATO, 64));
+    }
 
-	if (event.getMessage().contains("diamond")) {
-		event.getPlayer().getInventory().add(new ItemStack(Items.DIAMOND, 64));
-	}
+    if (event.getMessage().contains("diamond")) {
+        event.getPlayer().getInventory().add(new ItemStack(Items.DIAMOND, 64));
+    }
 }
 ----
 ====
@@ -152,10 +162,10 @@ This mod will produce multiple items for a chat text. Instead of only producing 
 ----
 @SubscribeEvent
 public void giveItems(ServerChatEvent event){
-	if (event.getMessage().contains("potato")) {
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
-		event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, 64));
-	}
+    if (event.getMessage().contains("potato")) {
+        event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.POTATO, 64));
+        event.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, 64));
+    }
 }
 ----
 ====
@@ -329,7 +339,7 @@ This mod will print a different message for another mob.
 ----
 if (event.getEntity() instanceof Zombie && event.getLevel().isClientSide) {
     for (Player player : event.getLevel().players()) {
-	player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "A zombie has spawned!"));
+    player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "A zombie has spawned!"));
     }
 }
 ----
@@ -670,33 +680,33 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class WallClimber {
 
-	@SubscribeEvent
-	public void climbWall(PlayerTickEvent event) {
+    @SubscribeEvent
+    public void climbWall(PlayerTickEvent event) {
 
-		EntityPlayer player = event.player;
+        EntityPlayer player = event.player;
 
-		if (!player.isCollidedHorizontally) {
-			return;
-		}
+        if (!player.isCollidedHorizontally) {
+            return;
+        }
 
-		if (player.isActiveItemStackBlocking()) {
-			player.motionY = -0.5;
-		} else if (player.isSneaking()) {
-			player.motionY = 0;
-		} else {
-			player.motionY = 0.5;
-		}
+        if (player.isActiveItemStackBlocking()) {
+            player.motionY = -0.5;
+        } else if (player.isSneaking()) {
+            player.motionY = 0;
+        } else {
+            player.motionY = 0.5;
+        }
 
-	}
+    }
 
-	@SubscribeEvent
-	public void negateFallDamage(LivingFallEvent event) {
-		if (!(event.getEntity() instanceof EntityPlayer)) {
-			return;
-		}
+    @SubscribeEvent
+    public void negateFallDamage(LivingFallEvent event) {
+        if (!(event.getEntity() instanceof EntityPlayer)) {
+            return;
+        }
 
-		event.setCanceled(true);
-	}
+        event.setCanceled(true);
+    }
 }
 ----
 ====
@@ -748,29 +758,29 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ArrowShotgun {
 
-	private final int arrows = 20;
+    private final int arrows = 20;
 
-	@SubscribeEvent
-	public void shootArrows(ArrowLooseEvent event) {
-		EntityPlayer player = event.getEntityPlayer();
-		World world = event.getWorld();
+    @SubscribeEvent
+    public void shootArrows(ArrowLooseEvent event) {
+        EntityPlayer player = event.getEntityPlayer();
+        World world = event.getWorld();
 
-		Random random = new Random();
+        Random random = new Random();
 
-		float velocity = 2.0F;
+        float velocity = 2.0F;
 
-		for (int i = 0; i < arrows; i++) {
-			EntityArrow arrow = new EntityTippedArrow(world, player);
-			arrow.setLocationAndAngles(0.0F, ItemBow.getArrowVelocity(event.getCharge()) * 3.0F, 12.0F, player.rotationYaw, player.rotationPitch);
-			arrow.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
-			arrow.setFire(10000);
-			if (!world.isRemote) {
-				world.spawnEntity(arrow);
-			}
-		}
+        for (int i = 0; i < arrows; i++) {
+            EntityArrow arrow = new EntityTippedArrow(world, player);
+            arrow.setLocationAndAngles(0.0F, ItemBow.getArrowVelocity(event.getCharge()) * 3.0F, 12.0F, player.rotationYaw, player.rotationPitch);
+            arrow.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
+            arrow.setFire(10000);
+            if (!world.isRemote) {
+                world.spawnEntity(arrow);
+            }
+        }
 
-		event.setCanceled(true);
-	}
+        event.setCanceled(true);
+    }
 }
 ----
 ====
@@ -817,59 +827,59 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EnchantmentArrowFast extends Enchantment {
-	public EnchantmentArrowFast() {
-		super(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.BOW,
-				new EntityEquipmentSlot[] { EntityEquipmentSlot.MAINHAND,
-						EntityEquipmentSlot.OFFHAND });
-		this.setName("arrowFast");
-	}
+    public EnchantmentArrowFast() {
+        super(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.BOW,
+                new EntityEquipmentSlot[] { EntityEquipmentSlot.MAINHAND,
+                        EntityEquipmentSlot.OFFHAND });
+        this.setName("arrowFast");
+    }
 
-	/**
-	 * Returns the minimal value of enchantability needed on the enchantment
-	 * level passed.
-	 */
-	public int getMinEnchantability(int enchantmentLevel) {
-		return 12 + (enchantmentLevel - 1) * 20;
-	}
+    /**
+     * Returns the minimal value of enchantability needed on the enchantment
+     * level passed.
+     */
+    public int getMinEnchantability(int enchantmentLevel) {
+        return 12 + (enchantmentLevel - 1) * 20;
+    }
 
-	/**
-	 * Returns the maximum value of enchantability nedded on the enchantment
-	 * level passed.
-	 */
-	public int getMaxEnchantability(int enchantmentLevel) {
-		return this.getMinEnchantability(enchantmentLevel) + 25;
-	}
+    /**
+     * Returns the maximum value of enchantability nedded on the enchantment
+     * level passed.
+     */
+    public int getMaxEnchantability(int enchantmentLevel) {
+        return this.getMinEnchantability(enchantmentLevel) + 25;
+    }
 
-	/**
-	 * Returns the maximum level that the enchantment can have.
-	 */
-	public int getMaxLevel() {
-		return 2;
-	}
+    /**
+     * Returns the maximum level that the enchantment can have.
+     */
+    public int getMaxLevel() {
+        return 2;
+    }
 
-	@SubscribeEvent
-	public void decreaseBowUseDuration(LivingEntityUseItemEvent.Tick event) {
-		if (event.getItem() == null) {
-			return;
-		}
+    @SubscribeEvent
+    public void decreaseBowUseDuration(LivingEntityUseItemEvent.Tick event) {
+        if (event.getItem() == null) {
+            return;
+        }
 
-		if (event.getItem().getItem() != Items.BOW) {
-			return;
-		}
+        if (event.getItem().getItem() != Items.BOW) {
+            return;
+        }
 
-		int level = EnchantmentHelper.getEnchantmentLevel(MainMod.haste, event.getItem());
+        int level = EnchantmentHelper.getEnchantmentLevel(MainMod.haste, event.getItem());
 
-		switch (level) {
-		case 1:
-			event.setDuration(event.getDuration() - 1);
-			break;
-		case 2:
-			event.setDuration(event.getDuration() - 2);
-			break;
-		default:
-			break;
-		}
-	}
+        switch (level) {
+        case 1:
+            event.setDuration(event.getDuration() - 1);
+            break;
+        case 2:
+            event.setDuration(event.getDuration() - 2);
+            break;
+        default:
+            break;
+        }
+    }
 }
 ----
 ====
