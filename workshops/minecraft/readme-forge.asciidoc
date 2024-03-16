@@ -82,9 +82,15 @@ If you're able to launch Minecraft in this way, your setup is good to go. Let's 
 [[Chat_Items]]
 == Chat Items
 
-**Purpose:** This mod wil add items to player's inventory?? when a certain word or phrase is spelled in a chat message.
+**Purpose:** This mod adds items to player's inventory when they type a certain word or phrase in chat.
 
-**Instructions:** Create a new Java class called `ChatItems`. To do this, expand the folder `src/main/java`, right click on the package `com.example.examplemod` and select `New` > `Class`, fill the name property with `ChatItems` and click on the `Finish` Button. Replace its code with <<Chat_Items_Code>>. 
+**Instructions:** Create a new Java class called `ChatItems`:
+
+. Double click on the `forge` folder in the "`Package Explorer`" on the left side.
+. Expand the folder `src/main/java`.
+. Right click on the package `com.example.examplemod` and select `New` > `Class`.
+. In the "`Name`" box, fill in `ChatItems`, then click on the `Finish` Button.
+. Replace the resulting code with <<Chat_Items_Code>>.
 
 [[Chat_Items_Code]]
 .Chat Items code
@@ -111,30 +117,35 @@ public class ChatItems {
 ----
 ====
 
-Once you've finished editing the files, click the green play button on the Eclipse menu bar to build and run your modded Minecraft. Eclipse will ask you to save the file. Go ahead and click on the `Save` button. This will start the Minecraft launcher.
+At this point, your window should look like the following:
 
-image::images/forge-eclipse-play-button.png[]
+image::images/new/eclipse_ChatItems.png[]
 
+Once you've finished editing the files, it's time to run the game. Click on the green play button at the top-left to run your modded Minecraft:
+
+image::images/new/eclipse_play_button.png[]
+
+When Eclipse asks you to save the file, click on the "`Save`" button. This will save the file and start the Minecraft launcher.
 
 **Gameplay:**
 
-. Create a new `Creative` world
+. Create a new Creative mode world
 . Press `T` to open up the chat window
 . Type in any message that contains the word `potato`
-. You should receive one stack (one stack = 64 items) of potatoes
+. You should receive one stack (64 items) of potatoes
 
-=== Change text/item
+=== Change Text/Item
 
-This mod will produce a different item for a different text message. For example change the text to `diamond` and the item produced to `Diamond`. Use `Ctrl`+`Space` to show the list of items.
+This mod will produce a different item for a different text message. For example change the text from `"potato"` to `"diamond"` and the item produced from `Items.POTATO` to `Items.DIAMOND`. To see more possibilities, use `Ctrl`+`Space` with your cursor just after `Items.` to show the list of items.
 
-Close Minecraft game window and restart it by clicking on the play button on the Eclipse menu bar.
+To see the changes you've made, close Minecraft and restart it by clicking on the play button in Eclipse.
 
 === Different Items
 
-This mod variation produces different items for different chat text. For example, `potato` chat text will yield a potato in the inventory?? and `diamond` chat text will yield a diamond in the inventory.
+This mod variation produces different items for different chat text. For example, typing `potato` will yield potatoes while typing `diamond` will yield diamonds.
 
 [[Different_Chat_Items_Code]]
-.Different Chat Items code
+.Different Items code
 ====
 [source, java]
 ----
@@ -156,7 +167,7 @@ public static void giveItems(ServerChatEvent event){
 This mod will produce multiple items for a chat text. Instead of only producing potato and diamond one at one time, it can product potato and diamond, both at the same time, on a same text.
 
 [[Multiple_Chat_Items_Code]]
-.Multiple Chat Items code
+.Multiple Items code
 ====
 [source, java]
 ----
