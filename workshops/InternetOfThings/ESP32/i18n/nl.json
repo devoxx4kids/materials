@@ -1,0 +1,15 @@
+{
+  "lib.description": "Kindvriendelijke blokken voor de M5Stack Core2: de drie rode aanraakcirkels, schudden, trillen, piepen en grote tekst. Gemaakt voor de ESP32-workshop van Devoxx4Kids.",
+  "blk.left_touched": "linkerknop aangeraakt?",
+  "blk.middle_touched": "middelste knop aangeraakt?",
+  "blk.right_touched": "rechterknop aangeraakt?",
+  "blk.shaken": "bord geschud?",
+  "blk.vibrate": "tril _ ms",
+  "blk.beep": "piep _ Hz gedurende _ ms",
+  "blk.big_text": "toon grote tekst _ kleur _",
+  "comment.zone": "Geeft 1, 2 of 3 als de linker, middelste of rechter rode cirkel onder het scherm wordt aangeraakt, anders 0. De cirkels zijn aanraakzones onder het 240 pixels hoge scherm.",
+  "comment.edge": "Alleen waar op het moment dat een cirkel aangeraakt wordt: één aanraking is één gebeurtenis, ook als de vinger blijft liggen.",
+  "comment.shaken": "De versnelling is ongeveer 100 als het bord stil ligt. Voor meer dan 140 moet je echt schudden.",
+  "comment.vibrate": "De trilmotor krijgt stroom van LDO3 van de AXP192-stroomchip (I2C-adres 52). Bit 3 (waarde 8) van register 18 zet hem aan en uit.",
+  "comment.big_text": "Wist het scherm en schrijft de tekst in het midden. Lange teksten worden kleiner zodat ze passen (een letter is 6 x 8 pixels op grootte 1)."
+}

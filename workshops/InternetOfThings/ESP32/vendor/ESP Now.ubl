@@ -1,0 +1,67 @@
+module 'ESP Now' Comm
+author MicroBlocks
+version 1 3 
+description 'Support for ESP Now peer-to-peer messaging for ESP boards.
+Unencrypted messages are broadcast to all peers within range, so pairing is not necessary and there is no limit to the number of peers.
+
+Delivery is unreliable; messages may be lost, especially when there is a lot of other WiFi and Bluetooth traffic in the 2.4 GHz band. The best channel is one without much traffic.
+
+The "pair" blocks provide functionality similar to the various Radio Libraries with data transported via ESP Now messages.
+
+When using WiFi and ESP Now at the same time, the ESP32 forces ESP Now to use the same channel as WiFi. The ESP8266 allows ESP Now and WiFi to use different channels.
+'
+variables _espNow_lastNumber _espNow_lastString 
+
+  spec ' ' 'espNow_send_pair' 'espNow send pair _ = _' 'str num' 'light' 10
+  spec 'r' 'espNow_receive_pair' 'espNow pair received?'
+  spec 'r' 'espNow_last_number' 'espNow last number'
+  spec 'r' 'espNow_last_string' 'espNow last string'
+  space
+  spec ' ' '[net:ESPNowSetGroup]' 'espNow set group _ (0-255)' 'num' 0
+  spec 'r' '[net:ESPNowGroup]' 'espNow group'
+  space
+  advanced
+  spec ' ' 'espNow_send' 'espNow send raw _' 'str' 'Hello, ESP Now!'
+  spec 'r' '[net:ESPNowReceive]' 'espNow receive raw'
+  space
+  spec ' ' '[net:ESPNowSetChannel]' 'espNow set channel _' 'menu.range:1-13' 1
+  spec 'r' '[net:ESPNowChannel]' 'espNow channel'
+
+to espNow_last_number {
+  return _espNow_lastNumber
+}
+
+to espNow_last_string {
+  return _espNow_lastString
+}
+
+to espNow_receive_pair {
+  comment 'Format of ESP Now "pair" messages:
+	tag: ''NOW'' (3 bytes)
+	separator: |
+	number n as String (variable length)
+	separator: |
+	string data s (variable length)
+Messages that are not in this format are discarded.'
+  local 'msg' ('[net:ESPNowReceive]')
+  if (or ((size msg) < 5) ('NOW' != ('[data:copyFromTo]' msg 1 3))) {
+    return (booleanConstant false)
+  }
+  local 'parts' ('[data:split]' msg '|')
+  if ((size parts) != 3) {
+    return (booleanConstant false)
+  }
+  _espNow_lastNumber = ('[data:convertType]' (at 2 parts) 'number')
+  _espNow_lastString = (at 3 parts)
+  return (booleanConstant true)
+}
+
+to espNow_send msg {
+  comment 'Send an uninterpreted string via ESP Now. Allows users to define their own protocols.'
+  '[net:ESPNowSend]' ('[data:convertType]' msg 'string')
+}
+
+to espNow_send_pair s n {
+  espNow_send ('[data:join]' 'NOW' '|' ('[data:toString]' n) '|' s)
+}
+

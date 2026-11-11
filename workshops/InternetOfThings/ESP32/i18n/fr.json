@@ -1,0 +1,15 @@
+{
+  "lib.description": "Des blocs simples pour la M5Stack Core2 : les trois cercles rouges tactiles, secouer, vibrer, biper et du grand texte. Créés pour l'atelier ESP32 de Devoxx4Kids.",
+  "blk.left_touched": "bouton gauche touché ?",
+  "blk.middle_touched": "bouton du milieu touché ?",
+  "blk.right_touched": "bouton droit touché ?",
+  "blk.shaken": "carte secouée ?",
+  "blk.vibrate": "vibrer pendant _ ms",
+  "blk.beep": "bip _ Hz pendant _ ms",
+  "blk.big_text": "afficher grand texte _ couleur _",
+  "comment.zone": "Renvoie 1, 2 ou 3 quand le cercle rouge de gauche, du milieu ou de droite sous l'écran est touché, sinon 0. Les cercles sont des zones tactiles sous l'écran de 240 pixels de haut.",
+  "comment.edge": "Vrai seulement au moment où un cercle devient touché : un toucher = un événement, même si le doigt reste dessus.",
+  "comment.shaken": "L'accélération vaut environ 100 quand la carte est posée. Il faut vraiment secouer pour dépasser 140.",
+  "comment.vibrate": "Le moteur de vibration est alimenté par LDO3 de la puce d'alimentation AXP192 (adresse I2C 52). Le bit 3 (valeur 8) du registre 18 l'allume et l'éteint.",
+  "comment.big_text": "Efface l'écran et écrit le texte au milieu. Les textes longs sont plus petits pour tenir à l'écran (une lettre fait 6 x 8 pixels en taille 1)."
+}

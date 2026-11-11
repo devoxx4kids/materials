@@ -1,0 +1,15 @@
+{
+  "lib.description": "Child-friendly blocks for the M5Stack Core2: the three red touch circles, shaking, vibration, beeps and big text. Made for the Devoxx4Kids ESP32 workshop.",
+  "blk.left_touched": "left button touched?",
+  "blk.middle_touched": "middle button touched?",
+  "blk.right_touched": "right button touched?",
+  "blk.shaken": "board shaken?",
+  "blk.vibrate": "vibrate for _ ms",
+  "blk.beep": "beep _ Hz for _ ms",
+  "blk.big_text": "show big text _ colour _",
+  "comment.zone": "Returns 1, 2 or 3 when the left, middle or right red circle under the screen is touched, otherwise 0. The circles are touch zones below the 240-pixel-high display.",
+  "comment.edge": "True only at the moment a circle becomes touched, so one touch is one event even if the finger stays on it.",
+  "comment.shaken": "Acceleration is about 100 when the board lies still. 140 needs a real shake.",
+  "comment.vibrate": "The vibration motor is powered by LDO3 of the AXP192 power chip (I2C address 52). Bit 3 (value 8) of register 18 switches it on and off.",
+  "comment.big_text": "Clears the screen and writes the text in the middle. Long texts use a smaller size so they still fit (one letter is 6 x 8 pixels at size 1)."
+}

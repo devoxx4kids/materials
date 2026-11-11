@@ -1,0 +1,97 @@
+module Core2Buttons Input
+author Devoxx4Kids
+version 1 0 
+depends Tone 
+description 'Child-friendly blocks for the M5Stack Core2: the three red touch circles, shaking, vibration, beeps and big text. Made for the Devoxx4Kids ESP32 workshop.'
+variables _c2b_wasDown 
+
+  spec 'r' 'c2b_leftTouched' 'left button touched?'
+  spec 'r' 'c2b_middleTouched' 'middle button touched?'
+  spec 'r' 'c2b_rightTouched' 'right button touched?'
+  space
+  spec 'r' 'c2b_shaken' 'board shaken?'
+  space
+  spec ' ' 'c2b_vibrate' 'vibrate for _ ms' 'num' 300
+  spec ' ' 'c2b_beep' 'beep _ Hz for _ ms' 'num num' 880 200
+  spec ' ' 'c2b_bigText' 'show big text _ colour _' 'str color' 'Hello!' 16777215
+  space
+  spec 'r' '_c2b_zone' '_c2b_zone'
+  spec 'r' '_c2b_edge' '_c2b_edge _' 'num' 1
+
+to '_c2b_zone' {
+  comment 'Returns 1, 2 or 3 when the left, middle or right red circle under the screen is touched, otherwise 0. The circles are touch zones below the 240-pixel-high display.'
+  if (not ('[tft:tftTouched]')) {
+    return 0
+  }
+  if (('[tft:tftTouchY]') < 240) {
+    return 0
+  }
+  local 'x' ('[tft:tftTouchX]')
+  if (x < 107) {
+    return 1
+  }
+  if (x < 214) {
+    return 2
+  }
+  return 3
+}
+
+to '_c2b_edge' zone {
+  comment 'True only at the moment a circle becomes touched, so one touch is one event even if the finger stays on it.'
+  if (_c2b_wasDown == 0) {
+    _c2b_wasDown = ('[data:makeList]' (booleanConstant false) (booleanConstant false) (booleanConstant false))
+  }
+  local 'down' (('_c2b_zone') == zone)
+  local 'was' (at zone _c2b_wasDown)
+  atPut zone _c2b_wasDown down
+  return (and down (not was))
+}
+
+to c2b_leftTouched {
+  return ('_c2b_edge' 1)
+}
+
+to c2b_middleTouched {
+  return ('_c2b_edge' 2)
+}
+
+to c2b_rightTouched {
+  return ('_c2b_edge' 3)
+}
+
+to c2b_shaken {
+  comment 'Acceleration is about 100 when the board lies still. 140 needs a real shake.'
+  return (('[sensors:acceleration]') > 140)
+}
+
+to c2b_vibrate ms {
+  comment 'The vibration motor is powered by LDO3 of the AXP192 power chip (I2C address 52). Bit 3 (value 8) of register 18 switches it on and off.'
+  local 'reg' (i2cGet 52 18)
+  local 'off' (reg - (8 * ((reg / 8) % 2)))
+  i2cSet 52 18 (off + 8)
+  waitMillis ms
+  i2cSet 52 18 off
+}
+
+to c2b_beep frequency ms {
+  'play frequency' frequency ms
+}
+
+to c2b_bigText text color {
+  comment 'Clears the screen and writes the text in the middle. Long texts use a smaller size so they still fit (one letter is 6 x 8 pixels at size 1).'
+  text = ('[data:join]' '' text)
+  local 'scale' 4
+  if ((size text) > 13) {
+    scale = 2
+  }
+  if ((size text) > 26) {
+    scale = 1
+  }
+  local 'x' ((320 - ((size text) * (6 * scale))) / 2)
+  if (x < 0) {
+    x = 0
+  }
+  local 'y' ((240 - (8 * scale)) / 2)
+  '[tft:clear]'
+  '[tft:text]' text x y color scale (booleanConstant true)
+}
