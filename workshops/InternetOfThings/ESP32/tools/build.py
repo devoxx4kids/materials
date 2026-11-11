@@ -34,6 +34,8 @@ VENDORED = ("Tone", "ESP Now")
 PROJECTS: tuple[tuple[str, str], ...] = (
     ("src/projects/magic-ball-start.ubp.tmpl", "missions/01-magic-shake-ball/starter/magic-ball-start-{lang}.ubp"),
     ("src/projects/magic-ball-done.ubp.tmpl", "missions/01-magic-shake-ball/solution/magic-ball-done-{lang}.ubp"),
+    ("src/projects/hot-potato-start.ubp.tmpl", "missions/02-hot-potato/starter/hot-potato-start-{lang}.ubp"),
+    ("src/projects/hot-potato-done.ubp.tmpl", "missions/02-hot-potato/solution/hot-potato-done-{lang}.ubp"),
 )
 
 

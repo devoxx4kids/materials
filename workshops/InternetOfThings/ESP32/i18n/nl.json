@@ -19,5 +19,19 @@
   "screen.m1_yes": "Ja!",
   "screen.m1_no": "Echt niet!",
   "screen.m1_maybe": "Misschien...",
-  "screen.m1_again": "Vraag opnieuw"
+  "screen.m1_again": "Vraag opnieuw",
+  "project.m2_start": "Hete aardappel - begin hier",
+  "project.m2_done": "Hete aardappel en duel - klaar, voor coaches",
+  "comment.m2_start": "Begin hier! Middelste cirkel = hete aardappel, rechter cirkel = duel. Volg mission.md stap voor stap.",
+  "screen.m2_ready": "Tik om te starten!",
+  "screen.m2_pass": "GEEF DOOR!",
+  "screen.m2_boom": "BOEM!",
+  "screen.m2_lives": "Levens:",
+  "screen.m2_game_over": "GAME OVER",
+  "screen.m2_get_ready": "Opgelet...",
+  "screen.m2_go": "NU!",
+  "screen.m2_early_left": "Links: te vroeg!",
+  "screen.m2_early_right": "Rechts: te vroeg!",
+  "screen.m2_left_wins": "Links wint!",
+  "screen.m2_right_wins": "Rechts wint!"
 }

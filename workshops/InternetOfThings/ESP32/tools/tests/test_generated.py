@@ -98,3 +98,13 @@ def test_magic_ball_solution_answers_touch_and_shake(files):
     start = files["missions/01-magic-shake-ball/starter/magic-ball-start-en.ubp"]
     assert "whenStarted" in start
     assert "c2b_middleTouched" not in main_module(start)
+
+
+def test_hot_potato_solution_has_both_games(files):
+    done = files["missions/02-hot-potato/solution/hot-potato-done-en.ubp"]
+    assert "whenCondition (c2b_middleTouched)" in done
+    assert "whenCondition (c2b_rightTouched)" in done
+    assert "(random 5000 15000)" in done
+    assert "lives = (lives - 1)" in done
+    start = files["missions/02-hot-potato/starter/hot-potato-start-en.ubp"]
+    assert "whenStarted" in start

@@ -19,5 +19,19 @@
   "screen.m1_yes": "Oui !",
   "screen.m1_no": "Pas question !",
   "screen.m1_maybe": "Possible...",
-  "screen.m1_again": "Redemande"
+  "screen.m1_again": "Redemande",
+  "project.m2_start": "Patate chaude - commence ici",
+  "project.m2_done": "Patate chaude et duel - version finie pour les coachs",
+  "comment.m2_start": "Commence ici ! Cercle du milieu = patate chaude, cercle de droite = duel. Suis mission.md étape par étape.",
+  "screen.m2_ready": "Touche pour jouer !",
+  "screen.m2_pass": "PASSE-LA !",
+  "screen.m2_boom": "BOUM !",
+  "screen.m2_lives": "Vies :",
+  "screen.m2_game_over": "PERDU !",
+  "screen.m2_get_ready": "Attention...",
+  "screen.m2_go": "PARTEZ !",
+  "screen.m2_early_left": "Gauche : trop vite !",
+  "screen.m2_early_right": "Droite : trop vite !",
+  "screen.m2_left_wins": "Gauche gagne !",
+  "screen.m2_right_wins": "Droite gagne !"
 }

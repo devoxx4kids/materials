@@ -19,5 +19,19 @@
   "screen.m1_yes": "Yes!",
   "screen.m1_no": "No way!",
   "screen.m1_maybe": "Maybe...",
-  "screen.m1_again": "Ask again"
+  "screen.m1_again": "Ask again",
+  "project.m2_start": "Hot Potato - start here",
+  "project.m2_done": "Hot Potato and Duel - finished version for coaches",
+  "comment.m2_start": "Start here! Middle circle = Hot Potato, right circle = Duel. Follow mission.md step by step.",
+  "screen.m2_ready": "Touch to start!",
+  "screen.m2_pass": "PASS IT ON!",
+  "screen.m2_boom": "BOOM!",
+  "screen.m2_lives": "Lives:",
+  "screen.m2_game_over": "GAME OVER",
+  "screen.m2_get_ready": "Get ready...",
+  "screen.m2_go": "GO!",
+  "screen.m2_early_left": "Left: too early!",
+  "screen.m2_early_right": "Right: too early!",
+  "screen.m2_left_wins": "Left wins!",
+  "screen.m2_right_wins": "Right wins!"
 }
