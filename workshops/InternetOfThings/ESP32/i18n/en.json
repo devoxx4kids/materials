@@ -39,5 +39,6 @@
   "comment.m3_start": "Start here! Change the group number 1 to your table number. The emoji list is ready for you. Follow mission.md step by step.",
   "screen.m3_name": "Team 1",
   "screen.m3_sent": "Sent!",
-  "screen.m3_party": "PARTY!"
+  "screen.m3_party": "PARTY!",
+  "comment.flash": "Draws a yellow frame around the screen while a beep or buzz lasts, so children see it even when the speaker or the motor stays silent."
 }

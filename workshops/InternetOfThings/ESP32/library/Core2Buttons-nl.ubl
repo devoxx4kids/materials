@@ -17,6 +17,8 @@ variables _c2b_wasDown
   space
   spec 'r' '_c2b_zone' '_c2b_zone'
   spec 'r' '_c2b_edge' '_c2b_edge _' 'num' 1
+  spec ' ' '_c2b_flashOn' '_c2b_flashOn'
+  spec ' ' '_c2b_flashOff' '_c2b_flashOff'
 
 to '_c2b_zone' {
   comment 'Geeft 1, 2 of 3 als de linker, middelste of rechter rode cirkel onder het scherm wordt aangeraakt, anders 0. De cirkels zijn aanraakzones onder het 240 pixels hoge scherm.'
@@ -66,15 +68,32 @@ to c2b_shaken {
 
 to c2b_vibrate ms {
   comment 'De trilmotor krijgt stroom van LDO3 van de AXP192-stroomchip (I2C-adres 52). Bit 3 (waarde 8) van register 18 zet hem aan en uit.'
+  '_c2b_flashOn'
   local 'reg' (i2cGet 52 18)
   local 'off' (reg - (8 * ((reg / 8) % 2)))
   i2cSet 52 18 (off + 8)
   waitMillis ms
   i2cSet 52 18 off
+  '_c2b_flashOff'
 }
 
 to c2b_beep frequency ms {
+  '_c2b_flashOn'
   'play frequency' frequency ms
+  '_c2b_flashOff'
+}
+
+to '_c2b_flashOn' {
+  comment 'Tekent een geel kader rond het scherm zolang een piep of trilling duurt, zodat kinderen het zien, ook als de luidspreker of de motor stil blijft.'
+  for i 3 {
+    '[tft:rect]' (i - 1) (i - 1) (322 - (2 * i)) (242 - (2 * i)) (colorSwatch 255 220 0 255) (booleanConstant false)
+  }
+}
+
+to '_c2b_flashOff' {
+  for i 3 {
+    '[tft:rect]' (i - 1) (i - 1) (322 - (2 * i)) (242 - (2 * i)) (colorSwatch 0 0 0 255) (booleanConstant false)
+  }
 }
 
 to c2b_bigText text color {

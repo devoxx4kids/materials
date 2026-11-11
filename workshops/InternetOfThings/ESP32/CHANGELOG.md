@@ -12,3 +12,4 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - Mission 1 (Magic Shake Ball) starter and solution projects.
 - Mission 2 (Hot Potato and Duel) starter and solution projects.
 - Mission 3 (Emoji Messenger) starter and solution projects using ESP Now.
+- Every beep and buzz also flashes a yellow frame on the screen, so children see it even when the speaker or motor stays silent.

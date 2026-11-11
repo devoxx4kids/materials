@@ -1568,7 +1568,8 @@ If the screen touch counts as a button, or no circle reacts: in MicroBlocks add 
 
 - [ ] **Step 3: Sound (H4)**
 
-Click the `beep 880 Hz for 200 ms` block in the palette. Pass: an audible beep.
+Expected from a code review (2026-11-11): the MicroBlocks Tone library has no default pin for the board name `M5StackCore2`, and the Core2 speaker is an I2S amplifier, so the beep is probably silent. The library already draws a yellow frame around the screen during every beep and buzz, so the missions stay playable without sound.
+Click the `beep 880 Hz for 200 ms` block in the palette. Pass: an audible beep. Also check that the yellow frame appears and disappears.
 If silent, replace the body of `c2b_beep` in the library template with a vibration fallback, so the missions still work:
 ```
 to c2b_beep frequency ms {
@@ -1582,6 +1583,7 @@ and note "speaker silent, beep falls back to vibration" in the results.
 1. Hold the board still in two hands for 10 seconds while the Magic Ball solution runs. Pass: no answer appears.
 2. Shake it once firmly. Pass: an answer appears.
 3. Watch for vibration with each answer. Pass: a short buzz; the motor is quiet otherwise.
+   Run `say (i2cGet 52 18)` first. Expected from the code review: MicroBlocks' I2C blocks use the external Grove pins (32/33) on the Core2, while the power chip that drives the motor is on the internal bus (21/22), so the value is an error code and the motor stays off. Record the value.
 First check that the sensor is read at all: run `forever { say (acceleration) }` (Basic Sensors library) and tilt the board. If the value stays the same (often 0) whatever you do, H5 **fails because of the BMI270**, not because of the threshold: write "acceleration constant: <value>" in the notes and go on; Step 8 decides what to do. Do not tune the threshold in that case.
 If the value changes but shaking needs too much force, lower `140` in `c2b_shaken` in steps of 10 (and update `comment.shaken` in all three JSON files); if holding triggers it, raise it. If the motor never buzzes, or buzzes all the time, record the value of `(i2cGet 52 18)` shown with a `say` block, and change the `i2cGet`/`i2cSet` lines in `c2b_vibrate` accordingly; if the I2C blocks cannot reach the power chip at all, make `c2b_vibrate` only wait (`waitMillis ms`) and note it.
 
@@ -1611,7 +1613,7 @@ Apply the first rule that matches, and write the decision in `W/library/README.m
 | Result of H1–H9 | Decision | What happens next |
 |---|---|---|
 | All pass, or every failure has the fallback from its step applied | **MicroBlocks** | Continue with Step 10 and then Task 8. |
-| Only H5 fails with "acceleration constant" (the BMI270 case); everything else passes | **MicroBlocks + firmware patch** | Do Step 9 (UiFlow2 check) as an insurance, then patch the firmware (below). Continue with Task 8 only when the patched firmware passes H5. |
+| Only H5 fails with "acceleration constant" (the BMI270 case), and/or H4 has no sound and H5 has no buzz while the yellow frame works; everything else passes | **MicroBlocks + firmware patch** | Do Step 9 (UiFlow2 check) as an insurance, then patch the firmware (below). Continue with Task 8 only when the patched firmware passes H5. |
 | H1 (connect or screen) or H2 (touch circles) fails, or two or more of H4, H5, H6 fail without a working fallback | **UiFlow2** | Do Step 9. If UiFlow2 passes U1–U5, **stop the plan after Step 11**: the spec must be revised for UiFlow2 before any further task (see "If the decision is UiFlow2" below). |
 
 **Firmware patch for the BMI270 (MicroBlocks + firmware patch):**
@@ -1619,7 +1621,8 @@ Apply the first rule that matches, and write the decision in `W/library/README.m
 2. In `vm/sensorPrims.cpp`, the Core2 shares the MPU6886 code path (`#elif defined(ARDUINO_M5Stack_Core_ESP32) || defined(ARDUINO_M5STACK_Core2) ...`). For `ARDUINO_M5STACK_Core2` only, read the chip ID at I2C address `0x68` on the internal bus first: register `0x00` returns `0x24` on a BMI270, register `0x75` returns `0x19` on an MPU6886. When it is a BMI270, use the existing `bmi270Init()` / BMI270 read functions (today only compiled for `DATABOT_V3`; move them out of that `#if` so the Core2 build gets them too).
 3. Build: `pio run -e m5core2`. The firmware is `.pio/build/m5core2/firmware.bin`.
 4. Install it: drag the `.bin` file onto the MicroBlocks window with the board connected (MicroBlocks installs dropped ESP firmware files), then re-run H5 and H1–H3.
-5. Offer the patch upstream (MicroBlocks accepts contributions via https://microblocks.fun/contact or the Bitbucket repository), and record the patched firmware's commit in `W/library/README.md`. Until it is released upstream, coaches install this `.bin` instead of the standard firmware; Task 8's `coach/en/setup.md` must then say so (copy the file to `W/firmware/microblocks-core2-bmi270.bin`, with a README naming the source commit).
+5. If there was no sound or no buzz, extend the same patch: for `ARDUINO_M5STACK_Core2`, give the Tone primitives an I2S output on the NS4168 (BCLK 12, LRCK 0, DATA 2; the firmware already enables the speaker through the AXP192), and add a vibration on/off primitive that sets bit 3 of AXP192 register 0x12 through `Wire1` (the code in `tftPrims.cpp` already writes that register). Then change `c2b_vibrate` in `W/src/library/Core2Buttons.ubl.tmpl` to call the new primitive, rebuild, and re-run H4 and H5.
+6. Offer the patch upstream (MicroBlocks accepts contributions via https://microblocks.fun/contact or the Bitbucket repository), and record the patched firmware's commit in `W/library/README.md`. Until it is released upstream, coaches install this `.bin` instead of the standard firmware; Task 8's `coach/en/setup.md` must then say so (copy the file to `W/firmware/microblocks-core2-bmi270.bin`, with a README naming the source commit).
 
 - [ ] **Step 9: UiFlow2 check (only for "MicroBlocks + firmware patch" or "UiFlow2")**
 

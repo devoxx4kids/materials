@@ -17,6 +17,8 @@ variables _c2b_wasDown
   space
   spec 'r' '_c2b_zone' '_c2b_zone'
   spec 'r' '_c2b_edge' '_c2b_edge _' 'num' 1
+  spec ' ' '_c2b_flashOn' '_c2b_flashOn'
+  spec ' ' '_c2b_flashOff' '_c2b_flashOff'
 
 to '_c2b_zone' {
   comment '{{comment.zone}}'
@@ -66,15 +68,32 @@ to c2b_shaken {
 
 to c2b_vibrate ms {
   comment '{{comment.vibrate}}'
+  '_c2b_flashOn'
   local 'reg' (i2cGet 52 18)
   local 'off' (reg - (8 * ((reg / 8) % 2)))
   i2cSet 52 18 (off + 8)
   waitMillis ms
   i2cSet 52 18 off
+  '_c2b_flashOff'
 }
 
 to c2b_beep frequency ms {
+  '_c2b_flashOn'
   'play frequency' frequency ms
+  '_c2b_flashOff'
+}
+
+to '_c2b_flashOn' {
+  comment '{{comment.flash}}'
+  for i 3 {
+    '[tft:rect]' (i - 1) (i - 1) (322 - (2 * i)) (242 - (2 * i)) (colorSwatch 255 220 0 255) (booleanConstant false)
+  }
+}
+
+to '_c2b_flashOff' {
+  for i 3 {
+    '[tft:rect]' (i - 1) (i - 1) (322 - (2 * i)) (242 - (2 * i)) (colorSwatch 0 0 0 255) (booleanConstant false)
+  }
 }
 
 to c2b_bigText text color {

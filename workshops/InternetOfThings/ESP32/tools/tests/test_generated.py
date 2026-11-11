@@ -121,3 +121,14 @@ def test_messenger_projects_use_esp_now_and_ignore_bad_numbers(files):
     assert "(and (n >= 1) (n <= (size emojis)))" in done
     assert "espNow_send_pair myName 0" in done
     assert "espNow_send_pair myName choice" in done
+
+
+def test_beep_and_vibrate_also_flash_the_screen(files):
+    """The Core2 speaker and motor may stay silent in MicroBlocks, so every beep and
+    buzz is also shown as a frame around the screen."""
+    text = library(files)
+    for helper in ("_c2b_flashOn", "_c2b_flashOff"):
+        assert "'[tft:rect]'" in body(text, helper), helper
+    for name in ("c2b_beep", "c2b_vibrate"):
+        assert "'_c2b_flashOn'" in body(text, name), name
+        assert "'_c2b_flashOff'" in body(text, name), name
