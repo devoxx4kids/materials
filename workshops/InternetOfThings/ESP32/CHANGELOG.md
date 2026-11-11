@@ -6,3 +6,4 @@ All notable changes to the ESP32 workshop. One version entry per day.
 
 ### Added
 - Build tool that generates the MicroBlocks library and projects for English, French and Dutch.
+- Documentation checker: language parity, local links, no AsciiDoc, mission pages present.
