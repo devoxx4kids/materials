@@ -1910,6 +1910,10 @@ Copy the results of check H8 (accents on the screen) and H6 (radio in a full roo
 ```markdown
 # The M5Stack Core2
 
+We use the **Core2 v1.3** (part number **K010-V13**, green power LED). Do not buy the
+Core2 v1.1 (K010-V11): its power chip is not supported by MicroBlocks.
+Datasheet: https://docs.m5stack.com/en/core/Core2_v1.3
+
 | Part | Used for in the workshop |
 |---|---|
 | 2-inch touch screen (320 × 240 pixels) | All text and emojis |
