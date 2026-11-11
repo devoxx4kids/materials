@@ -23,7 +23,7 @@ Success criteria:
 |---|---|
 | Audience | Children 10–14, working in pairs (driver / navigator, swap at each step) |
 | Session format | Modular: three standalone missions of 45–50 minutes each |
-| Hardware | M5Stack Core2 (ESP32, touch screen, IMU, speaker, vibration motor), one per pair plus two spares per session |
+| Hardware | M5Stack Core2 v1.3, part K010-V13 (ESP32, touch screen, BMI270 IMU, speaker, vibration motor, AXP192 power chip), one per pair plus two spares per session. Not the Core2 v1.1 (K010-V11, AXP2101 power chip). |
 | Programming tool | MicroBlocks (Scratch-like, live programming, runs in Chrome/Edge or as an offline app) |
 | Board-to-board communication | MicroBlocks `ESP Now` library (peer-to-peer, no Wi-Fi router needed, groups 0–255) |
 | Missions | 1. Magic Shake Ball (core) → 2. Hot Potato / Duel → 3. Emoji Messenger |
@@ -203,6 +203,25 @@ To be verified on two real Core2 boards before the final screenshots are made:
 
 Results are recorded in `library/README.md` (library behaviour) and `coach/*/setup.md`
 (setup steps).
+
+Platform decision (amendment 2026-11-11, after checking the Core2 revisions): MicroBlocks'
+Core2 firmware reads the motion sensor as an MPU6886, but the Core2 v1.3 has a BMI270, so
+shaking is expected to fail until verified on a real board. The hardware test therefore
+ends with a decision:
+
+- MicroBlocks, when all checks pass or have a fallback;
+- MicroBlocks with a firmware patch, when only shaking fails because of the BMI270
+  (MicroBlocks already contains a BMI270 driver for another board; the patch enables it
+  for the Core2 and is offered upstream);
+- UiFlow2 (M5Stack's own block tool, official support for the Core2 v1.3) as the
+  fallback, when the screen, touch or several outputs fail. UiFlow2 is Blockly rather
+  than Scratch-like, needs MAC-address peers for ESP-NOW, and its interface exists only
+  in English and Japanese (github.com/m5stack/uiflow-i18n, uiflow-2.x), so choosing it
+  requires a spec revision before the materials are written.
+
+Mind+ was also evaluated and rejected: no Core2 support (a full custom extension would be
+needed), compile-and-upload on every change, no Dutch interface, and an outdated macOS
+version.
 
 ## 9. Validation of the materials
 

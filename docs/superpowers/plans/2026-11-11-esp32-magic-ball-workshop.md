@@ -1529,7 +1529,17 @@ git commit -m "ESP32 workshop: add Emoji Messenger projects"
 
 ### Task 7: Hardware spike and validation on two Core2 boards (HUMAN)
 
-This task needs two M5Stack Core2 boards, a laptop with Chrome or Edge (or the MicroBlocks desktop app) and two USB-C data cables. An AI agent cannot do it; hand it to a person and wait for their results. The outcome decides whether Tasks 3–6 need changes, so it must be done before Task 8.
+This task needs two M5Stack **Core2 v1.3 (K010-V13)** boards, a laptop with Chrome or Edge (or the MicroBlocks desktop app) and two USB-C data cables. An AI agent cannot do it; hand it to a person and wait for their results. The outcome decides whether Tasks 3–6 need changes, and whether the workshop stays on MicroBlocks or moves to UiFlow2 (Step 8), so it must be done before Task 8.
+
+Why the board revision matters (checked 2026-11-11):
+
+| Revision | Part number | Power chip | Motion sensor | MicroBlocks |
+|---|---|---|---|---|
+| Core2 | K010 | AXP192 | MPU6886 | What its Core2 firmware was written for |
+| Core2 v1.1 | K010-V11 | AXP2101 | MPU6886 | Power code only knows the AXP192. **Do not buy.** |
+| Core2 v1.3 | K010-V13 | AXP192 | **BMI270** | Firmware reads the motion sensor as an MPU6886, so **shake is expected to fail** |
+
+M5Stack also changed the Core2 screen controller to ILI9342E in August 2026; Step 1 checks that the screen works.
 
 **Files:**
 - Create: `W/library/README.md` (results section; Task 8 adds the rest)
@@ -1546,7 +1556,8 @@ This task needs two M5Stack Core2 boards, a laptop with Chrome or Edge (or the M
 2. Connect the Core2 by USB-C. Click the USB icon and connect to the board.
 3. Open the ⚙ (gear) menu → **update firmware on board** → choose the Core2 entry. Write down the exact menu texts and the board name MicroBlocks shows.
 4. Repeat for the second board.
-Pass: both boards connect, the board name shows "M5StackCore2". Record the MicroBlocks version (⚙ → **about**).
+5. Click the `show big text Hello! colour` block in the Core2Buttons palette (open any starter project first).
+Pass: both boards connect, the board name shows "M5StackCore2", and the screen shows "Hello!". Record the MicroBlocks version (⚙ → **about**) and the colour of the power LED (green = AXP192). A black screen is a failure of H1, not a cable problem, if the board still connects.
 
 - [ ] **Step 2: Load the library and check the buttons (H2, H3)**
 
@@ -1571,7 +1582,8 @@ and note "speaker silent, beep falls back to vibration" in the results.
 1. Hold the board still in two hands for 10 seconds while the Magic Ball solution runs. Pass: no answer appears.
 2. Shake it once firmly. Pass: an answer appears.
 3. Watch for vibration with each answer. Pass: a short buzz; the motor is quiet otherwise.
-If shaking needs too much force, lower `140` in `c2b_shaken` in steps of 10 (and update `comment.shaken` in all three JSON files); if holding triggers it, raise it. If the motor never buzzes, or buzzes all the time, record the value of `(i2cGet 52 18)` shown with a `say` block, and change the `i2cGet`/`i2cSet` lines in `c2b_vibrate` accordingly; if the I2C blocks cannot reach the power chip at all, make `c2b_vibrate` only wait (`waitMillis ms`) and note it.
+First check that the sensor is read at all: run `forever { say (acceleration) }` (Basic Sensors library) and tilt the board. If the value stays the same (often 0) whatever you do, H5 **fails because of the BMI270**, not because of the threshold: write "acceleration constant: <value>" in the notes and go on; Step 8 decides what to do. Do not tune the threshold in that case.
+If the value changes but shaking needs too much force, lower `140` in `c2b_shaken` in steps of 10 (and update `comment.shaken` in all three JSON files); if holding triggers it, raise it. If the motor never buzzes, or buzzes all the time, record the value of `(i2cGet 52 18)` shown with a `say` block, and change the `i2cGet`/`i2cSet` lines in `c2b_vibrate` accordingly; if the I2C blocks cannot reach the power chip at all, make `c2b_vibrate` only wait (`waitMillis ms`) and note it.
 
 - [ ] **Step 5: Hot Potato and Duel (H7)**
 
@@ -1592,7 +1604,40 @@ Open `missions/02-hot-potato/solution/hot-potato-done-en.ubp`. Middle circle: ti
 2. H8: Change one answer to `Peut-être !` and another to a 40-character sentence, run the project. Record whether `ê` renders. Pass: the long sentence fits on the screen (smaller text).
 3. Write down the exact on-screen English labels of these built-in blocks, as MicroBlocks shows them, for Tasks 9–11: `when started`, `when`, `wait … millisecs`, `random … to …`, `item … of …`, `length of …`, `list`, `set … to …`, `change … by …`, `initialize local … to …`, `if … else`, `or`, `and`, `=`, `≠`, `≥`, `≤`, `join`, `repeat until`, `repeat`, `reset timer`, `timer`, the ESP Now blocks, and the name of the button that adds a variable.
 
-- [ ] **Step 8: Rebuild after any change, and record the results**
+- [ ] **Step 8: Decide: MicroBlocks or UiFlow2**
+
+Apply the first rule that matches, and write the decision in `W/library/README.md` (Step 10):
+
+| Result of H1–H9 | Decision | What happens next |
+|---|---|---|
+| All pass, or every failure has the fallback from its step applied | **MicroBlocks** | Continue with Step 10 and then Task 8. |
+| Only H5 fails with "acceleration constant" (the BMI270 case); everything else passes | **MicroBlocks + firmware patch** | Do Step 9 (UiFlow2 check) as an insurance, then patch the firmware (below). Continue with Task 8 only when the patched firmware passes H5. |
+| H1 (connect or screen) or H2 (touch circles) fails, or two or more of H4, H5, H6 fail without a working fallback | **UiFlow2** | Do Step 9. If UiFlow2 passes U1–U5, **stop the plan after Step 11**: the spec must be revised for UiFlow2 before any further task (see "If the decision is UiFlow2" below). |
+
+**Firmware patch for the BMI270 (MicroBlocks + firmware patch):**
+1. Clone MicroBlocks: `git clone https://bitbucket.org/john_maloney/smallvm.git` and install PlatformIO (`pip install platformio`).
+2. In `vm/sensorPrims.cpp`, the Core2 shares the MPU6886 code path (`#elif defined(ARDUINO_M5Stack_Core_ESP32) || defined(ARDUINO_M5STACK_Core2) ...`). For `ARDUINO_M5STACK_Core2` only, read the chip ID at I2C address `0x68` on the internal bus first: register `0x00` returns `0x24` on a BMI270, register `0x75` returns `0x19` on an MPU6886. When it is a BMI270, use the existing `bmi270Init()` / BMI270 read functions (today only compiled for `DATABOT_V3`; move them out of that `#if` so the Core2 build gets them too).
+3. Build: `pio run -e m5core2`. The firmware is `.pio/build/m5core2/firmware.bin`.
+4. Install it: drag the `.bin` file onto the MicroBlocks window with the board connected (MicroBlocks installs dropped ESP firmware files), then re-run H5 and H1–H3.
+5. Offer the patch upstream (MicroBlocks accepts contributions via https://microblocks.fun/contact or the Bitbucket repository), and record the patched firmware's commit in `W/library/README.md`. Until it is released upstream, coaches install this `.bin` instead of the standard firmware; Task 8's `coach/en/setup.md` must then say so (copy the file to `W/firmware/microblocks-core2-bmi270.bin`, with a README naming the source commit).
+
+- [ ] **Step 9: UiFlow2 check (only for "MicroBlocks + firmware patch" or "UiFlow2")**
+
+Install UiFlow2 on one board with M5Burner (https://docs.m5stack.com/en/download) and open the UiFlow2 web IDE (https://uiflow2.m5stack.com). Build each check with UiFlow2's own blocks, on the Core2 v1.3:
+
+| Check | Build this | Pass |
+|---|---|---|
+| U1 | Show a label "Hello!" | Text on the screen, program runs within ~5 s of pressing Run |
+| U2 | `when BtnA/BtnB/BtnC pressed` → change the label | Each red circle reacts once per touch; the screen above does not |
+| U3 | Show the IMU acceleration in a label, in a loop | Values change when the board is tilted or shaken (BMI270 works) |
+| U4 | Speaker tone and vibration (Power) blocks | Audible tone; motor buzzes |
+| U5 | ESP-NOW broadcast from board 1, receive callback on board 2 | Message arrives within 1 s, without entering MAC addresses by hand (or note the simplest setup that works) |
+
+Also record: whether the IDE works without internet or without an account, and which interface languages it offers. As checked on 2026-11-11, UiFlow2's translation repository (https://github.com/m5stack/uiflow-i18n/tree/main/uiflow-2.x) contains only `en.json` and `ja.json`, so French and Dutch children would see an English interface unless FR/NL translations are contributed there.
+
+**If the decision is UiFlow2:** record U1–U5, finish Steps 10–11, and stop. Report back so the spec can be revised: the missions, session rhythm and kids' page structure stay, but the helper library, the build tool's MicroBlocks templates (Tasks 1, 3–6), the radio pairing in Mission 3, and the FR/NL interface plan change.
+
+- [ ] **Step 10: Rebuild after any change, and record the results**
 
 If any template or JSON changed: `python3 tools/build.py && python3 -m pytest tools/tests -q` (all must pass).
 
@@ -1602,17 +1647,22 @@ If any template or JSON changed: `python3 tools/build.py && python3 -m pytest to
 
 ## Tested on hardware
 
+Board revision: Core2 v1.3 (K010-V13), power LED colour: 
+
 | Check | What was tested | Result | Notes |
 |---|---|---|---|
-| H1 | Firmware install and connection | | MicroBlocks version: , firmware: , date: |
+| H1 | Firmware install, connection, screen | | MicroBlocks version: , firmware: , date: |
 | H2 | Circles react, screen touch ignored | | |
 | H3 | One event per touch (hold, fast taps) | | |
 | H4 | Beep on the speaker | | |
-| H5 | Shake threshold and vibration | | final threshold: |
+| H5 | Shake threshold and vibration | | acceleration changes: yes/no, final threshold: |
 | H6 | ESP Now between boards, groups, bad numbers | | boards in room: , lost messages: |
 | H7 | Hot Potato and Duel | | |
 | H8 | Long text and accents on screen | | accents render: yes/no |
 | H9 | FR and NL labels | | |
+| U1–U5 | UiFlow2 check (only if Step 9 was done) | | offline: , account needed: , languages: |
+
+**Decision (Step 8):** MicroBlocks / MicroBlocks + firmware patch / UiFlow2 — reason:
 
 ## Built-in block labels (English, as shown by MicroBlocks)
 
@@ -1637,18 +1687,18 @@ If any template or JSON changed: `python3 tools/build.py && python3 -m pytest to
 | add a variable (button) | |
 | firmware menu path | |
 ```
-Fill every empty cell from Steps 1–7. Every check must say "pass" or describe the fallback that was applied.
+Fill every empty cell from Steps 1–9. Every check must say "pass" or describe the fallback that was applied, and the decision line must be filled in.
 
-- [ ] **Step 9: Update the changelog and commit**
+- [ ] **Step 11: Update the changelog and commit**
 
 Add to today's entry (or a new dated entry if this is a later day), under `### Changed` if the library changed:
 ```markdown
-- Library tuned after testing on two Core2 boards (see library/README.md).
+- Library tuned after testing on two Core2 v1.3 boards; platform decision recorded (see library/README.md).
 ```
 
 ```bash
 git add workshops/InternetOfThings/ESP32
-git commit -m "ESP32 workshop: record Core2 hardware test results"
+git commit -m "ESP32 workshop: record Core2 hardware test results and platform decision"
 ```
 
 ---
