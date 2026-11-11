@@ -54,15 +54,26 @@ workshops/InternetOfThings/ESP32/
 │   │   ├── en/  mission.md  bonus-cards.md
 │   │   ├── fr/  (same files)
 │   │   ├── nl/  (same files)
-│   │   ├── starter/   magic-ball-start.ubp
-│   │   ├── solution/  magic-ball-done.ubp
+│   │   ├── starter/   magic-ball-start-en.ubp  -fr.ubp  -nl.ubp   (generated)
+│   │   ├── solution/  magic-ball-done-en.ubp   -fr.ubp  -nl.ubp   (generated)
 │   │   └── images/
-│   ├── 02-hot-potato/        (same layout: hot-potato-start.ubp, hot-potato-done.ubp)
-│   └── 03-emoji-messenger/   (same layout: emoji-messenger-start.ubp, emoji-messenger-done.ubp)
-└── library/
-    ├── Core2Buttons.ubl
-    └── README.md
+│   ├── 02-hot-potato/        (same layout: hot-potato-start-<lang>.ubp, hot-potato-done-<lang>.ubp)
+│   └── 03-emoji-messenger/   (same layout: emoji-messenger-start-<lang>.ubp, emoji-messenger-done-<lang>.ubp)
+├── library/
+│   ├── Core2Buttons-en.ubl  -fr.ubl  -nl.ubl   (generated)
+│   └── README.md
+├── i18n/          en.json  fr.json  nl.json   all translatable strings (block labels, on-screen texts)
+├── src/           templates: library/Core2Buttons.ubl.tmpl, projects/*.ubp.tmpl
+├── vendor/        pinned copies of the MicroBlocks Tone and ESP Now libraries (MPL-2.0)
+└── tools/         build.py (generates the files above), check_docs.py, tests/
 ```
+
+Amendment (2026-11-11, during planning): a MicroBlocks library cannot reliably carry its
+own FR/NL translations. The loader for localized libraries exists in the IDE source but
+nothing calls it, and the IDE's `.po` files are maintained upstream. So translations live
+in `i18n/<lang>.json`, and `tools/build.py` generates one library file and one starter and
+solution project per language from the templates. No label or on-screen text is
+hardcoded in a template.
 
 Rules:
 
@@ -138,18 +149,24 @@ board details behind child-friendly blocks:
 | Block | Hides |
 |---|---|
 | `left button touched?`, `middle button touched?`, `right button touched?` | touch Y below the display area and X ranges of the three circles |
-| `when <left/middle/right> button touched` (hat block) | edge detection, fires once per touch |
 | `board shaken?` | acceleration magnitude above a threshold (value set during the spike) |
 | `vibrate for (ms)` | switching the AXP192-driven vibration motor on and off |
-| `beep (note) for (ms)` | sound on the I2S speaker; only added if the built-in `play tone` block does not sound on the Core2 |
+| `beep (frequency) for (ms)` | sound on the I2S speaker via the Tone library; falls back to vibration if the spike shows the speaker stays silent |
 | `show big text (text) colour (c)` | centred, large text on the TFT display |
 
-Translations: block labels are provided through MicroBlocks translation entries for EN,
-FR and NL, so the blocks follow the language chosen in MicroBlocks. No label text is
-hardcoded in a single language.
+The three button reporters are edge-detected: they report true once per touch. Children
+combine them with MicroBlocks' built-in `when` hat block, so a separate custom hat block
+is not needed (amendment 2026-11-11: none of the bundled MicroBlocks libraries define their
+own hat blocks, so we use the built-in one children already know).
+
+Translations: block labels and on-screen texts come from `i18n/<lang>.json` and are
+written into one generated library file per language (see the amendment in section 3).
+No label text is hardcoded in a single language.
 
 Starter projects already include this library and an empty "start here" script.
-Solution projects contain the finished core plus every bonus card, for coaches.
+Solution projects contain the finished core of the mission, for coaches. Each bonus card
+carries a short hint for coaches and fast pairs instead of a full solution project
+(amendment 2026-11-11, to keep the generated projects small and testable).
 
 ## 7. Coach documentation
 
