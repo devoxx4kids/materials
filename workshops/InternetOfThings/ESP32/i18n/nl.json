@@ -11,5 +11,13 @@
   "comment.edge": "Alleen waar op het moment dat een cirkel aangeraakt wordt: één aanraking is één gebeurtenis, ook als de vinger blijft liggen.",
   "comment.shaken": "De versnelling is ongeveer 100 als het bord stil ligt. Voor meer dan 140 moet je echt schudden.",
   "comment.vibrate": "De trilmotor krijgt stroom van LDO3 van de AXP192-stroomchip (I2C-adres 52). Bit 3 (waarde 8) van register 18 zet hem aan en uit.",
-  "comment.big_text": "Wist het scherm en schrijft de tekst in het midden. Lange teksten worden kleiner zodat ze passen (een letter is 6 x 8 pixels op grootte 1)."
+  "comment.big_text": "Wist het scherm en schrijft de tekst in het midden. Lange teksten worden kleiner zodat ze passen (een letter is 6 x 8 pixels op grootte 1).",
+  "project.m1_start": "Magische schudbal - begin hier",
+  "project.m1_done": "Magische schudbal - klaar, voor coaches",
+  "comment.m1_start": "Begin hier! Sleep blokken uit de bibliotheek Core2Buttons onder dit blok. Volg mission.md stap voor stap.",
+  "screen.m1_ask": "Stel me een vraag!",
+  "screen.m1_yes": "Ja!",
+  "screen.m1_no": "Echt niet!",
+  "screen.m1_maybe": "Misschien...",
+  "screen.m1_again": "Vraag opnieuw"
 }

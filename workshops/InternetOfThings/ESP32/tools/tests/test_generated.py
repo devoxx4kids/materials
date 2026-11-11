@@ -87,3 +87,14 @@ def test_projects_only_call_defined_helpers(files):
             assert "\nmodule Core2Buttons Input\n" in text, name
             assert "\nmodule Tone Output\n" in text, name
             assert set(CALL.findall(text)) <= defined | {"_c2b_wasDown"}, name
+
+
+def test_magic_ball_solution_answers_touch_and_shake(files):
+    en = json.loads((build.ROOT / "i18n/en.json").read_text(encoding="utf-8"))
+    done = files["missions/01-magic-shake-ball/solution/magic-ball-done-en.ubp"]
+    assert "whenCondition (or (c2b_middleTouched) (c2b_shaken))" in done
+    for key in ("screen.m1_yes", "screen.m1_no", "screen.m1_maybe", "screen.m1_again", "screen.m1_ask"):
+        assert "'" + build.escape(en[key]) + "'" in done, key
+    start = files["missions/01-magic-shake-ball/starter/magic-ball-start-en.ubp"]
+    assert "whenStarted" in start
+    assert "c2b_middleTouched" not in main_module(start)

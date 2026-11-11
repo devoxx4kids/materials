@@ -31,7 +31,10 @@ LIBRARY_OUTPUT = "library/Core2Buttons-{lang}.ubl"
 VENDORED = ("Tone", "ESP Now")
 
 # (template, output pattern). Each mission task adds its starter and solution here.
-PROJECTS: tuple[tuple[str, str], ...] = ()
+PROJECTS: tuple[tuple[str, str], ...] = (
+    ("src/projects/magic-ball-start.ubp.tmpl", "missions/01-magic-shake-ball/starter/magic-ball-start-{lang}.ubp"),
+    ("src/projects/magic-ball-done.ubp.tmpl", "missions/01-magic-shake-ball/solution/magic-ball-done-{lang}.ubp"),
+)
 
 
 class BuildError(Exception):

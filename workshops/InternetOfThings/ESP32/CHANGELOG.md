@@ -9,3 +9,4 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - Documentation checker: language parity, local links, no AsciiDoc, mission pages present.
 - `Core2Buttons` helper library (touch circles, shake, vibrate, beep, big text) in EN, FR and NL.
 - Pinned copies of the MicroBlocks Tone and ESP Now libraries.
+- Mission 1 (Magic Shake Ball) starter and solution projects.

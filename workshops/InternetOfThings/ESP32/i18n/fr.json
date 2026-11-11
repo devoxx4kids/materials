@@ -11,5 +11,13 @@
   "comment.edge": "Vrai seulement au moment où un cercle devient touché : un toucher = un événement, même si le doigt reste dessus.",
   "comment.shaken": "L'accélération vaut environ 100 quand la carte est posée. Il faut vraiment secouer pour dépasser 140.",
   "comment.vibrate": "Le moteur de vibration est alimenté par LDO3 de la puce d'alimentation AXP192 (adresse I2C 52). Le bit 3 (valeur 8) du registre 18 l'allume et l'éteint.",
-  "comment.big_text": "Efface l'écran et écrit le texte au milieu. Les textes longs sont plus petits pour tenir à l'écran (une lettre fait 6 x 8 pixels en taille 1)."
+  "comment.big_text": "Efface l'écran et écrit le texte au milieu. Les textes longs sont plus petits pour tenir à l'écran (une lettre fait 6 x 8 pixels en taille 1).",
+  "project.m1_start": "Boule magique - commence ici",
+  "project.m1_done": "Boule magique - version finie pour les coachs",
+  "comment.m1_start": "Commence ici ! Glisse des blocs de la bibliothèque Core2Buttons sous ce bloc. Suis mission.md étape par étape.",
+  "screen.m1_ask": "Pose-moi une question !",
+  "screen.m1_yes": "Oui !",
+  "screen.m1_no": "Pas question !",
+  "screen.m1_maybe": "Possible...",
+  "screen.m1_again": "Redemande"
 }
