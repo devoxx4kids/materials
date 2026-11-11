@@ -108,3 +108,16 @@ def test_hot_potato_solution_has_both_games(files):
     assert "lives = (lives - 1)" in done
     start = files["missions/02-hot-potato/starter/hot-potato-start-en.ubp"]
     assert "whenStarted" in start
+
+
+def test_messenger_projects_use_esp_now_and_ignore_bad_numbers(files):
+    for kind in ("start", "done"):
+        text = files[f"missions/03-emoji-messenger/{'starter' if kind == 'start' else 'solution'}/emoji-messenger-{kind}-en.ubp"]
+        assert "\nmodule 'ESP Now' Comm\n" in text
+        assert "'[net:ESPNowSetGroup]' 1" in text
+        assert "emojis = ('[data:makeList]'" in text
+    done = files["missions/03-emoji-messenger/solution/emoji-messenger-done-en.ubp"]
+    assert "whenCondition (espNow_receive_pair)" in done
+    assert "(and (n >= 1) (n <= (size emojis)))" in done
+    assert "espNow_send_pair myName 0" in done
+    assert "espNow_send_pair myName choice" in done

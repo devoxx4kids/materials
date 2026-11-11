@@ -1,0 +1,77 @@
+module main
+author Devoxx4Kids
+version 1 0 
+description '{{project.m3_done}}'
+variables emojis choice myName 
+
+script 50 50 {
+whenStarted
+comment '{{comment.m3_start}}'
+'[net:ESPNowSetGroup]' 1
+myName = '{{screen.m3_name}}'
+emojis = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
+choice = 1
+c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+}
+
+script 50 300 {
+whenCondition (c2b_leftTouched)
+choice = (choice - 1)
+if (choice < 1) {
+  choice = (size emojis)
+}
+c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+}
+
+script 50 450 {
+whenCondition (c2b_rightTouched)
+choice = (choice + 1)
+if (choice > (size emojis)) {
+  choice = 1
+}
+c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+}
+
+script 450 50 {
+whenCondition (c2b_middleTouched)
+espNow_send_pair myName choice
+c2b_bigText '{{screen.m3_sent}}' (colorSwatch 0 255 0 255)
+waitMillis 500
+c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+}
+
+script 450 250 {
+whenCondition (c2b_shaken)
+espNow_send_pair myName 0
+c2b_bigText '{{screen.m3_sent}}' (colorSwatch 0 255 0 255)
+waitMillis 500
+c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+}
+
+script 850 50 {
+whenCondition (espNow_receive_pair)
+local 'n' (espNow_last_number)
+if (n == 0) {
+  repeat 3 {
+    c2b_bigText '{{screen.m3_party}}' (colorSwatch 255 0 255 255)
+    c2b_vibrate 100
+    c2b_bigText '{{screen.m3_party}}' (colorSwatch 0 255 255 255)
+    waitMillis 100
+  }
+} (and (n >= 1) (n <= (size emojis))) {
+  c2b_bigText (at n emojis) (colorSwatch 255 220 0 255)
+  '[tft:text]' (espNow_last_string) 10 200 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
+  c2b_beep 660 100
+  waitMillis 2000
+}
+c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+}
+
+
+{{> Core2Buttons}}
+
+
+{{> Tone}}
+
+
+{{> ESP Now}}

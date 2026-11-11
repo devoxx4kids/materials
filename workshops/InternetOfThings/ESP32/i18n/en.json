@@ -33,5 +33,11 @@
   "screen.m2_early_left": "Left: too early!",
   "screen.m2_early_right": "Right: too early!",
   "screen.m2_left_wins": "Left wins!",
-  "screen.m2_right_wins": "Right wins!"
+  "screen.m2_right_wins": "Right wins!",
+  "project.m3_start": "Emoji Messenger - start here",
+  "project.m3_done": "Emoji Messenger - finished version for coaches",
+  "comment.m3_start": "Start here! Change the group number 1 to your table number. The emoji list is ready for you. Follow mission.md step by step.",
+  "screen.m3_name": "Team 1",
+  "screen.m3_sent": "Sent!",
+  "screen.m3_party": "PARTY!"
 }

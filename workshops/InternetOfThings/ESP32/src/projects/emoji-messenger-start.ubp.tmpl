@@ -1,0 +1,23 @@
+module main
+author Devoxx4Kids
+version 1 0 
+description '{{project.m3_start}}'
+variables emojis choice myName 
+
+script 50 50 {
+whenStarted
+comment '{{comment.m3_start}}'
+'[net:ESPNowSetGroup]' 1
+myName = '{{screen.m3_name}}'
+emojis = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
+choice = 1
+}
+
+
+{{> Core2Buttons}}
+
+
+{{> Tone}}
+
+
+{{> ESP Now}}

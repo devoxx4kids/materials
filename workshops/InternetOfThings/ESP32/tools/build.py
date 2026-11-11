@@ -36,6 +36,8 @@ PROJECTS: tuple[tuple[str, str], ...] = (
     ("src/projects/magic-ball-done.ubp.tmpl", "missions/01-magic-shake-ball/solution/magic-ball-done-{lang}.ubp"),
     ("src/projects/hot-potato-start.ubp.tmpl", "missions/02-hot-potato/starter/hot-potato-start-{lang}.ubp"),
     ("src/projects/hot-potato-done.ubp.tmpl", "missions/02-hot-potato/solution/hot-potato-done-{lang}.ubp"),
+    ("src/projects/emoji-messenger-start.ubp.tmpl", "missions/03-emoji-messenger/starter/emoji-messenger-start-{lang}.ubp"),
+    ("src/projects/emoji-messenger-done.ubp.tmpl", "missions/03-emoji-messenger/solution/emoji-messenger-done-{lang}.ubp"),
 )
 
 

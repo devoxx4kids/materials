@@ -11,3 +11,4 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - Pinned copies of the MicroBlocks Tone and ESP Now libraries.
 - Mission 1 (Magic Shake Ball) starter and solution projects.
 - Mission 2 (Hot Potato and Duel) starter and solution projects.
+- Mission 3 (Emoji Messenger) starter and solution projects using ESP Now.

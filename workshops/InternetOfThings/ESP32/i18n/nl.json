@@ -33,5 +33,11 @@
   "screen.m2_early_left": "Links: te vroeg!",
   "screen.m2_early_right": "Rechts: te vroeg!",
   "screen.m2_left_wins": "Links wint!",
-  "screen.m2_right_wins": "Rechts wint!"
+  "screen.m2_right_wins": "Rechts wint!",
+  "project.m3_start": "Emoji-messenger - begin hier",
+  "project.m3_done": "Emoji-messenger - klaar, voor coaches",
+  "comment.m3_start": "Begin hier! Verander groepsnummer 1 in jullie tafelnummer. De emojilijst staat al klaar. Volg mission.md stap voor stap.",
+  "screen.m3_name": "Team 1",
+  "screen.m3_sent": "Verstuurd!",
+  "screen.m3_party": "FEEST!"
 }

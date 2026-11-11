@@ -33,5 +33,11 @@
   "screen.m2_early_left": "Gauche : trop vite !",
   "screen.m2_early_right": "Droite : trop vite !",
   "screen.m2_left_wins": "Gauche gagne !",
-  "screen.m2_right_wins": "Droite gagne !"
+  "screen.m2_right_wins": "Droite gagne !",
+  "project.m3_start": "Messagerie emoji - commence ici",
+  "project.m3_done": "Messagerie emoji - version finie pour les coachs",
+  "comment.m3_start": "Commence ici ! Remplace le numéro de groupe 1 par le numéro de ta table. La liste d'emojis est déjà prête. Suis mission.md étape par étape.",
+  "screen.m3_name": "Equipe 1",
+  "screen.m3_sent": "Parti !",
+  "screen.m3_party": "FIESTA !"
 }
