@@ -8,9 +8,19 @@ patched build that fixes both, until the fix is included in MicroBlocks itself.
 |---|---|
 | `microblocks-core2-v1.3.bin` | Complete flash image (bootloader, partition table, boot selector, MicroBlocks VM), to be written at address `0x0` |
 | `microblocks-core2-v1.3.patch` | The source change, against MicroBlocks `dev` at commit `b40b74d` (Codeberg) |
+| `bomb-images.bin` | LittleFS file system with the 21 bomb frames (Mission 2), to be written at address `0x210000` |
+| `images/` | The 21 frames as separate files (made by `tools/convert_images.py`) |
+| `build.sh` | Rebuilds both images from source |
 
-SHA-256 of the image:
-`b1a4e25a61b92775c91c4a2083f43a0a0e417c2d0cb828e86bd5924cbf0ed4e8`
+SHA-256 (build of 2026-11-13):
+
+| File | SHA-256 |
+|---|---|
+| `microblocks-core2-v1.3.bin` | `a49b5e3b38ae19b0e2a2847cbf8e0a47998c809682814f063c3e27f9dfe73465` |
+| `bomb-images.bin` | `27fe25873ed11bb00e0c4d73585d8e0e2782ba54b087f7938bdd4a101d0e8fbb` |
+
+ESP32 builds embed the build time, so a rebuild from the same source gives a different
+SHA-256 for `microblocks-core2-v1.3.bin`.
 
 ## What the patch changes
 
@@ -31,7 +41,7 @@ You need Python 3 and esptool (`pip install esptool`). Close MicroBlocks first, 
 does not hold the USB port.
 
 ```bash
-esptool --chip esp32 --port <PORT> --baud 460800 write-flash 0x0 microblocks-core2-v1.3.bin
+esptool --chip esp32 --port <PORT> --baud 460800 write-flash 0x0 microblocks-core2-v1.3.bin 0x210000 bomb-images.bin
 ```
 
 On macOS the port looks like `/dev/cu.usbserial-XXXXXXXX`. After flashing, unplug the USB
@@ -43,23 +53,12 @@ normal with MicroBlocks.
 
 ## Rebuild from source
 
-```bash
-git clone --branch dev https://codeberg.org/MicroBlocks/smallvm.git
-cd smallvm
-git checkout b40b74d
-git apply ../microblocks-core2-v1.3.patch
-pip install platformio
-pio run -e m5core2
-```
-
-The image above was made from the build output with:
-
-```bash
-esptool --chip esp32 merge-bin --flash-size 16MB -o microblocks-core2-v1.3.bin \
-  0x1000 .pio/build/m5core2/bootloader.bin 0x8000 .pio/build/m5core2/partitions.bin \
-  0xe000 <platformio>/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin \
-  0x10000 .pio/build/m5core2/firmware.bin
-```
+Run `firmware/build.sh` from the workshop folder. It clones MicroBlocks `dev` at `b40b74d`,
+applies the patch, copies `firmware/images/*.data` into the file system, builds both images
+and prints their SHA-256. It needs git, and Python 3 with `platformio` and `esptool`.
 
 MicroBlocks is licensed under the Mozilla Public License 2.0; this patch and image keep that
 license.
+
+Bomb and explosion animations: Noto Animated Emoji by Google, CC BY 4.0
+(https://googlefonts.github.io/noto-emoji-animation/).

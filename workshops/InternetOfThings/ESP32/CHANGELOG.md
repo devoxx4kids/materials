@@ -8,6 +8,7 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - Patched MicroBlocks firmware for the Core2 v1.3 (BMI270 motion sensor, vibration primitive) in `firmware/`; `vibrate` now drives the real motor.
 - Bomb images (Noto Animated Emoji, CC BY 4.0) converted to Core2 frames by tools/convert_images.py.
 - Bomb blocks in Core2Buttons: show bomb, jolt, show danger bar (EN, FR, NL).
+- firmware/build.sh rebuilds the patched firmware and the bomb image file system (bomb-images.bin).
 
 ### Fixed
 - `vibrate` no longer stops the program with an I2C error on the Core2; it skips the motor when the power chip cannot be reached.
