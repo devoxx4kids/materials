@@ -4,6 +4,16 @@ Date: 2026-11-11
 Status: Approved in conversation, pending written-spec review
 Location of the workshop: `workshops/InternetOfThings/ESP32/`
 
+> **Platform status (2026-11-13): open.** The hardware test on two Core2 v1.3 boards showed
+> that MicroBlocks' Core2 firmware does not run on the v1.3, while the UiFlow2 firmware runs
+> everything the missions need. The UiFlow2 IDE was rejected (look, English only, too many
+> blocks, online only). Options under consideration: our own Blockly editor on the UiFlow2
+> firmware (`2026-11-13-core2-blockly-editor-option.md`, not approved), or MicroBlocks if its
+> maintainers fix the Core2 v1.3. Decided so far: FR/NL pages name the tool's block labels
+> where these are English, with a block dictionary; an optional, coach-led Mission 4 uses
+> M5Stack AiFlow. The tool-specific parts of this spec (sections 2, 3, 6, 7, 8) will be
+> revised once the platform is decided.
+
 ## 1. Intent
 
 A new Devoxx4Kids workshop in which children aged 10–14 program an ESP32 board with
