@@ -42,5 +42,6 @@
   "project.m2_done": "La bombe - version finie pour les coachs",
   "comment.m2_start": "Commence ici ! Porte la bombe jusqu'à la zone de sécurité sans la secouer. Suis mission.md étape par étape.",
   "screen.m2_touch": "Touche le milieu",
-  "screen.m2_safe": "BRAVO !"
+  "screen.m2_safe": "BRAVO !",
+  "comment.load_palette": "Lit les 256 couleurs des images dans le fichier bomb_palette.data de la carte. Sans ce fichier, les images restent noires, mais le programme continue."
 }

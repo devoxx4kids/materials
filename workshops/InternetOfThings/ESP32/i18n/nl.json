@@ -42,5 +42,6 @@
   "project.m2_done": "De bom - klaar, voor coaches",
   "comment.m2_start": "Begin hier! Breng de bom naar de veilige zone zonder te schokken. Volg mission.md stap voor stap.",
   "screen.m2_touch": "Tik midden om te starten",
-  "screen.m2_safe": "VEILIG!"
+  "screen.m2_safe": "VEILIG!",
+  "comment.load_palette": "Leest de 256 beeldkleuren uit het bestand bomb_palette.data op het bord. Zonder dat bestand blijven de beelden zwart, maar het programma blijft lopen."
 }

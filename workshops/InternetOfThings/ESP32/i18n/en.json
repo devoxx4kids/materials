@@ -42,5 +42,6 @@
   "project.m2_done": "Bomb - finished version for coaches",
   "comment.m2_start": "Start here! Carry the bomb to the safe zone without jolting it. Follow mission.md step by step.",
   "screen.m2_touch": "Touch middle to start",
-  "screen.m2_safe": "SAFE!"
+  "screen.m2_safe": "SAFE!",
+  "comment.load_palette": "Reads the 256 picture colours from the file bomb_palette.data on the board. Without that file the pictures stay black, but the program keeps running."
 }

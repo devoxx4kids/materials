@@ -54,24 +54,26 @@ def test_transparent_pixels_become_black():
     assert set(rendered.getdata()) == {(0, 0, 0)}
 
 
-def test_part_defines_palette_and_frame_table(sources, tmp_path):
+def test_part_defines_the_frame_table_only(sources, tmp_path):
     _, part, _ = run(sources, tmp_path)
     text = part.read_text(encoding="utf-8")
-    assert "to '_c2b_bombPalette' {" in text
     assert "to '_c2b_bombSet' name {" in text
     assert "if (name == 'nervous') {\n    return ('[data:makeList]' 2 8)\n  }" in text
     assert "if (name == 'explode') {\n    return ('[data:makeList]' 2 12)\n  }" in text
-    hex_line = next(line for line in text.splitlines() if line.strip().startswith("local 'hex'"))
-    hex_digits = hex_line.split("'")[3]
-    assert len(hex_digits) == 256 * 6
-    assert hex_digits.startswith("000000")
+    assert "_c2b_bombPalette" not in text  # too big for MicroBlocks: it is a file now
+
+
+def test_palette_is_a_768_byte_file_starting_with_black(sources, tmp_path):
+    out, _, written = run(sources, tmp_path)
+    palette = (out / "bomb_palette.data").read_bytes()
+    assert len(palette) == 256 * 3
+    assert palette[:3] == bytes([0, 0, 0])
+    assert out / "bomb_palette.data" not in written  # written lists the frames only
 
 
 def test_red_pixels_map_to_a_red_palette_entry(sources, tmp_path):
-    out, part, _ = run(sources, tmp_path)
-    text = part.read_text(encoding="utf-8")
-    hex_digits = next(l for l in text.splitlines() if "local 'hex'" in l).split("'")[3]
+    out, _, _ = run(sources, tmp_path)
+    palette = (out / "bomb_palette.data").read_bytes()
     index = (out / "bomb_calm_1.data").read_bytes()[0]
-    r = int(hex_digits[index * 6:index * 6 + 2], 16)
-    g = int(hex_digits[index * 6 + 2:index * 6 + 4], 16)
+    r, g = palette[index * 3], palette[index * 3 + 1]
     assert r > 200 and g < 60

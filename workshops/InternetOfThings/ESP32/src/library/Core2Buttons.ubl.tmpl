@@ -3,7 +3,7 @@ author Devoxx4Kids
 version 1 0 
 depends Tone 
 description '{{lib.description}}'
-variables _c2b_wasDown _c2b_nervousFrame _c2b_palette 
+variables _c2b_wasDown _c2b_nervousFrame _c2b_palette _c2b_openFile 
 choices c2b_bombMenu '{{menu.bomb_calm}}' '{{menu.bomb_nervous}}' '{{menu.bomb_explode}}' '{{menu.bomb_safe}}'
 
   spec 'r' 'c2b_leftTouched' '{{blk.left_touched}}'
@@ -26,7 +26,7 @@ choices c2b_bombMenu '{{menu.bomb_calm}}' '{{menu.bomb_nervous}}' '{{menu.bomb_e
   spec ' ' '_c2b_flashOff' '_c2b_flashOff'
   spec ' ' '_c2b_drawFrame' '_c2b_drawFrame _ _' 'str num' 'bomb_calm_1.data' 140
   spec ' ' '_c2b_playSet' '_c2b_playSet _' 'str' 'explode'
-  spec 'r' '_c2b_bombPalette' '_c2b_bombPalette'
+  spec ' ' '_c2b_loadPalette' '_c2b_loadPalette'
   spec 'r' '_c2b_bombSet' '_c2b_bombSet _' 'str' 'calm'
 
 to '_c2b_zone' {
@@ -146,18 +146,39 @@ to '_c2b_playSet' name {
   }
 }
 
+to '_c2b_loadPalette' {
+  comment '{{comment.load_palette}}'
+  _c2b_palette = ('[data:makeList]' 0)
+  '[file:open]' 'bomb_palette.data'
+  local 'rgb' ('[file:readBytes]' 768 'bomb_palette.data')
+  '[file:close]' 'bomb_palette.data'
+  if ((size rgb) < 768) {
+    return 0
+  }
+  _c2b_palette = ('[data:makeList]')
+  for i 256 {
+    local 'k' ((i * 3) - 2)
+    '[data:addLast]' ((((at k rgb) * 65536) + ((at (k + 1) rgb) * 256)) + (at (k + 2) rgb)) _c2b_palette
+  }
+}
+
 to '_c2b_drawFrame' file size {
   if (_c2b_palette == 0) {
-    _c2b_palette = ('_c2b_bombPalette')
+    '_c2b_loadPalette'
+  }
+  if (_c2b_openFile != 0) {
+    '[file:close]' _c2b_openFile
   }
   local 'x' ((320 - size) / 2)
   local 'y' ((200 - size) / 2)
   '[file:open]' file
+  _c2b_openFile = file
   repeat size {
     '[tft:pixelRow]' ('[file:readBytes]' size file) x y 1 _c2b_palette
     y += 1
   }
   '[file:close]' file
+  _c2b_openFile = 0
 }
 
 to c2b_jolt {
