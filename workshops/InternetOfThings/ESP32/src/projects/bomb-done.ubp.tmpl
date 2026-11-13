@@ -39,8 +39,8 @@ script 450 50 {
 whenCondition playing
 local 'j' (c2b_jolt)
 if (j > 15) {
-  danger = (danger + (j / 5))
-} (danger > 0) {
+  danger = (danger + ((j - 15) / 2))
+} (and (j < 10) (danger > 0)) {
   danger = (danger - 1)
 }
 if (danger >= 100) {

@@ -263,3 +263,12 @@ def test_touching_during_boom_or_safe_is_ignored(files):
         before = done[:done.index(show)]
         assert before.rstrip().endswith("busy = (booleanConstant true)") or "busy = (booleanConstant true)\n" in before[-200:], state
     assert done.count("busy = (booleanConstant false)") >= 3  # start, after BOOM, after SAFE
+
+
+def test_the_explosion_can_be_heard(files):
+    """Each explosion frame comes with a short low rumble, after a deep opening boom."""
+    show = body(library(files), "c2b_showBomb")
+    play = body(library(files), "_c2b_playSet")
+    explode = show[show.index("menu") if False else show.index("'_c2b_playSet' 'explode'") - 200:show.index("'_c2b_playSet' 'explode'")]
+    assert "'play frequency' 50 200" in explode
+    assert "if (name == 'explode') {\n      'play frequency' (random 30 90) 50\n    }" in play

@@ -202,6 +202,7 @@ to c2b_showBomb state {
     '_c2b_drawFrame' ('[data:join]' 'bomb_nervous_' _c2b_nervousFrame '.data') (at 2 set)
   } (state == 'explose') {
     '[tft:clear]'
+    'play frequency' 50 200
     '_c2b_playSet' 'explode'
   } (state == 'en sécurité') {
     '[tft:clear]'
@@ -213,6 +214,9 @@ to '_c2b_playSet' name {
   local 'set' ('_c2b_bombSet' name)
   for i (at 1 set) {
     '_c2b_drawFrame' ('[data:join]' 'bomb_' name '_' i '.data') (at 2 set)
+    if (name == 'explode') {
+      'play frequency' (random 30 90) 50
+    }
   }
 }
 

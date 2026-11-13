@@ -17,6 +17,7 @@ All notable changes to the ESP32 workshop. One version entry per day.
 
 ### Changed
 - Mission 2 is now the Bomb (carry it to the safe zone without jolting it); Hot Potato removed, its duel becomes a bonus card.
+- Bomb tuned on hardware (jolt counts from 15, the meter drains only while the board is held still) and the explosion now rumbles on the speaker.
 
 ## [0.1.0] - 2026-11-11
 
