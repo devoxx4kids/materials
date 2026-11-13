@@ -144,3 +144,12 @@ def test_vibrate_uses_the_firmware_vibration_primitive(files):
     assert on in vibrate and off in vibrate
     assert vibrate.index(on) < vibrate.index("waitMillis ms") < vibrate.index(off)
     assert "i2cSet" not in vibrate and "i2cGet" not in vibrate
+
+
+def test_every_buzz_is_long_enough_to_feel(files):
+    """On the Core2 the motor needs about 200 ms to be felt (100 ms buzzes went unnoticed
+    in the hardware test of 2026-11-13)."""
+    for name, text in files.items():
+        if name.endswith(".ubp"):
+            for ms in re.findall(r"c2b_vibrate (\d+)", main_module(text)):
+                assert int(ms) >= 200, f"{name}: vibrate {ms} ms"
