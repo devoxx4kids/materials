@@ -1,18 +1,20 @@
-# ESP32 Workshop: Magic Shake Ball, Hot Potato & Emoji Messenger — Design
+# ESP32 Workshop: Magic Shake Ball, Bomb & Emoji Messenger — Design
 
 Date: 2026-11-11
 Status: Approved in conversation, pending written-spec review
 Location of the workshop: `workshops/InternetOfThings/ESP32/`
 
-> **Platform status (2026-11-13): open.** The hardware test on two Core2 v1.3 boards showed
-> that MicroBlocks' Core2 firmware does not run on the v1.3, while the UiFlow2 firmware runs
-> everything the missions need. The UiFlow2 IDE was rejected (look, English only, too many
-> blocks, online only). Options under consideration: our own Blockly editor on the UiFlow2
-> firmware (`2026-11-13-core2-blockly-editor-option.md`, not approved), or MicroBlocks if its
-> maintainers fix the Core2 v1.3. Decided so far: FR/NL pages name the tool's block labels
-> where these are English, with a block dictionary; an optional, coach-led Mission 4 uses
-> M5Stack AiFlow. The tool-specific parts of this spec (sections 2, 3, 6, 7, 8) will be
-> revised once the platform is decided.
+> **Platform status (2026-11-13, updated): MicroBlocks, with our Core2 v1.3 firmware patch.**
+> The stable MicroBlocks firmware (VM 411) does not run on the Core2 v1.3. The pilot firmware
+> (VM 424, `m5core2_1.0` from the pilot channel) does: connection, screen, touch circles,
+> beep, and ESP Now between two boards all pass. Two gaps remained, the BMI270 motion
+> sensor (read as 0) and the vibration motor (unreachable); both are fixed by our patch in
+> `firmware/` (tested: acceleration 99 at rest, motor on and off, Magic Ball and Emoji
+> Messenger fully working). The patch is to be offered to the MicroBlocks maintainers
+> (`docs/superpowers/reports/`). UiFlow2's IDE was rejected (look, English only, too many
+> blocks, online only); our own Blockly editor stays a parked option
+> (`2026-11-13-core2-blockly-editor-option.md`, not approved). Optional, coach-led
+> Mission 4 with M5Stack AiFlow: decided, to be specified.
 
 ## 1. Intent
 
@@ -34,9 +36,9 @@ Success criteria:
 | Audience | Children 10–14, working in pairs (driver / navigator, swap at each step) |
 | Session format | Modular: three standalone missions of 45–50 minutes each |
 | Hardware | M5Stack Core2 v1.3, part K010-V13 (ESP32, touch screen, BMI270 IMU, speaker, vibration motor, AXP192 power chip), one per pair plus two spares per session. Not the Core2 v1.1 (K010-V11, AXP2101 power chip). |
-| Programming tool | MicroBlocks (Scratch-like, live programming, runs in Chrome/Edge or as an offline app) |
+| Programming tool | MicroBlocks (Scratch-like, live programming, runs in Chrome/Edge or as an offline app), pilot release (IDE 2.5.15 / 3.0 preview, VM 424 or later), with the Devoxx4Kids firmware for the Core2 v1.3 from `firmware/` until the patch is included upstream |
 | Board-to-board communication | MicroBlocks `ESP Now` library (peer-to-peer, no Wi-Fi router needed, groups 0–255) |
-| Missions | 1. Magic Shake Ball (core) → 2. Hot Potato / Duel → 3. Emoji Messenger |
+| Missions | 1. Magic Shake Ball (core) → 2. Bomb → 3. Emoji Messenger (→ optional 4. Ask the AI, coach-led) |
 | Documentation | Markdown only, own structure (not the AsciiDoc layout of other workshops) |
 | Languages | English, French, Dutch |
 
@@ -67,7 +69,7 @@ workshops/InternetOfThings/ESP32/
 │   │   ├── starter/   magic-ball-start-en.ubp  -fr.ubp  -nl.ubp   (generated)
 │   │   ├── solution/  magic-ball-done-en.ubp   -fr.ubp  -nl.ubp   (generated)
 │   │   └── images/
-│   ├── 02-hot-potato/        (same layout: hot-potato-start-<lang>.ubp, hot-potato-done-<lang>.ubp)
+│   ├── 02-bomb/              (same layout: bomb-start-<lang>.ubp, bomb-done-<lang>.ubp)
 │   └── 03-emoji-messenger/   (same layout: emoji-messenger-start-<lang>.ubp, emoji-messenger-done-<lang>.ubp)
 ├── library/
 │   ├── Core2Buttons-en.ubl  -fr.ubl  -nl.ubl   (generated)
@@ -120,17 +122,28 @@ Rules:
 Bonus cards: own funny answers · emoji faces drawn with shapes · secret cheat button
 that always says YES · counter of questions asked.
 
-### Mission 2 — Hot Potato / Duel
+### Mission 2 — Bomb (amendment 2026-11-13, replaces Hot Potato)
+
+Hot Potato was dropped because children passing the board around would drop it. In the
+Bomb, carefulness is the game: the pair carries the board ("the bomb") from a start point
+to a safe zone marked on the table by a coach, without jolting it.
 
 | Step | The pair builds | New idea |
 |---|---|---|
-| ⭐1 | Touch "start" → wait a random 5–15 s → "BOOM!" with vibration | timers, wait |
-| ⭐2 | Ticking sound that speeds up as the time runs out | loops, variables |
-| ⭐3 | Pass the board around the table; whoever holds it at BOOM loses a life; lives shown on screen | variables, game state |
-| ⭐4 | Reaction duel: after a beep, left vs right button, first touch wins; touching before the beep shows "Too early!" | comparison, fairness |
+| ⭐1 | `when started` → `show bomb calm`; touch the middle circle → "Go!" and the timer starts | events, images |
+| ⭐2 | A `forever` loop shows the `jolt` value as a number while the children move the board | sensors, live numbers |
+| ⭐3 | Danger meter: variable `danger` goes up with every jolt and slowly back down while the board is held steadily. Over 50 → `show bomb nervous` and faster beeps; over 100 → `show bomb explode`, a long buzz, game over. `show danger bar (danger)` along the bottom of the screen | variables that change over time, if/else, thresholds |
+| ⭐4 | Safe place: touching the middle circle there → `show bomb safe` (confetti) and "SAFE!" with the time in seconds | timer, end of game |
 
-Bonus cards: tilt to defuse · high score · pair-vs-pair duel over ESP Now (the start
-signal is sent to both boards), which leads into Mission 3.
+The limits 50 and 100 and the per-jolt increase are starting values; they are tuned on
+the hardware during the Bomb spike (section 8).
+
+Bonus cards: reaction duel as "bomb squad training" (right circle, "GO!", first touch
+wins; the board stays on the table) · expert mode (nervous at 30, boom at 60) · record:
+the fastest safe time · a longer route around the room, pairs taking turns.
+
+Safety notes for coaches: carry the board with two hands, above the table or close to the
+floor, walking, never running.
 
 ### Mission 3 — Emoji Messenger
 
@@ -163,6 +176,23 @@ board details behind child-friendly blocks:
 | `vibrate for (ms)` | switching the AXP192-driven vibration motor on and off |
 | `beep (frequency) for (ms)` | sound on the I2S speaker via the Tone library; falls back to vibration if the spike shows the speaker stays silent |
 | `show big text (text) colour (c)` | centred, large text on the TFT display |
+| `show bomb [calm / nervous / explode / safe]` | drawing the bomb images and animations (Mission 2) |
+| `jolt` | how strongly the board moves right now (0 = still): the difference between `acceleration` and 100 |
+| `show danger bar (value)` | a green → orange → red bar along the bottom of the screen |
+
+Amendment 2026-11-13: `vibrate for (ms)` uses the `[tft:setVibration]` primitive of the
+patched firmware; `beep` works with the Tone library on the pilot firmware. Every beep and
+buzz also flashes a yellow frame around the screen.
+
+### Images (amendment 2026-11-13)
+
+The bomb pictures are frames of Google's Noto Animated Emoji, licensed CC BY 4.0:
+💣 bomb (frame 6 = calm, frames 10–21 = nervous, frames 25 onward = the confetti used for
+"safe") and 💥 collision (explode). They are converted to the screen's palette format by
+`tools/build.py` and credited in `README.md` and `coach/<lang>/hardware.md`:
+"Bomb and explosion animations: Noto Animated Emoji by Google, CC BY 4.0
+(https://googlefonts.github.io/noto-emoji-animation/)". The source GIFs are kept in
+`src/images/` with their licence.
 
 The three button reporters are edge-detected: they report true once per touch. Children
 combine them with MicroBlocks' built-in `when` hat block, so a separate custom hat block
@@ -232,6 +262,18 @@ ends with a decision:
 Mind+ was also evaluated and rejected: no Core2 support (a full custom extension would be
 needed), compile-and-upload on every change, no Dutch interface, and an outdated macOS
 version.
+
+### Bomb spike (amendment 2026-11-13)
+
+To be done on a Core2 v1.3 with the patched firmware before the Mission 2 materials are
+written:
+
+1. Whether the images fit embedded in the project, or must be stored as files on the
+   board's flash and drawn from there; frame size about 140 px for the bomb and 200 px for
+   the explosion.
+2. How many frames per second MicroBlocks can draw at those sizes.
+3. Realistic `jolt` values when carrying the board carefully and clumsily, to set the
+   per-jolt increase and the limits 50 and 100.
 
 ## 9. Validation of the materials
 
