@@ -13,6 +13,9 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - `vibrate` no longer stops the program with an I2C error on the Core2; it skips the motor when the power chip cannot be reached.
 - Emoji Messenger party buzz lengthened to 250 ms so it can be felt.
 
+### Changed
+- Mission 2 is now the Bomb (carry it to the safe zone without jolting it); Hot Potato removed, its duel becomes a bonus card.
+
 ## [0.1.0] - 2026-11-11
 
 ### Added

@@ -1,79 +1,61 @@
 module main
 author Devoxx4Kids
 version 1 0 
-description 'Hot Potato and Duel - finished version for coaches'
-variables lives 
+description 'De bom - klaar, voor coaches'
+variables danger playing mood 
 
 script 50 50 {
 whenStarted
-lives = 3
-c2b_bigText 'Touch to start!' (colorSwatch 255 255 255 255)
+playing = (booleanConstant false)
+'[tft:clear]'
+c2b_showBomb 'kalm'
+'[tft:text]' 'Tik midden om te starten' 10 210 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
 }
 
-script 50 200 {
+script 50 300 {
 whenCondition (c2b_middleTouched)
-local 'fuse' (random 5000 15000)
-local 'tick' 600
-resetTimer
-repeatUntil ((timer) > fuse) {
-  c2b_bigText 'PASS IT ON!' (colorSwatch 255 200 0 255)
-  c2b_beep 440 50
-  waitMillis tick
-  if (tick > 120) {
-    tick = (tick - 40)
-  }
-}
-c2b_bigText 'BOOM!' (colorSwatch 255 0 0 255)
-c2b_vibrate 800
-lives = (lives - 1)
-waitMillis 1500
-if (lives > 0) {
-  c2b_bigText ('[data:join]' 'Lives:' ' ' lives) (colorSwatch 255 255 255 255)
+if playing {
+  playing = (booleanConstant false)
+  c2b_showBomb 'veilig'
+  c2b_bigText ('[data:join]' 'VEILIG!' ' ' ((timer) / 1000) ' s') (colorSwatch 0 255 0 255)
+  c2b_beep 1320 300
 } else {
-  c2b_bigText 'GAME OVER' (colorSwatch 255 0 0 255)
-  lives = 3
+  danger = 0
+  mood = 0
+  resetTimer
+  '[tft:clear]'
+  c2b_showBomb 'kalm'
+  c2b_dangerBar 0
+  playing = (booleanConstant true)
 }
 }
 
-script 450 200 {
-whenCondition (c2b_rightTouched)
-c2b_bigText 'Get ready...' (colorSwatch 255 255 255 255)
-waitMillis 800
-local 'delay' (random 2000 5000)
-local 'winner' 0
-resetTimer
-repeatUntil (or ((timer) > delay) (winner != 0)) {
-  if (c2b_leftTouched) {
-    winner = -1
-  }
-  if (c2b_rightTouched) {
-    winner = -2
-  }
+script 450 50 {
+whenCondition playing
+local 'j' (c2b_jolt)
+if (j > 15) {
+  danger = (danger + (j / 5))
+} (danger > 0) {
+  danger = (danger - 1)
 }
-if (winner == -1) {
-  c2b_bigText 'Left: too early!' (colorSwatch 255 0 0 255)
-} (winner == -2) {
-  c2b_bigText 'Right: too early!' (colorSwatch 255 0 0 255)
+if (danger >= 100) {
+  playing = (booleanConstant false)
+  c2b_showBomb 'ontploft'
+  c2b_vibrate 800
+  c2b_bigText 'BOEM!' (colorSwatch 255 0 0 255)
+} (danger >= 50) {
+  c2b_showBomb 'nerveus'
+  c2b_beep 880 40
+  mood = 1
+  c2b_dangerBar danger
 } else {
-  c2b_bigText 'GO!' (colorSwatch 0 255 0 255)
-  c2b_beep 1000 100
-  repeatUntil (winner != 0) {
-    if (c2b_leftTouched) {
-      winner = 1
-    }
-    if (c2b_rightTouched) {
-      winner = 2
-    }
+  if (mood == 1) {
+    c2b_showBomb 'kalm'
+    mood = 0
   }
-  if (winner == 1) {
-    c2b_bigText 'Left wins!' (colorSwatch 0 200 255 255)
-  } else {
-    c2b_bigText 'Right wins!' (colorSwatch 255 0 255 255)
-  }
-  c2b_vibrate 300
+  c2b_dangerBar danger
 }
-waitMillis 2000
-c2b_bigText 'Touch to start!' (colorSwatch 255 255 255 255)
+waitMillis 30
 }
 
 
@@ -81,23 +63,23 @@ module Core2Buttons Input
 author Devoxx4Kids
 version 1 0 
 depends Tone 
-description 'Child-friendly blocks for the M5Stack Core2: the three red touch circles, shaking, vibration, beeps and big text. Made for the Devoxx4Kids ESP32 workshop.'
+description 'Kindvriendelijke blokken voor de M5Stack Core2: de drie rode aanraakcirkels, schudden, trillen, piepen en grote tekst. Gemaakt voor de ESP32-workshop van Devoxx4Kids.'
 variables _c2b_wasDown _c2b_nervousFrame _c2b_palette 
-choices c2b_bombMenu 'calm' 'nervous' 'explode' 'safe'
+choices c2b_bombMenu 'kalm' 'nerveus' 'ontploft' 'veilig'
 
-  spec 'r' 'c2b_leftTouched' 'left button touched?'
-  spec 'r' 'c2b_middleTouched' 'middle button touched?'
-  spec 'r' 'c2b_rightTouched' 'right button touched?'
+  spec 'r' 'c2b_leftTouched' 'linkerknop aangeraakt?'
+  spec 'r' 'c2b_middleTouched' 'middelste knop aangeraakt?'
+  spec 'r' 'c2b_rightTouched' 'rechterknop aangeraakt?'
   space
-  spec 'r' 'c2b_shaken' 'board shaken?'
+  spec 'r' 'c2b_shaken' 'bord geschud?'
   space
-  spec ' ' 'c2b_vibrate' 'vibrate for _ ms' 'num' 300
-  spec ' ' 'c2b_beep' 'beep _ Hz for _ ms' 'num num' 880 200
-  spec ' ' 'c2b_bigText' 'show big text _ colour _' 'str color' 'Hello!' 16777215
+  spec ' ' 'c2b_vibrate' 'tril _ ms' 'num' 300
+  spec ' ' 'c2b_beep' 'piep _ Hz gedurende _ ms' 'num num' 880 200
+  spec ' ' 'c2b_bigText' 'toon grote tekst _ kleur _' 'str color' 'Hello!' 16777215
   space
-  spec ' ' 'c2b_showBomb' 'show bomb _' 'menu.c2b_bombMenu' 'calm'
-  spec 'r' 'c2b_jolt' 'jolt'
-  spec ' ' 'c2b_dangerBar' 'show danger bar _' 'num' 50
+  spec ' ' 'c2b_showBomb' 'toon bom _' 'menu.c2b_bombMenu' 'kalm'
+  spec 'r' 'c2b_jolt' 'schok'
+  spec ' ' 'c2b_dangerBar' 'toon gevarenbalk _' 'num' 50
   space
   spec 'r' '_c2b_zone' '_c2b_zone'
   spec 'r' '_c2b_edge' '_c2b_edge _' 'num' 1
@@ -109,7 +91,7 @@ choices c2b_bombMenu 'calm' 'nervous' 'explode' 'safe'
   spec 'r' '_c2b_bombSet' '_c2b_bombSet _' 'str' 'calm'
 
 to '_c2b_zone' {
-  comment 'Returns 1, 2 or 3 when the left, middle or right red circle under the screen is touched, otherwise 0. The circles are touch zones below the 240-pixel-high display.'
+  comment 'Geeft 1, 2 of 3 als de linker, middelste of rechter rode cirkel onder het scherm wordt aangeraakt, anders 0. De cirkels zijn aanraakzones onder het 240 pixels hoge scherm.'
   if (not ('[tft:tftTouched]')) {
     return 0
   }
@@ -127,7 +109,7 @@ to '_c2b_zone' {
 }
 
 to '_c2b_edge' zone {
-  comment 'True only at the moment a circle becomes touched, so one touch is one event even if the finger stays on it.'
+  comment 'Alleen waar op het moment dat een cirkel aangeraakt wordt: één aanraking is één gebeurtenis, ook als de vinger blijft liggen.'
   if (_c2b_wasDown == 0) {
     _c2b_wasDown = ('[data:makeList]' (booleanConstant false) (booleanConstant false) (booleanConstant false))
   }
@@ -150,12 +132,12 @@ to c2b_rightTouched {
 }
 
 to c2b_shaken {
-  comment 'Acceleration is about 100 when the board lies still. 140 needs a real shake.'
+  comment 'De versnelling is ongeveer 100 als het bord stil ligt. Voor meer dan 140 moet je echt schudden.'
   return (('[sensors:acceleration]') > 140)
 }
 
 to c2b_vibrate ms {
-  comment 'Switches the vibration motor on and off with the setVibration block of the Devoxx4Kids MicroBlocks firmware for the Core2 (power chip AXP192, output LDO3).'
+  comment 'Zet de trilmotor aan en uit met het setVibration-blok van de Devoxx4Kids-MicroBlocks-firmware voor de Core2 (stroomchip AXP192, uitgang LDO3).'
   '_c2b_flashOn'
   '[tft:setVibration]' (booleanConstant true)
   waitMillis ms
@@ -170,7 +152,7 @@ to c2b_beep frequency ms {
 }
 
 to '_c2b_flashOn' {
-  comment 'Draws a yellow frame around the screen while a beep or buzz lasts, so children see it even when the speaker or the motor stays silent.'
+  comment 'Tekent een geel kader rond het scherm zolang een piep of trilling duurt, zodat kinderen het zien, ook als de luidspreker of de motor stil blijft.'
   for i 3 {
     '[tft:rect]' (i - 1) (i - 1) (322 - (2 * i)) (242 - (2 * i)) (colorSwatch 255 220 0 255) (booleanConstant false)
   }
@@ -183,7 +165,7 @@ to '_c2b_flashOff' {
 }
 
 to c2b_bigText text color {
-  comment 'Clears the screen and writes the text in the middle. Long texts use a smaller size so they still fit (one letter is 6 x 8 pixels at size 1).'
+  comment 'Wist het scherm en schrijft de tekst in het midden. Lange teksten worden kleiner zodat ze passen (een letter is 6 x 8 pixels op grootte 1).'
   text = ('[data:join]' '' text)
   local 'scale' 4
   if ((size text) > 13) {
@@ -202,17 +184,17 @@ to c2b_bigText text color {
 }
 
 to c2b_showBomb state {
-  comment 'Draws the bomb pictures (Noto Animated Emoji by Google, CC BY 4.0). The frames are files on the board, installed with the workshop firmware. Nervous shows the next frame each time it runs; explode and safe play their whole animation.'
-  if (state == 'calm') {
+  comment 'Tekent de bom (Noto Animated Emoji van Google, CC BY 4.0). De beelden zijn bestanden op het bord, geïnstalleerd met de workshopfirmware. Nerveus toont elke keer het volgende beeld; ontploft en veilig spelen hun hele animatie af.'
+  if (state == 'kalm') {
     '_c2b_drawFrame' 'bomb_calm_1.data' (at 2 ('_c2b_bombSet' 'calm'))
-  } (state == 'nervous') {
+  } (state == 'nerveus') {
     local 'set' ('_c2b_bombSet' 'nervous')
     _c2b_nervousFrame = ((_c2b_nervousFrame % (at 1 set)) + 1)
     '_c2b_drawFrame' ('[data:join]' 'bomb_nervous_' _c2b_nervousFrame '.data') (at 2 set)
-  } (state == 'explode') {
+  } (state == 'ontploft') {
     '[tft:clear]'
     '_c2b_playSet' 'explode'
-  } (state == 'safe') {
+  } (state == 'veilig') {
     '[tft:clear]'
     '_c2b_playSet' 'safe'
   }
@@ -240,12 +222,12 @@ to '_c2b_drawFrame' file size {
 }
 
 to c2b_jolt {
-  comment 'How hard the board is moving right now: 0 when it is still, more when it is shaken. It is the distance between the acceleration and 100 (= 1 g).'
+  comment 'Hoe hard het bord nu beweegt: 0 als het stil ligt, meer als je schudt. Het is het verschil tussen de versnelling en 100 (= 1 g).'
   return (absoluteValue (('[sensors:acceleration]') - 100))
 }
 
 to c2b_dangerBar value {
-  comment 'A bar along the bottom of the screen: green below 50, orange from 50, red at 100.'
+  comment 'Een balk onderaan het scherm: groen onder 50, oranje vanaf 50, rood bij 100.'
   local 'v' value
   if (v < 0) {
     v = 0

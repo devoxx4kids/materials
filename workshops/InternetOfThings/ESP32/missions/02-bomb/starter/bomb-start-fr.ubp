@@ -1,11 +1,11 @@
 module main
 author Devoxx4Kids
 version 1 0 
-description 'Patate chaude - commence ici'
+description 'La bombe - commence ici'
 
 script 50 50 {
 whenStarted
-comment 'Commence ici ! Cercle du milieu = patate chaude, cercle de droite = duel. Suis mission.md étape par étape.'
+comment 'Commence ici ! Porte la bombe jusqu''à la zone de sécurité sans la secouer. Suis mission.md étape par étape.'
 }
 
 

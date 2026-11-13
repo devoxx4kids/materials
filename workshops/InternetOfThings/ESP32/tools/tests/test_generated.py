@@ -102,16 +102,6 @@ def test_magic_ball_solution_answers_touch_and_shake(files):
     assert "c2b_middleTouched" not in main_module(start)
 
 
-def test_hot_potato_solution_has_both_games(files):
-    done = files["missions/02-hot-potato/solution/hot-potato-done-en.ubp"]
-    assert "whenCondition (c2b_middleTouched)" in done
-    assert "whenCondition (c2b_rightTouched)" in done
-    assert "(random 5000 15000)" in done
-    assert "lives = (lives - 1)" in done
-    start = files["missions/02-hot-potato/starter/hot-potato-start-en.ubp"]
-    assert "whenStarted" in start
-
-
 def test_messenger_projects_use_esp_now_and_ignore_bad_numbers(files):
     for kind in ("start", "done"):
         text = files[f"missions/03-emoji-messenger/{'starter' if kind == 'start' else 'solution'}/emoji-messenger-{kind}-en.ubp"]
@@ -196,3 +186,26 @@ def test_frames_are_drawn_row_by_row_from_files(files):
 
 def test_jolt_is_distance_from_one_g(files):
     assert "(absoluteValue (('[sensors:acceleration]') - 100))" in body(library(files), "c2b_jolt")
+
+
+def test_bomb_solution_plays_the_danger_meter_game(files):
+    en = strings("en")
+    done = main_module(files["missions/02-bomb/solution/bomb-done-en.ubp"])
+    assert "whenCondition playing" in done
+    assert "local 'j' (c2b_jolt)" in done
+    assert "(danger >= 100)" in done and "(danger >= 50)" in done
+    for key in ("menu.bomb_calm", "menu.bomb_nervous", "menu.bomb_explode", "menu.bomb_safe"):
+        assert "c2b_showBomb '" + build.escape(en[key]) + "'" in done, key
+    assert "c2b_dangerBar danger" in done
+
+
+def test_bomb_restart_resets_the_round(files):
+    done = main_module(files["missions/02-bomb/solution/bomb-done-en.ubp"])
+    restart = done[done.index("} else {", done.index("whenCondition (c2b_middleTouched)")):]
+    for line in ("danger = 0", "resetTimer", "playing = (booleanConstant true)"):
+        assert line in restart, line
+
+
+def test_hot_potato_is_gone():
+    assert not (build.ROOT / "missions/02-hot-potato").exists()
+    assert all("hot-potato" not in template for template, _ in build.PROJECTS)
