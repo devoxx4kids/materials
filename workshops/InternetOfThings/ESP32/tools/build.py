@@ -29,6 +29,7 @@ SLOT = re.compile(r"(?<!\S)_(?!\S)")
 LIBRARY_TEMPLATE = "src/library/Core2Buttons.ubl.tmpl"
 LIBRARY_OUTPUT = "library/Core2Buttons-{lang}.ubl"
 VENDORED = ("Tone", "ESP Now")
+LIBRARY_PARTS = ("BombAssets",)  # generated parts of the library, from src/library/<name>.ubl.part
 
 # (template, output pattern). Each mission task adds its starter and solution here.
 PROJECTS: tuple[tuple[str, str], ...] = (
@@ -107,9 +108,10 @@ def generate(root: Path = ROOT, projects=PROJECTS) -> dict[Path, str]:
         raise BuildError("\n".join(problems))
     vendored = {name: (root / "vendor" / f"{name}.ubl").read_text(encoding="utf-8") for name in VENDORED}
     library_template = (root / LIBRARY_TEMPLATE).read_text(encoding="utf-8")
+    parts = {name: (root / "src" / "library" / f"{name}.ubl.part").read_text(encoding="utf-8") for name in LIBRARY_PARTS}
     files: dict[Path, str] = {}
     for lang in LANGS:
-        library = render(library_template, strings[lang])
+        library = render(library_template, strings[lang], parts)
         files[root / LIBRARY_OUTPUT.format(lang=lang)] = library
         includes = {"Core2Buttons": library, **vendored}
         for template, output in projects:

@@ -40,5 +40,15 @@
   "screen.m3_name": "Team 1",
   "screen.m3_sent": "Sent!",
   "screen.m3_party": "PARTY!",
-  "comment.flash": "Draws a yellow frame around the screen while a beep or buzz lasts, so children see it even when the speaker or the motor stays silent."
+  "comment.flash": "Draws a yellow frame around the screen while a beep or buzz lasts, so children see it even when the speaker or the motor stays silent.",
+  "blk.show_bomb": "show bomb _",
+  "blk.jolt": "jolt",
+  "blk.danger_bar": "show danger bar _",
+  "menu.bomb_calm": "calm",
+  "menu.bomb_nervous": "nervous",
+  "menu.bomb_explode": "explode",
+  "menu.bomb_safe": "safe",
+  "comment.show_bomb": "Draws the bomb pictures (Noto Animated Emoji by Google, CC BY 4.0). The frames are files on the board, installed with the workshop firmware. Nervous shows the next frame each time it runs; explode and safe play their whole animation.",
+  "comment.jolt": "How hard the board is moving right now: 0 when it is still, more when it is shaken. It is the distance between the acceleration and 100 (= 1 g).",
+  "comment.danger_bar": "A bar along the bottom of the screen: green below 50, orange from 50, red at 100."
 }

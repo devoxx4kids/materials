@@ -23,6 +23,7 @@ def make_workshop(root: Path) -> list[tuple[str, str]]:
     write(root / "vendor/Tone.ubl", "module Tone Output\n")
     write(root / "vendor/ESP Now.ubl", "module 'ESP Now' Comm\n")
     write(root / "src/projects/demo.ubp.tmpl", "module main\nscript 1 1 {\nc2b_bigText '{{screen.hello}}'\n}\n\n{{> Core2Buttons}}\n\n{{> Tone}}\n")
+    write(root / "src/library/BombAssets.ubl.part", "")
     return [("src/projects/demo.ubp.tmpl", "out/demo-{lang}.ubp")]
 
 
@@ -112,3 +113,11 @@ def test_second_build_writes_nothing(tmp_path):
     projects = make_workshop(tmp_path)
     build.build(tmp_path, projects)
     assert build.build(tmp_path, projects) == []
+
+
+def test_library_parts_are_included_into_the_library(tmp_path):
+    projects = make_workshop(tmp_path)
+    write(tmp_path / "src/library/Core2Buttons.ubl.tmpl", "module Core2Buttons Input\n{{> BombAssets}}\n")
+    write(tmp_path / "src/library/BombAssets.ubl.part", "to '_c2b_bombSet' name {\n}\n")
+    build.build(tmp_path, projects)
+    assert "to '_c2b_bombSet' name {" in (tmp_path / "library/Core2Buttons-en.ubl").read_text(encoding="utf-8")

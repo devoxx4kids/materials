@@ -8,6 +8,8 @@ import build
 
 FUNCTION = re.compile(r"^to '?(_?c2b_\w+)'?", re.MULTILINE)
 CALL = re.compile(r"\b(_?c2b_\w+)\b")
+# Library variables and menus: names that look like helpers but are not functions.
+LIBRARY_NAMES = {"_c2b_wasDown", "_c2b_nervousFrame", "_c2b_palette", "c2b_bombMenu"}
 PUBLIC = ["c2b_leftTouched", "c2b_middleTouched", "c2b_rightTouched", "c2b_shaken",
           "c2b_vibrate", "c2b_beep", "c2b_bigText"]
 
@@ -86,7 +88,7 @@ def test_projects_only_call_defined_helpers(files):
             assert text.startswith("module main\n"), name
             assert "\nmodule Core2Buttons Input\n" in text, name
             assert "\nmodule Tone Output\n" in text, name
-            assert set(CALL.findall(text)) <= defined | {"_c2b_wasDown"}, name
+            assert set(CALL.findall(text)) <= defined | LIBRARY_NAMES, name
 
 
 def test_magic_ball_solution_answers_touch_and_shake(files):
@@ -153,3 +155,44 @@ def test_every_buzz_is_long_enough_to_feel(files):
         if name.endswith(".ubp"):
             for ms in re.findall(r"c2b_vibrate (\d+)", main_module(text)):
                 assert int(ms) >= 200, f"{name}: vibrate {ms} ms"
+
+
+BOMB_MENU = ("menu.bomb_calm", "menu.bomb_nervous", "menu.bomb_explode", "menu.bomb_safe")
+
+
+def strings(lang):
+    return json.loads((build.ROOT / "i18n" / f"{lang}.json").read_text(encoding="utf-8"))
+
+
+def test_bomb_blocks_are_defined(files):
+    text = library(files)
+    for name in ("c2b_showBomb", "c2b_jolt", "c2b_dangerBar"):
+        assert re.search(r"^\s*spec '[ r]' '" + name + "' ", text, re.MULTILINE), name
+    assert "to '_c2b_bombPalette' {" in text and "to '_c2b_bombSet' name {" in text
+
+
+def test_bomb_menu_lists_the_four_translated_states(files):
+    for lang in build.LANGS:
+        s = strings(lang)
+        choices = next(l for l in library(files, lang).splitlines() if l.startswith("choices c2b_bombMenu"))
+        for key in BOMB_MENU:
+            assert "'" + build.escape(s[key]) + "'" in choices, (lang, key)
+            assert "(state == '" + build.escape(s[key]) + "')" in body(library(files, lang), "c2b_showBomb"), (lang, key)
+
+
+def test_bomb_menu_items_are_distinct():
+    for lang in build.LANGS:
+        s = strings(lang)
+        labels = [s[k] for k in BOMB_MENU]
+        assert len(set(labels)) == 4, lang
+
+
+def test_frames_are_drawn_row_by_row_from_files(files):
+    draw = body(library(files), "_c2b_drawFrame")
+    assert "'[file:open]' file" in draw
+    assert "'[tft:pixelRow]' ('[file:readBytes]' size file) x y 1 _c2b_palette" in draw
+    assert "'[file:close]' file" in draw
+
+
+def test_jolt_is_distance_from_one_g(files):
+    assert "(absoluteValue (('[sensors:acceleration]') - 100))" in body(library(files), "c2b_jolt")

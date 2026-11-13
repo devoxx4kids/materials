@@ -40,5 +40,15 @@
   "screen.m3_name": "Equipe 1",
   "screen.m3_sent": "Parti !",
   "screen.m3_party": "FIESTA !",
-  "comment.flash": "Dessine un cadre jaune autour de l'écran pendant un bip ou une vibration, pour que les enfants le voient même si le haut-parleur ou le moteur reste muet."
+  "comment.flash": "Dessine un cadre jaune autour de l'écran pendant un bip ou une vibration, pour que les enfants le voient même si le haut-parleur ou le moteur reste muet.",
+  "blk.show_bomb": "afficher la bombe _",
+  "blk.jolt": "secousse",
+  "blk.danger_bar": "afficher la barre de danger _",
+  "menu.bomb_calm": "calme",
+  "menu.bomb_nervous": "nerveuse",
+  "menu.bomb_explode": "explose",
+  "menu.bomb_safe": "en sécurité",
+  "comment.show_bomb": "Dessine la bombe (Noto Animated Emoji de Google, CC BY 4.0). Les images sont des fichiers sur la carte, installés avec le firmware de l'atelier. Nerveuse affiche l'image suivante à chaque fois ; explose et en sécurité jouent toute leur animation.",
+  "comment.jolt": "La force avec laquelle la carte bouge en ce moment : 0 quand elle est immobile, plus quand on la secoue. C'est l'écart entre l'accélération et 100 (= 1 g).",
+  "comment.danger_bar": "Une barre en bas de l'écran : verte sous 50, orange à partir de 50, rouge à 100."
 }

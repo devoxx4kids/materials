@@ -3,7 +3,8 @@ author Devoxx4Kids
 version 1 0 
 depends Tone 
 description '{{lib.description}}'
-variables _c2b_wasDown 
+variables _c2b_wasDown _c2b_nervousFrame _c2b_palette 
+choices c2b_bombMenu '{{menu.bomb_calm}}' '{{menu.bomb_nervous}}' '{{menu.bomb_explode}}' '{{menu.bomb_safe}}'
 
   spec 'r' 'c2b_leftTouched' '{{blk.left_touched}}'
   spec 'r' 'c2b_middleTouched' '{{blk.middle_touched}}'
@@ -15,10 +16,18 @@ variables _c2b_wasDown
   spec ' ' 'c2b_beep' '{{blk.beep}}' 'num num' 880 200
   spec ' ' 'c2b_bigText' '{{blk.big_text}}' 'str color' 'Hello!' 16777215
   space
+  spec ' ' 'c2b_showBomb' '{{blk.show_bomb}}' 'menu.c2b_bombMenu' '{{menu.bomb_calm}}'
+  spec 'r' 'c2b_jolt' '{{blk.jolt}}'
+  spec ' ' 'c2b_dangerBar' '{{blk.danger_bar}}' 'num' 50
+  space
   spec 'r' '_c2b_zone' '_c2b_zone'
   spec 'r' '_c2b_edge' '_c2b_edge _' 'num' 1
   spec ' ' '_c2b_flashOn' '_c2b_flashOn'
   spec ' ' '_c2b_flashOff' '_c2b_flashOff'
+  spec ' ' '_c2b_drawFrame' '_c2b_drawFrame _ _' 'str num' 'bomb_calm_1.data' 140
+  spec ' ' '_c2b_playSet' '_c2b_playSet _' 'str' 'explode'
+  spec 'r' '_c2b_bombPalette' '_c2b_bombPalette'
+  spec 'r' '_c2b_bombSet' '_c2b_bombSet _' 'str' 'calm'
 
 to '_c2b_zone' {
   comment '{{comment.zone}}'
@@ -112,3 +121,69 @@ to c2b_bigText text color {
   '[tft:clear]'
   '[tft:text]' text x y color scale (booleanConstant true)
 }
+
+to c2b_showBomb state {
+  comment '{{comment.show_bomb}}'
+  if (state == '{{menu.bomb_calm}}') {
+    '_c2b_drawFrame' 'bomb_calm_1.data' (at 2 ('_c2b_bombSet' 'calm'))
+  } (state == '{{menu.bomb_nervous}}') {
+    local 'set' ('_c2b_bombSet' 'nervous')
+    _c2b_nervousFrame = ((_c2b_nervousFrame % (at 1 set)) + 1)
+    '_c2b_drawFrame' ('[data:join]' 'bomb_nervous_' _c2b_nervousFrame '.data') (at 2 set)
+  } (state == '{{menu.bomb_explode}}') {
+    '[tft:clear]'
+    '_c2b_playSet' 'explode'
+  } (state == '{{menu.bomb_safe}}') {
+    '[tft:clear]'
+    '_c2b_playSet' 'safe'
+  }
+}
+
+to '_c2b_playSet' name {
+  local 'set' ('_c2b_bombSet' name)
+  for i (at 1 set) {
+    '_c2b_drawFrame' ('[data:join]' 'bomb_' name '_' i '.data') (at 2 set)
+  }
+}
+
+to '_c2b_drawFrame' file size {
+  if (_c2b_palette == 0) {
+    _c2b_palette = ('_c2b_bombPalette')
+  }
+  local 'x' ((320 - size) / 2)
+  local 'y' ((200 - size) / 2)
+  '[file:open]' file
+  repeat size {
+    '[tft:pixelRow]' ('[file:readBytes]' size file) x y 1 _c2b_palette
+    y += 1
+  }
+  '[file:close]' file
+}
+
+to c2b_jolt {
+  comment '{{comment.jolt}}'
+  return (absoluteValue (('[sensors:acceleration]') - 100))
+}
+
+to c2b_dangerBar value {
+  comment '{{comment.danger_bar}}'
+  local 'v' value
+  if (v < 0) {
+    v = 0
+  }
+  if (v > 100) {
+    v = 100
+  }
+  local 'w' ((v * 320) / 100)
+  local 'color' (colorSwatch 0 200 0 255)
+  if (v >= 50) {
+    color = (colorSwatch 255 160 0 255)
+  }
+  if (v >= 100) {
+    color = (colorSwatch 255 0 0 255)
+  }
+  '[tft:rect]' 0 224 w 16 color (booleanConstant true)
+  '[tft:rect]' w 224 (320 - w) 16 (colorSwatch 40 40 40 255) (booleanConstant true)
+}
+
+{{> BombAssets}}
