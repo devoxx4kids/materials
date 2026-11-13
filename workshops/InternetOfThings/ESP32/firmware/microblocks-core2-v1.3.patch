@@ -1,0 +1,177 @@
+diff --git a/vm/bmi270config.h b/vm/bmi270config.h
+index ff2f7e8..f4c16df 100644
+--- a/vm/bmi270config.h
++++ b/vm/bmi270config.h
+@@ -38,7 +38,7 @@
+ *
+ */
+ 
+-#if defined(DATABOT_V3) || defined(M5Stick_S3)
++#if defined(DATABOT_V3) || defined(M5Stick_S3) || defined(ARDUINO_M5STACK_Core2)
+ 
+ /*! @name  Global array that stores the configuration file of BMI270 */
+ static const uint8_t bmi270_config_file[] = {
+diff --git a/vm/sensorPrims.cpp b/vm/sensorPrims.cpp
+index 965cfd7..af20011 100644
+--- a/vm/sensorPrims.cpp
++++ b/vm/sensorPrims.cpp
+@@ -1081,6 +1081,80 @@ static void writeAccelReg(int regID, int value) {
+ 
+ static char is6886 = false;
+ 
++#if defined(ARDUINO_M5STACK_Core2)
++
++// The Core2 v1.3 (K010-V13) replaced the MPU6886 with a BMI270 at the same I2C address
++// (0x68) on the internal bus. Detect it at startup and read it instead of the MPU6886.
++
++#include "bmi270config.h" // 8k proprietary configuration file
++
++#define CORE2_BMI270_CHIP_ID		0x00	// reads 0x24 on a BMI270
++#define CORE2_BMI270_DATA			0x0C	// acc x, y, z (6 bytes, little endian)
++#define CORE2_BMI270_STATUS			0x21	// bits3:0 message (0x01 = init_ok)
++#define CORE2_BMI270_ACC_CONF		0x40
++#define CORE2_BMI270_RANGE			0x41
++#define CORE2_BMI270_CONFIG_CTRL	0x59
++#define CORE2_BMI270_CONFIG_ADDR_0	0x5B
++#define CORE2_BMI270_CONFIG_ADDR_1	0x5C
++#define CORE2_BMI270_CONFIG_DATA	0x5E
++#define CORE2_BMI270_PWR_CONF		0x7C
++#define CORE2_BMI270_PWR_CTRL		0x7D
++#define CORE2_BMI270_CMD			0x7E
++
++static char isCore2BMI270 = false;
++
++static int core2BMI270Init() {
++	// Return true if a BMI270 was found and initialized.
++	if (readAccelReg(MPU6886_WHO_AM_I) == 0x19) return false; // it is an MPU6886
++	if (readAccelReg(CORE2_BMI270_CHIP_ID) != 0x24) return false; // not a BMI270 either
++
++	writeAccelReg(CORE2_BMI270_CMD, 0xB6); // soft reset
++	delay(5);
++	writeAccelReg(CORE2_BMI270_PWR_CONF, 0); // disable advanced power save
++	delay(1);
++
++	writeAccelReg(CORE2_BMI270_CONFIG_CTRL, 0); // start config load
++	for (int offset = 0; offset < (int) sizeof(bmi270_config_file); offset += 32) {
++		int byteCount = sizeof(bmi270_config_file) - offset;
++		if (byteCount > 32) byteCount = 32;
++		int wordAddress = offset / 2;
++		writeAccelReg(CORE2_BMI270_CONFIG_ADDR_0, wordAddress & 0x0F);
++		writeAccelReg(CORE2_BMI270_CONFIG_ADDR_1, (wordAddress >> 4) & 0xFF);
++		Wire1.beginTransmission(MPU6886_ID);
++		Wire1.write(CORE2_BMI270_CONFIG_DATA);
++		Wire1.write(&bmi270_config_file[offset], byteCount);
++		Wire1.endTransmission();
++	}
++	writeAccelReg(CORE2_BMI270_CONFIG_CTRL, 1); // end config load
++	delay(20);
++	if ((readAccelReg(CORE2_BMI270_STATUS) & 0x0F) != 1) {
++		reportNum("bad status when writing BMI270 config", readAccelReg(CORE2_BMI270_STATUS));
++		return false;
++	}
++	writeAccelReg(CORE2_BMI270_RANGE, 0); // +/- 2G
++	writeAccelReg(CORE2_BMI270_ACC_CONF, 0xA8); // normal filtering, 100 Hz
++	writeAccelReg(CORE2_BMI270_PWR_CTRL, 0x0E); // acc_en, gyr_en, temp_en
++	return true;
++}
++
++static int core2BMI270Accel(int registerID) {
++	// Same scale as the MPU6886 path: 100 = 1 g.
++	uint8_t data[6] = {0, 0, 0, 0, 0, 0};
++	Wire1.beginTransmission(MPU6886_ID);
++	Wire1.write(CORE2_BMI270_DATA);
++	Wire1.endTransmission(false);
++	Wire1.requestFrom(MPU6886_ID, 6);
++	for (int i = 0; i < 6; i++) data[i] = Wire1.available() ? Wire1.read() : 0;
++
++	int val = 0;
++	if (1 == registerID) val = -(int16_t)((data[1] << 8) | data[0]);
++	if (3 == registerID) val = (int16_t)((data[3] << 8) | data[2]);
++	if (5 == registerID) val = (int16_t)((data[5] << 8) | data[4]);
++	return (100 * val) >> 14;
++}
++
++#endif
++
+ static void startAccelerometer() {
+ 	#if defined(M5Atom_Matrix)
+ 		Wire1.begin(25, 21);
+@@ -1092,6 +1166,14 @@ static void startAccelerometer() {
+ 
+ 	Wire1.setClock(400000); // i2c fast mode (seems pretty ubiquitous among i2c devices)
+ 
++	#if defined(ARDUINO_M5STACK_Core2)
++		isCore2BMI270 = core2BMI270Init();
++		if (isCore2BMI270) {
++			accelStarted = true;
++			return;
++		}
++	#endif
++
+ 	writeAccelReg(MPU6886_PWR_MGMT_1, 0x80); // reset (must be done by itself)
+ 	delay(1); // required to avoid hang
+ 
+@@ -1108,6 +1190,10 @@ static void startAccelerometer() {
+ static int readAcceleration(int registerID) {
+ 	if (!accelStarted) startAccelerometer();
+ 
++	#if defined(ARDUINO_M5STACK_Core2)
++		if (isCore2BMI270) return core2BMI270Accel(registerID);
++	#endif
++
+ 	int sign = 1;
+ 	int val = 0;
+ 	#if defined(ARDUINO_M5Stick_C)
+@@ -1133,6 +1219,13 @@ static void setAccelRange(int range) {
+ 	// Range is 0, 1, 2, or 3 for +/- 2, 4, 8, or 16 g.
+ 	// See datasheet pg. 37, ACCELEROMETER CONFIGURATION.
+ 
++	#if defined(ARDUINO_M5STACK_Core2)
++		if (!accelStarted) startAccelerometer();
++		if (isCore2BMI270) {
++			if ((range >= 0) && (range <= 3)) writeAccelReg(CORE2_BMI270_RANGE, range);
++			return;
++		}
++	#endif
+ 	writeAccelReg(MPU6886_ACCEL_CONFIG, range << 3);
+ }
+ 
+@@ -2253,6 +2346,9 @@ OBJ primAcceleration(int argCount, OBJ *args) {
+ 	#elif defined(ARDUINO_M5Stack_Core_ESP32) || defined(ARDUINO_M5STACK_Core2) || defined(ARDUINO_M5Stick_C) || defined(M5Atom_Matrix) || defined(M5Atom_S3_TFT)
+ 		deviceID = MPU6886_ID;
+ 		reg = 0x3B;
++		#if defined(ARDUINO_M5STACK_Core2)
++			if (isCore2BMI270) deviceID = -1; // BMI270 (Core2 v1.3): no MPU6886 bulk read
++		#endif
+ 	#endif
+ 
+ 	int x, y, z;
+diff --git a/vm/tftPrims.cpp b/vm/tftPrims.cpp
+index 8441f90..0320af9 100644
+--- a/vm/tftPrims.cpp
++++ b/vm/tftPrims.cpp
+@@ -2482,6 +2482,16 @@ static OBJ primAprilTag(int argCount, OBJ *args) { return falseObj; }
+ 
+ #endif
+ 
++// Vibration Primitive (M5Stack Core2: the motor is powered by LDO3 of the AXP192)
++
++static OBJ primSetVibration(int argCount, OBJ *args) {
++	// setVibration <on>: turn the vibration motor on (true) or off (false).
++	#if defined(ARDUINO_M5STACK_Core2)
++		AXP192_SetLDOEnable(3, (argCount > 0) && (trueObj == args[0]));
++	#endif
++	return falseObj;
++}
++
+ // Touchscreen Primitives
+ 
+ static OBJ primTftTouched(int argCount, OBJ *args) {
+@@ -2536,6 +2546,7 @@ static PrimEntry entries[] = {
+ 	{"drawBuffer", primDrawBuffer},
+ 	{"drawBitmap", primDrawBitmap},
+ 
++	{"setVibration", primSetVibration},
+ 	{"tftTouched", primTftTouched},
+ 	{"tftTouchX", primTftTouchX},
+ 	{"tftTouchY", primTftTouchY},

@@ -69,15 +69,9 @@ to c2b_shaken {
 to c2b_vibrate ms {
   comment '{{comment.vibrate}}'
   '_c2b_flashOn'
-  local 'reg' (i2cGet 52 18)
-  if (and (reg >= 0) (reg <= 255)) {
-    local 'off' (reg - (8 * ((reg / 8) % 2)))
-    i2cSet 52 18 (off + 8)
-    waitMillis ms
-    i2cSet 52 18 off
-  } else {
-    waitMillis ms
-  }
+  '[tft:setVibration]' (booleanConstant true)
+  waitMillis ms
+  '[tft:setVibration]' (booleanConstant false)
   '_c2b_flashOff'
 }
 

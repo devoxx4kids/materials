@@ -134,11 +134,13 @@ def test_beep_and_vibrate_also_flash_the_screen(files):
         assert "'_c2b_flashOff'" in body(text, name), name
 
 
-def test_vibrate_never_sends_an_invalid_i2c_value(files):
-    """On the Core2, MicroBlocks' I2C blocks reach the Grove port, not the power chip, so
-    i2cGet returns an error code (below 0). The block must then skip the motor instead of
-    sending i2cSet a value outside 0..255, which stops the child's script with an error."""
+def test_vibrate_uses_the_firmware_vibration_primitive(files):
+    """The Core2 motor is switched by the setVibration primitive of our patched MicroBlocks
+    firmware (AXP192 LDO3 on the internal bus). The old I2C route reached the Grove port
+    instead and stopped the child's script with an error."""
     vibrate = body(library(files), "c2b_vibrate")
-    guard = "if (and (reg >= 0) (reg <= 255)) {"
-    assert guard in vibrate
-    assert vibrate.index(guard) < vibrate.index("i2cSet")
+    on = "'[tft:setVibration]' (booleanConstant true)"
+    off = "'[tft:setVibration]' (booleanConstant false)"
+    assert on in vibrate and off in vibrate
+    assert vibrate.index(on) < vibrate.index("waitMillis ms") < vibrate.index(off)
+    assert "i2cSet" not in vibrate and "i2cGet" not in vibrate

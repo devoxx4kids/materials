@@ -14,3 +14,4 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - Mission 3 (Emoji Messenger) starter and solution projects using ESP Now.
 - Every beep and buzz also flashes a yellow frame on the screen, so children see it even when the speaker or motor stays silent.
 - `vibrate` no longer stops the program with an I2C error on the Core2; it skips the motor when the power chip cannot be reached.
+- Patched MicroBlocks firmware for the Core2 v1.3 (BMI270 motion sensor, vibration primitive) in `firmware/`; `vibrate` now drives the real motor.

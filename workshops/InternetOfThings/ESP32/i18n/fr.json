@@ -10,7 +10,7 @@
   "comment.zone": "Renvoie 1, 2 ou 3 quand le cercle rouge de gauche, du milieu ou de droite sous l'écran est touché, sinon 0. Les cercles sont des zones tactiles sous l'écran de 240 pixels de haut.",
   "comment.edge": "Vrai seulement au moment où un cercle devient touché : un toucher = un événement, même si le doigt reste dessus.",
   "comment.shaken": "L'accélération vaut environ 100 quand la carte est posée. Il faut vraiment secouer pour dépasser 140.",
-  "comment.vibrate": "Le moteur de vibration est alimenté par LDO3 de la puce d'alimentation AXP192 (adresse I2C 52). Le bit 3 (valeur 8) du registre 18 l'allume et l'éteint.",
+  "comment.vibrate": "Allume et éteint le moteur de vibration avec le bloc setVibration du firmware MicroBlocks Devoxx4Kids pour la Core2 (puce d'alimentation AXP192, sortie LDO3).",
   "comment.big_text": "Efface l'écran et écrit le texte au milieu. Les textes longs sont plus petits pour tenir à l'écran (une lettre fait 6 x 8 pixels en taille 1).",
   "project.m1_start": "Boule magique - commence ici",
   "project.m1_done": "Boule magique - version finie pour les coachs",
