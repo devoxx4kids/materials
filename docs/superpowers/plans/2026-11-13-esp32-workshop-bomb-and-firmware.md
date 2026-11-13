@@ -1108,7 +1108,8 @@ it?
 
 1. Add a variable `danger`. Set it to 0 when the middle circle is touched.
 2. In the **forever** loop (remove the jolt text): if **jolt > 15**, change danger by
-   **jolt / 5**; otherwise, if danger > 0, change danger by -1.
+   **(jolt − 15) / 2**; else, if **jolt < 10** and danger > 0, change danger by -1.
+   Tip: when the bomb gets nervous, **stand still** to calm it down.
 3. **If danger ≥ 100:** **show bomb explode**, **vibrate for 800 ms**, **show big text**
    `BOOM!` in red, and stop. **Else if danger ≥ 50:** **show bomb nervous** and
    **beep 880 Hz for 40 ms**. **Else:** **show bomb calm**.
