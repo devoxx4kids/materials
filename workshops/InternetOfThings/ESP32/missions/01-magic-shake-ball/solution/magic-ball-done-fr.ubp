@@ -99,10 +99,14 @@ to c2b_vibrate ms {
   comment 'Le moteur de vibration est alimenté par LDO3 de la puce d''alimentation AXP192 (adresse I2C 52). Le bit 3 (valeur 8) du registre 18 l''allume et l''éteint.'
   '_c2b_flashOn'
   local 'reg' (i2cGet 52 18)
-  local 'off' (reg - (8 * ((reg / 8) % 2)))
-  i2cSet 52 18 (off + 8)
-  waitMillis ms
-  i2cSet 52 18 off
+  if (and (reg >= 0) (reg <= 255)) {
+    local 'off' (reg - (8 * ((reg / 8) % 2)))
+    i2cSet 52 18 (off + 8)
+    waitMillis ms
+    i2cSet 52 18 off
+  } else {
+    waitMillis ms
+  }
   '_c2b_flashOff'
 }
 
