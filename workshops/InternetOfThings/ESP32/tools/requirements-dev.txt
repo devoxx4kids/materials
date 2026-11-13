@@ -1,1 +1,2 @@
 pytest>=7
+Pillow>=10
