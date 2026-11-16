@@ -21,6 +21,7 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - Mission 2 (The Bomb) kids' page and bonus cards (English).
 - Mission 3 (Emoji Messenger) kids' page and bonus cards (English).
 - French translation of all pages.
+- Dutch translation of all pages.
 
 ## [0.2.0] - 2026-11-13
 
