@@ -18,6 +18,7 @@ All notable changes to the ESP32 workshop. One version entry per day.
 ### Added
 - English entry page, coach guides (setup, running a session, hardware) and library reference.
 - Mission 1 (Magic Shake Ball) kids' page and bonus cards (English), and the table of MicroBlocks 3.0 block labels in library/README.md.
+- Mission 2 (The Bomb) kids' page and bonus cards (English).
 
 ## [0.2.0] - 2026-11-13
 
