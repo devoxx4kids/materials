@@ -67,3 +67,16 @@ def test_main_returns_one_and_prints_problems(tmp_path, capsys):
     write(tmp_path / "README.adoc")
     assert check_docs.main([str(tmp_path)]) == 1
     assert "README.adoc: AsciiDoc is not allowed" in capsys.readouterr().out
+
+
+def test_design_documents_are_not_link_checked(tmp_path):
+    """design/ holds the specs and plans, whose code blocks contain example links to pages
+    that do not exist yet; only the workshop pages are link-checked."""
+    write(tmp_path / "design/plans/plan.md", "[EN](missions/02-bomb/en/mission.md)")
+    write(tmp_path / "README.md", "[bad](nope.md)")
+    assert check_docs.check_links(tmp_path) == ["README.md: broken link nope.md"]
+
+
+def test_asciidoc_is_still_rejected_in_design(tmp_path):
+    write(tmp_path / "design/old.adoc")
+    assert check_docs.check_no_asciidoc(tmp_path) == ["design/old.adoc: AsciiDoc is not allowed, use Markdown"]

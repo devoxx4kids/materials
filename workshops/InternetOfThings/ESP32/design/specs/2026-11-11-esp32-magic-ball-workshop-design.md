@@ -10,8 +10,8 @@ Location of the workshop: `workshops/InternetOfThings/ESP32/`
 > beep, and ESP Now between two boards all pass. Two gaps remained, the BMI270 motion
 > sensor (read as 0) and the vibration motor (unreachable); both are fixed by our patch in
 > `firmware/` (tested: acceleration 99 at rest, motor on and off, Magic Ball and Emoji
-> Messenger fully working). The patch is to be offered to the MicroBlocks maintainers
-> (`docs/superpowers/reports/`). UiFlow2's IDE was rejected (look, English only, too many
+> Messenger fully working). The patch is offered to the MicroBlocks maintainers as
+> Codeberg issues #1116 (BMI270), #1117 (vibration) and #1118 (font accents). UiFlow2's IDE was rejected (look, English only, too many
 > blocks, online only); our own Blockly editor stays a parked option
 > (`2026-11-13-core2-blockly-editor-option.md`, not approved). Optional, coach-led
 > Mission 4 with M5Stack AiFlow: decided, to be specified.

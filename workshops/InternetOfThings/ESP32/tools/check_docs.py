@@ -5,8 +5,8 @@ Usage (from the workshop folder):
     python3 tools/check_docs.py [ROOT]
 
 Checks that every en/ folder has fr/ and nl/ siblings with the same files, that local
-Markdown links resolve, that no AsciiDoc files exist, and that every mission has its
-kids' pages. Exit code 1 when a problem is found.
+Markdown links resolve (except in design/, the specs and plans), that no AsciiDoc files
+exist, and that every mission has its kids' pages. Exit code 1 when a problem is found.
 """
 from __future__ import annotations
 
@@ -20,6 +20,7 @@ LANGS = ("en", "fr", "nl")
 MISSION_PAGES = ("mission.md", "bonus-cards.md")
 LINK = re.compile(r"!?\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 EXTERNAL = ("http://", "https://", "mailto:", "#")
+NOT_LINK_CHECKED = ("design",)  # specs and plans: their code blocks hold example links
 
 
 def rel(path: Path, root: Path) -> str:
@@ -48,6 +49,8 @@ def check_language_parity(root: Path) -> list[str]:
 def check_links(root: Path) -> list[str]:
     problems = []
     for page in sorted(root.rglob("*.md")):
+        if page.relative_to(root).parts[0] in NOT_LINK_CHECKED:
+            continue
         for target in LINK.findall(page.read_text(encoding="utf-8")):
             if target.startswith(EXTERNAL):
                 continue

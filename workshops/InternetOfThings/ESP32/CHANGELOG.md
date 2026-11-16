@@ -10,6 +10,7 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - Firmware patch redraws the lowercase accented letters of the screen font, so é, è, ê, à, ù, ç are readable at text size 4.
 - Global variable names in the projects are translated (FR: réponses, danger, enJeu…; NL: antwoorden, gevaar, speelt…), so no English shows in the French and Dutch projects.
 - Firmware patch rebased on MicroBlocks 3.0 (VM 425, commit f4767a3): the IDE no longer asks to update the board.
+- The design documents (specs and implementation plans) moved into `design/` inside the workshop folder; the docs checker does not link-check them.
 
 ### Fixed
 - `show big text` no longer cuts off a single long word (e.g. Gefeliciteerd!): it also checks the width before choosing a size.

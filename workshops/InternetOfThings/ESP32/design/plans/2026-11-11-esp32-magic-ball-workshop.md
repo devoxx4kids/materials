@@ -10,11 +10,11 @@
 
 **Tech Stack:** MicroBlocks (text project format `.ubp`, library format `.ubl`), M5Stack Core2, Python 3.9+ standard library (tools), pytest (tests only), Markdown.
 
-**Spec:** `docs/superpowers/specs/2026-11-11-esp32-magic-ball-workshop-design.md`
+**Spec:** `workshops/InternetOfThings/ESP32/design/specs/2026-11-11-esp32-magic-ball-workshop-design.md`
 
 ## Global Constraints
 
-- Workshop root: `workshops/InternetOfThings/ESP32/` (called `W/` below). All paths in this plan are relative to `W/` unless they start with `docs/`.
+- Workshop root: `workshops/InternetOfThings/ESP32/` (called `W/` below). All paths in this plan are relative to `W/` unless they start with `workshops/`. The specs and plans themselves are in `W/design/`.
 - Branch: `feature/ESP32`.
 - Documentation is Markdown only (`.md`). No AsciiDoc files anywhere under `W/`. Do not copy the layout of other workshops.
 - Every folder `en/` under `W/` has sibling folders `fr/` and `nl/` containing exactly the same file names.

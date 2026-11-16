@@ -8,8 +8,8 @@
 
 **Tech Stack:** MicroBlocks pilot (VM 424) + Devoxx4Kids Core2 v1.3 firmware patch, Python 3.9+, Pillow (maintainer tool only), pytest, PlatformIO, esptool, Markdown.
 
-**Spec:** `docs/superpowers/specs/2026-11-11-esp32-magic-ball-workshop-design.md` (Mission 2 Bomb amendment, Images and Bomb spike sections, platform status of 2026-11-13).
-**First plan (still valid for its remaining tasks, amended by Task 7 here):** `docs/superpowers/plans/2026-11-11-esp32-magic-ball-workshop.md`.
+**Spec:** `workshops/InternetOfThings/ESP32/design/specs/2026-11-11-esp32-magic-ball-workshop-design.md` (Mission 2 Bomb amendment, Images and Bomb spike sections, platform status of 2026-11-13).
+**First plan (still valid for its remaining tasks, amended by Task 7 here):** `workshops/InternetOfThings/ESP32/design/plans/2026-11-11-esp32-magic-ball-workshop.md`.
 
 ## Global Constraints
 
@@ -50,7 +50,7 @@ All Global Constraints of the first plan apply, with these additions and one cha
 | `W/missions/02-bomb/…` (generated) | Replaces `W/missions/02-hot-potato/` (deleted) | 3 |
 | `W/firmware/build.sh`, `W/firmware/bomb-images.bin`, `W/firmware/README.md` | Reproducible firmware + image build | 4 |
 | `W/library/README.md` | Hardware results, decision, Bomb spike values | 5, 6 |
-| `docs/superpowers/plans/2026-11-11-esp32-magic-ball-workshop.md` | Remaining tasks amended | 7 |
+| `workshops/InternetOfThings/ESP32/design/plans/2026-11-11-esp32-magic-ball-workshop.md` | Remaining tasks amended | 7 |
 
 ---
 
@@ -998,7 +998,7 @@ git commit -m "ESP32 workshop: record the Core2 v1.3 hardware test results"
 ### Task 7: Amend the first plan's remaining tasks
 
 **Files:**
-- Modify: `docs/superpowers/plans/2026-11-11-esp32-magic-ball-workshop.md`
+- Modify: `workshops/InternetOfThings/ESP32/design/plans/2026-11-11-esp32-magic-ball-workshop.md`
 
 **Interfaces:**
 - Consumes: the install command of Task 4, the Bomb projects of Task 3, the results of Tasks 5–6.
@@ -1200,13 +1200,13 @@ git commit -m "ESP32 workshop: add Mission 2 Bomb English pages"
 
 In the first plan, replace every remaining `02-hot-potato` with `02-bomb`, and in Task 9 and Task 11 check commands replace `-e "02-hot-potato"` with `-e "02-bomb"`. In Task 14 Step 2, change "BOOM!" in the photo list to "the bomb (calm or exploding)". Then run:
 ```bash
-grep -n -i "hot.potato" docs/superpowers/plans/2026-11-11-esp32-magic-ball-workshop.md
+grep -n -i "hot.potato" workshops/InternetOfThings/ESP32/design/plans/2026-11-11-esp32-magic-ball-workshop.md
 ```
 Expected: only lines inside the new status note and Task 5's original text (kept as history).
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add docs/superpowers/plans/2026-11-11-esp32-magic-ball-workshop.md
+git add workshops/InternetOfThings/ESP32/design/plans/2026-11-11-esp32-magic-ball-workshop.md
 git commit -m "Plan: amend remaining tasks for the Bomb mission and the workshop firmware"
 ```
