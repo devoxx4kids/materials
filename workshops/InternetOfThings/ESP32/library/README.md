@@ -4,7 +4,7 @@ Helper blocks for the M5Stack Core2, used by every mission.
 
 ## Tested on hardware
 
-Board: Core2 v1.3 (K010-V13), two boards. Firmware: MicroBlocks `dev` b40b74d with the
+Board: Core2 v1.3 (K010-V13), two boards. Firmware: MicroBlocks `dev` b40b74d (VM 424) with the
 Devoxx4Kids patch (`../firmware/`). IDE: MicroBlocks pilot (2.5.15) and the 3.0 preview.
 Date: 2026-11-13.
 
@@ -21,6 +21,11 @@ Date: 2026-11-13.
 | H9 | FR and NL labels | pass | MicroBlocks 3.0 pilot (IDE 3.0.0) with VM 424: Core2Buttons and built-in blocks translated; global variable names were English → now translated too (réponses, enJeu, occupé, antwoorden…); accented names work (2026-11-16) |
 
 **Decision (plan Task 7, Step 8):** MicroBlocks + firmware patch.
+
+**Re-check after the rebase on VM 425 (2026-11-16, board #2):** patch applied unchanged on
+MicroBlocks `dev` f4767a3 (IDE 3.0.0, VM 425). The IDE no longer shows the
+"not current (v424 vs v425)" popup; board name M5StackCore2; Bomb (French) with pictures,
+shake, rumble, buzz and confetti, and the accent test all pass.
 
 ### Bomb spike
 

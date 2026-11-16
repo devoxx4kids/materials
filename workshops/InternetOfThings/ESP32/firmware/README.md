@@ -7,7 +7,7 @@ patched build that fixes both, until the fix is included in MicroBlocks itself.
 | File | What it is |
 |---|---|
 | `microblocks-core2-v1.3.bin` | Complete flash image (bootloader, partition table, boot selector, MicroBlocks VM), to be written at address `0x0` |
-| `microblocks-core2-v1.3.patch` | The source change, against MicroBlocks `dev` at commit `b40b74d` (Codeberg) |
+| `microblocks-core2-v1.3.patch` | The source change, against MicroBlocks `dev` at commit `f4767a3` (Codeberg, IDE 3.0.0 / VM 425) |
 | `bomb-images.bin` | LittleFS file system with the 21 bomb frames and their colour palette (Mission 2), to be written at address `0x210000` |
 | `images/` | The 21 frames and `bomb_palette.data` as separate files (made by `tools/convert_images.py`) |
 | `build.sh` | Rebuilds both images from source |
@@ -16,8 +16,8 @@ SHA-256 (build of 2026-11-16):
 
 | File | SHA-256 |
 |---|---|
-| `microblocks-core2-v1.3.bin` | `17259bb04681c08f346fdedfba51fd16f302c94119d58ba85185c8520d6b31d3` |
-| `bomb-images.bin` | `fe03d4eb866adf9712d684475164912c92a18463060e5270071db919e2d54b28` |
+| `microblocks-core2-v1.3.bin` | `41b2cd3b4278e5838f30c9d7c7a320b21185c69d91ee217fced423d415730071` |
+| `bomb-images.bin` | `c53b7406a199214390f66e6edd7957c7a5439bbde57927ff79b6c5eba47f64f3` |
 
 ESP32 builds embed the build time, so a rebuild from the same source gives a different
 SHA-256 for `microblocks-core2-v1.3.bin`.
@@ -57,7 +57,7 @@ normal with MicroBlocks.
 
 ## Rebuild from source
 
-Run `firmware/build.sh` from the workshop folder. It clones MicroBlocks `dev` at `b40b74d`,
+Run `firmware/build.sh` from the workshop folder. It clones MicroBlocks `dev` at `f4767a3` (VM 425),
 applies the patch, copies `firmware/images/*.data` into the file system, builds both images
 and prints their SHA-256. It needs git, and Python 3 with `platformio` and `esptool`.
 

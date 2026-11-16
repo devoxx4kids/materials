@@ -5,7 +5,7 @@
 set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
-BASE=b40b74d
+BASE=f4767a3
 WORK="${WORK:-$(mktemp -d)}"
 
 git clone --quiet --branch dev https://codeberg.org/MicroBlocks/smallvm.git "$WORK/smallvm"
