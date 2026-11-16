@@ -28,6 +28,28 @@ The library uses the MicroBlocks **Tone** library, which every workshop project 
 2. Run `python3 tools/build.py` from the workshop folder.
 3. Open a starter project in MicroBlocks with that language selected and check the labels.
 
+## Built-in block labels (English)
+
+The exact English labels of the MicroBlocks blocks used in the mission pages, as defined in MicroBlocks 3.0.0 (`chromeApp/webapp/engine/mb-specs.js`, `dev` f4767a3). The French and Dutch pages use MicroBlocks' own translations of these labels.
+
+| Block | Label | Palette |
+|---|---|---|
+| when started | `when started` | Control |
+| when (condition) | `when _` | Control |
+| wait | `wait _ millisecs` | Control |
+| if / else if / else | `if _` (click the arrow to add `else if` and `else`) | Control |
+| repeat, repeat until, forever | `repeat _`, `repeat until _`, `forever` | Control |
+| random | `random _ to _` | Operators |
+| compare | `_ = _`, `_ ≠ _`, `_ < _`, `_ > _`, `_ >= _`, `_ <= _` | Operators |
+| logic | `_ and _`, `_ or _`, `not _` | Operators |
+| list | `list` (click the arrow for more items) | Data |
+| item of, length of | `item _ of _`, `length of _` | Data |
+| join | `join _ _` | Data |
+| set, change, local | `set _ to _`, `change _ by _`, `initialize local _ to _` | Variables |
+| timer | `reset timer`, `timer` | Input |
+| new variable | button `Add a variable` | Variables |
+| add a library | button `Add Library` | Libraries |
+
 ## Tested on hardware
 
 Board: Core2 v1.3 (K010-V13), two boards. Firmware: MicroBlocks `dev` b40b74d (VM 424) with the Devoxx4Kids patch (`../firmware/`). IDE: MicroBlocks pilot (2.5.15) and the 3.0 preview. Date: 2026-11-13.
