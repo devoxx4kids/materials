@@ -7,6 +7,7 @@ All notable changes to the ESP32 workshop. One version entry per day.
 ### Changed
 - Bomb check B5 recorded: the mission runs without the bomb pictures and without errors.
 - `show big text` splits long texts over several lines at the largest size that fits, instead of shrinking them (a 39-character answer was unreadable at size 1).
+- Firmware patch redraws the lowercase accented letters of the screen font, so é, è, ê, à, ù, ç are readable at text size 4.
 
 ## [0.2.0] - 2026-11-13
 

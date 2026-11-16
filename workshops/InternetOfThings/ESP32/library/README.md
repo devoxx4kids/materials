@@ -17,7 +17,7 @@ Date: 2026-11-13.
 | H5 | Shake and vibration | pass (patched) | Stock firmware: acceleration 0 (BMI270 not read), no motor. Patched: acceleration 99 at rest; motor on/off via `[tft:setVibration]` |
 | H6 | ESP Now between two boards | pass | both directions, emoji, name, beep; party with buzz (250 ms; 100 ms was not felt) |
 | H7 | Hot Potato | pass | replaced by the Bomb (see below) |
-| H8 | Long text and accents | | accents render: |
+| H8 | Long text and accents | pass (patched) | a 39-character answer was unreadable at size 1 → `show big text` now wraps over lines at the largest size; accents looked like flat bars in the stock 5 × 7 font → redrawn in the firmware patch (2026-11-16): ê, é, è, à, ù, ç correct |
 | H9 | FR and NL labels | | |
 
 **Decision (plan Task 7, Step 8):** MicroBlocks + firmware patch.

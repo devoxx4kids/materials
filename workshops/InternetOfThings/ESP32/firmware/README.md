@@ -12,12 +12,12 @@ patched build that fixes both, until the fix is included in MicroBlocks itself.
 | `images/` | The 21 frames and `bomb_palette.data` as separate files (made by `tools/convert_images.py`) |
 | `build.sh` | Rebuilds both images from source |
 
-SHA-256 (build of 2026-11-13):
+SHA-256 (build of 2026-11-16):
 
 | File | SHA-256 |
 |---|---|
-| `microblocks-core2-v1.3.bin` | `e4d90571fc113d5329ad6ae73c31ffbd47564bc102f8b88607dbae442aecda7d` |
-| `bomb-images.bin` | `c303da8243d0f532fd443092ad76c777cc53620ddfe30d8c4833946686102747` |
+| `microblocks-core2-v1.3.bin` | `17259bb04681c08f346fdedfba51fd16f302c94119d58ba85185c8520d6b31d3` |
+| `bomb-images.bin` | `fe03d4eb866adf9712d684475164912c92a18463060e5270071db919e2d54b28` |
 
 ESP32 builds embed the build time, so a rebuild from the same source gives a different
 SHA-256 for `microblocks-core2-v1.3.bin`.
@@ -31,6 +31,10 @@ SHA-256 for `microblocks-core2-v1.3.bin`.
   The older Core2 boards keep their original code path.
 - **Vibration:** a new primitive, `[tft:setVibration] true/false`, switches the motor
   (output LDO3 of the AXP192 power chip). The Core2Buttons block `vibrate for _ ms` uses it.
+- **Accents:** the lowercase accented letters of MicroBlocks' 5 × 7 screen font (à á â ä ç
+  è é ê ë ì í î ï ò ó ô ö ù ú û ü) are redrawn with a two-row accent above the plain
+  letter. The original glyphs used a single pixel row, so at text size 4 every accent looked
+  like a flat bar. Capitals are unchanged (the font has no room above them).
 
 Tested on 2026-11-13 on a Core2 v1.3: acceleration reads 99 at rest and changes when the
 board is tilted or shaken; the motor switches on and off on command.
