@@ -2,6 +2,8 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
+> **Status 2026-11-16:** Tasks 1–6 done. Task 7 (hardware test) is closed by Tasks 5–6 of `2026-11-13-esp32-workshop-bomb-and-firmware.md`; all checks H1–H9 pass with our firmware patch (`firmware/`, MicroBlocks 3.0 / VM 425 base). Mission 2 is now the Bomb: Task 5 below (Hot Potato) is superseded and kept as history; Task 10 is the Bomb version. Firmware for coaches: `firmware/microblocks-core2-v1.3.bin` + `firmware/bomb-images.bin`, installed with one esptool command (Task 8, `coach/en/setup.md`).
+
 **Goal:** Build the complete Devoxx4Kids ESP32 workshop (three 45-minute MicroBlocks missions on the M5Stack Core2, with EN/FR/NL kids' and coach documentation) in `workshops/InternetOfThings/ESP32/`.
 
 **Architecture:** All MicroBlocks files (the `Core2Buttons` helper library and the starter/solution projects of each mission) are generated per language by a small Python build script from templates plus `i18n/<lang>.json`; a second script checks the Markdown documentation (language parity, links, no AsciiDoc). Hardware behaviour is verified by a human on two real Core2 boards before the documentation is written, then the docs are written in English and translated to French and Dutch.
@@ -1734,7 +1736,7 @@ three.
 | Mission | What the pair builds | 🇬🇧 | 🇫🇷 | 🇳🇱 |
 |---|---|---|---|---|
 | 1. Magic Shake Ball | Ask a question, shake the board, get a random answer | [EN](missions/01-magic-shake-ball/en/mission.md) | [FR](missions/01-magic-shake-ball/fr/mission.md) | [NL](missions/01-magic-shake-ball/nl/mission.md) |
-| 2. Hot Potato | Pass the board around before it explodes, then a reaction duel | [EN](missions/02-hot-potato/en/mission.md) | [FR](missions/02-hot-potato/fr/mission.md) | [NL](missions/02-hot-potato/nl/mission.md) |
+| 2. The Bomb | Carry the bomb to the safe zone without jolting it, or BOOM | [EN](missions/02-bomb/en/mission.md) | [FR](missions/02-bomb/fr/mission.md) | [NL](missions/02-bomb/nl/mission.md) |
 | 3. Emoji Messenger | Send emojis to other tables by radio, no Wi-Fi needed | [EN](missions/03-emoji-messenger/en/mission.md) | [FR](missions/03-emoji-messenger/fr/mission.md) | [NL](missions/03-emoji-messenger/nl/mission.md) |
 
 ## For coaches
@@ -1763,11 +1765,19 @@ The MicroBlocks files are generated. Do not edit `library/*.ubl` or the `.ubp` f
 | A block label or an on-screen text | `i18n/en.json`, `fr.json`, `nl.json` | `python3 tools/build.py` |
 | Library behaviour | `src/library/Core2Buttons.ubl.tmpl` | `python3 tools/build.py` |
 | A mission project | `src/projects/*.ubp.tmpl` | `python3 tools/build.py` |
+| Bomb pictures | `src/images/*.gif`, frame lists in `tools/convert_images.py` | `python3 tools/convert_images.py`, then `firmware/build.sh` |
+| Firmware patch | `firmware/microblocks-core2-v1.3.patch` | `firmware/build.sh` |
 | Documentation | the `.md` files | `python3 tools/check_docs.py` |
 
 Run the tests with `python3 -m pytest tools/tests -q` (needs `pip install -r tools/requirements-dev.txt`).
 More about the helper blocks: [library/README.md](library/README.md). Vendored MicroBlocks
-libraries: [vendor/README.md](vendor/README.md). History: [CHANGELOG.md](CHANGELOG.md).
+libraries: [vendor/README.md](vendor/README.md). Firmware: [firmware/README.md](firmware/README.md).
+History: [CHANGELOG.md](CHANGELOG.md).
+
+## Credits
+
+Bomb and explosion animations: Noto Animated Emoji by Google, CC BY 4.0
+(https://googlefonts.github.io/noto-emoji-animation/).
 ```
 
 - [ ] **Step 2: Complete `W/library/README.md`**
@@ -1783,10 +1793,13 @@ real buttons, and the vibration motor sits behind the power chip.
 | Block (English label) | Type | What it does |
 |---|---|---|
 | `left button touched?` / `middle button touched?` / `right button touched?` | reporter | True **once** when the circle is touched. Use it in a `when` hat block. |
-| `board shaken?` | reporter | True while the board is shaken firmly (acceleration above 140). |
+| `board shaken?` | reporter | True while the board is shaken firmly (acceleration above 140; needs the workshop firmware on the Core2 v1.3). |
 | `vibrate for _ ms` | command | Buzzes the vibration motor. |
 | `beep _ Hz for _ ms` | command | Plays a tone on the speaker. |
-| `show big text _ colour _` | command | Clears the screen and writes the text in the middle; long texts get smaller. |
+| `show big text _ colour _` | command | Clears the screen and writes the text in the middle, as big as possible; long texts are split over lines. |
+| `show bomb _` (calm / nervous / explode / safe) | command | Draws the bomb pictures from files on the board; explode also rumbles on the speaker. |
+| `jolt` | reporter | How hard the board moves right now (0 = still). |
+| `show danger bar _` | command | A green → orange → red bar along the bottom of the screen. |
 
 The library uses the MicroBlocks **Tone** library, which every workshop project already
 contains.
@@ -1824,17 +1837,27 @@ Do this the day before. Allow about 5 minutes per board.
 - Check each cable: a charging-only USB-C cable is the most common reason a board "is not
   found". Label the cables that work.
 
-## 2. Install MicroBlocks on each Core2 (once)
+## 2. Install the workshop firmware on each Core2 (once)
 
-1. Open MicroBlocks (https://microblocks.fun → **Run**, or the app).
-2. Connect the Core2 with a data cable and click the **USB** icon to connect.
-3. Open the **⚙** menu → **update firmware on board** → choose the **M5Stack Core2**.
-4. Wait until MicroBlocks says the board is connected again.
-5. Open `missions/01-magic-shake-ball/solution/magic-ball-done-en.ubp` and touch the
-   middle red circle. An answer should appear. If it does, the board is ready.
+The standard MicroBlocks firmware does not support the Core2 v1.3 fully. Use the workshop
+firmware from `firmware/` (MicroBlocks with a small patch for the v1.3 motion sensor and
+vibration motor, plus the bomb pictures for Mission 2).
 
-The firmware stays on the board. You only redo this after somebody installed different
-software on it.
+1. Install Python 3 and esptool once: `pip install esptool`.
+2. Close MicroBlocks, connect the Core2 with a data cable, and run from the workshop folder
+   (replace `<PORT>`; on macOS it looks like `/dev/cu.usbserial-…`):
+
+       esptool --chip esp32 --port <PORT> --baud 460800 write-flash 0x0 firmware/microblocks-core2-v1.3.bin 0x210000 firmware/bomb-images.bin
+
+3. Unplug the cable, switch the board off (hold the left button 6 seconds) and on again
+   (2 seconds), and plug the cable back in.
+4. Open MicroBlocks (https://microblocks.fun → **Run**), connect, and check that the board
+   name is **M5StackCore2**.
+5. Open `missions/01-magic-shake-ball/solution/magic-ball-done-en.ubp`, click ▶ and shake
+   the board: an answer appears, with a beep and a buzz. The board is ready.
+
+The screen stays black and the green LED stays off until a program draws something: that
+is normal.
 
 ## 3. Language
 
@@ -1865,6 +1888,7 @@ the group numbers.
 - Every laptop has MicroBlocks open, a board connected, and the **starter project** of
   today's mission open in the right language.
 - The solution project of the mission is on your own laptop.
+- For Mission 2, mark a start point and a safe zone (a sheet of paper) about 3 metres apart on each table. Children carry the board with two hands, walking.
 
 ## Timing
 
@@ -1899,14 +1923,19 @@ tables agree on one shared group.
 | Buttons don't react | Open the starter project, so the helper library is loaded |
 | Messages don't arrive | Both boards must use the same group number |
 | No sound | Check that the beep block is used; use the vibrate block instead |
+| Bomb pictures missing | Install the workshop firmware again with both files (see [setup](setup.md)) |
 
 When a pair is stuck for more than two minutes, open the solution project on your laptop
 and compare their script with it, one block at a time.
 
 ## Known limits
 
-Copy the results of check H8 (accents on the screen) and H6 (radio in a full room) from
-[the library tests](../../library/README.md#tested-on-hardware) here, in one sentence each.
+- Accents: lowercase accented letters (é, è, ê, à, ç, ù…) display correctly with the workshop
+  firmware; capital letters keep their accents only where the small screen font has room.
+- Radio: tested with two boards. ESP Now does not guarantee delivery, so in a full room an
+  occasional message can be lost; just send it again.
+- Without `firmware/bomb-images.bin` the Bomb still works, but shows no pictures (see
+  [setup](setup.md)).
 ```
 
 `W/coach/en/hardware.md`:
@@ -1936,8 +1965,14 @@ Datasheet: https://docs.m5stack.com/en/core/Core2_v1.3
 ## Handling
 
 - Hold the board in two hands when shaking; don't throw it.
+- In Mission 2 children carry the board with two hands, walking, never running.
 - The screen is glass: no pens or nails on it.
 - At the end, switch the boards off (hold the power button 6 seconds) and charge them.
+
+## Credits
+
+Bomb and explosion animations: Noto Animated Emoji by Google, CC BY 4.0
+(https://googlefonts.github.io/noto-emoji-animation/).
 ```
 
 - [ ] **Step 4: Run the checker**
@@ -2063,7 +2098,7 @@ Pick any card. Each one works on its own.
 **How:** click the arrow on the **list** block to add more spaces, and type new answers,
 like `Ask your cat` or `Only on Tuesdays`.
 
-**Tip:** long answers are shown smaller, so they still fit.
+**Tip:** long answers are split over several lines, so they still fit.
 
 ---
 
@@ -2102,7 +2137,7 @@ in your **when** script. Show it with **join** `Questions: ` and **count**.
 
 - [ ] **Step 3: Check and commit**
 
-Run: `python3 tools/check_docs.py | grep -v -e "folder missing" -e "/fr/" -e "/nl/" -e "02-hot-potato" -e "03-emoji-messenger"`
+Run: `python3 tools/check_docs.py | grep -v -e "folder missing" -e "/fr/" -e "/nl/" -e "02-bomb" -e "03-emoji-messenger"`
 Expected: no output.
 
 Add under `### Added`: `- Mission 1 kids' page and bonus cards (English).`
@@ -2114,90 +2149,83 @@ git commit -m "ESP32 workshop: add Mission 1 English pages"
 
 ---
 
-### Task 10: English kids' pages for Mission 2
+### Task 10: English kids' pages for Mission 2 (The Bomb)
 
 **Files:**
-- Create: `W/missions/02-hot-potato/en/mission.md`, `W/missions/02-hot-potato/en/bonus-cards.md`
+- Create: `W/missions/02-bomb/en/mission.md`, `W/missions/02-bomb/en/bonus-cards.md`
 - Modify: `W/CHANGELOG.md`
 
 **Interfaces:**
-- Consumes: block labels from Task 7; starter `../starter/hot-potato-start-en.ubp`; `screen.m2_*` texts; middle circle = Hot Potato, right circle = Duel (Task 5).
-- Produces: nothing new.
+- Consumes: block labels from `library/README.md`; starter `../starter/bomb-start-en.ubp`; `menu.bomb_*`, `blk.show_bomb`, `blk.jolt`, `blk.danger_bar`, `screen.m2_*` from `en.json`; tuned constants from `library/README.md` (Bomb spike).
 
 - [ ] **Step 1: Write `mission.md`**
 
 ```markdown
-# Mission 2: Hot Potato 💣
+# Mission 2: The Bomb 💣
 
-The board is a bomb! Pass it around the table before it explodes. Then challenge your
-partner to a reaction duel.
+You are the bomb squad! Carry the bomb to the safe zone without jolting it... or BOOM!
 
-**You need:** a Core2 board, a laptop with MicroBlocks, and the project
-[hot-potato-start-en.ubp](../starter/hot-potato-start-en.ubp).
+**You need:** a Core2 board, a laptop with MicroBlocks, the project
+[bomb-start-en.ubp](../starter/bomb-start-en.ubp), and a safe zone on the table (your
+coach marks it).
 
 **Roles:** the **driver** uses the mouse, the **navigator** reads this page aloud. Swap at
-every 🔄.
+every 🔄. **Always carry the board with two hands, and walk.**
 
-## ⭐1 A secret timer
+## ⭐1 The bomb appears
 
-1. Add a **when** block with **middle button touched?** inside.
-2. Add a local variable `fuse` and set it to **random 5000 to 15000** (that is 5 to 15
-   seconds, in milliseconds).
-3. Add **wait fuse millisecs**.
-4. Add **show big text** `BOOM!` in red and **vibrate for 800 ms**.
+1. Under **when started**, add **show bomb calm** (from **Core2Buttons**).
+2. Make a **when** script with **middle button touched?** and add **reset timer** and
+   **show big text** `Go!`.
 
-**🧪 Try it!** Touch the middle circle and count. Nobody knows when it will explode!
+**🧪 Try it!** Click ▶. Do you see the bomb? Touch the middle circle.
 
 **🔄 Swap**
 
-## ⭐2 Tick... tick... tick...
+## ⭐2 How hard are you moving?
 
-A bomb should tick, faster and faster.
+1. Make a **when** script with **middle button touched?** → **forever** →
+   **show big text (jolt)** in white.
+2. Click ▶, touch the middle circle, and move the board slowly, then faster.
 
-1. Replace **wait fuse millisecs** with: **reset timer**, then **repeat until timer > fuse**.
-2. Add a local variable `tick` set to 600, before the repeat.
-3. Inside the repeat: **show big text** `PASS IT ON!` in yellow, **beep 440 Hz for 50 ms**,
-   **wait tick millisecs**.
-4. Still inside: **if tick > 120** then **change tick by -40**.
-
-**🧪 Try it!** Does the ticking speed up before the BOOM?
+**🧪 Try it!** What number do you get when you hold it still? When you walk? When you bump
+it?
 
 **🔄 Swap**
 
-## ⭐3 Lives
+## ⭐3 The danger meter
 
-1. Add a variable `lives` and set it to 3 in **when started**.
-2. After the BOOM, **change lives by -1**, wait 1500 ms.
-3. **If lives > 0** show **join** `Lives:` and **lives**, **else** show `GAME OVER` and set
-   lives back to 3.
+1. Add a variable `danger`. Set it to 0 when the middle circle is touched.
+2. In the **forever** loop (remove the jolt text): if **jolt > 15**, change danger by
+   **(jolt − 15) / 2**; else, if **jolt < 10** and danger > 0, change danger by -1.
+   Tip: when the bomb gets nervous, **stand still** to calm it down.
+3. **If danger ≥ 100:** **show bomb explode**, **vibrate for 800 ms**, **show big text**
+   `BOOM!` in red, and stop. **Else if danger ≥ 50:** **show bomb nervous** and
+   **beep 880 Hz for 40 ms**. **Else:** **show bomb calm**.
+4. At the end of the loop: **show danger bar (danger)**.
 
-**🧪 Try it!** Play at the table: touch the middle circle and pass the board. Whoever holds
-it at BOOM loses a life.
+**🧪 Try it!** Walk to the safe zone. Does the bomb get nervous when you bump it?
 
 **🔄 Swap**
 
-## ⭐4 Reaction duel
+## ⭐4 Safe!
 
-Who is faster: left or right?
+1. When the middle circle is touched **during** the game, the bomb is in the safe zone:
+   **show bomb safe**, then **show big text (join `SAFE!` (timer / 1000) ` s`)** in green.
+2. Use a variable `playing` (true during the game) so the middle circle knows whether to
+   start or to finish.
 
-1. Make a new **when** script with **right button touched?**.
-2. Show `Get ready...`, wait 800 ms, set local `delay` to **random 2000 to 5000** and
-   `winner` to 0, then **reset timer**.
-3. **Repeat until (timer > delay) or (winner ≠ 0)**: if **left button touched?** set winner
-   to -1; if **right button touched?** set winner to -2. Touching early is cheating!
-4. **If winner = -1** show `Left: too early!`; **else if winner = -2** show
-   `Right: too early!`; **else** show `GO!`, beep, and **repeat until winner ≠ 0**: left
-   touched → winner 1, right touched → winner 2. Then show `Left wins!` or `Right wins!`.
-
-**🧪 Try it!** One player puts a finger near the left circle, the other near the right.
-Wait for GO!
+**🧪 Try it!** How fast can you bring the bomb to safety without exploding it?
 
 **🔄 Swap**
 
 ## You did it! 🎉
 
-You used **timers**, **loops**, **variables** that change, and **game rules** that are
-fair. Try a [bonus card](bonus-cards.md)!
+You built a game with a **sensor** (movement), a **variable that changes over time** (the
+danger meter), **limits** (50 and 100), images and a **timer**. Try a
+[bonus card](bonus-cards.md)!
+
+*Bomb and explosion animations: Noto Animated Emoji by Google, CC BY 4.0.*
 ```
 
 - [ ] **Step 2: Write `bonus-cards.md`**
@@ -2207,38 +2235,41 @@ fair. Try a [bonus card](bonus-cards.md)!
 
 ---
 
-## 🃏 Card A: Defuse it!
+## 🃏 Card A: Bomb squad training (reaction duel)
 
-**Goal:** tilt the board flat to defuse the bomb before it explodes.
+**Goal:** who reacts fastest? The board stays on the table.
 
-**How:** add the **Basic Sensors** library. Inside the ticking loop, **if tilt x** is
-between -10 and 10 **and tilt y** is between -10 and 10, show `DEFUSED!` and stop the
-script.
-
-**Coach hint:** let them first show **tilt x** with **show big text** to see the numbers.
+**How:** a **when** script with **right button touched?**: show `Get ready...`, wait a
+**random** 2000 to 5000 ms, show `GO!` and beep. Then **repeat until** someone touches:
+left circle → `Left wins!`, right circle → `Right wins!`. Touching before GO! → `Too early!`.
 
 ---
 
-## 🃏 Card B: High score
+## 🃏 Card B: Expert mode
 
-**Goal:** remember the fastest reaction in the duel.
+**Goal:** a more sensitive bomb.
 
-**How:** after **GO!**, save **timer** in a variable `time` when someone touches. If `time`
-is smaller than `best`, set `best` to `time` and show `NEW RECORD!`.
-
-**Coach hint:** set `best` to 99999 in **when started**.
+**How:** change the limits: nervous at **30**, explode at **60**.
 
 ---
 
-## 🃏 Card C: Duel between two tables
+## 🃏 Card C: Record
 
-**Goal:** the same GO! appears on two boards at once, and each pair taps their own board.
+**Goal:** remember the fastest safe time.
 
-**How:** you need the **ESP Now** library and another pair who agrees to play. One board
-sends **espNow send pair** `go` = 1; both boards show GO! when they send or receive it.
+**How:** a variable `best`, set to 99999 in **when started**. When the bomb is safe, if
+the time is smaller than `best`, set `best` to it and show `NEW RECORD!`.
 
-**Coach hint:** this card leads into Mission 3, where the radio is explained step by
-step.
+---
+
+## 🃏 Card D: The long route
+
+**Goal:** a route around the room; pairs take turns.
+
+**How:** no new blocks: agree with your coach on a longer route. Who keeps the danger bar
+the lowest?
+
+**Coach hint:** keep the route clear of chairs and bags; always walk.
 ```
 
 - [ ] **Step 3: Check and commit**
@@ -2246,11 +2277,11 @@ step.
 Run: `python3 tools/check_docs.py | grep -v -e "folder missing" -e "/fr/" -e "/nl/" -e "03-emoji-messenger"`
 Expected: no output.
 
-Add under `### Added`: `- Mission 2 kids' page and bonus cards (English).`
+Add under `### Added`: `- Mission 2 (The Bomb) kids' page and bonus cards (English).`
 
 ```bash
 git add workshops/InternetOfThings/ESP32
-git commit -m "ESP32 workshop: add Mission 2 English pages"
+git commit -m "ESP32 workshop: add Mission 2 Bomb English pages"
 ```
 
 ---
@@ -2440,6 +2471,7 @@ Translate each English page into the same path with `fr` instead of `en`, follow
 - Address the children with **tu**, short sentences, same emojis and structure (⭐, 🧪 **Essaie !**, 🔄 **Change de rôle**, 🎉 **Bravo !**). Coach pages use **vous**.
 - Block names: the French label from the glossary for built-in blocks; the `fr.json` value for Core2Buttons blocks (e.g. **bouton du milieu touché ?**, **afficher grand texte _ couleur _**).
 - On-screen texts the children type: the `screen.*` values of `fr.json` (e.g. `Pose-moi une question !`, `Oui !`, `Pas question !`, `Possible...`, `Redemande`).
+- Variable names: use the `var.*` values of `fr.json` exactly as the projects show them (`réponses`, `danger`, `enJeu`, `humeur`, `occupé`, `emojis`, `choix`, `monNom`).
 - Links: point to `-fr` starter files (`../starter/magic-ball-start-fr.ubp` etc.) and to `fr` pages; links to `library/README.md` and `vendor/README.md` stay the same.
 - Terms: driver = **pilote**, navigator = **copilote**, bonus card = **carte bonus**, radio group = **groupe radio**, coach = **coach**.
 - If a label is marked `?? not translated`, use the English label in bold.
@@ -2481,6 +2513,7 @@ Same rules as Task 12, with:
 - Children are addressed with **je/jullie**, coaches with **je** too (informal Dutch is normal in Devoxx4Kids NL).
 - Checkpoints: 🧪 **Probeer het!**, 🔄 **Wissel**, 🎉 **Gelukt!**
 - Core2Buttons labels and on-screen texts from `nl.json` (e.g. **middelste knop aangeraakt?**, `Stel me een vraag!`, `Ja!`, `Echt niet!`, `Misschien...`, `Vraag opnieuw`).
+- Variable names: the `var.*` values of `nl.json` (`antwoorden`, `gevaar`, `speelt`, `stemming`, `bezig`, `emojis`, `keuze`, `mijnNaam`).
 - Links to `-nl` starter files and `nl` pages.
 - Terms: driver = **bestuurder**, navigator = **navigator**, bonus card = **bonuskaart**, radio group = **radiogroep**.
 
@@ -2505,7 +2538,7 @@ git commit -m "ESP32 workshop: add Dutch translation"
 Needs a Core2, a phone or camera, and a timer. An AI agent can do Steps 3–5 after a person has done Steps 1–2.
 
 **Files:**
-- Create: `W/missions/01-magic-shake-ball/images/finished.jpg`, `W/missions/02-hot-potato/images/finished.jpg`, `W/missions/03-emoji-messenger/images/finished.jpg`
+- Create: `W/missions/01-magic-shake-ball/images/finished.jpg`, `W/missions/02-bomb/images/finished.jpg`, `W/missions/03-emoji-messenger/images/finished.jpg`
 - Modify: every `W/missions/*/<lang>/mission.md` (one image line), `W/coach/<lang>/running-a-session.md` (known limits), `W/CHANGELOG.md`
 
 **Interfaces:**
@@ -2518,7 +2551,7 @@ One adult who did not write the pages follows each English `mission.md` from the
 
 - [ ] **Step 2: Take one photo per mission**
 
-Photograph the board showing the finished mission (an answer, BOOM!, a received emoji), with no text other than what is on the board's screen. Save as `missions/<mission>/images/finished.jpg`, at most 1600 px wide and 400 KB.
+Photograph the board showing the finished mission (an answer, the bomb calm or exploding, a received emoji), with no text other than what is on the board's screen. Save as `missions/<mission>/images/finished.jpg`, at most 1600 px wide and 400 KB.
 
 - [ ] **Step 3: Add the photos to every mission page**
 
