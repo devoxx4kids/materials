@@ -32,7 +32,7 @@ Tested on board #1 on 2026-11-13 (firmware e4d90571…, bomb-images c303da82…)
 | B2 explode animation time | pass | not timed with a script; the tester found it smooth |
 | B3 careful walk | pass | measured jolt: still 5, careful walk up to 25 |
 | B4 clumsy walk | pass | normal walk 50–60, bumps and jumps 80–100: explodes |
-| B5 without bomb-images.bin | not tested yet | |
+| B5 without bomb-images.bin | pass | board #2 erased, firmware only (2026-11-16): no pictures, no error; danger bar, beeps, explosion sound, buzz and texts all work |
 
 Measured `jolt` values (Jolt meter, board held in two hands): still 5 · careful walk 25 ·
 normal walk 50–60 · clumsy walk or small jumps 80–100.

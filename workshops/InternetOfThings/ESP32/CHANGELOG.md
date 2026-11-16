@@ -2,6 +2,11 @@
 
 All notable changes to the ESP32 workshop. One version entry per day.
 
+## [0.3.0] - 2026-11-16
+
+### Changed
+- Bomb check B5 recorded: the mission runs without the bomb pictures and without errors.
+
 ## [0.2.0] - 2026-11-13
 
 ### Added
