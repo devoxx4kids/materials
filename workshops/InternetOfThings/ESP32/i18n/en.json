@@ -52,5 +52,6 @@
   "var.busy": "busy",
   "var.emojis": "emojis",
   "var.choice": "choice",
-  "var.my_name": "myName"
+  "var.my_name": "myName",
+  "comment.widest": "The number of characters of the longest line."
 }

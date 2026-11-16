@@ -1843,7 +1843,8 @@ The standard MicroBlocks firmware does not support the Core2 v1.3 fully. Use the
 firmware from `firmware/` (MicroBlocks with a small patch for the v1.3 motion sensor and
 vibration motor, plus the bomb pictures for Mission 2).
 
-1. Install Python 3 and esptool once: `pip install esptool`.
+1. Install Python 3 and esptool once: `pip install "esptool>=5"` (older esptool versions use
+   other command names).
 2. Close MicroBlocks, connect the Core2 with a data cable, and run from the workshop folder
    (replace `<PORT>`; on macOS it looks like `/dev/cu.usbserial-…`):
 
@@ -2174,18 +2175,21 @@ every 🔄. **Always carry the board with two hands, and walk.**
 
 ## ⭐1 The bomb appears
 
-1. Under **when started**, add **show bomb calm** (from **Core2Buttons**).
-2. Make a **when** script with **middle button touched?** and add **reset timer** and
-   **show big text** `Go!`.
+1. Go to **Variables** and add a variable `playing`. Under **when started**, add
+   **set playing to false** and **show bomb calm** (from **Core2Buttons**).
+2. Make a **when** script with **middle button touched?**. In it: **reset timer**,
+   **show danger bar 0**, and **set playing to true**.
 
-**🧪 Try it!** Click ▶. Do you see the bomb? Touch the middle circle.
+**🧪 Try it!** Click ▶. Do you see the bomb? Touch the middle circle: the danger bar
+appears at the bottom, the game has started.
 
 **🔄 Swap**
 
 ## ⭐2 How hard are you moving?
 
-1. Make a **when** script with **middle button touched?** → **forever** →
-   **show big text (jolt)** in white.
+1. Make a second **when** script, this time with the variable **playing** inside the
+   **when** (so it runs during the game). In it: **show big text (jolt)** in white and
+   **wait 30 millisecs**.
 2. Click ▶, touch the middle circle, and move the board slowly, then faster.
 
 **🧪 Try it!** What number do you get when you hold it still? When you walk? When you bump
@@ -2195,14 +2199,19 @@ it?
 
 ## ⭐3 The danger meter
 
-1. Add a variable `danger`. Set it to 0 when the middle circle is touched.
-2. In the **forever** loop (remove the jolt text): if **jolt > 15**, change danger by
-   **(jolt − 15) / 2**; else, if **jolt < 10** and danger > 0, change danger by -1.
-   Tip: when the bomb gets nervous, **stand still** to calm it down.
-3. **If danger ≥ 100:** **show bomb explode**, **vibrate for 800 ms**, **show big text**
-   `BOOM!` in red, and stop. **Else if danger ≥ 50:** **show bomb nervous** and
-   **beep 880 Hz for 40 ms**. **Else:** **show bomb calm**.
-4. At the end of the loop: **show danger bar (danger)**.
+1. Add variables `danger` and `mood`. In the middle-circle script, also **set danger to 0**
+   and **set mood to 0**.
+2. In the **when playing** script, remove the jolt text and use **if / else**: if
+   **jolt > 15**, change danger by **(jolt − 15) / 2**; else, if **jolt < 10** and
+   danger > 0, change danger by -1. Tip: when the bomb gets nervous, **stand still** to
+   calm it down.
+3. Then: **if danger ≥ 100**: **set playing to false**, **show bomb explode**,
+   **vibrate for 800 ms**, **show big text** `BOOM!` in red.
+   **Else if danger ≥ 50**: **show bomb nervous**, **beep 880 Hz for 40 ms** and
+   **set mood to 1**.
+   **Else**: only **if mood = 1**, **show bomb calm** and **set mood to 0** (drawing the
+   bomb takes time, so we only draw it when it changes).
+4. At the end of the script: **show danger bar (danger)** and **wait 30 millisecs**.
 
 **🧪 Try it!** Walk to the safe zone. Does the bomb get nervous when you bump it?
 
@@ -2210,10 +2219,11 @@ it?
 
 ## ⭐4 Safe!
 
-1. When the middle circle is touched **during** the game, the bomb is in the safe zone:
-   **show bomb safe**, then **show big text (join `SAFE!` (timer / 1000) ` s`)** in green.
-2. Use a variable `playing` (true during the game) so the middle circle knows whether to
-   start or to finish.
+1. Change the middle-circle script into an **if playing / else**:
+   - **if playing** (the bomb is in the safe zone): **set playing to false**,
+     **show bomb safe**, then **show big text (join `SAFE!` (timer / 1000) ` s`)** in green;
+   - **else** (start a new game): everything the script did before (reset timer,
+     danger 0, mood 0, **show bomb calm**, danger bar 0, **set playing to true**).
 
 **🧪 Try it!** How fast can you bring the bomb to safety without exploding it?
 
@@ -2272,7 +2282,19 @@ the lowest?
 **Coach hint:** keep the route clear of chairs and bags; always walk.
 ```
 
-- [ ] **Step 3: Check and commit**
+- [ ] **Step 3: Check the steps against the solution**
+
+The kids' steps must build the same structure as `missions/02-bomb/solution/bomb-done-en.ubp`:
+one middle-circle script that starts or finishes the game, and one `when (playing)` script
+that measures. Two scripts with **middle button touched?** never both fire (the circles report
+each touch only once), and a `forever` inside the middle script would stop it from seeing the
+SAFE touch. Run:
+```bash
+grep -c "when\*\* script with \*\*middle button touched?" missions/02-bomb/en/mission.md
+```
+Expected: `1`.
+
+- [ ] **Step 4: Check and commit**
 
 Run: `python3 tools/check_docs.py | grep -v -e "folder missing" -e "/fr/" -e "/nl/" -e "03-emoji-messenger"`
 Expected: no output.

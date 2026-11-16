@@ -11,6 +11,9 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - Global variable names in the projects are translated (FR: réponses, danger, enJeu…; NL: antwoorden, gevaar, speelt…), so no English shows in the French and Dutch projects.
 - Firmware patch rebased on MicroBlocks 3.0 (VM 425, commit f4767a3): the IDE no longer asks to update the board.
 
+### Fixed
+- `show big text` no longer cuts off a single long word (e.g. Gefeliciteerd!): it also checks the width before choosing a size.
+
 ## [0.2.0] - 2026-11-13
 
 ### Added

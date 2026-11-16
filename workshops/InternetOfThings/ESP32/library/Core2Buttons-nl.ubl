@@ -23,6 +23,7 @@ choices c2b_bombMenu 'kalm' 'nerveus' 'ontploft' 'veilig'
   spec 'r' '_c2b_zone' '_c2b_zone'
   spec 'r' '_c2b_edge' '_c2b_edge _' 'num' 1
   spec 'r' '_c2b_wrap' '_c2b_wrap _ _' 'str num' 'Hello world' 13
+  spec 'r' '_c2b_widest' '_c2b_widest _' 'auto' ''
   spec ' ' '_c2b_flashOn' '_c2b_flashOn'
   spec ' ' '_c2b_flashOff' '_c2b_flashOff'
   spec ' ' '_c2b_drawFrame' '_c2b_drawFrame _ _' 'str num' 'bomb_calm_1.data' 140
@@ -111,7 +112,7 @@ to c2b_bigText text color {
   for scale ('[data:makeList]' 4 3 2 1) {
     local 'lines' ('_c2b_wrap' text (320 / (6 * scale)))
     local 'lineHeight' ((8 * scale) + 6)
-    if (or (scale == 1) (((size lines) * lineHeight) <= 200)) {
+    if (or (scale == 1) (and (((size lines) * lineHeight) <= 200) ((('_c2b_widest' lines) * (6 * scale)) <= 320))) {
       local 'y' ((240 - ((size lines) * lineHeight)) / 2)
       for line lines {
         local 'x' ((320 - ((size line) * (6 * scale))) / 2)
@@ -124,6 +125,17 @@ to c2b_bigText text color {
       return 0
     }
   }
+}
+
+to '_c2b_widest' lines {
+  comment 'Het aantal tekens van de langste regel.'
+  local 'result' 0
+  for line lines {
+    if ((size line) > result) {
+      result = (size line)
+    }
+  }
+  return result
 }
 
 to '_c2b_wrap' text maxChars {

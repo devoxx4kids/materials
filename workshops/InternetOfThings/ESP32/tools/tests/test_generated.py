@@ -303,3 +303,14 @@ def test_variable_names_are_single_words():
             if key.startswith("var."):
                 assert value.strip() == value and " " not in value and "'" not in value, (lang, key)
 
+
+
+def test_big_text_never_cuts_off_a_long_word(files):
+    """A single word of 14+ letters (Dutch 'Gefeliciteerd!') is 336 px wide at size 4 on a
+    320 px screen: a size is only accepted when its widest line fits too."""
+    text = library(files)
+    big = body(text, "c2b_bigText")
+    assert "(((v 'widest') * (6 * scale)) <= 320)" not in big  # widest is a local, not a variable
+    assert "((('_c2b_widest' lines) * (6 * scale)) <= 320)" in big
+    widest = body(text, "_c2b_widest")
+    assert "if ((size line) > result) {" in widest

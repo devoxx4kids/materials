@@ -52,5 +52,6 @@
   "var.busy": "bezig",
   "var.emojis": "emojis",
   "var.choice": "keuze",
-  "var.my_name": "mijnNaam"
+  "var.my_name": "mijnNaam",
+  "comment.widest": "Het aantal tekens van de langste regel."
 }
