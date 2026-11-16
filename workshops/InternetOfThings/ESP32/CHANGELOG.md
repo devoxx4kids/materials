@@ -15,6 +15,9 @@ All notable changes to the ESP32 workshop. One version entry per day.
 ### Fixed
 - `show big text` no longer cuts off a single long word (e.g. Gefeliciteerd!): it also checks the width before choosing a size.
 
+### Added
+- English entry page, coach guides (setup, running a session, hardware) and library reference.
+
 ## [0.2.0] - 2026-11-13
 
 ### Added
