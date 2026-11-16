@@ -2,23 +2,23 @@ module main
 author Devoxx4Kids
 version 1 0 
 description '{{project.m1_done}}'
-variables answers 
+variables '{{var.answers}}' 
 
 script 50 50 {
 whenStarted
-answers = ('[data:makeList]' '{{screen.m1_yes}}' '{{screen.m1_no}}' '{{screen.m1_maybe}}' '{{screen.m1_again}}')
+'{{var.answers}}' = ('[data:makeList]' '{{screen.m1_yes}}' '{{screen.m1_no}}' '{{screen.m1_maybe}}' '{{screen.m1_again}}')
 c2b_bigText '{{screen.m1_ask}}' (colorSwatch 255 255 255 255)
 }
 
 script 50 220 {
 whenCondition (or (c2b_middleTouched) (c2b_shaken))
-local 'n' (random 1 (size answers))
+local 'n' (random 1 (size (v '{{var.answers}}')))
 if (n == 1) {
-  c2b_bigText (at n answers) (colorSwatch 0 200 0 255)
+  c2b_bigText (at n (v '{{var.answers}}')) (colorSwatch 0 200 0 255)
 } (n == 2) {
-  c2b_bigText (at n answers) (colorSwatch 230 0 0 255)
+  c2b_bigText (at n (v '{{var.answers}}')) (colorSwatch 230 0 0 255)
 } else {
-  c2b_bigText (at n answers) (colorSwatch 255 200 0 255)
+  c2b_bigText (at n (v '{{var.answers}}')) (colorSwatch 255 200 0 255)
 }
 c2b_beep 880 150
 c2b_vibrate 200

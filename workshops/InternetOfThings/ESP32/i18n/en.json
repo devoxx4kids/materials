@@ -44,5 +44,13 @@
   "screen.m2_touch": "Touch middle to start",
   "screen.m2_safe": "SAFE!",
   "comment.load_palette": "Reads the 256 picture colours from the file bomb_palette.data on the board. Without that file the pictures stay black, but the program keeps running.",
-  "comment.wrap": "Splits a text into lines of at most the given number of characters, at the spaces between words."
+  "comment.wrap": "Splits a text into lines of at most the given number of characters, at the spaces between words.",
+  "var.answers": "answers",
+  "var.danger": "danger",
+  "var.playing": "playing",
+  "var.mood": "mood",
+  "var.busy": "busy",
+  "var.emojis": "emojis",
+  "var.choice": "choice",
+  "var.my_name": "myName"
 }

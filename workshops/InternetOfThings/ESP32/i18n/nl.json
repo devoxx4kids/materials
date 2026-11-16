@@ -44,5 +44,13 @@
   "screen.m2_touch": "Tik midden om te starten",
   "screen.m2_safe": "VEILIG!",
   "comment.load_palette": "Leest de 256 beeldkleuren uit het bestand bomb_palette.data op het bord. Zonder dat bestand blijven de beelden zwart, maar het programma blijft lopen.",
-  "comment.wrap": "Verdeelt een tekst in regels van hoogstens het gegeven aantal tekens, bij de spaties tussen de woorden."
+  "comment.wrap": "Verdeelt een tekst in regels van hoogstens het gegeven aantal tekens, bij de spaties tussen de woorden.",
+  "var.answers": "antwoorden",
+  "var.danger": "gevaar",
+  "var.playing": "speelt",
+  "var.mood": "stemming",
+  "var.busy": "bezig",
+  "var.emojis": "emojis",
+  "var.choice": "keuze",
+  "var.my_name": "mijnNaam"
 }

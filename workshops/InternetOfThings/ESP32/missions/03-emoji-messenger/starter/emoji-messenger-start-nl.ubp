@@ -2,15 +2,15 @@ module main
 author Devoxx4Kids
 version 1 0 
 description 'Emoji-messenger - begin hier'
-variables emojis choice myName 
+variables 'emojis' 'keuze' 'mijnNaam' 
 
 script 50 50 {
 whenStarted
 comment 'Begin hier! Verander groepsnummer 1 in jullie tafelnummer. De emojilijst staat al klaar. Volg mission.md stap voor stap.'
 '[net:ESPNowSetGroup]' 1
-myName = 'Team 1'
-emojis = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
-choice = 1
+'mijnNaam' = 'Team 1'
+'emojis' = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
+'keuze' = 1
 }
 
 

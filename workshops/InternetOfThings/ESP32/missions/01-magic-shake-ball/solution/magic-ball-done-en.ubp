@@ -2,23 +2,23 @@ module main
 author Devoxx4Kids
 version 1 0 
 description 'Magic Shake Ball - finished version for coaches'
-variables answers 
+variables 'answers' 
 
 script 50 50 {
 whenStarted
-answers = ('[data:makeList]' 'Yes!' 'No way!' 'Maybe...' 'Ask again')
+'answers' = ('[data:makeList]' 'Yes!' 'No way!' 'Maybe...' 'Ask again')
 c2b_bigText 'Ask me a question!' (colorSwatch 255 255 255 255)
 }
 
 script 50 220 {
 whenCondition (or (c2b_middleTouched) (c2b_shaken))
-local 'n' (random 1 (size answers))
+local 'n' (random 1 (size (v 'answers')))
 if (n == 1) {
-  c2b_bigText (at n answers) (colorSwatch 0 200 0 255)
+  c2b_bigText (at n (v 'answers')) (colorSwatch 0 200 0 255)
 } (n == 2) {
-  c2b_bigText (at n answers) (colorSwatch 230 0 0 255)
+  c2b_bigText (at n (v 'answers')) (colorSwatch 230 0 0 255)
 } else {
-  c2b_bigText (at n answers) (colorSwatch 255 200 0 255)
+  c2b_bigText (at n (v 'answers')) (colorSwatch 255 200 0 255)
 }
 c2b_beep 880 150
 c2b_vibrate 200

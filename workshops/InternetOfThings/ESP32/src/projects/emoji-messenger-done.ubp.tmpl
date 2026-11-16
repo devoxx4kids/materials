@@ -2,50 +2,50 @@ module main
 author Devoxx4Kids
 version 1 0 
 description '{{project.m3_done}}'
-variables emojis choice myName 
+variables '{{var.emojis}}' '{{var.choice}}' '{{var.my_name}}' 
 
 script 50 50 {
 whenStarted
 comment '{{comment.m3_start}}'
 '[net:ESPNowSetGroup]' 1
-myName = '{{screen.m3_name}}'
-emojis = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
-choice = 1
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+'{{var.my_name}}' = '{{screen.m3_name}}'
+'{{var.emojis}}' = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
+'{{var.choice}}' = 1
+c2b_bigText (at (v '{{var.choice}}') (v '{{var.emojis}}')) (colorSwatch 255 255 255 255)
 }
 
 script 50 300 {
 whenCondition (c2b_leftTouched)
-choice = (choice - 1)
-if (choice < 1) {
-  choice = (size emojis)
+'{{var.choice}}' = ((v '{{var.choice}}') - 1)
+if ((v '{{var.choice}}') < 1) {
+  '{{var.choice}}' = (size (v '{{var.emojis}}'))
 }
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v '{{var.choice}}') (v '{{var.emojis}}')) (colorSwatch 255 255 255 255)
 }
 
 script 50 450 {
 whenCondition (c2b_rightTouched)
-choice = (choice + 1)
-if (choice > (size emojis)) {
-  choice = 1
+'{{var.choice}}' = ((v '{{var.choice}}') + 1)
+if ((v '{{var.choice}}') > (size (v '{{var.emojis}}'))) {
+  '{{var.choice}}' = 1
 }
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v '{{var.choice}}') (v '{{var.emojis}}')) (colorSwatch 255 255 255 255)
 }
 
 script 450 50 {
 whenCondition (c2b_middleTouched)
-espNow_send_pair myName choice
+espNow_send_pair (v '{{var.my_name}}') (v '{{var.choice}}')
 c2b_bigText '{{screen.m3_sent}}' (colorSwatch 0 255 0 255)
 waitMillis 500
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v '{{var.choice}}') (v '{{var.emojis}}')) (colorSwatch 255 255 255 255)
 }
 
 script 450 250 {
 whenCondition (c2b_shaken)
-espNow_send_pair myName 0
+espNow_send_pair (v '{{var.my_name}}') 0
 c2b_bigText '{{screen.m3_sent}}' (colorSwatch 0 255 0 255)
 waitMillis 500
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v '{{var.choice}}') (v '{{var.emojis}}')) (colorSwatch 255 255 255 255)
 }
 
 script 850 50 {
@@ -58,13 +58,13 @@ if (n == 0) {
     c2b_bigText '{{screen.m3_party}}' (colorSwatch 0 255 255 255)
     waitMillis 100
   }
-} (and (n >= 1) (n <= (size emojis))) {
-  c2b_bigText (at n emojis) (colorSwatch 255 220 0 255)
+} (and (n >= 1) (n <= (size (v '{{var.emojis}}')))) {
+  c2b_bigText (at n (v '{{var.emojis}}')) (colorSwatch 255 220 0 255)
   '[tft:text]' (espNow_last_string) 10 200 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
   c2b_beep 660 100
   waitMillis 2000
 }
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v '{{var.choice}}') (v '{{var.emojis}}')) (colorSwatch 255 255 255 255)
 }
 
 

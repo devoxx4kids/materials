@@ -112,12 +112,12 @@ def test_messenger_projects_use_esp_now_and_ignore_bad_numbers(files):
         text = files[f"missions/03-emoji-messenger/{'starter' if kind == 'start' else 'solution'}/emoji-messenger-{kind}-en.ubp"]
         assert "\nmodule 'ESP Now' Comm\n" in text
         assert "'[net:ESPNowSetGroup]' 1" in text
-        assert "emojis = ('[data:makeList]'" in text
+        assert "'emojis' = ('[data:makeList]'" in text
     done = files["missions/03-emoji-messenger/solution/emoji-messenger-done-en.ubp"]
     assert "whenCondition (espNow_receive_pair)" in done
-    assert "(and (n >= 1) (n <= (size emojis)))" in done
-    assert "espNow_send_pair myName 0" in done
-    assert "espNow_send_pair myName choice" in done
+    assert "(and (n >= 1) (n <= (size (v 'emojis'))))" in done
+    assert "espNow_send_pair (v 'myName') 0" in done
+    assert "espNow_send_pair (v 'myName') (v 'choice')" in done
 
 
 def test_beep_and_vibrate_also_flash_the_screen(files):
@@ -197,18 +197,18 @@ def test_jolt_is_distance_from_one_g(files):
 def test_bomb_solution_plays_the_danger_meter_game(files):
     en = strings("en")
     done = main_module(files["missions/02-bomb/solution/bomb-done-en.ubp"])
-    assert "whenCondition playing" in done
+    assert "whenCondition (v 'playing')" in done
     assert "local 'j' (c2b_jolt)" in done
-    assert "(danger >= 100)" in done and "(danger >= 50)" in done
+    assert "((v 'danger') >= 100)" in done and "((v 'danger') >= 50)" in done
     for key in ("menu.bomb_calm", "menu.bomb_nervous", "menu.bomb_explode", "menu.bomb_safe"):
         assert "c2b_showBomb '" + build.escape(en[key]) + "'" in done, key
-    assert "c2b_dangerBar danger" in done
+    assert "c2b_dangerBar (v 'danger')" in done
 
 
 def test_bomb_restart_resets_the_round(files):
     done = main_module(files["missions/02-bomb/solution/bomb-done-en.ubp"])
     restart = done[done.index("} else {", done.index("whenCondition (c2b_middleTouched)")):]
-    for line in ("danger = 0", "resetTimer", "playing = (booleanConstant true)"):
+    for line in ("'danger' = 0", "resetTimer", "'playing' = (booleanConstant true)"):
         assert line in restart, line
 
 
@@ -262,12 +262,12 @@ def test_touching_during_boom_or_safe_is_ignored(files):
     done = main_module(files["missions/02-bomb/solution/bomb-done-en.ubp"])
     middle = done[done.index("whenCondition (c2b_middleTouched)"):]
     middle = middle[:middle.index("\n}\n")]
-    assert middle.splitlines()[1] == "if (not busy) {"
+    assert middle.splitlines()[1] == "if (not (v 'busy')) {"
     for state in ("menu.bomb_explode", "menu.bomb_safe"):
         show = "c2b_showBomb '" + build.escape(en[state]) + "'"
         before = done[:done.index(show)]
-        assert before.rstrip().endswith("busy = (booleanConstant true)") or "busy = (booleanConstant true)\n" in before[-200:], state
-    assert done.count("busy = (booleanConstant false)") >= 3  # start, after BOOM, after SAFE
+        assert "'busy' = (booleanConstant true)\n" in before[-200:], state
+    assert done.count("'busy' = (booleanConstant false)") >= 3  # start, after BOOM, after SAFE
 
 
 def test_the_explosion_can_be_heard(files):
@@ -277,3 +277,29 @@ def test_the_explosion_can_be_heard(files):
     explode = show[show.index("menu") if False else show.index("'_c2b_playSet' 'explode'") - 200:show.index("'_c2b_playSet' 'explode'")]
     assert "'play frequency' 50 200" in explode
     assert "if (name == 'explode') {\n      'play frequency' (random 30 90) 50\n    }" in play
+
+
+VARIABLES = {
+    "missions/01-magic-shake-ball/solution/magic-ball-done-{lang}.ubp": ["var.answers"],
+    "missions/02-bomb/solution/bomb-done-{lang}.ubp": ["var.danger", "var.playing", "var.mood", "var.busy"],
+    "missions/03-emoji-messenger/starter/emoji-messenger-start-{lang}.ubp": ["var.emojis", "var.choice", "var.my_name"],
+    "missions/03-emoji-messenger/solution/emoji-messenger-done-{lang}.ubp": ["var.emojis", "var.choice", "var.my_name"],
+}
+
+
+def test_global_variables_are_translated(files):
+    """Children see variable names as blocks, so they are translated like every label."""
+    for lang in build.LANGS:
+        s = strings(lang)
+        for pattern, keys in VARIABLES.items():
+            main = main_module(files[pattern.format(lang=lang)])
+            declaration = next(l for l in main.splitlines() if l.startswith("variables "))
+            assert declaration == "variables " + " ".join("'" + build.escape(s[k]) + "'" for k in keys) + " ", (lang, pattern)
+
+
+def test_variable_names_are_single_words():
+    for lang in build.LANGS:
+        for key, value in strings(lang).items():
+            if key.startswith("var."):
+                assert value.strip() == value and " " not in value and "'" not in value, (lang, key)
+

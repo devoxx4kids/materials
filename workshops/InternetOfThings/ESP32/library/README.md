@@ -11,14 +11,14 @@ Date: 2026-11-13.
 | Check | What was tested | Result | Notes |
 |---|---|---|---|
 | H1 | Install, connection, screen | pass | Stable VM 411 fails on the v1.3 (no reply); pilot VM 424 and the patched build work. The firmware menu has no Core2 entry: advanced mode → install ESP firmware from microblocks.fun → m5core2_1.0, or esptool with `../firmware/`. On macOS, power-cycle without USB after flashing. Green LED is off by design (MicroBlocks turns it off) |
-| H2 | Circles react, other circles ignored | pass | screen tap: |
-| H3 | One event per touch (hold 3 s) | | |
+| H2 | Circles react, other circles ignored | pass | screen tap above the circles: no answer (2026-11-16) |
+| H3 | One event per touch (hold) | pass | finger held 5 s on the middle circle: one answer, no new one until the finger is lifted and touches again (2026-11-16) |
 | H4 | Beep | pass | Tone library works on the pilot firmware |
 | H5 | Shake and vibration | pass (patched) | Stock firmware: acceleration 0 (BMI270 not read), no motor. Patched: acceleration 99 at rest; motor on/off via `[tft:setVibration]` |
 | H6 | ESP Now between two boards | pass | both directions, emoji, name, beep; party with buzz (250 ms; 100 ms was not felt) |
 | H7 | Hot Potato | pass | replaced by the Bomb (see below) |
 | H8 | Long text and accents | pass (patched) | a 39-character answer was unreadable at size 1 → `show big text` now wraps over lines at the largest size; accents looked like flat bars in the stock 5 × 7 font → redrawn in the firmware patch (2026-11-16): ê, é, è, à, ù, ç correct |
-| H9 | FR and NL labels | | |
+| H9 | FR and NL labels | pass | MicroBlocks 3.0 pilot (IDE 3.0.0) with VM 424: Core2Buttons and built-in blocks translated; global variable names were English → now translated too (réponses, enJeu, occupé, antwoorden…); accented names work (2026-11-16) |
 
 **Decision (plan Task 7, Step 8):** MicroBlocks + firmware patch.
 

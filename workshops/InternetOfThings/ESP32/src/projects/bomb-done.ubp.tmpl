@@ -2,12 +2,12 @@ module main
 author Devoxx4Kids
 version 1 0 
 description '{{project.m2_done}}'
-variables danger playing mood busy 
+variables '{{var.danger}}' '{{var.playing}}' '{{var.mood}}' '{{var.busy}}' 
 
 script 50 50 {
 whenStarted
-playing = (booleanConstant false)
-busy = (booleanConstant false)
+'{{var.playing}}' = (booleanConstant false)
+'{{var.busy}}' = (booleanConstant false)
 '[tft:clear]'
 c2b_showBomb '{{menu.bomb_calm}}'
 '[tft:text]' '{{screen.m2_touch}}' 10 210 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
@@ -15,52 +15,52 @@ c2b_showBomb '{{menu.bomb_calm}}'
 
 script 50 300 {
 whenCondition (c2b_middleTouched)
-if (not busy) {
-  if playing {
-    playing = (booleanConstant false)
-    busy = (booleanConstant true)
+if (not (v '{{var.busy}}')) {
+  if (v '{{var.playing}}') {
+    '{{var.playing}}' = (booleanConstant false)
+    '{{var.busy}}' = (booleanConstant true)
     c2b_showBomb '{{menu.bomb_safe}}'
     c2b_bigText ('[data:join]' '{{screen.m2_safe}}' ' ' ((timer) / 1000) ' s') (colorSwatch 0 255 0 255)
     c2b_beep 1320 300
-    busy = (booleanConstant false)
+    '{{var.busy}}' = (booleanConstant false)
   } else {
-    danger = 0
-    mood = 0
+    '{{var.danger}}' = 0
+    '{{var.mood}}' = 0
     resetTimer
     '[tft:clear]'
     c2b_showBomb '{{menu.bomb_calm}}'
     c2b_dangerBar 0
-    playing = (booleanConstant true)
+    '{{var.playing}}' = (booleanConstant true)
   }
 }
 }
 
 script 450 50 {
-whenCondition playing
+whenCondition (v '{{var.playing}}')
 local 'j' (c2b_jolt)
 if (j > 15) {
-  danger = (danger + ((j - 15) / 2))
-} (and (j < 10) (danger > 0)) {
-  danger = (danger - 1)
+  '{{var.danger}}' = ((v '{{var.danger}}') + ((j - 15) / 2))
+} (and (j < 10) ((v '{{var.danger}}') > 0)) {
+  '{{var.danger}}' = ((v '{{var.danger}}') - 1)
 }
-if (danger >= 100) {
-  playing = (booleanConstant false)
-  busy = (booleanConstant true)
+if ((v '{{var.danger}}') >= 100) {
+  '{{var.playing}}' = (booleanConstant false)
+  '{{var.busy}}' = (booleanConstant true)
   c2b_showBomb '{{menu.bomb_explode}}'
   c2b_vibrate 800
   c2b_bigText '{{screen.m2_boom}}' (colorSwatch 255 0 0 255)
-  busy = (booleanConstant false)
-} (danger >= 50) {
+  '{{var.busy}}' = (booleanConstant false)
+} ((v '{{var.danger}}') >= 50) {
   c2b_showBomb '{{menu.bomb_nervous}}'
   c2b_beep 880 40
-  mood = 1
-  c2b_dangerBar danger
+  '{{var.mood}}' = 1
+  c2b_dangerBar (v '{{var.danger}}')
 } else {
-  if (mood == 1) {
+  if ((v '{{var.mood}}') == 1) {
     c2b_showBomb '{{menu.bomb_calm}}'
-    mood = 0
+    '{{var.mood}}' = 0
   }
-  c2b_dangerBar danger
+  c2b_dangerBar (v '{{var.danger}}')
 }
 waitMillis 30
 }

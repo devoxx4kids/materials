@@ -2,15 +2,15 @@ module main
 author Devoxx4Kids
 version 1 0 
 description '{{project.m3_start}}'
-variables emojis choice myName 
+variables '{{var.emojis}}' '{{var.choice}}' '{{var.my_name}}' 
 
 script 50 50 {
 whenStarted
 comment '{{comment.m3_start}}'
 '[net:ESPNowSetGroup]' 1
-myName = '{{screen.m3_name}}'
-emojis = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
-choice = 1
+'{{var.my_name}}' = '{{screen.m3_name}}'
+'{{var.emojis}}' = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
+'{{var.choice}}' = 1
 }
 
 

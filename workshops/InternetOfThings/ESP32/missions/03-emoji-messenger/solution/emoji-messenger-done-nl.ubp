@@ -2,50 +2,50 @@ module main
 author Devoxx4Kids
 version 1 0 
 description 'Emoji-messenger - klaar, voor coaches'
-variables emojis choice myName 
+variables 'emojis' 'keuze' 'mijnNaam' 
 
 script 50 50 {
 whenStarted
 comment 'Begin hier! Verander groepsnummer 1 in jullie tafelnummer. De emojilijst staat al klaar. Volg mission.md stap voor stap.'
 '[net:ESPNowSetGroup]' 1
-myName = 'Team 1'
-emojis = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
-choice = 1
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+'mijnNaam' = 'Team 1'
+'emojis' = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
+'keuze' = 1
+c2b_bigText (at (v 'keuze') (v 'emojis')) (colorSwatch 255 255 255 255)
 }
 
 script 50 300 {
 whenCondition (c2b_leftTouched)
-choice = (choice - 1)
-if (choice < 1) {
-  choice = (size emojis)
+'keuze' = ((v 'keuze') - 1)
+if ((v 'keuze') < 1) {
+  'keuze' = (size (v 'emojis'))
 }
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v 'keuze') (v 'emojis')) (colorSwatch 255 255 255 255)
 }
 
 script 50 450 {
 whenCondition (c2b_rightTouched)
-choice = (choice + 1)
-if (choice > (size emojis)) {
-  choice = 1
+'keuze' = ((v 'keuze') + 1)
+if ((v 'keuze') > (size (v 'emojis'))) {
+  'keuze' = 1
 }
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v 'keuze') (v 'emojis')) (colorSwatch 255 255 255 255)
 }
 
 script 450 50 {
 whenCondition (c2b_middleTouched)
-espNow_send_pair myName choice
+espNow_send_pair (v 'mijnNaam') (v 'keuze')
 c2b_bigText 'Verstuurd!' (colorSwatch 0 255 0 255)
 waitMillis 500
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v 'keuze') (v 'emojis')) (colorSwatch 255 255 255 255)
 }
 
 script 450 250 {
 whenCondition (c2b_shaken)
-espNow_send_pair myName 0
+espNow_send_pair (v 'mijnNaam') 0
 c2b_bigText 'Verstuurd!' (colorSwatch 0 255 0 255)
 waitMillis 500
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v 'keuze') (v 'emojis')) (colorSwatch 255 255 255 255)
 }
 
 script 850 50 {
@@ -58,13 +58,13 @@ if (n == 0) {
     c2b_bigText 'FEEST!' (colorSwatch 0 255 255 255)
     waitMillis 100
   }
-} (and (n >= 1) (n <= (size emojis))) {
-  c2b_bigText (at n emojis) (colorSwatch 255 220 0 255)
+} (and (n >= 1) (n <= (size (v 'emojis')))) {
+  c2b_bigText (at n (v 'emojis')) (colorSwatch 255 220 0 255)
   '[tft:text]' (espNow_last_string) 10 200 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
   c2b_beep 660 100
   waitMillis 2000
 }
-c2b_bigText (at choice emojis) (colorSwatch 255 255 255 255)
+c2b_bigText (at (v 'keuze') (v 'emojis')) (colorSwatch 255 255 255 255)
 }
 
 

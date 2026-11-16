@@ -2,12 +2,12 @@ module main
 author Devoxx4Kids
 version 1 0 
 description 'De bom - klaar, voor coaches'
-variables danger playing mood busy 
+variables 'gevaar' 'speelt' 'stemming' 'bezig' 
 
 script 50 50 {
 whenStarted
-playing = (booleanConstant false)
-busy = (booleanConstant false)
+'speelt' = (booleanConstant false)
+'bezig' = (booleanConstant false)
 '[tft:clear]'
 c2b_showBomb 'kalm'
 '[tft:text]' 'Tik midden om te starten' 10 210 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
@@ -15,52 +15,52 @@ c2b_showBomb 'kalm'
 
 script 50 300 {
 whenCondition (c2b_middleTouched)
-if (not busy) {
-  if playing {
-    playing = (booleanConstant false)
-    busy = (booleanConstant true)
+if (not (v 'bezig')) {
+  if (v 'speelt') {
+    'speelt' = (booleanConstant false)
+    'bezig' = (booleanConstant true)
     c2b_showBomb 'veilig'
     c2b_bigText ('[data:join]' 'VEILIG!' ' ' ((timer) / 1000) ' s') (colorSwatch 0 255 0 255)
     c2b_beep 1320 300
-    busy = (booleanConstant false)
+    'bezig' = (booleanConstant false)
   } else {
-    danger = 0
-    mood = 0
+    'gevaar' = 0
+    'stemming' = 0
     resetTimer
     '[tft:clear]'
     c2b_showBomb 'kalm'
     c2b_dangerBar 0
-    playing = (booleanConstant true)
+    'speelt' = (booleanConstant true)
   }
 }
 }
 
 script 450 50 {
-whenCondition playing
+whenCondition (v 'speelt')
 local 'j' (c2b_jolt)
 if (j > 15) {
-  danger = (danger + ((j - 15) / 2))
-} (and (j < 10) (danger > 0)) {
-  danger = (danger - 1)
+  'gevaar' = ((v 'gevaar') + ((j - 15) / 2))
+} (and (j < 10) ((v 'gevaar') > 0)) {
+  'gevaar' = ((v 'gevaar') - 1)
 }
-if (danger >= 100) {
-  playing = (booleanConstant false)
-  busy = (booleanConstant true)
+if ((v 'gevaar') >= 100) {
+  'speelt' = (booleanConstant false)
+  'bezig' = (booleanConstant true)
   c2b_showBomb 'ontploft'
   c2b_vibrate 800
   c2b_bigText 'BOEM!' (colorSwatch 255 0 0 255)
-  busy = (booleanConstant false)
-} (danger >= 50) {
+  'bezig' = (booleanConstant false)
+} ((v 'gevaar') >= 50) {
   c2b_showBomb 'nerveus'
   c2b_beep 880 40
-  mood = 1
-  c2b_dangerBar danger
+  'stemming' = 1
+  c2b_dangerBar (v 'gevaar')
 } else {
-  if (mood == 1) {
+  if ((v 'stemming') == 1) {
     c2b_showBomb 'kalm'
-    mood = 0
+    'stemming' = 0
   }
-  c2b_dangerBar danger
+  c2b_dangerBar (v 'gevaar')
 }
 waitMillis 30
 }

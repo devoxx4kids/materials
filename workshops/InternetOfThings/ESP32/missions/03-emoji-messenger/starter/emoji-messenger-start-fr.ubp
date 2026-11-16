@@ -2,15 +2,15 @@ module main
 author Devoxx4Kids
 version 1 0 
 description 'Messagerie emoji - commence ici'
-variables emojis choice myName 
+variables 'emojis' 'choix' 'monNom' 
 
 script 50 50 {
 whenStarted
 comment 'Commence ici ! Remplace le numéro de groupe 1 par le numéro de ta table. La liste d''emojis est déjà prête. Suis mission.md étape par étape.'
 '[net:ESPNowSetGroup]' 1
-myName = 'Equipe 1'
-emojis = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
-choice = 1
+'monNom' = 'Equipe 1'
+'emojis' = ('[data:makeList]' ':-)' ':-D' ';-)' '<3' ':-O' ':-(' 'B-)' ':-P')
+'choix' = 1
 }
 
 

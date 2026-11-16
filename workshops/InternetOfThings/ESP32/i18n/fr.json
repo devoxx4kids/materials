@@ -44,5 +44,13 @@
   "screen.m2_touch": "Touche le milieu",
   "screen.m2_safe": "BRAVO !",
   "comment.load_palette": "Lit les 256 couleurs des images dans le fichier bomb_palette.data de la carte. Sans ce fichier, les images restent noires, mais le programme continue.",
-  "comment.wrap": "Coupe un texte en lignes d'au plus le nombre de caractères donné, aux espaces entre les mots."
+  "comment.wrap": "Coupe un texte en lignes d'au plus le nombre de caractères donné, aux espaces entre les mots.",
+  "var.answers": "réponses",
+  "var.danger": "danger",
+  "var.playing": "enJeu",
+  "var.mood": "humeur",
+  "var.busy": "occupé",
+  "var.emojis": "emojis",
+  "var.choice": "choix",
+  "var.my_name": "monNom"
 }
