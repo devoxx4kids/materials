@@ -11,7 +11,7 @@
   "comment.edge": "Vrai seulement au moment où un cercle devient touché : un toucher = un événement, même si le doigt reste dessus.",
   "comment.shaken": "L'accélération vaut environ 100 quand la carte est posée. Il faut vraiment secouer pour dépasser 140.",
   "comment.vibrate": "Allume et éteint le moteur de vibration avec le bloc setVibration du firmware MicroBlocks Devoxx4Kids pour la Core2 (puce d'alimentation AXP192, sortie LDO3).",
-  "comment.big_text": "Efface l'écran et écrit le texte au milieu. Les textes longs sont plus petits pour tenir à l'écran (une lettre fait 6 x 8 pixels en taille 1).",
+  "comment.big_text": "Efface l'écran et écrit le texte au milieu, aussi grand que possible : un texte long est réparti sur plusieurs lignes (une lettre fait 6 x 8 pixels en taille 1).",
   "project.m1_start": "Boule magique - commence ici",
   "project.m1_done": "Boule magique - version finie pour les coachs",
   "comment.m1_start": "Commence ici ! Glisse des blocs de la bibliothèque Core2Buttons sous ce bloc. Suis mission.md étape par étape.",
@@ -43,5 +43,6 @@
   "comment.m2_start": "Commence ici ! Porte la bombe jusqu'à la zone de sécurité sans la secouer. Suis mission.md étape par étape.",
   "screen.m2_touch": "Touche le milieu",
   "screen.m2_safe": "BRAVO !",
-  "comment.load_palette": "Lit les 256 couleurs des images dans le fichier bomb_palette.data de la carte. Sans ce fichier, les images restent noires, mais le programme continue."
+  "comment.load_palette": "Lit les 256 couleurs des images dans le fichier bomb_palette.data de la carte. Sans ce fichier, les images restent noires, mais le programme continue.",
+  "comment.wrap": "Coupe un texte en lignes d'au plus le nombre de caractères donné, aux espaces entre les mots."
 }

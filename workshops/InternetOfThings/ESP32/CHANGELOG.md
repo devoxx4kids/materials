@@ -6,6 +6,7 @@ All notable changes to the ESP32 workshop. One version entry per day.
 
 ### Changed
 - Bomb check B5 recorded: the mission runs without the bomb pictures and without errors.
+- `show big text` splits long texts over several lines at the largest size that fits, instead of shrinking them (a 39-character answer was unreadable at size 1).
 
 ## [0.2.0] - 2026-11-13
 

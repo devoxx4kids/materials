@@ -63,11 +63,16 @@ def test_touches_on_the_screen_are_not_buttons(files):
     assert "(('[tft:tftTouchY]') < 240)" in zone
 
 
-def test_big_text_shrinks_long_text(files):
-    big = body(library(files), "c2b_bigText")
-    assert "((size text) > 13)" in big
-    assert "((size text) > 26)" in big
-
+def test_big_text_wraps_long_text_instead_of_shrinking_it(files):
+    """A 39-character answer at size 1 (6 x 8 pixel letters) was too small to read on the
+    Core2 (hardware test H8, 2026-11-16): long texts are split over lines, as big as fits."""
+    text = library(files)
+    big = body(text, "c2b_bigText")
+    assert "for scale ('[data:makeList]' 4 3 2 1) {" in big
+    assert "('_c2b_wrap' text (320 / (6 * scale)))" in big
+    wrap = body(text, "_c2b_wrap")
+    assert "for word ('[data:split]' text ' ') {" in wrap
+    assert "'[data:addLast]' line lines" in wrap
 
 def main_module(text):
     """The project's own scripts, without the embedded libraries."""

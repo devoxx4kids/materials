@@ -11,7 +11,7 @@
   "comment.edge": "Alleen waar op het moment dat een cirkel aangeraakt wordt: één aanraking is één gebeurtenis, ook als de vinger blijft liggen.",
   "comment.shaken": "De versnelling is ongeveer 100 als het bord stil ligt. Voor meer dan 140 moet je echt schudden.",
   "comment.vibrate": "Zet de trilmotor aan en uit met het setVibration-blok van de Devoxx4Kids-MicroBlocks-firmware voor de Core2 (stroomchip AXP192, uitgang LDO3).",
-  "comment.big_text": "Wist het scherm en schrijft de tekst in het midden. Lange teksten worden kleiner zodat ze passen (een letter is 6 x 8 pixels op grootte 1).",
+  "comment.big_text": "Wist het scherm en schrijft de tekst in het midden, zo groot mogelijk: een lange tekst wordt over meerdere regels verdeeld (een letter is 6 x 8 pixels op grootte 1).",
   "project.m1_start": "Magische schudbal - begin hier",
   "project.m1_done": "Magische schudbal - klaar, voor coaches",
   "comment.m1_start": "Begin hier! Sleep blokken uit de bibliotheek Core2Buttons onder dit blok. Volg mission.md stap voor stap.",
@@ -43,5 +43,6 @@
   "comment.m2_start": "Begin hier! Breng de bom naar de veilige zone zonder te schokken. Volg mission.md stap voor stap.",
   "screen.m2_touch": "Tik midden om te starten",
   "screen.m2_safe": "VEILIG!",
-  "comment.load_palette": "Leest de 256 beeldkleuren uit het bestand bomb_palette.data op het bord. Zonder dat bestand blijven de beelden zwart, maar het programma blijft lopen."
+  "comment.load_palette": "Leest de 256 beeldkleuren uit het bestand bomb_palette.data op het bord. Zonder dat bestand blijven de beelden zwart, maar het programma blijft lopen.",
+  "comment.wrap": "Verdeelt een tekst in regels van hoogstens het gegeven aantal tekens, bij de spaties tussen de woorden."
 }

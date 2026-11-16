@@ -33,6 +33,7 @@ choices c2b_bombMenu 'kalm' 'nerveus' 'ontploft' 'veilig'
   space
   spec 'r' '_c2b_zone' '_c2b_zone'
   spec 'r' '_c2b_edge' '_c2b_edge _' 'num' 1
+  spec 'r' '_c2b_wrap' '_c2b_wrap _ _' 'str num' 'Hello world' 13
   spec ' ' '_c2b_flashOn' '_c2b_flashOn'
   spec ' ' '_c2b_flashOff' '_c2b_flashOff'
   spec ' ' '_c2b_drawFrame' '_c2b_drawFrame _ _' 'str num' 'bomb_calm_1.data' 140
@@ -115,22 +116,45 @@ to '_c2b_flashOff' {
 }
 
 to c2b_bigText text color {
-  comment 'Wist het scherm en schrijft de tekst in het midden. Lange teksten worden kleiner zodat ze passen (een letter is 6 x 8 pixels op grootte 1).'
+  comment 'Wist het scherm en schrijft de tekst in het midden, zo groot mogelijk: een lange tekst wordt over meerdere regels verdeeld (een letter is 6 x 8 pixels op grootte 1).'
   text = ('[data:join]' '' text)
-  local 'scale' 4
-  if ((size text) > 13) {
-    scale = 2
-  }
-  if ((size text) > 26) {
-    scale = 1
-  }
-  local 'x' ((320 - ((size text) * (6 * scale))) / 2)
-  if (x < 0) {
-    x = 0
-  }
-  local 'y' ((240 - (8 * scale)) / 2)
   '[tft:clear]'
-  '[tft:text]' text x y color scale (booleanConstant true)
+  for scale ('[data:makeList]' 4 3 2 1) {
+    local 'lines' ('_c2b_wrap' text (320 / (6 * scale)))
+    local 'lineHeight' ((8 * scale) + 6)
+    if (or (scale == 1) (((size lines) * lineHeight) <= 200)) {
+      local 'y' ((240 - ((size lines) * lineHeight)) / 2)
+      for line lines {
+        local 'x' ((320 - ((size line) * (6 * scale))) / 2)
+        if (x < 0) {
+          x = 0
+        }
+        '[tft:text]' line x y color scale (booleanConstant false)
+        y += lineHeight
+      }
+      return 0
+    }
+  }
+}
+
+to '_c2b_wrap' text maxChars {
+  comment 'Verdeelt een tekst in regels van hoogstens het gegeven aantal tekens, bij de spaties tussen de woorden.'
+  local 'lines' ('[data:makeList]')
+  local 'line' ''
+  for word ('[data:split]' text ' ') {
+    if ((size line) == 0) {
+      line = word
+    } (((size line) + (1 + (size word))) <= maxChars) {
+      line = ('[data:join]' line ' ' word)
+    } else {
+      '[data:addLast]' line lines
+      line = word
+    }
+  }
+  if ((size line) > 0) {
+    '[data:addLast]' line lines
+  }
+  return lines
 }
 
 to c2b_showBomb state {

@@ -11,7 +11,7 @@
   "comment.edge": "True only at the moment a circle becomes touched, so one touch is one event even if the finger stays on it.",
   "comment.shaken": "Acceleration is about 100 when the board lies still. 140 needs a real shake.",
   "comment.vibrate": "Switches the vibration motor on and off with the setVibration block of the Devoxx4Kids MicroBlocks firmware for the Core2 (power chip AXP192, output LDO3).",
-  "comment.big_text": "Clears the screen and writes the text in the middle. Long texts use a smaller size so they still fit (one letter is 6 x 8 pixels at size 1).",
+  "comment.big_text": "Clears the screen and writes the text in the middle, as big as possible: a long text is split over several lines (one letter is 6 x 8 pixels at size 1).",
   "project.m1_start": "Magic Shake Ball - start here",
   "project.m1_done": "Magic Shake Ball - finished version for coaches",
   "comment.m1_start": "Start here! Drag blocks from the Core2Buttons library under this block. Follow mission.md step by step.",
@@ -43,5 +43,6 @@
   "comment.m2_start": "Start here! Carry the bomb to the safe zone without jolting it. Follow mission.md step by step.",
   "screen.m2_touch": "Touch middle to start",
   "screen.m2_safe": "SAFE!",
-  "comment.load_palette": "Reads the 256 picture colours from the file bomb_palette.data on the board. Without that file the pictures stay black, but the program keeps running."
+  "comment.load_palette": "Reads the 256 picture colours from the file bomb_palette.data on the board. Without that file the pictures stay black, but the program keeps running.",
+  "comment.wrap": "Splits a text into lines of at most the given number of characters, at the spaces between words."
 }
