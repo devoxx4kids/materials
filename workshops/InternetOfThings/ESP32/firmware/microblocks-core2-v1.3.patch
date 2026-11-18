@@ -11,6 +11,19 @@ index ff2f7e8b..f4c16df9 100644
  
  /*! @name  Global array that stores the configuration file of BMI270 */
  static const uint8_t bmi270_config_file[] = {
+diff --git a/vm/ideComm.cpp b/vm/ideComm.cpp
+index fdfa57cb..490c1182 100644
+--- a/vm/ideComm.cpp
++++ b/vm/ideComm.cpp
+@@ -316,7 +316,7 @@ void BLE_start() {
+ 	bleRunning = true;
+ 
+ 	BLE_resumeAdvertising();
+-	#if !defined(NEZHA_ESP32)
++	#if !defined(NEZHA_ESP32) && !defined(ARDUINO_M5STACK_Core2)
+ 		show_BLE_ID();
+ 	#endif
+ }
 diff --git a/vm/interp.h b/vm/interp.h
 index f666ecf9..3e0e1ab5 100644
 --- a/vm/interp.h
@@ -299,3 +312,17 @@ index 8441f90a..59c602c2 100644
  	{"tftTouched", primTftTouched},
  	{"tftTouchX", primTftTouchX},
  	{"tftTouchY", primTftTouchY},
+diff --git a/vm/vm.ino b/vm/vm.ino
+index d7d5d5f5..99a12db9 100644
+--- a/vm/vm.ino
++++ b/vm/vm.ino
+@@ -57,6 +57,9 @@ void setup() {
+ 	restoreScripts();
+ 	if (BLE_isEnabled()) BLE_start();
+ 	if (resetDoubleTap) loadStartCodeOrClear();
++	#if defined(ARDUINO_M5STACK_Core2)
++		delay(3000); // Devoxx4Kids workshop: show the start-up logo 3 seconds before the program starts
++	#endif
+ 	if (boardStartAtBoot()) startAll();
+ }
+ 

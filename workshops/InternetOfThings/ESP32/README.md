@@ -116,7 +116,7 @@ You only need this to change the patch, the bomb pictures or the MicroBlocks ver
 ### Updating to a newer MicroBlocks
 
 1. Set `BASE` in `firmware/build.sh` to the new MicroBlocks commit.
-2. Run `firmware/build.sh`. If `git apply` fails because MicroBlocks now contains the motion sensor or font fix, remove those parts from the patch (they touch `vm/sensorPrims.cpp`, `vm/bmi270config.h` and `vm/mbFont.c`) and keep the vibration and start-up logo parts (`vm/tftPrims.cpp`, `vm/ioPrims.cpp`, `vm/interp.h`).
+2. Run `firmware/build.sh`. If `git apply` fails because MicroBlocks now contains the motion sensor or font fix, remove those parts from the patch (they touch `vm/sensorPrims.cpp`, `vm/bmi270config.h` and `vm/mbFont.c`) and keep the vibration and start-up logo parts (`vm/tftPrims.cpp`, `vm/ioPrims.cpp`, `vm/vm.ino`, `vm/ideComm.cpp`, `vm/interp.h`).
 3. Update the vendored libraries from the same commit (commands in [vendor/README.md](vendor/README.md)) and run `python3 tools/build.py`.
 4. Update the commit and SHA-256 values in [firmware/README.md](firmware/README.md), flash a board and redo the hardware checks.
 

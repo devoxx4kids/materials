@@ -17,7 +17,7 @@ SHA-256 (firmware built 2026-11-18, pictures 2026-11-16):
 
 | File | SHA-256 |
 |---|---|
-| `microblocks-core2-v1.3.bin` | `7844636f126afe0a4e1b713d89ae2036376099cb06452f82a12a53b653274caf` |
+| `microblocks-core2-v1.3.bin` | `e02eeb3eb5057e477f50f176a64167e5dd601d98138d7e03f823060226938515` |
 | `bomb-images.bin` | `c53b7406a199214390f66e6edd7957c7a5439bbde57927ff79b6c5eba47f64f3` |
 
 ESP32 builds embed the build time, so a rebuild from the same source gives a different SHA-256 for `microblocks-core2-v1.3.bin`.
@@ -27,7 +27,7 @@ ESP32 builds embed the build time, so a rebuild from the same source gives a dif
 - **Motion sensor:** at start-up, the Core2 build checks which chip is at I2C address 0x68 on the internal bus. If it is a BMI270 (chip ID 0x24, Core2 v1.3) instead of an MPU6886 (older Core2), it loads the BMI270 configuration and reads it. `acceleration`, `tilt x/y/z` and the Core2Buttons block `board shaken?` work with the same scale as before (100 = 1 g). The older Core2 boards keep their original code path.
 - **Vibration:** a new primitive, `[tft:setVibration] true/false`, switches the motor (output LDO3 of the AXP192 power chip). The Core2Buttons block `vibrate for _ ms` uses it.
 - **Accents:** the lowercase accented letters of MicroBlocks' 5 × 7 screen font (à á â ä ç è é ê ë ì í î ï ò ó ô ö ù ú û ü) are redrawn with a two-row accent above the plain letter. The original glyphs used a single pixel row, so at text size 4 every accent looked like a flat bar. Capitals are unchanged (the font has no room above them): É, Ç, Ä, Ö and Ü display, while À, È, Ê, Î, Ô, Ù, Û, œ and Œ are not in the font and show as a filled rectangle.
-- **Start-up logo:** on the Core2 only, after MicroBlocks clears the screen at start-up, `tftShowLogo()` draws the Devoxx4Kids logo (231 × 231, centred on white, from `d4kLogo.h`). It stays until a program draws something. This one is specific to the workshop and is not proposed to MicroBlocks.
+- **Start-up logo:** on the Core2 only, after MicroBlocks clears the screen at start-up, `tftShowLogo()` draws the Devoxx4Kids logo (231 × 231, centred on white, from `d4kLogo.h`). The board waits 3 seconds before it starts the saved program (`vm.ino`), so the logo is always seen, and it stays until a program draws something. On the Core2, MicroBlocks no longer spells the board's 4-letter Bluetooth name on the screen at start-up (`ideComm.cpp`), because it cleared the logo; the workshop connects by USB. The Bluetooth name is still shown in the MicroBlocks connection dialog. This one is specific to the workshop and is not proposed to MicroBlocks.
 
 Tested on 2026-11-13 on a Core2 v1.3: acceleration reads 99 at rest and changes when the board is tilted or shaken; the motor switches on and off on command.
 

@@ -52,3 +52,19 @@ def test_docs_say_the_logo_shows_the_workshop_firmware(path):
     assert "until a program draws something: that is normal" not in text
     assert "tant qu'aucun programme ne dessine quelque chose : c'est normal" not in text
     assert "zolang geen programma iets tekent: dat is normaal" not in text
+
+
+
+def test_core2_does_not_spell_the_bluetooth_name_over_the_logo():
+    """MicroBlocks spells the Bluetooth name on the screen and then clears it; the workshop uses USB."""
+    patch = page("firmware/microblocks-core2-v1.3.patch")
+    ide = patch[patch.index("diff --git a/vm/ideComm.cpp"):]
+    assert "+\t#if !defined(NEZHA_ESP32) && !defined(ARDUINO_M5STACK_Core2)\n \t\tshow_BLE_ID();" in ide
+
+
+def test_logo_stays_three_seconds_before_the_program_starts():
+    patch = page("firmware/microblocks-core2-v1.3.patch")
+    boot = patch[patch.index("diff --git a/vm/vm.ino"):]
+    assert "+\t#if defined(ARDUINO_M5STACK_Core2)\n+\t\tdelay(3000);" in boot
+    assert boot.index("delay(3000)") < boot.index("startAll();")
+    assert "tftShowLogo" not in boot
