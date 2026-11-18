@@ -32,7 +32,7 @@ Elke tafel gebruikt een eigen groepsnummer, vanaf 1, zodat 20 borden in dezelfde
 | Symptoom | Oplossing |
 |---|---|
 | Bord niet gevonden | Opnieuw insteken; een USB-C-datakabel gebruiken; de pagina herladen of de app herstarten |
-| Scherm zwart | Druk op de aan/uit-knop aan de linkerkant; laad het bord op |
+| Scherm zwart | Druk op de aan/uit-knop aan de linkerkant; laad het bord op. Nog steeds zwart bij het aanzetten, zonder Devoxx4Kids-logo: zet de workshopfirmware opnieuw op het bord (zie [klaarmaken](setup.md)) |
 | Knoppen reageren niet | Open het startproject, zodat de hulpbibliotheek geladen is |
 | Berichten komen niet aan | Beide borden moeten hetzelfde groepsnummer gebruiken |
 | Geen geluid | Controleer dat het piepblok gebruikt wordt; gebruik anders het trilblok |

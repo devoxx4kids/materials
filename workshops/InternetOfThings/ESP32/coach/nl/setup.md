@@ -23,7 +23,7 @@ De standaard MicroBlocks-firmware ondersteunt de Core2 v1.3 niet helemaal. Gebru
 
 Toont MicroBlocks later *De MicroBlocks op je board is niet actueel…* en stelt het een update voor, klik dan op **Annuleren**: de update zet de standaardfirmware op het bord, zonder de aanpassing voor de bewegingssensor en het trillen. Is een bord toch bijgewerkt, zet dan de workshopfirmware opnieuw op het bord (stap 2).
 
-Het scherm blijft zwart en de groene led blijft uit zolang geen programma iets tekent: dat is normaal.
+Bij het aanzetten toont het bord het **Devoxx4Kids-logo** tot een programma iets tekent: zo herken je de workshopfirmware. Een zwart scherm bij het aanzetten betekent dat het bord een andere firmware heeft: zet de workshopfirmware opnieuw op het bord (stap 2). De groene led blijft uit: dat is normaal.
 
 ## 3. Taal
 

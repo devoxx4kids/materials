@@ -52,7 +52,7 @@ The boards need our **workshop firmware**, a build of MicroBlocks with a small p
 
 6. Unplug the cable, switch the board off (hold the power button on the left side for 6 seconds) and on again (2 seconds), and plug the cable back in. On macOS this power cycle without USB is needed, otherwise the board does not start.
 
-The screen stays black and the green LED stays off until a program draws something: that is normal. You can check the files with the SHA-256 values in [firmware/README.md](firmware/README.md).
+The board now shows the **Devoxx4Kids logo**: that is how you recognise the workshop firmware. It stays until a program draws something. A black screen at power-on means the board runs another firmware: flash it again. You can check the files with the SHA-256 values in [firmware/README.md](firmware/README.md).
 
 **Never accept MicroBlocks' offer to update the board.** When the editor says *The MicroBlocks in your board is not current… Try to update MicroBlocks on the board?*, click **Cancel**: the update installs the standard firmware, without the vibration motor (and, until the next MicroBlocks release, without the motion sensor of the v1.3). If a board was updated anyway, flash it again as above.
 
@@ -60,7 +60,7 @@ The screen stays black and the green LED stays off until a program draws somethi
 
 1. Use MicroBlocks **3.0** (the tested version): open https://microblocks.fun and click **Run** in Chrome or Edge, or install the desktop app from https://microblocks.fun/download when the venue has no reliable internet.
 2. Copy this workshop folder to every laptop, or at least the `missions/*/starter/*.ubp` files for your language.
-3. Connect a flashed board, check that MicroBlocks shows the board name **M5StackCore2**.
+3. Switch on a flashed board (the Devoxx4Kids logo appears), connect it, and check that MicroBlocks shows the board name **M5StackCore2**.
 4. Click the **globe** icon and choose English, Français or Nederlands. Always open the starter project with the same language code (`-en`, `-fr`, `-nl`), so the helper blocks are in that language too.
 5. Test each board: open `missions/01-magic-shake-ball/solution/magic-ball-done-en.ubp` (or `-fr`, `-nl`), click ▶ and shake the board. An answer appears, with a beep and a buzz.
 6. For Mission 3, test the radio: open `missions/03-emoji-messenger/solution/emoji-messenger-done-en.ubp` on two boards and send an emoji from one to the other.
@@ -87,10 +87,11 @@ The standard MicroBlocks firmware for the Core2 (`m5core2_1.0`) has three gaps o
 | Motion sensor: read the BMI270 of the v1.3 | The v1.3 replaced the MPU6886, so shaking always read 0 | **Accepted**: added to the `dev` branch, in the next pilot release |
 | Screen font: redrawn lowercase accents (é, è, ê, à…) | Accents looked like flat bars at large text sizes | **Accepted**: in the next pilot release |
 | Vibration: a `setVibration` primitive for the motor | MicroBlocks has no block for the Core2's built-in motor | **Declined**: MicroBlocks only adds features that work across many boards, and this motor sits behind the Core2's AXP192 power chip. It stays in our patch |
+| Start-up logo: the Devoxx4Kids logo at power-on | Shows at a glance that a board has the workshop firmware | Not proposed: specific to Devoxx4Kids |
 
 What this means for the workshop:
 
-- **Keep using the workshop firmware**, also after the next MicroBlocks release: only our build can switch the built-in vibration motor that the `vibrate for _ ms` block uses.
+- **Keep using the workshop firmware**, also after the next MicroBlocks release: only our build can switch the built-in vibration motor that the `vibrate for _ ms` block uses, and it shows the Devoxx4Kids logo at start-up.
 - When the motion sensor and font fixes are in a MicroBlocks release, the patch can shrink to the vibration part only (see "Updating to a newer MicroBlocks" below).
 - The MicroBlocks team suggests an external vibration motor, such as the M5Stack Vibration Motor Unit (https://shop.m5stack.com/products/vibration-motor-unit), for projects that should run on any board. The workshop does not need one: the built-in motor works with our firmware.
 - Ideas for new MicroBlocks features are best discussed first on the MicroBlocks Discord; the team only accepts small, localized bug fixes as code.
@@ -115,7 +116,7 @@ You only need this to change the patch, the bomb pictures or the MicroBlocks ver
 ### Updating to a newer MicroBlocks
 
 1. Set `BASE` in `firmware/build.sh` to the new MicroBlocks commit.
-2. Run `firmware/build.sh`. If `git apply` fails because MicroBlocks now contains the motion sensor or font fix, remove those parts from the patch (they touch `vm/sensorPrims.cpp`, `vm/bmi270config.h` and `vm/mbFont.c`) and keep the vibration part (`vm/tftPrims.cpp`).
+2. Run `firmware/build.sh`. If `git apply` fails because MicroBlocks now contains the motion sensor or font fix, remove those parts from the patch (they touch `vm/sensorPrims.cpp`, `vm/bmi270config.h` and `vm/mbFont.c`) and keep the vibration and start-up logo parts (`vm/tftPrims.cpp`, `vm/ioPrims.cpp`, `vm/interp.h`).
 3. Update the vendored libraries from the same commit (commands in [vendor/README.md](vendor/README.md)) and run `python3 tools/build.py`.
 4. Update the commit and SHA-256 values in [firmware/README.md](firmware/README.md), flash a board and redo the hardware checks.
 
@@ -130,6 +131,7 @@ The MicroBlocks files are generated. Do not edit `library/*.ubl` or the `.ubp` f
 | A mission project | `src/projects/*.ubp.tmpl` | `python3 tools/build.py` |
 | Bomb pictures | `src/images/*.gif`, frame lists in `tools/convert_images.py` | `python3 tools/convert_images.py`, then `firmware/build.sh` |
 | Firmware patch | `firmware/microblocks-core2-v1.3.patch` | `firmware/build.sh` |
+| Start-up logo | `src/images/devoxx4kids-logo.png` | `python3 tools/convert_logo.py`, then `firmware/build.sh` |
 | Documentation | the `.md` files | `python3 tools/check_docs.py` |
 
 Run the tests with `python3 -m pytest tools/tests -q` (needs `pip install -r tools/requirements-dev.txt`), and `python3 tools/build.py --check` to see whether the generated files are up to date. More about the helper blocks: [library/README.md](library/README.md). Vendored MicroBlocks libraries: [vendor/README.md](vendor/README.md). Firmware: [firmware/README.md](firmware/README.md). Design documents: `design/`. History: [CHANGELOG.md](CHANGELOG.md).

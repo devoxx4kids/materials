@@ -23,7 +23,7 @@ Le firmware MicroBlocks standard ne gère pas entièrement la Core2 v1.3. Utilis
 
 Si MicroBlocks affiche plus tard *La version de MicroBlocks sur votre carte n'est pas à jour…* et propose une mise à jour, cliquez sur **Annuler** : la mise à jour installe le firmware standard, sans le correctif du capteur de mouvement et de la vibration. Si une carte a quand même été mise à jour, réinstallez le firmware de l'atelier (étape 2).
 
-L'écran reste noir et la LED verte reste éteinte tant qu'aucun programme ne dessine quelque chose : c'est normal.
+À l'allumage, la carte affiche le **logo Devoxx4Kids** jusqu'à ce qu'un programme dessine quelque chose : c'est ainsi que vous reconnaissez le firmware de l'atelier. Un écran noir à l'allumage signifie que la carte a un autre firmware : réinstallez le firmware de l'atelier (étape 2). La LED verte reste éteinte : c'est normal.
 
 ## 3. Langue
 

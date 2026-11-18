@@ -29,3 +29,26 @@ def test_troubleshooting_covers_overwritten_firmware_and_text_true(lang):
     table = page(f"coach/{lang}/running-a-session.md")
     assert table.count("setup.md") >= 3  # bomb pictures, overwritten firmware, plus the known limit
     assert "`true`" in table or "`vrai`" in table or "`waar`" in table
+
+
+def test_firmware_shows_the_logo_after_the_start_up_clear():
+    patch = page("firmware/microblocks-core2-v1.3.patch")
+    assert "+void tftShowLogo();" in patch  # declared in interp.h
+    io = patch[patch.index("diff --git a/vm/ioPrims.cpp"):]
+    io = io[:io.index("diff --git", 1)] if "diff --git" in io[1:] else io
+    assert " \t\ttftClear();\n+\t#if defined(ARDUINO_M5STACK_Core2)\n+\t\ttftShowLogo();" in io
+    assert '#include "d4kLogo.h"' in patch
+
+
+def test_build_script_copies_the_logo_header():
+    assert 'cp "$HERE/d4kLogo.h" vm/' in page("firmware/build.sh")
+
+
+@pytest.mark.parametrize("path", ["README.md", "firmware/README.md", "coach/en/setup.md", "coach/fr/setup.md", "coach/nl/setup.md"])
+def test_docs_say_the_logo_shows_the_workshop_firmware(path):
+    """A black screen at power-on now means the workshop firmware is missing, not that all is well."""
+    text = page(path)
+    assert "Devoxx4Kids" in text and ("logo" in text.lower())
+    assert "until a program draws something: that is normal" not in text
+    assert "tant qu'aucun programme ne dessine quelque chose : c'est normal" not in text
+    assert "zolang geen programma iets tekent: dat is normaal" not in text

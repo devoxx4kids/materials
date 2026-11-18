@@ -12,6 +12,7 @@ git clone --quiet --branch dev https://codeberg.org/MicroBlocks/smallvm.git "$WO
 cd "$WORK/smallvm"
 git checkout --quiet "$BASE"
 git apply "$HERE/microblocks-core2-v1.3.patch"
+cp "$HERE/d4kLogo.h" vm/   # the start-up logo, included by the patched tftPrims.cpp
 
 rm -rf data
 mkdir data

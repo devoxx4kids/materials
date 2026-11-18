@@ -32,7 +32,7 @@ Chaque table utilise son propre numéro de groupe, à partir de 1, pour que 20 c
 | Symptôme | Solution |
 |---|---|
 | Carte introuvable | Rebranchez ; utilisez un câble USB-C de données ; rechargez la page ou redémarrez l'application |
-| Écran noir | Appuyez sur le bouton d'alimentation sur le côté gauche ; chargez la carte |
+| Écran noir | Appuyez sur le bouton d'alimentation sur le côté gauche ; chargez la carte. Toujours noir à l'allumage, sans le logo Devoxx4Kids : réinstallez le firmware de l'atelier (voir [préparation](setup.md)) |
 | Les boutons ne réagissent pas | Ouvrez le projet de départ, pour que la bibliothèque d'aide soit chargée |
 | Les messages n'arrivent pas | Les deux cartes doivent utiliser le même numéro de groupe |
 | Pas de son | Vérifiez que le bloc bip est utilisé ; utilisez plutôt le bloc vibrer |

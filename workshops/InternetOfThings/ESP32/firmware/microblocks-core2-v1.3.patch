@@ -11,6 +11,32 @@ index ff2f7e8b..f4c16df9 100644
  
  /*! @name  Global array that stores the configuration file of BMI270 */
  static const uint8_t bmi270_config_file[] = {
+diff --git a/vm/interp.h b/vm/interp.h
+index f666ecf9..3e0e1ab5 100644
+--- a/vm/interp.h
++++ b/vm/interp.h
+@@ -407,6 +407,7 @@ extern int isSpringbotGold;
+ 
+ void tftInit();
+ void tftClear();
++void tftShowLogo();
+ void tftSetHugePixel(int x, int y, int state);
+ void tftSetHugePixelBits(int bits);
+ 
+diff --git a/vm/ioPrims.cpp b/vm/ioPrims.cpp
+index 5f4c1363..3a9af05e 100644
+--- a/vm/ioPrims.cpp
++++ b/vm/ioPrims.cpp
+@@ -199,6 +199,9 @@ void hardwareInit() {
+ 	#if !defined(IS_XIAO) && !defined(NEZHA_ESP32)
+ 		tftInit();
+ 		tftClear();
++	#if defined(ARDUINO_M5STACK_Core2)
++		tftShowLogo(); // Devoxx4Kids workshop logo
++	#endif
+ 	#endif
+ 	#if defined(DATABOT) || defined(DATABOT_V3)
+ 		int yellow = 14864128;
 diff --git a/vm/mbFont.c b/vm/mbFont.c
 index 94499648..6182a40b 100644
 --- a/vm/mbFont.c
@@ -213,10 +239,42 @@ index 965cfd7f..af200113 100644
  
  	int x, y, z;
 diff --git a/vm/tftPrims.cpp b/vm/tftPrims.cpp
-index 8441f90a..0320af98 100644
+index 8441f90a..59c602c2 100644
 --- a/vm/tftPrims.cpp
 +++ b/vm/tftPrims.cpp
-@@ -2482,6 +2482,16 @@ static OBJ primAprilTag(int argCount, OBJ *args) { return falseObj; }
+@@ -1377,6 +1377,31 @@ void tftClear() {
+ 	UPDATE_DISPLAY();
+ }
+ 
++#if defined(ARDUINO_M5STACK_Core2)
++
++#include "d4kLogo.h"
++
++void tftShowLogo() {
++	// Devoxx4Kids workshop: draw the Devoxx4Kids logo at start-up. It stays on the
++	// screen until a program draws something.
++
++	if (!tft) return;
++	tft->fillScreen(WHITE);
++	int i = 0;
++	for (int row = 0; row < D4K_LOGO_H; row++) {
++		int col = 0;
++		while (col < D4K_LOGO_W) {
++			int count = d4kLogoRuns[i++];
++			int color = d4kLogoRuns[i++];
++			tft->drawFastHLine(D4K_LOGO_X + col, D4K_LOGO_Y + row, count, color);
++			col += count;
++		}
++	}
++	UPDATE_DISPLAY();
++}
++
++#endif
++
+ void tftSetHugePixel(int x, int y, int state) {
+ 	if (!useTFT) return;
+ 
+@@ -2482,6 +2507,16 @@ static OBJ primAprilTag(int argCount, OBJ *args) { return falseObj; }
  
  #endif
  
@@ -233,7 +291,7 @@ index 8441f90a..0320af98 100644
  // Touchscreen Primitives
  
  static OBJ primTftTouched(int argCount, OBJ *args) {
-@@ -2536,6 +2546,7 @@ static PrimEntry entries[] = {
+@@ -2536,6 +2571,7 @@ static PrimEntry entries[] = {
  	{"drawBuffer", primDrawBuffer},
  	{"drawBitmap", primDrawBitmap},
  

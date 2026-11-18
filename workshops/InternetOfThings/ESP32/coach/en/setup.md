@@ -23,7 +23,7 @@ The standard MicroBlocks firmware does not support the Core2 v1.3 fully. Use the
 
 If MicroBlocks later shows *The MicroBlocks in your board is not current… Try to update MicroBlocks on the board?*, click **Cancel**: the update installs the standard firmware, without the motion sensor and vibration fix. If a board was updated anyway, install the workshop firmware again (step 2).
 
-The screen stays black and the green LED stays off until a program draws something: that is normal.
+At power-on the board shows the **Devoxx4Kids logo** until a program draws something: that is how you recognise the workshop firmware. A black screen at power-on means the board runs another firmware: install the workshop firmware again (step 2). The green LED stays off: that is normal.
 
 ## 3. Language
 

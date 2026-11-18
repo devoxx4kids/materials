@@ -32,7 +32,7 @@ Each table uses its own group number, from 1 upward, so 20 boards in the same ro
 | Symptom | Fix |
 |---|---|
 | Board not found | Replug; use a data USB-C cable; reload the page or restart the app |
-| Screen black | Press the power button on the left side; charge the board |
+| Screen black | Press the power button on the left side; charge the board. Still black at power-on, without the Devoxx4Kids logo: install the workshop firmware again (see [setup](setup.md)) |
 | Buttons don't react | Open the starter project, so the helper library is loaded |
 | Messages don't arrive | Both boards must use the same group number |
 | No sound | Check that the beep block is used; use the vibrate block instead |
