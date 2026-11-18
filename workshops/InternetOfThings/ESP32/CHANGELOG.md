@@ -20,6 +20,9 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - New test: every script and function stays under 1000 bytes of source, so each compiles within MicroBlocks' chunk limit.
 - `library/README.md` explains that each circle needs a single `when` script, and its test header names the VM 425 build; `vendor/README.md` points to Codeberg at f4767a3 with the curl and shasum commands.
 
+### Added
+- `vendor/README.md` lists distributors where the Core2 v1.3 (K010-V13) can be bought: Mouser, RS Components and DigiKey.
+
 ## [0.3.0] - 2026-11-16
 
 ### Changed

@@ -16,3 +16,11 @@ To update, from the workshop folder (replace the commit in the URLs with the one
     shasum -a 256 vendor/*.ubl
 
 Update the table above with the new SHA-256 values, run `python3 tools/build.py`, and re-test on a Core2.
+
+## Where to buy the board
+
+The workshop needs the **M5Stack Core2 v1.3** (part number **K010-V13**); do not buy the Core2 v1.1 (K010-V11). Search for the part number at one of these distributors:
+
+- Mouser: https://www.mouser.be/
+- RS Components: https://benl.rs-online.com/web/c/?searchTerm=esp32
+- DigiKey: https://www.digikey.be/en/
