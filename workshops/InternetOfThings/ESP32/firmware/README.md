@@ -1,6 +1,8 @@
 # MicroBlocks firmware for the M5Stack Core2 v1.3
 
-The standard MicroBlocks Core2 firmware (`m5core2_1.0`) does not read the motion sensor of the **Core2 v1.3 (K010-V13)**, and it cannot switch the vibration motor. This folder holds a patched build that fixes both, until the fix is included in MicroBlocks itself.
+The standard MicroBlocks Core2 firmware (`m5core2_1.0`) does not read the motion sensor of the **Core2 v1.3 (K010-V13)**, and it cannot switch the vibration motor. This folder holds a patched build that fixes both, and makes accented letters readable.
+
+Status in MicroBlocks (Codeberg issues #1116–#1118): the motion sensor and font fixes were accepted and will be in the next pilot release; the vibration primitive was declined (MicroBlocks only adds features that work across many boards), so it stays in this patch. Keep using this firmware for the workshop; see the [workshop README](../README.md#the-firmware-patch-and-microblocks).
 
 | File | What it is |
 |---|---|

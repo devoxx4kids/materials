@@ -15,6 +15,7 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - Coach pages: which capital accents display and which show a rectangle; the 21 empty picture files left without `bomb-images.bin`; the safe zone is marked next to each table.
 
 ### Changed
+- The workshop README has a generic title and is now the full setup guide: mission order, buying the boards, flashing the firmware, preparing laptops, rebuilding and updating the firmware, and the MicroBlocks team's answers (motion sensor and font fixes accepted for the next pilot release, vibration declined and kept in our patch).
 - Kids' pages name the palette of list, item, length, join, random, reset timer and timer, and say that join needs one arrow click for a third hole.
 - `build.py` names the file when a translation file is not valid JSON, and `--check` also reports unused translation keys and stray .ubp/.ubl files.
 - New test: every script and function stays under 1000 bytes of source, so each compiles within MicroBlocks' chunk limit.
