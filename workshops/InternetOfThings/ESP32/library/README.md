@@ -17,6 +17,8 @@ Helper blocks for the M5Stack Core2, used by every mission. They hide the board 
 
 The library uses the MicroBlocks **Tone** library, which every workshop project already contains.
 
+**One script per circle:** a `… touched?` block is true once per touch for the whole program, not once per script. If two scripts wait for the same circle, each touch reaches only one of them. Use one `when` script per circle and put everything for that circle in it.
+
 ## Files
 
 - `Core2Buttons-en.ubl`, `Core2Buttons-fr.ubl`, `Core2Buttons-nl.ubl`: generated, one per language. Coaches normally don't need them, because every starter project already contains the library.
@@ -52,7 +54,7 @@ The exact English labels of the MicroBlocks blocks used in the mission pages, as
 
 ## Tested on hardware
 
-Board: Core2 v1.3 (K010-V13), two boards. Firmware: MicroBlocks `dev` b40b74d (VM 424) with the Devoxx4Kids patch (`../firmware/`). IDE: MicroBlocks pilot (2.5.15) and the 3.0 preview. Date: 2026-11-13.
+Board: Core2 v1.3 (K010-V13), two boards. First run (2026-11-13): MicroBlocks `dev` b40b74d (VM 424) with the Devoxx4Kids patch (`../firmware/`), IDE MicroBlocks pilot (2.5.15) and the 3.0 preview. The workshop now ships the VM 425 build (`dev` f4767a3, IDE 3.0.0): see the re-check after the table.
 
 | Check | What was tested | Result | Notes |
 |---|---|---|---|

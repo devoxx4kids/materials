@@ -2,6 +2,24 @@
 
 All notable changes to the ESP32 workshop. One version entry per day.
 
+## [0.4.0] - 2026-11-18
+
+### Fixed
+- `show bomb calm` clears the screen first, so the old BOOM!/SAFE! text no longer stays around the bomb in a new round.
+- Mission 2 pages (EN/FR/NL) say where the true/false switch is (Operators): a typed `true` is only text and the game never started.
+- Coach setup names the tested MicroBlocks version (3.0) and says to click Cancel on the board-update prompt, which would replace the workshop firmware; two new troubleshooting rows.
+- Bomb solution: the SAFE time is read before the safe animation, SAFE waits until a nervous picture is fully drawn (new `drawing` variable), and "Touch middle to start" shows again after BOOM! and SAFE!.
+- Mission 2 pages read the time first too, and the English `SAFE! ` text has its space before the time.
+- Mission 3 pages: the party buzz is 250 ms (100 ms was not felt), and the shake script shows `Sent!` and waits 500 ms, so one shake sends one message.
+- Bonus cards: coach hint for "Too early!" in the reaction duel; the `group` variable of Team channels starts at the table number.
+- Coach pages: which capital accents display and which show a rectangle; the 21 empty picture files left without `bomb-images.bin`; the safe zone is marked next to each table.
+
+### Changed
+- Kids' pages name the palette of list, item, length, join, random, reset timer and timer, and say that join needs one arrow click for a third hole.
+- `build.py` names the file when a translation file is not valid JSON, and `--check` also reports unused translation keys and stray .ubp/.ubl files.
+- New test: every script and function stays under 1000 bytes of source, so each compiles within MicroBlocks' chunk limit.
+- `library/README.md` explains that each circle needs a single `when` script, and its test header names the VM 425 build; `vendor/README.md` points to Codeberg at f4767a3 with the curl and shasum commands.
+
 ## [0.3.0] - 2026-11-16
 
 ### Changed
@@ -14,9 +32,6 @@ All notable changes to the ESP32 workshop. One version entry per day.
 
 ### Fixed
 - `show big text` no longer cuts off a single long word (e.g. Gefeliciteerd!): it also checks the width before choosing a size.
-- `show bomb calm` clears the screen first, so the old BOOM!/SAFE! text no longer stays around the bomb in a new round.
-- Mission 2 pages (EN/FR/NL) say where the true/false switch is (Operators): a typed `true` is only text and the game never started.
-- Coach setup names the tested MicroBlocks version (3.0) and says to click Cancel on the board-update prompt, which would replace the workshop firmware; two new troubleshooting rows.
 
 ### Added
 - English entry page, coach guides (setup, running a session, hardware) and library reference.

@@ -25,9 +25,9 @@ A magic ball needs answers. We keep them in a **list**.
 
 1. Go to **Variables**, click **Add a variable** and name it `answers`.
 2. Under **when started** (it is already there), add **set answers to _**.
-3. Put a **list** block in the hole. Click the arrow on the list until it has 4 spaces and type: `Yes!`, `No way!`, `Maybe...`, `Ask again`.
+3. Put a **list** block (from **Data**) in the hole. Click the arrow on the list until it has 4 spaces and type: `Yes!`, `No way!`, `Maybe...`, `Ask again`.
 4. Click the **when started** script once, so the list is made.
-5. In your **when** script, replace the text `Ask me a question!` with **item _ of _**: in the first hole put **random 1 to _**, and in the last hole of **random** put **length of answers**. In the second hole of **item** put **answers**.
+5. In your **when** script, replace the text `Ask me a question!` with **item _ of _** (from **Data**): in the first hole put **random 1 to _** (from **Operators**), and in the last hole of **random** put **length of answers** (from **Data**). In the second hole of **item** put **answers**.
 
 **🧪 Try it!** Touch the middle circle a few times. Do you get different answers?
 

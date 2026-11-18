@@ -16,7 +16,7 @@
 
 **Doel:** wisselen tussen de groep van je tafel en een gedeelde groep voor de hele zaal.
 
-**Hoe:** de rechtercirkel gaat al alle emoji's rond, dus de linkercirkel is vrij. Verander je script **linkerknop aangeraakt?**: voeg een variabele `groep` toe; als `groep` je tafelnummer is, maak ze `99`, anders zet ze terug op je tafelnummer. Voer dan **espNow set group** uit met `groep` en toon ze met **samenvoegen** `Groep ` en **groep**.
+**Hoe:** de rechtercirkel gaat al alle emoji's rond, dus de linkercirkel is vrij. Verander je script **linkerknop aangeraakt?**: voeg een variabele `groep` toe en maak ze je tafelnummer in **wanneer gestart**; als `groep` je tafelnummer is, maak ze `99`, anders zet ze terug op je tafelnummer. Voer dan **espNow set group** uit met `groep` en toon ze met **samenvoegen** `Groep ` en **groep**.
 
 **Tip voor de coach:** spreek voor de hele zaal één extra gedeeld groepsnummer af.
 

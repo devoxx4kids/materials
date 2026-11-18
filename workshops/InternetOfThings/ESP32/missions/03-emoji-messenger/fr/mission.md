@@ -22,7 +22,7 @@ Envoie des emojis de ta carte vers d'autres cartes, par radio. Pas d'internet, p
 
 La liste `emojis` est déjà dans ton projet : `:-)` `:-D` `;-)` `<3` `:-O` `:-(` `B-)` `:-P`. Penche la tête vers la gauche pour voir les visages !
 
-1. Fais un script **quand** avec **bouton droit touché ?** : **changer choix par 1**, **si choix > longueur de emojis** mettre choix à 1, puis **afficher grand texte (élément choix de emojis)**.
+1. Fais un script **quand** avec **bouton droit touché ?** : **changer choix par 1**, **si choix > longueur de emojis** mettre choix à 1, puis **afficher grand texte (élément choix de emojis)** (**élément** et **longueur de** sont dans **Donnée**).
 2. Fais pareil avec **bouton gauche touché ?** : changer choix par -1, et si choix < 1 mets-le à **longueur de emojis**.
 3. Dans le script du bouton du milieu, envoie **choix** au lieu de 1 : **espNow envoyer la paire monNom = choix**.
 
@@ -44,8 +44,8 @@ La liste `emojis` est déjà dans ton projet : `:-)` `:-D` `;-)` `<3` `:-O` `:-(
 
 Toutes les cartes de ton groupe entendent tous les messages. C'est ce qu'on appelle une **diffusion** (en anglais *broadcast*).
 
-1. Fais un script **quand** avec **carte secouée ?** et ajoute **espNow envoyer la paire monNom = 0**.
-2. Dans le script de réception, ajoute avant l'autre test : **si n = 0**, **répéter 3 fois** : affiche `FIESTA !` en rose, **vibrer pendant 100 ms**, affiche `FIESTA !` en bleu clair, attends 100 ms.
+1. Fais un script **quand** avec **carte secouée ?** et ajoute **espNow envoyer la paire monNom = 0**, **afficher grand texte** `Parti !` en vert et **attendre 500 millisecondes** (pour qu'une secousse envoie un seul message, pas des dizaines). Puis affiche à nouveau ton emoji : **afficher grand texte (élément choix de emojis)**.
+2. Dans le script de réception, ajoute avant l'autre test : **si n = 0**, **répéter 3 fois** : affiche `FIESTA !` en rose, **vibrer pendant 250 ms**, affiche `FIESTA !` en bleu clair, attends 100 ms.
 
 **🧪 Essaie !** Secoue ta carte. Toute la table fait-elle la fête ?
 

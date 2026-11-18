@@ -22,7 +22,7 @@ Send emojis from your board to other boards, by radio. No internet, no Wi-Fi rou
 
 The list `emojis` is already in your project: `:-)` `:-D` `;-)` `<3` `:-O` `:-(` `B-)` `:-P`. Turn your head to the left to see the faces!
 
-1. Make a **when** script with **right button touched?**: **change choice by 1**, **if choice > length of emojis** set choice to 1, then **show big text (item choice of emojis)**.
+1. Make a **when** script with **right button touched?**: **change choice by 1**, **if choice > length of emojis** set choice to 1, then **show big text (item choice of emojis)** (**item** and **length of** are in **Data**).
 2. Do the same with **left button touched?**: change choice by -1, and if choice < 1 set it to **length of emojis**.
 3. In the middle-button script, send **choice** instead of 1: **espNow send pair myName = choice**.
 
@@ -44,8 +44,8 @@ The list `emojis` is already in your project: `:-)` `:-D` `;-)` `<3` `:-O` `:-(`
 
 Every board in your group hears every message. That is called a **broadcast**.
 
-1. Make a **when** script with **board shaken?** and add **espNow send pair myName = 0**.
-2. In the received script, add before the other test: **if n = 0**, **repeat 3**: show `PARTY!` in pink, **vibrate for 100 ms**, show `PARTY!` in light blue, wait 100 ms.
+1. Make a **when** script with **board shaken?** and add **espNow send pair myName = 0**, **show big text** `Sent!` in green and **wait 500 millisecs** (so one shake sends one message, not dozens). Then show your emoji again: **show big text (item choice of emojis)**.
+2. In the received script, add before the other test: **if n = 0**, **repeat 3**: show `PARTY!` in pink, **vibrate for 250 ms**, show `PARTY!` in light blue, wait 100 ms.
 
 **🧪 Try it!** Shake your board. Does the whole table party?
 

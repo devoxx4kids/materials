@@ -2,12 +2,13 @@ module main
 author Devoxx4Kids
 version 1 0 
 description 'De bom - klaar, voor coaches'
-variables 'gevaar' 'speelt' 'stemming' 'bezig' 
+variables 'gevaar' 'speelt' 'stemming' 'bezig' 'tekenen' 
 
 script 50 50 {
 whenStarted
 'speelt' = (booleanConstant false)
 'bezig' = (booleanConstant false)
+'tekenen' = (booleanConstant false)
 '[tft:clear]'
 c2b_showBomb 'kalm'
 '[tft:text]' 'Tik midden om te starten' 10 210 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
@@ -19,9 +20,12 @@ if (not (v 'bezig')) {
   if (v 'speelt') {
     'speelt' = (booleanConstant false)
     'bezig' = (booleanConstant true)
+    local 't' ((timer) / 1000)
+    waitUntil (not (v 'tekenen'))
     c2b_showBomb 'veilig'
-    c2b_bigText ('[data:join]' 'VEILIG!' ' ' ((timer) / 1000) ' s') (colorSwatch 0 255 0 255)
+    c2b_bigText ('[data:join]' 'VEILIG!' ' ' t ' s') (colorSwatch 0 255 0 255)
     c2b_beep 1320 300
+    '[tft:text]' 'Tik midden om te starten' 10 210 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
     'bezig' = (booleanConstant false)
   } else {
     'gevaar' = 0
@@ -49,15 +53,20 @@ if ((v 'gevaar') >= 100) {
   c2b_showBomb 'ontploft'
   c2b_vibrate 800
   c2b_bigText 'BOEM!' (colorSwatch 255 0 0 255)
+  '[tft:text]' 'Tik midden om te starten' 10 210 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
   'bezig' = (booleanConstant false)
 } ((v 'gevaar') >= 50) {
+  'tekenen' = (booleanConstant true)
   c2b_showBomb 'nerveus'
+  'tekenen' = (booleanConstant false)
   c2b_beep 880 40
   'stemming' = 1
   c2b_dangerBar (v 'gevaar')
 } else {
   if ((v 'stemming') == 1) {
+    'tekenen' = (booleanConstant true)
     c2b_showBomb 'kalm'
+    'tekenen' = (booleanConstant false)
     'stemming' = 0
   }
   c2b_dangerBar (v 'gevaar')

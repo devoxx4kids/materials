@@ -22,7 +22,7 @@ Stuur emoji's van je bord naar andere borden, via de radio. Geen internet, geen 
 
 De lijst `emojis` zit al in je project: `:-)` `:-D` `;-)` `<3` `:-O` `:-(` `B-)` `:-P`. Kantel je hoofd naar links om de gezichtjes te zien!
 
-1. Maak een script **wanneer** met **rechterknop aangeraakt?**: **verander keuze met 1**, **als keuze > lengte van emojis** maak keuze 1, dan **toon grote tekst (item keuze van emojis)**.
+1. Maak een script **wanneer** met **rechterknop aangeraakt?**: **verander keuze met 1**, **als keuze > lengte van emojis** maak keuze 1, dan **toon grote tekst (item keuze van emojis)** (**item** en **lengte van** zitten in **Data**).
 2. Doe hetzelfde met **linkerknop aangeraakt?**: verander keuze met -1, en als keuze < 1 maak keuze **lengte van emojis**.
 3. Stuur in het script van de middelste knop **keuze** in plaats van 1: **espNow send pair mijnNaam = keuze**.
 
@@ -44,8 +44,8 @@ De lijst `emojis` zit al in je project: `:-)` `:-D` `;-)` `<3` `:-O` `:-(` `B-)`
 
 Elk bord in je groep hoort elk bericht. Dat heet een **broadcast** (een bericht voor iedereen).
 
-1. Maak een script **wanneer** met **bord geschud?** en voeg **espNow send pair mijnNaam = 0** toe.
-2. Voeg in het ontvangstscript vóór de andere test toe: **als n = 0**, **herhaal 3**: toon `FEEST!` in het roze, **tril 100 ms**, toon `FEEST!` in het lichtblauw, wacht 100 ms.
+1. Maak een script **wanneer** met **bord geschud?** en voeg **espNow send pair mijnNaam = 0**, **toon grote tekst** `Verstuurd!` in het groen en **wacht 500 milliseconden** toe (zo stuurt één keer schudden één bericht, geen tientallen). Toon daarna weer je emoji: **toon grote tekst (item keuze van emojis)**.
+2. Voeg in het ontvangstscript vóór de andere test toe: **als n = 0**, **herhaal 3**: toon `FEEST!` in het roze, **tril 250 ms**, toon `FEEST!` in het lichtblauw, wacht 100 ms.
 
 **🧪 Probeer het!** Schud je bord. Viert de hele tafel feest?
 

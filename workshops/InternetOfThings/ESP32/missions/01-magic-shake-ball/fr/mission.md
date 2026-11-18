@@ -25,9 +25,9 @@ Une boule magique a besoin de réponses. On les range dans une **liste**.
 
 1. Va dans **Variables**, clique sur **Ajouter une variable** et appelle-la `réponses`.
 2. Sous **au démarrage** (il est déjà là), ajoute **mettre réponses à _**.
-3. Mets un bloc **liste** dans le trou. Clique sur la flèche de la liste jusqu'à avoir 4 cases et tape : `Oui !`, `Pas question !`, `Possible...`, `Redemande`.
+3. Mets un bloc **liste** (dans **Donnée**) dans le trou. Clique sur la flèche de la liste jusqu'à avoir 4 cases et tape : `Oui !`, `Pas question !`, `Possible...`, `Redemande`.
 4. Clique une fois sur le script **au démarrage**, pour que la liste soit créée.
-5. Dans ton script **quand**, remplace le texte `Pose-moi une question !` par **élément _ de _** : dans le premier trou mets **nombre aléatoire entre 1 et _**, et dans le dernier trou de ce bloc mets **longueur de réponses**. Dans le deuxième trou de **élément** mets **réponses**.
+5. Dans ton script **quand**, remplace le texte `Pose-moi une question !` par **élément _ de _** (dans **Donnée**) : dans le premier trou mets **nombre aléatoire entre 1 et _** (dans **Opérateurs**), et dans le dernier trou de ce bloc mets **longueur de réponses** (dans **Donnée**). Dans le deuxième trou de **élément** mets **réponses**.
 
 **🧪 Essaie !** Touche le cercle du milieu plusieurs fois. Obtiens-tu des réponses différentes ?
 

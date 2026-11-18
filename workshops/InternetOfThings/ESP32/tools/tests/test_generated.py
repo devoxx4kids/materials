@@ -274,14 +274,15 @@ def test_the_explosion_can_be_heard(files):
     """Each explosion frame comes with a short low rumble, after a deep opening boom."""
     show = body(library(files), "c2b_showBomb")
     play = body(library(files), "_c2b_playSet")
-    explode = show[show.index("menu") if False else show.index("'_c2b_playSet' 'explode'") - 200:show.index("'_c2b_playSet' 'explode'")]
+    start = show.index("'_c2b_playSet' 'explode'")
+    explode = show[start - 200:start]
     assert "'play frequency' 50 200" in explode
     assert "if (name == 'explode') {\n      'play frequency' (random 30 90) 50\n    }" in play
 
 
 VARIABLES = {
     "missions/01-magic-shake-ball/solution/magic-ball-done-{lang}.ubp": ["var.answers"],
-    "missions/02-bomb/solution/bomb-done-{lang}.ubp": ["var.danger", "var.playing", "var.mood", "var.busy"],
+    "missions/02-bomb/solution/bomb-done-{lang}.ubp": ["var.danger", "var.playing", "var.mood", "var.busy", "var.drawing"],
     "missions/03-emoji-messenger/starter/emoji-messenger-start-{lang}.ubp": ["var.emojis", "var.choice", "var.my_name"],
     "missions/03-emoji-messenger/solution/emoji-messenger-done-{lang}.ubp": ["var.emojis", "var.choice", "var.my_name"],
 }
@@ -322,3 +323,37 @@ def test_calm_bomb_clears_the_screen_first(files):
     calm = library[library.index("to c2b_showBomb"):]
     calm = calm[calm.index("if (state == 'calm')"):calm.index("'_c2b_drawFrame' 'bomb_calm_1.data'")]
     assert "'[tft:clear]'" in calm
+
+
+def bomb_middle_script(files):
+    done = main_module(files["missions/02-bomb/solution/bomb-done-en.ubp"])
+    start = done.index("whenCondition (c2b_middleTouched)")
+    return done[start:done.index("\nscript ", start)]
+
+
+def test_safe_time_is_read_before_the_safe_animation(files):
+    safe = bomb_middle_script(files).split("} else {")[0]
+    assert safe.index("local 't' ((timer) / 1000)") < safe.index("c2b_showBomb 'safe'")
+    assert "'[data:join]' 'SAFE!' ' ' t ' s'" in safe
+
+
+def test_safe_waits_for_a_nervous_frame_to_finish(files):
+    done = main_module(files["missions/02-bomb/solution/bomb-done-en.ubp"])
+    assert "'drawing' = (booleanConstant true)\n  c2b_showBomb 'nervous'\n  'drawing' = (booleanConstant false)" in done
+    safe = bomb_middle_script(files).split("} else {")[0]
+    assert safe.index("waitUntil (not (v 'drawing'))") < safe.index("c2b_showBomb 'safe'")
+
+
+def test_touch_hint_is_shown_after_boom_and_safe(files):
+    done = main_module(files["missions/02-bomb/solution/bomb-done-en.ubp"])
+    hint = "'[tft:text]' 'Touch middle to start' 10 210"
+    assert done.count(hint) == 3  # at start, after BOOM!, after SAFE!
+
+
+def test_every_function_and_script_stays_small_enough_to_compile(files):
+    """MicroBlocks refuses a compiled chunk over 1000 bytes. Compiled code is smaller than
+    its source text, and the largest source tested on the boards is 794 bytes (c2b_bigText),
+    so keeping every source under 1000 bytes keeps each chunk within the limit."""
+    for name, text in files.items():
+        for match in re.finditer(r"^(to [^\n]*|script [^\n]*)\{\n(.*?)\n\}$", text, re.S | re.M):
+            assert len(match.group(2).encode()) < 1000, (name, match.group(1))

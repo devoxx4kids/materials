@@ -9,7 +9,7 @@ Jullie zijn de ontmijningsdienst! Breng de bom naar de veilige zone zonder hem t
 ## ⭐1 De bom verschijnt
 
 1. Ga naar **Variabelen** en voeg een variabele `speelt` toe. Voeg onder **wanneer gestart** de blokken **maak speelt** onwaar (de schakelaar uit) en **toon bom kalm** (uit **Core2Buttons**) toe.
-2. Maak een script **wanneer** met **middelste knop aangeraakt?**. Daarin: **timer resetten**, **toon gevarenbalk 0** en **maak speelt** waar (de schakelaar aan).
+2. Maak een script **wanneer** met **middelste knop aangeraakt?**. Daarin: **timer resetten** (uit **Input**), **toon gevarenbalk 0** en **maak speelt** waar (de schakelaar aan).
 
 **waar / onwaar:** neem het schakelaarblok uit **Functies** en zet het in het gat van **maak**. Klik op de schakelaar om hem uit te zetten: dat is onwaar. Aan is waar. Typ niet het woord `waar`: dan is het alleen tekst, en begint het spel nooit.
 
@@ -40,7 +40,7 @@ Jullie zijn de ontmijningsdienst! Breng de bom naar de veilige zone zonder hem t
 ## ⭐4 Veilig!
 
 1. Maak van het script van de middelste cirkel een **als speelt / anders**:
-   - **als speelt** (de bom is in de veilige zone): **maak speelt** onwaar, **toon bom veilig**, dan **toon grote tekst (samenvoegen `VEILIG! ` (timer / 1000) ` s`)** in het groen;
+   - **als speelt** (de bom is in de veilige zone): **maak speelt** onwaar, **initialiseer lokaal t naar (timer / 1000)** (**timer** zit in **Input**; lees hem eerst, zodat de animatie niet meetelt), **toon bom veilig**, dan **toon grote tekst (samenvoegen `VEILIG! ` t ` s`)** in het groen (**samenvoegen** zit in **Data**: klik één keer op het pijltje voor een derde gat);
    - **anders** (een nieuw spel beginnen): alles wat het script eerst deed (timer resetten, gevaar 0, stemming 0, **toon bom kalm**, gevarenbalk 0, **maak speelt** waar).
 
 **🧪 Probeer het!** Hoe snel kun je de bom in veiligheid brengen zonder dat hij ontploft? (Wacht tot `BOEM!` of `VEILIG!` op het scherm staat voor je de middelste cirkel opnieuw aanraakt.)

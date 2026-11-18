@@ -25,9 +25,9 @@ Een magische bal heeft antwoorden nodig. We bewaren ze in een **lijst**.
 
 1. Ga naar **Variabelen**, klik op **Voeg een variabele toe** en noem ze `antwoorden`.
 2. Voeg onder **wanneer gestart** (dat staat er al) het blok **maak antwoorden _** toe.
-3. Zet een blok **lijst** in het gat. Klik op het pijltje van de lijst tot hij 4 vakjes heeft en typ: `Ja!`, `Echt niet!`, `Misschien...`, `Vraag opnieuw`.
+3. Zet een blok **lijst** (uit **Data**) in het gat. Klik op het pijltje van de lijst tot hij 4 vakjes heeft en typ: `Ja!`, `Echt niet!`, `Misschien...`, `Vraag opnieuw`.
 4. Klik één keer op het script **wanneer gestart**, zodat de lijst gemaakt wordt.
-5. Vervang in je script **wanneer** de tekst `Stel me een vraag!` door **item _ van _**: zet in het eerste gat **willekeurig getal tussen 1 en _**, en zet in het laatste gat van dat blok **lengte van antwoorden**. Zet in het tweede gat van **item** het blok **antwoorden**.
+5. Vervang in je script **wanneer** de tekst `Stel me een vraag!` door **item _ van _** (uit **Data**): zet in het eerste gat **willekeurig getal tussen 1 en _** (uit **Functies**), en zet in het laatste gat van dat blok **lengte van antwoorden** (uit **Data**). Zet in het tweede gat van **item** het blok **antwoorden**.
 
 **🧪 Probeer het!** Raak de middelste cirkel een paar keer aan. Krijg je verschillende antwoorden?
 

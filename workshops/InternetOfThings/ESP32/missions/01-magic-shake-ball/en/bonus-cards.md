@@ -36,6 +36,6 @@ Pick any card. Each one works on its own.
 
 **Goal:** the ball counts how many questions it answered.
 
-**How:** add a variable `count`. Set it to 0 in **when started**. Add **change count by 1** in your **when** script. Show it with **join** `Questions: ` and **count**.
+**How:** add a variable `count`. Set it to 0 in **when started**. Add **change count by 1** in your **when** script. Show it with **join** (from **Data**) `Questions: ` and **count**.
 
 **Coach hint:** show the count after the answer, after the wait.

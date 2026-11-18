@@ -9,7 +9,7 @@ You are the bomb squad! Carry the bomb to the safe zone without jolting it... or
 ## ⭐1 The bomb appears
 
 1. Go to **Variables** and add a variable `playing`. Under **when started**, add **set playing to false** and **show bomb calm** (from **Core2Buttons**).
-2. Make a **when** script with **middle button touched?**. In it: **reset timer**, **show danger bar 0**, and **set playing to true**.
+2. Make a **when** script with **middle button touched?**. In it: **reset timer** (from **Input**), **show danger bar 0**, and **set playing to true**.
 
 **true / false:** take the switch block from **Operators** and put it in the hole of **set**. Click the switch to turn it off: that is false. On is true. Don't type the word `true`: then it is only text, and the game never starts.
 
@@ -40,7 +40,7 @@ You are the bomb squad! Carry the bomb to the safe zone without jolting it... or
 ## ⭐4 Safe!
 
 1. Change the middle-circle script into an **if playing / else**:
-   - **if playing** (the bomb is in the safe zone): **set playing to false**, **show bomb safe**, then **show big text (join `SAFE!` (timer / 1000) ` s`)** in green;
+   - **if playing** (the bomb is in the safe zone): **set playing to false**, **initialize local t to (timer / 1000)** (**timer** is in **Input**; read it first, so the safe animation doesn't count), **show bomb safe**, then **show big text (join `SAFE! ` t ` s`)** in green (**join** is in **Data**: click its arrow once to get a third hole);
    - **else** (start a new game): everything the script did before (reset timer, danger 0, mood 0, **show bomb calm**, danger bar 0, **set playing to true**).
 
 **🧪 Try it!** How fast can you bring the bomb to safety without exploding it? (Wait until `BOOM!` or `SAFE!` is shown before you touch the middle circle again.)

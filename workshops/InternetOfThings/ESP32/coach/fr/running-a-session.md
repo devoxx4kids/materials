@@ -4,7 +4,7 @@
 
 - Chaque portable a MicroBlocks ouvert, une carte connectée et le **projet de départ** de la mission du jour ouvert dans la bonne langue.
 - Le projet solution de la mission est sur votre propre portable.
-- Pour la mission 2, marquez sur chaque table un point de départ et une zone de sécurité (une feuille de papier) à environ 3 mètres l'un de l'autre. Les enfants portent la carte à deux mains, en marchant.
+- Pour la mission 2, marquez près de chaque table un point de départ et une zone de sécurité (une feuille de papier) à environ 3 mètres l'un de l'autre. Les enfants portent la carte à deux mains, en marchant.
 
 ## Déroulement
 
@@ -44,6 +44,6 @@ Quand un binôme est bloqué plus de deux minutes, ouvrez le projet solution sur
 
 ## Limites connues
 
-- Accents : les minuscules accentuées (é, è, ê, à, ç, ù…) s'affichent correctement avec le firmware de l'atelier ; les majuscules ne gardent leur accent que là où la petite police de l'écran a de la place.
+- Accents : les minuscules accentuées (é, è, ê, à, ç, ù…) s'affichent correctement avec le firmware de l'atelier. Majuscules : É, Ç, Ä, Ö et Ü s'affichent ; À, È, Ê, Î, Ô, Ù, Û, œ et Œ ne sont pas dans la police de l'écran et s'affichent comme un rectangle plein : écrivez-les en minuscules.
 - Radio : testée avec deux cartes. ESP Now ne garantit pas la livraison, donc dans une salle pleine un message peut parfois se perdre ; il suffit de le renvoyer.
-- Sans `firmware/bomb-images.bin`, la bombe fonctionne toujours, mais sans images (voir [préparation](setup.md)).
+- Sans `firmware/bomb-images.bin`, la bombe fonctionne toujours, mais sans images, et la carte garde alors 21 fichiers d'images vides ; réinstaller le firmware avec les deux fichiers les remplace (voir [préparation](setup.md)).

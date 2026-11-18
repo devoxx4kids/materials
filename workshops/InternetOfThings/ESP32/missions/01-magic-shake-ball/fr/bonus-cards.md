@@ -36,6 +36,6 @@ Choisis n'importe quelle carte. Chacune fonctionne toute seule.
 
 **But :** la boule compte combien de questions elle a répondues.
 
-**Comment :** ajoute une variable `compteur`. Mets-la à 0 dans **au démarrage**. Ajoute **changer compteur par 1** dans ton script **quand**. Affiche-la avec **joindre** `Questions : ` **et** **compteur**.
+**Comment :** ajoute une variable `compteur`. Mets-la à 0 dans **au démarrage**. Ajoute **changer compteur par 1** dans ton script **quand**. Affiche-la avec **joindre** (dans **Donnée**) `Questions : ` **et** **compteur**.
 
 **Conseil pour le coach :** affichez le compteur après la réponse, après l'attente.

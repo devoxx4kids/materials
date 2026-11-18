@@ -16,7 +16,7 @@
 
 **Goal:** switch between your table's group and a shared group for the whole room.
 
-**How:** the right circle already goes round all the emojis, so the left circle is free. Change your **left button touched?** script: add a variable `group`; if `group` is your table number, set it to `99`, otherwise set it back to your table number. Then run **espNow set group** with `group` and show it with **join** `Group ` and **group**.
+**How:** the right circle already goes round all the emojis, so the left circle is free. Change your **left button touched?** script: add a variable `group` and set it to your table number in **when started**; if `group` is your table number, set it to `99`, otherwise set it back to your table number. Then run **espNow set group** with `group` and show it with **join** `Group ` and **group**.
 
 **Coach hint:** agree on one shared extra group number for the whole room.
 

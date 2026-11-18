@@ -53,5 +53,6 @@
   "var.emojis": "emojis",
   "var.choice": "keuze",
   "var.my_name": "mijnNaam",
+  "var.drawing": "tekenen",
   "comment.widest": "Het aantal tekens van de langste regel."
 }

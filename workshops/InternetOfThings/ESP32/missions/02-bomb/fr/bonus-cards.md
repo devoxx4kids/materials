@@ -8,6 +8,8 @@
 
 **Comment :** un script **quand** avec **bouton droit touché ?** : affiche `Attention...`, attends un nombre **aléatoire** entre 2000 et 5000 ms, affiche `GO !` et bipe. Puis **répéter jusqu'à** ce que quelqu'un touche : cercle de gauche → `Gauche gagne !`, cercle de droite → `Droite gagne !`. Toucher avant GO ! → `Trop tôt !`.
 
+**Conseil pour le coach :** pendant un simple **attendre**, la carte ne voit pas les touchers ; pour `Trop tôt !`, il faut une boucle : **réinitialiser le minuteur**, choisir le temps au hasard, puis **répéter jusqu'à** minuteur > ce temps, en testant les cercles dans la boucle.
+
 ---
 
 ## 🃏 Carte B : Mode expert

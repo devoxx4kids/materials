@@ -36,6 +36,6 @@ Kies een kaart. Elke kaart werkt op zichzelf.
 
 **Doel:** de bal telt hoeveel vragen hij beantwoord heeft.
 
-**Hoe:** voeg een variabele `teller` toe. Zet ze op 0 in **wanneer gestart**. Voeg **verander teller met 1** toe in je script **wanneer**. Toon ze met **samenvoegen** `Vragen: ` en **teller**.
+**Hoe:** voeg een variabele `teller` toe. Zet ze op 0 in **wanneer gestart**. Voeg **verander teller met 1** toe in je script **wanneer**. Toon ze met **samenvoegen** (uit **Data**) `Vragen: ` en **teller**.
 
 **Tip voor de coach:** toon de teller na het antwoord, na het wachten.

@@ -9,7 +9,7 @@ Tu fais partie de l'équipe de déminage ! Porte la bombe jusqu'à la zone de s�
 ## ⭐1 La bombe apparaît
 
 1. Va dans **Variables** et ajoute une variable `enJeu`. Sous **au démarrage**, ajoute **mettre enJeu à** faux (l'interrupteur éteint) et **afficher la bombe calme** (de **Core2Buttons**).
-2. Fais un script **quand** avec **bouton du milieu touché ?**. Dedans : **réinitialiser le minuteur**, **afficher la barre de danger 0** et **mettre enJeu à** vrai (l'interrupteur allumé).
+2. Fais un script **quand** avec **bouton du milieu touché ?**. Dedans : **réinitialiser le minuteur** (dans **Entrée**), **afficher la barre de danger 0** et **mettre enJeu à** vrai (l'interrupteur allumé).
 
 **vrai / faux :** prends le bloc interrupteur dans **Opérateurs** et mets-le dans le trou de **mettre**. Clique sur l'interrupteur pour l'éteindre : c'est faux. Allumé, c'est vrai. Ne tape pas le mot `vrai` : ce ne serait que du texte, et la partie ne commencerait jamais.
 
@@ -40,7 +40,7 @@ Tu fais partie de l'équipe de déminage ! Porte la bombe jusqu'à la zone de s�
 ## ⭐4 En sécurité !
 
 1. Transforme le script du cercle du milieu en **si enJeu / sinon** :
-   - **si enJeu** (la bombe est dans la zone de sécurité) : **mettre enJeu à** faux, **afficher la bombe en sécurité**, puis **afficher grand texte (joindre `BRAVO ! ` (minuteur / 1000) ` s`)** en vert ;
+   - **si enJeu** (la bombe est dans la zone de sécurité) : **mettre enJeu à** faux, **définir t à (minuteur / 1000)** (**minuteur** est dans **Entrée** ; lis-le d'abord, pour que l'animation ne compte pas), **afficher la bombe en sécurité**, puis **afficher grand texte (joindre `BRAVO ! ` t ` s`)** en vert (**joindre** est dans **Donnée** : clique une fois sur sa flèche pour avoir un troisième trou) ;
    - **sinon** (commencer une nouvelle partie) : tout ce que le script faisait avant (réinitialiser le minuteur, danger 0, humeur 0, **afficher la bombe calme**, barre de danger 0, **mettre enJeu à** vrai).
 
 **🧪 Essaie !** En combien de temps peux-tu mettre la bombe en sécurité sans la faire exploser ? (Attends que `BOUM !` ou `BRAVO !` s'affiche avant de toucher à nouveau le cercle du milieu.)

@@ -8,6 +8,8 @@
 
 **How:** a **when** script with **right button touched?**: show `Get ready...`, wait a **random** 2000 to 5000 ms, show `GO!` and beep. Then **repeat until** someone touches: left circle → `Left wins!`, right circle → `Right wins!`. Touching before GO! → `Too early!`.
 
+**Coach hint:** during a plain **wait** the board doesn't see touches, so `Too early!` needs a loop: **reset timer**, pick the random time, then **repeat until** timer > that time, checking the circles inside the loop.
+
 ---
 
 ## 🃏 Card B: Expert mode

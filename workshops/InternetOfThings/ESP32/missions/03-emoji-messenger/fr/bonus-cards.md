@@ -16,7 +16,7 @@
 
 **But :** passer du groupe de ta table à un groupe commun pour toute la salle.
 
-**Comment :** le cercle de droite fait déjà le tour de tous les emojis, donc le cercle de gauche est libre. Change ton script **bouton gauche touché ?** : ajoute une variable `groupe` ; si `groupe` est ton numéro de table, mets-le à `99`, sinon remets-le à ton numéro de table. Puis lance **espNow définir le groupe** avec `groupe` et affiche-le avec **joindre** `Groupe ` **et** **groupe**.
+**Comment :** le cercle de droite fait déjà le tour de tous les emojis, donc le cercle de gauche est libre. Change ton script **bouton gauche touché ?** : ajoute une variable `groupe` et mets-la à ton numéro de table dans **au démarrage** ; si `groupe` est ton numéro de table, mets-le à `99`, sinon remets-le à ton numéro de table. Puis lance **espNow définir le groupe** avec `groupe` et affiche-le avec **joindre** `Groupe ` **et** **groupe**.
 
 **Conseil pour le coach :** mettez-vous d'accord sur un seul numéro de groupe commun en plus pour toute la salle.
 

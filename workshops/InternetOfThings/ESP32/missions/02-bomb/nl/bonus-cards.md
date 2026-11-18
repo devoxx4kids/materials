@@ -8,6 +8,8 @@
 
 **Hoe:** een script **wanneer** met **rechterknop aangeraakt?**: toon `Klaar...`, wacht een **willekeurig getal** tussen 2000 en 5000 ms, toon `NU!` en piep. Dan **herhaal tot** iemand aanraakt: linkercirkel → `Links wint!`, rechtercirkel → `Rechts wint!`. Aanraken voor NU! → `Te vroeg!`.
 
+**Tip voor de coach:** tijdens een gewone **wacht** ziet het bord geen aanrakingen; voor `Te vroeg!` is een lus nodig: **timer resetten**, de willekeurige tijd kiezen, dan **herhaal tot** timer > die tijd, en in de lus de cirkels testen.
+
 ---
 
 ## 🃏 Kaart B: Expertmodus

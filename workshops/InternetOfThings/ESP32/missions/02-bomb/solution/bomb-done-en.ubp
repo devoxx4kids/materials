@@ -2,12 +2,13 @@ module main
 author Devoxx4Kids
 version 1 0 
 description 'Bomb - finished version for coaches'
-variables 'danger' 'playing' 'mood' 'busy' 
+variables 'danger' 'playing' 'mood' 'busy' 'drawing' 
 
 script 50 50 {
 whenStarted
 'playing' = (booleanConstant false)
 'busy' = (booleanConstant false)
+'drawing' = (booleanConstant false)
 '[tft:clear]'
 c2b_showBomb 'calm'
 '[tft:text]' 'Touch middle to start' 10 210 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
@@ -19,9 +20,12 @@ if (not (v 'busy')) {
   if (v 'playing') {
     'playing' = (booleanConstant false)
     'busy' = (booleanConstant true)
+    local 't' ((timer) / 1000)
+    waitUntil (not (v 'drawing'))
     c2b_showBomb 'safe'
-    c2b_bigText ('[data:join]' 'SAFE!' ' ' ((timer) / 1000) ' s') (colorSwatch 0 255 0 255)
+    c2b_bigText ('[data:join]' 'SAFE!' ' ' t ' s') (colorSwatch 0 255 0 255)
     c2b_beep 1320 300
+    '[tft:text]' 'Touch middle to start' 10 210 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
     'busy' = (booleanConstant false)
   } else {
     'danger' = 0
@@ -49,15 +53,20 @@ if ((v 'danger') >= 100) {
   c2b_showBomb 'explode'
   c2b_vibrate 800
   c2b_bigText 'BOOM!' (colorSwatch 255 0 0 255)
+  '[tft:text]' 'Touch middle to start' 10 210 (colorSwatch 255 255 255 255) 2 (booleanConstant false)
   'busy' = (booleanConstant false)
 } ((v 'danger') >= 50) {
+  'drawing' = (booleanConstant true)
   c2b_showBomb 'nervous'
+  'drawing' = (booleanConstant false)
   c2b_beep 880 40
   'mood' = 1
   c2b_dangerBar (v 'danger')
 } else {
   if ((v 'mood') == 1) {
+    'drawing' = (booleanConstant true)
     c2b_showBomb 'calm'
+    'drawing' = (booleanConstant false)
     'mood' = 0
   }
   c2b_dangerBar (v 'danger')

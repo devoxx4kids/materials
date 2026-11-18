@@ -53,5 +53,6 @@
   "var.emojis": "emojis",
   "var.choice": "choix",
   "var.my_name": "monNom",
+  "var.drawing": "dessin",
   "comment.widest": "Le nombre de caractères de la ligne la plus longue."
 }

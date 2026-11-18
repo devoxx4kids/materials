@@ -1782,7 +1782,7 @@ Bomb and explosion animations: Noto Animated Emoji by Google, CC BY 4.0
 
 - [ ] **Step 2: Complete `W/library/README.md`**
 
-Insert, between the title and `## Tested on hardware`:
+Replace the line under the title (it already starts with "Helper blocks for the M5Stack Core2") and insert the rest before `## Tested on hardware`:
 ```markdown
 Helper blocks for the M5Stack Core2, used by every mission. They hide the board details
 children don't need: the three red circles under the screen are touch zones rather than

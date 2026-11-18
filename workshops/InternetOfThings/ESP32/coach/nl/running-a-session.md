@@ -4,7 +4,7 @@
 
 - Op elke laptop is MicroBlocks open, een bord aangesloten en het **startproject** van de missie van vandaag open in de juiste taal.
 - Het oplossingsproject van de missie staat op je eigen laptop.
-- Markeer voor missie 2 op elke tafel een startpunt en een veilige zone (een vel papier), ongeveer 3 meter uit elkaar. De kinderen dragen het bord met twee handen, al wandelend.
+- Markeer voor missie 2 bij elke tafel een startpunt en een veilige zone (een vel papier), ongeveer 3 meter uit elkaar. De kinderen dragen het bord met twee handen, al wandelend.
 
 ## Verloop
 
@@ -44,6 +44,6 @@ Zit een duo meer dan twee minuten vast, open dan het oplossingsproject op je lap
 
 ## Bekende beperkingen
 
-- Accenten: kleine letters met accent (é, è, ê, à, ç, ù…) worden juist getoond met de workshopfirmware; hoofdletters houden hun accent alleen waar het kleine schermlettertype plaats heeft.
+- Accenten: kleine letters met accent (é, è, ê, à, ç, ù…) worden juist getoond met de workshopfirmware. Hoofdletters: É, Ç, Ä, Ö en Ü worden getoond; À, È, Ê, Î, Ô, Ù, Û, œ en Œ zitten niet in het schermlettertype en verschijnen als een gevuld rechthoekje: schrijf die in kleine letters.
 - Radio: getest met twee borden. ESP Now garandeert de aflevering niet, dus in een volle zaal kan af en toe een bericht verloren gaan; stuur het gewoon opnieuw.
-- Zonder `firmware/bomb-images.bin` werkt de bom nog steeds, maar zonder plaatjes (zie [klaarmaken](setup.md)).
+- Zonder `firmware/bomb-images.bin` werkt de bom nog steeds, maar zonder plaatjes, en het bord houdt dan 21 lege beeldbestanden over; de firmware opnieuw met beide bestanden op het bord zetten vervangt ze (zie [klaarmaken](setup.md)).

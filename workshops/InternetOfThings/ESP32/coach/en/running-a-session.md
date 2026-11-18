@@ -4,7 +4,7 @@
 
 - Every laptop has MicroBlocks open, a board connected, and the **starter project** of today's mission open in the right language.
 - The solution project of the mission is on your own laptop.
-- For Mission 2, mark a start point and a safe zone (a sheet of paper) about 3 metres apart on each table. Children carry the board with two hands, walking.
+- For Mission 2, mark a start point and a safe zone (a sheet of paper) about 3 metres apart, next to each table. Children carry the board with two hands, walking.
 
 ## Timing
 
@@ -44,6 +44,6 @@ When a pair is stuck for more than two minutes, open the solution project on you
 
 ## Known limits
 
-- Accents: lowercase accented letters (é, è, ê, à, ç, ù…) display correctly with the workshop firmware; capital letters keep their accents only where the small screen font has room.
+- Accents: lowercase accented letters (é, è, ê, à, ç, ù…) display correctly with the workshop firmware. Capitals: É, Ç, Ä, Ö and Ü display; À, È, Ê, Î, Ô, Ù, Û, œ and Œ are not in the screen font and show as a filled rectangle, so write those in lowercase.
 - Radio: tested with two boards. ESP Now does not guarantee delivery, so in a full room an occasional message can be lost; just send it again.
-- Without `firmware/bomb-images.bin` the Bomb still works, but shows no pictures (see [setup](setup.md)).
+- Without `firmware/bomb-images.bin` the Bomb still works, but shows no pictures, and the board then holds 21 empty picture files; installing the firmware again with both files replaces them (see [setup](setup.md)).
