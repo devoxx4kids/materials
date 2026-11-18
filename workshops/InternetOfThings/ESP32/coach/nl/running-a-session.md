@@ -36,6 +36,8 @@ Elke tafel gebruikt een eigen groepsnummer, vanaf 1, zodat 20 borden in dezelfde
 | Knoppen reageren niet | Open het startproject, zodat de hulpbibliotheek geladen is |
 | Berichten komen niet aan | Beide borden moeten hetzelfde groepsnummer gebruiken |
 | Geen geluid | Controleer dat het piepblok gebruikt wordt; gebruik anders het trilblok |
+| **bord geschud?** is nooit waar, geen trillen | Een update heeft de workshopfirmware vervangen: zet ze opnieuw op het bord (zie [klaarmaken](setup.md)) |
+| Missie 2: de gevarenbalk verschijnt, maar verder gebeurt er niets | `speelt` kreeg het getypte woord `waar`: gebruik het schakelaarblok uit **Functies** |
 | Bomplaatjes ontbreken | Zet de workshopfirmware opnieuw op het bord met beide bestanden (zie [klaarmaken](setup.md)) |
 
 Zit een duo meer dan twee minuten vast, open dan het oplossingsproject op je laptop en vergelijk hun script ermee, blok per blok.

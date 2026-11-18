@@ -4,7 +4,7 @@ Doe dit de dag ervoor. Reken op ongeveer 5 minuten per bord.
 
 ## 1. Laptops
 
-- Installeer Chrome of Edge, of de MicroBlocks-app voor de computer via https://microblocks.fun/download (gebruik de app als de locatie geen betrouwbaar internet heeft).
+- Installeer Chrome of Edge, of de MicroBlocks-app voor de computer via https://microblocks.fun/download (gebruik de app als de locatie geen betrouwbaar internet heeft). De workshop is getest met MicroBlocks 3.0.
 - Download deze workshopmap op elke laptop, of zet de bestanden `missions/*/starter/*.ubp` van je taal op een USB-stick.
 - Controleer elke kabel: een USB-C-kabel die alleen laadt is de meest voorkomende reden dat een bord "niet gevonden" wordt. Label de kabels die werken.
 
@@ -20,6 +20,8 @@ De standaard MicroBlocks-firmware ondersteunt de Core2 v1.3 niet helemaal. Gebru
 3. Trek de kabel uit, zet het bord uit (linkerknop 6 seconden ingedrukt houden) en weer aan (2 seconden), en steek de kabel er weer in.
 4. Open MicroBlocks (https://microblocks.fun → **Run**), maak verbinding en controleer dat de naam van het bord **M5StackCore2** is.
 5. Open `missions/01-magic-shake-ball/solution/magic-ball-done-nl.ubp`, klik op ▶ en schud het bord: er verschijnt een antwoord, met een piep en een tril. Het bord is klaar.
+
+Toont MicroBlocks later *De MicroBlocks op je board is niet actueel…* en stelt het een update voor, klik dan op **Annuleren**: de update zet de standaardfirmware op het bord, zonder de aanpassing voor de bewegingssensor en het trillen. Is een bord toch bijgewerkt, zet dan de workshopfirmware opnieuw op het bord (stap 2).
 
 Het scherm blijft zwart en de groene led blijft uit zolang geen programma iets tekent: dat is normaal.
 

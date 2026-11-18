@@ -229,6 +229,7 @@ to '_c2b_wrap' text maxChars {
 to c2b_showBomb state {
   comment 'Tekent de bom (Noto Animated Emoji van Google, CC BY 4.0). De beelden zijn bestanden op het bord, geïnstalleerd met de workshopfirmware. Nerveus toont elke keer het volgende beeld; ontploft en veilig spelen hun hele animatie af.'
   if (state == 'kalm') {
+    '[tft:clear]'
     '_c2b_drawFrame' 'bomb_calm_1.data' (at 2 ('_c2b_bombSet' 'calm'))
   } (state == 'nerveus') {
     local 'set' ('_c2b_bombSet' 'nervous')

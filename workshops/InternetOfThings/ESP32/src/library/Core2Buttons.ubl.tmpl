@@ -161,6 +161,7 @@ to '_c2b_wrap' text maxChars {
 to c2b_showBomb state {
   comment '{{comment.show_bomb}}'
   if (state == '{{menu.bomb_calm}}') {
+    '[tft:clear]'
     '_c2b_drawFrame' 'bomb_calm_1.data' (at 2 ('_c2b_bombSet' 'calm'))
   } (state == '{{menu.bomb_nervous}}') {
     local 'set' ('_c2b_bombSet' 'nervous')

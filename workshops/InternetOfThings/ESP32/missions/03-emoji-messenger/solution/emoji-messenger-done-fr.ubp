@@ -231,6 +231,7 @@ to '_c2b_wrap' text maxChars {
 to c2b_showBomb state {
   comment 'Dessine la bombe (Noto Animated Emoji de Google, CC BY 4.0). Les images sont des fichiers sur la carte, installés avec le firmware de l''atelier. Nerveuse affiche l''image suivante à chaque fois ; explose et en sécurité jouent toute leur animation.'
   if (state == 'calme') {
+    '[tft:clear]'
     '_c2b_drawFrame' 'bomb_calm_1.data' (at 2 ('_c2b_bombSet' 'calm'))
   } (state == 'nerveuse') {
     local 'set' ('_c2b_bombSet' 'nervous')

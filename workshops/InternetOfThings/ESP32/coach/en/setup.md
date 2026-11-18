@@ -4,7 +4,7 @@ Do this the day before. Allow about 5 minutes per board.
 
 ## 1. Laptops
 
-- Install Chrome or Edge, or the MicroBlocks desktop app from https://microblocks.fun/download (use the app when the venue has no reliable internet).
+- Install Chrome or Edge, or the MicroBlocks desktop app from https://microblocks.fun/download (use the app when the venue has no reliable internet). The workshop was tested with MicroBlocks 3.0.
 - Download this workshop folder to each laptop, or put the `missions/*/starter/*.ubp` files for your language on a USB stick.
 - Check each cable: a charging-only USB-C cable is the most common reason a board "is not found". Label the cables that work.
 
@@ -20,6 +20,8 @@ The standard MicroBlocks firmware does not support the Core2 v1.3 fully. Use the
 3. Unplug the cable, switch the board off (hold the left button 6 seconds) and on again (2 seconds), and plug the cable back in.
 4. Open MicroBlocks (https://microblocks.fun → **Run**), connect, and check that the board name is **M5StackCore2**.
 5. Open `missions/01-magic-shake-ball/solution/magic-ball-done-en.ubp`, click ▶ and shake the board: an answer appears, with a beep and a buzz. The board is ready.
+
+If MicroBlocks later shows *The MicroBlocks in your board is not current… Try to update MicroBlocks on the board?*, click **Cancel**: the update installs the standard firmware, without the motion sensor and vibration fix. If a board was updated anyway, install the workshop firmware again (step 2).
 
 The screen stays black and the green LED stays off until a program draws something: that is normal.
 

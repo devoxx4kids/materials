@@ -4,7 +4,7 @@ Faites-le la veille. Comptez environ 5 minutes par carte.
 
 ## 1. Portables
 
-- Installez Chrome ou Edge, ou l'application MicroBlocks pour ordinateur depuis https://microblocks.fun/download (utilisez l'application si le lieu n'a pas d'internet fiable).
+- Installez Chrome ou Edge, ou l'application MicroBlocks pour ordinateur depuis https://microblocks.fun/download (utilisez l'application si le lieu n'a pas d'internet fiable). L'atelier a été testé avec MicroBlocks 3.0.
 - Téléchargez ce dossier d'atelier sur chaque portable, ou mettez les fichiers `missions/*/starter/*.ubp` de votre langue sur une clé USB.
 - Vérifiez chaque câble : un câble USB-C qui ne fait que charger est la raison la plus fréquente pour laquelle une carte « n'est pas trouvée ». Étiquetez les câbles qui fonctionnent.
 
@@ -20,6 +20,8 @@ Le firmware MicroBlocks standard ne gère pas entièrement la Core2 v1.3. Utilis
 3. Débranchez le câble, éteignez la carte (bouton de gauche maintenu 6 secondes) puis rallumez-la (2 secondes), et rebranchez le câble.
 4. Ouvrez MicroBlocks (https://microblocks.fun → **Run**), connectez-vous et vérifiez que le nom de la carte est **M5StackCore2**.
 5. Ouvrez `missions/01-magic-shake-ball/solution/magic-ball-done-fr.ubp`, cliquez sur ▶ et secouez la carte : une réponse apparaît, avec un bip et une vibration. La carte est prête.
+
+Si MicroBlocks affiche plus tard *La version de MicroBlocks sur votre carte n'est pas à jour…* et propose une mise à jour, cliquez sur **Annuler** : la mise à jour installe le firmware standard, sans le correctif du capteur de mouvement et de la vibration. Si une carte a quand même été mise à jour, réinstallez le firmware de l'atelier (étape 2).
 
 L'écran reste noir et la LED verte reste éteinte tant qu'aucun programme ne dessine quelque chose : c'est normal.
 

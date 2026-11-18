@@ -314,3 +314,11 @@ def test_big_text_never_cuts_off_a_long_word(files):
     assert "((('_c2b_widest' lines) * (6 * scale)) <= 320)" in big
     widest = body(text, "_c2b_widest")
     assert "if ((size line) > result) {" in widest
+
+
+def test_calm_bomb_clears_the_screen_first(files):
+    """The calm bomb is 140 x 140; a new round must not keep the old SAFE!/BOOM! text around it."""
+    library = files["library/Core2Buttons-en.ubl"]
+    calm = library[library.index("to c2b_showBomb"):]
+    calm = calm[calm.index("if (state == 'calm')"):calm.index("'_c2b_drawFrame' 'bomb_calm_1.data'")]
+    assert "'[tft:clear]'" in calm

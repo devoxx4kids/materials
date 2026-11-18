@@ -11,6 +11,8 @@ Tu fais partie de l'équipe de déminage ! Porte la bombe jusqu'à la zone de s�
 1. Va dans **Variables** et ajoute une variable `enJeu`. Sous **au démarrage**, ajoute **mettre enJeu à** faux (l'interrupteur éteint) et **afficher la bombe calme** (de **Core2Buttons**).
 2. Fais un script **quand** avec **bouton du milieu touché ?**. Dedans : **réinitialiser le minuteur**, **afficher la barre de danger 0** et **mettre enJeu à** vrai (l'interrupteur allumé).
 
+**vrai / faux :** prends le bloc interrupteur dans **Opérateurs** et mets-le dans le trou de **mettre**. Clique sur l'interrupteur pour l'éteindre : c'est faux. Allumé, c'est vrai. Ne tape pas le mot `vrai` : ce ne serait que du texte, et la partie ne commencerait jamais.
+
 **🧪 Essaie !** Clique sur ▶. Vois-tu la bombe ? Touche le cercle du milieu : la barre de danger apparaît en bas, la partie a commencé.
 
 **🔄 Change de rôle**

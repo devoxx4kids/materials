@@ -14,6 +14,9 @@ All notable changes to the ESP32 workshop. One version entry per day.
 
 ### Fixed
 - `show big text` no longer cuts off a single long word (e.g. Gefeliciteerd!): it also checks the width before choosing a size.
+- `show bomb calm` clears the screen first, so the old BOOM!/SAFE! text no longer stays around the bomb in a new round.
+- Mission 2 pages (EN/FR/NL) say where the true/false switch is (Operators): a typed `true` is only text and the game never started.
+- Coach setup names the tested MicroBlocks version (3.0) and says to click Cancel on the board-update prompt, which would replace the workshop firmware; two new troubleshooting rows.
 
 ### Added
 - English entry page, coach guides (setup, running a session, hardware) and library reference.

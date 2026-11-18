@@ -231,6 +231,7 @@ to '_c2b_wrap' text maxChars {
 to c2b_showBomb state {
   comment 'Draws the bomb pictures (Noto Animated Emoji by Google, CC BY 4.0). The frames are files on the board, installed with the workshop firmware. Nervous shows the next frame each time it runs; explode and safe play their whole animation.'
   if (state == 'calm') {
+    '[tft:clear]'
     '_c2b_drawFrame' 'bomb_calm_1.data' (at 2 ('_c2b_bombSet' 'calm'))
   } (state == 'nervous') {
     local 'set' ('_c2b_bombSet' 'nervous')

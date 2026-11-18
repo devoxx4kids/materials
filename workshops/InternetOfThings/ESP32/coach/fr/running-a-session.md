@@ -36,6 +36,8 @@ Chaque table utilise son propre numéro de groupe, à partir de 1, pour que 20 c
 | Les boutons ne réagissent pas | Ouvrez le projet de départ, pour que la bibliothèque d'aide soit chargée |
 | Les messages n'arrivent pas | Les deux cartes doivent utiliser le même numéro de groupe |
 | Pas de son | Vérifiez que le bloc bip est utilisé ; utilisez plutôt le bloc vibrer |
+| **carte secouée ?** n'est jamais vrai, pas de vibration | Une mise à jour a remplacé le firmware de l'atelier : réinstallez-le (voir [préparation](setup.md)) |
+| Mission 2 : la barre de danger apparaît, mais rien d'autre ne se passe | `enJeu` a reçu le mot tapé `vrai` : utilisez le bloc interrupteur de **Opérateurs** |
 | Images de la bombe absentes | Réinstallez le firmware de l'atelier avec les deux fichiers (voir [préparation](setup.md)) |
 
 Quand un binôme est bloqué plus de deux minutes, ouvrez le projet solution sur votre portable et comparez son script avec le leur, bloc par bloc.

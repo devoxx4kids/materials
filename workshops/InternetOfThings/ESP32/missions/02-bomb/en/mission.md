@@ -11,6 +11,8 @@ You are the bomb squad! Carry the bomb to the safe zone without jolting it... or
 1. Go to **Variables** and add a variable `playing`. Under **when started**, add **set playing to false** and **show bomb calm** (from **Core2Buttons**).
 2. Make a **when** script with **middle button touched?**. In it: **reset timer**, **show danger bar 0**, and **set playing to true**.
 
+**true / false:** take the switch block from **Operators** and put it in the hole of **set**. Click the switch to turn it off: that is false. On is true. Don't type the word `true`: then it is only text, and the game never starts.
+
 **🧪 Try it!** Click ▶. Do you see the bomb? Touch the middle circle: the danger bar appears at the bottom, the game has started.
 
 **🔄 Swap**

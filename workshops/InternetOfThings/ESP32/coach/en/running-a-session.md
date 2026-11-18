@@ -36,6 +36,8 @@ Each table uses its own group number, from 1 upward, so 20 boards in the same ro
 | Buttons don't react | Open the starter project, so the helper library is loaded |
 | Messages don't arrive | Both boards must use the same group number |
 | No sound | Check that the beep block is used; use the vibrate block instead |
+| **board shaken?** is never true, no buzz | An update replaced the workshop firmware: install it again (see [setup](setup.md)) |
+| Mission 2: the danger bar appears, but nothing else happens | `playing` was set with the typed word `true`: use the switch block from **Operators** |
 | Bomb pictures missing | Install the workshop firmware again with both files (see [setup](setup.md)) |
 
 When a pair is stuck for more than two minutes, open the solution project on your laptop and compare their script with it, one block at a time.

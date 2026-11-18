@@ -11,6 +11,8 @@ Jullie zijn de ontmijningsdienst! Breng de bom naar de veilige zone zonder hem t
 1. Ga naar **Variabelen** en voeg een variabele `speelt` toe. Voeg onder **wanneer gestart** de blokken **maak speelt** onwaar (de schakelaar uit) en **toon bom kalm** (uit **Core2Buttons**) toe.
 2. Maak een script **wanneer** met **middelste knop aangeraakt?**. Daarin: **timer resetten**, **toon gevarenbalk 0** en **maak speelt** waar (de schakelaar aan).
 
+**waar / onwaar:** neem het schakelaarblok uit **Functies** en zet het in het gat van **maak**. Klik op de schakelaar om hem uit te zetten: dat is onwaar. Aan is waar. Typ niet het woord `waar`: dan is het alleen tekst, en begint het spel nooit.
+
 **🧪 Probeer het!** Klik op ▶. Zie je de bom? Raak de middelste cirkel aan: onderaan verschijnt de gevarenbalk, het spel is begonnen.
 
 **🔄 Wissel**
