@@ -22,6 +22,7 @@ All notable changes to the ESP32 workshop. One version entry per day.
 - `library/README.md` explains that each circle needs a single `when` script, and its test header names the VM 425 build; `vendor/README.md` points to Codeberg at f4767a3 with the curl and shasum commands.
 
 ### Added
+- The coach hardware pages (EN/FR/NL) list where to buy the Core2 v1.3: Mouser, RS Components and DigiKey.
 - `vendor/README.md` lists distributors where the Core2 v1.3 (K010-V13) can be bought: Mouser, RS Components and DigiKey.
 
 ## [0.3.0] - 2026-11-16

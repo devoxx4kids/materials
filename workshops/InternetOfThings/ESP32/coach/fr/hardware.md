@@ -18,6 +18,14 @@ Nous utilisons la **Core2 v1.3** (référence **K010-V13**, LED d'alimentation v
 - Un câble USB-C de données par carte.
 - Un portable par binôme.
 
+## Où acheter
+
+Distributeurs en Belgique ; cherchez la référence **K010-V13** :
+
+- Mouser: https://www.mouser.be/
+- RS Components: https://benl.rs-online.com/web/c/?searchTerm=esp32
+- DigiKey: https://www.digikey.be/en/
+
 ## Manipulation
 
 - Tenez la carte à deux mains pour la secouer ; ne la lancez pas.

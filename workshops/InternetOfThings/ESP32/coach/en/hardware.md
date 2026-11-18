@@ -18,6 +18,14 @@ We use the **Core2 v1.3** (part number **K010-V13**, green power LED). Do not bu
 - One USB-C data cable per board.
 - One laptop per pair.
 
+## Where to buy
+
+Distributors in Belgium; search for the part number **K010-V13**:
+
+- Mouser: https://www.mouser.be/
+- RS Components: https://benl.rs-online.com/web/c/?searchTerm=esp32
+- DigiKey: https://www.digikey.be/en/
+
 ## Handling
 
 - Hold the board in two hands when shaking; don't throw it.

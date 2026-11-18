@@ -18,6 +18,14 @@ We gebruiken de **Core2 v1.3** (artikelnummer **K010-V13**, groene aan/uit-led).
 - Eén USB-C-datakabel per bord.
 - Eén laptop per duo.
 
+## Waar kopen
+
+Verdelers in België; zoek op het artikelnummer **K010-V13**:
+
+- Mouser: https://www.mouser.be/
+- RS Components: https://benl.rs-online.com/web/c/?searchTerm=esp32
+- DigiKey: https://www.digikey.be/en/
+
 ## Omgaan met het bord
 
 - Houd het bord met twee handen vast als je schudt; gooi het niet.
